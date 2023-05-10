@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Staff {
 	private int id;
-	private String userName;
+	private String username;
 	private String password;
 	private String passwordTrial;
 	private String role;
@@ -16,9 +16,9 @@ public class Staff {
 	public Staff(){};
 	
 	//constructor w/o id
-	public Staff(String userName, String password, String passwordTrial, String role, boolean status,
+	public Staff(String username, String password, String passwordTrial, String role, boolean status,
 			LocalDate createdAt, LocalDate updateAt) {
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.passwordTrial = passwordTrial;
 		this.role = role;
@@ -32,7 +32,7 @@ public class Staff {
 			LocalDate createdAt, LocalDate updateAt) {
 		super();
 		this.id = id;
-		this.userName = userName;
+		this.username = userName;
 		this.password = password;
 		this.passwordTrial = passwordTrial;
 		this.role = role;
@@ -48,12 +48,12 @@ public class Staff {
 		return id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
