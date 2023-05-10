@@ -5,23 +5,23 @@ import java.time.LocalDate;
 public class Basket {
 	private int id;
 	private float discount;
-	private LocalDate created_at;
+	private LocalDate createdAt;
 	private Staff staff;
 	
 	public Basket() {
 		
 	}
 	
-	public Basket(float discount, LocalDate created_at, Staff staff) {
+	public Basket(float discount, LocalDate createdAt, Staff staff) {
 		this.discount = discount;
-		this.created_at = created_at;
+		this.createdAt = createdAt;
 		this.staff = staff;
 	}
 	
-	public Basket(int id, float discount, LocalDate created_at, Staff staff) {
+	public Basket(int id, float discount, LocalDate createdAt, Staff staff) {
 		this.id = id;
 		this.discount = discount;
-		this.created_at = created_at;
+		this.createdAt = createdAt;
 		this.staff = staff;
 	}
 	
@@ -37,12 +37,12 @@ public class Basket {
 		this.discount = discount;
 	}
 	
-	public LocalDate getCreated_at() {
-		return created_at;
+	public LocalDate getCreatedAt() {
+		return createdAt;
 	}
 	
-	public void setCreated_at(LocalDate created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
 	}
 	
 	public Staff getStaff() {
