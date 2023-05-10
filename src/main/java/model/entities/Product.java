@@ -8,6 +8,24 @@ public class Product {
 		
 	}
 	
+	public Product(Integer id, String name, String description, Double price, Double tax, String picture,
+			Boolean status, Double stock, String createdBy, String updatedBy, LocalDate createdAt, LocalDate updatedAt,
+			Integer categoryId) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.tax = tax;
+		this.picture = picture;
+		this.status = status;
+		this.stock = stock;
+		this.createdBy = createdBy;
+		this.updatedBy = updatedBy;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.categoryId = categoryId;
+	}
+	
 	public Product(String name, String description, Double price, Double tax, String picture,
 			Boolean status, Double stock, String createdBy, String updatedBy, LocalDate createdAt, LocalDate updatedAt,
 			Integer categoryId) {
