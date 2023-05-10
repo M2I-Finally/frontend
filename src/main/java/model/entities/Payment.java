@@ -2,13 +2,14 @@ package model.entities;
 
 import java.time.LocalDate;
 
-import model.PaiementType;
+import model.PaymentType;
+
 
 public class Payment {
 	
 	private int id;
 	private float amount;
-	private PaiementType type;
+	private PaymentType type;
 	private LocalDate createdAt;
 	private Basket basket;
 
@@ -17,8 +18,8 @@ public class Payment {
 	}
 
 
-	public Payment(float amount, PaiementType type, LocalDate createdAt, Basket basket) {
-		super();
+	public Payment(float amount, PaymentType type, LocalDate createdAt, Basket basket) {
+		
 		this.amount = amount;
 		this.type = type;
 		this.createdAt = createdAt;
@@ -26,8 +27,8 @@ public class Payment {
 	}
 
 
-	public Payment(int id, float amount, PaiementType type, LocalDate createdAt, Basket basket) {
-		super();
+	public Payment(int id, float amount, PaymentType type, LocalDate createdAt, Basket basket) {
+		
 		this.id = id;
 		this.amount = amount;
 		this.type = type;
@@ -45,12 +46,12 @@ public class Payment {
 	}
 
 
-	public PaiementType getType() {
+	public PaymentType getType() {
 		return type;
 	}
 
 
-	public void setType(PaiementType type) {
+	public void setType(PaymentType type) {
 		this.type = type;
 	}
 

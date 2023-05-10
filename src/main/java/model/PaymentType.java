@@ -1,6 +1,6 @@
 package model;
 
-public enum PaiementType {
+public enum PaymentType {
 	
 	CASH,
 	BANK_CARD,
