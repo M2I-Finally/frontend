@@ -6,10 +6,12 @@ import model.entities.Product;
 
 public class ProductRepository {
 
-	public void insert(Product product) {
+	// INSERT
+	public void save(Product product) {
 		
 	}
 	
+	// UPDATE
 	public void update(Product product) {
 		
 	}
