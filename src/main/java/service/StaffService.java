@@ -30,6 +30,10 @@ public class StaffService {
 		return staffRepository.save(staff);
 	}
 	
+	public void update() {
+		return staffRepository.save();
+	}
+	
 	public void deleteById(Integer staffId) {
 		return staffRepository.deleteById(staffId);
 	}
