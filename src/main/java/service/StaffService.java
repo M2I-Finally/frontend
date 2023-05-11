@@ -14,6 +14,7 @@ public class StaffService {
 		
 	}
 	
+	//find a staff by id
 	public Staff getStaffById(Integer staffId ) {
 		if(staffId != null) {
 			return staffRepository.findById(staffId);
@@ -22,18 +23,22 @@ public class StaffService {
 		throw new Exception("Staff ID is null");
 	}
 	
+	//find a staff by name
 	public Staff getStaffByName(String name) {
 		return staffRepository.findByName(name);
 	}
 	
+	//insert new staff
 	public void insert(Staff staff) {
 		return staffRepository.save(staff);
 	}
 	
+	//update staff
 	public void update() {
 		return staffRepository.save();
 	}
 	
+	//delete staff
 	public void deleteById(Integer staffId) {
 		return staffRepository.deleteById(staffId);
 	}
