@@ -19,6 +19,18 @@ public class StaffService {
 			return staffRepository.findById(staffId);
 		}
 		
-		throw new Exception("Product ID is null");
+		throw new Exception("Staff ID is null");
+	}
+	
+	public Staff getStaffByName(String name) {
+		return staffRepository.findByName(name);
+	}
+	
+	public void insert(Staff staff) {
+		return staffRepository.save(staff);
+	}
+	
+	public void deleteById(Integer staffId) {
+		return staffRepository.deleteById(staffId);
 	}
 }
