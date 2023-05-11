@@ -34,7 +34,7 @@ public class PaymentRepository {
 			
 			pstmt.setFloat(1, payment.getAmount());
 			pstmt.setString(2, payment.getType().name());
-			pstmt.setDate(3, Date.valueOf(payment.getCreatedAt()));
+			pstmt.setObject(3, payment.getCreatedAt());
 			pstmt.setInt(4, payment.getBasket().getId());
 			
 			pstmt.execute();
@@ -48,7 +48,7 @@ public class PaymentRepository {
 			DBManager.getInstance().close();
 		}
 		
-		System.out.println("ajout réalisé");
+		System.out.println("ajout rï¿½alisï¿½");
 	}
 
 	public Payment selectById(int id) {

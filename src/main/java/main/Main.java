@@ -9,7 +9,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Basket basket = new Basket(1, 0, null, null);
+		Basket basket = new Basket(1, 0, null, null, null);
 		
 		PaymentDto dto = new PaymentDto(5f, PaymentType.CASH, basket);
 		

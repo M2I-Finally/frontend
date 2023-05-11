@@ -1,6 +1,7 @@
 package service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import model.dto.PaymentDto;
 import model.entities.Payment;
@@ -12,7 +13,7 @@ public class PaymentService {
 	
 	public void createPayment( PaymentDto paymentDto ) {
 		Payment payment = new Payment();
-		LocalDate date = LocalDate.now();
+		LocalDateTime date = LocalDateTime.now();
 		payment.setAmount(paymentDto.getAmount());
 		payment.setType(paymentDto.getPaymentType());
 		payment.setBasket(paymentDto.getBasket());
