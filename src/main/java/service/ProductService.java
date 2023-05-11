@@ -18,11 +18,11 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 	
-	public void createProduct(ProductDto productDto) {
+	public void createProduct(Product product) {
 		productRepository.insert(null);
 	}
 	
-	public void updateProduct(ProductDto productDto) {
+	public void updateProduct(Product product) {
 		productRepository.update(null);
 	}
 	
