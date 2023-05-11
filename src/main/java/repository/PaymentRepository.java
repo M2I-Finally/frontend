@@ -1,10 +1,12 @@
 package repository;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
+import model.PaymentType;
+import model.entities.Basket;
 import model.entities.Payment;
 import repository.jdbc.DBManager;
 
@@ -48,22 +50,41 @@ public class PaymentRepository {
 			DBManager.getInstance().close();
 		}
 		
-		System.out.println("ajout rï¿½alisï¿½");
+		System.out.println("ajout réalisé");
 	}
 
 	public Payment selectById(int id) {
 		Payment payment = new Payment();
 		
-		String query = "SELECT * FROM payment WHERE payment_id = ?";
+		
+		
+		String query = "SELECT * FROM payment WHERE basket_id = ?";
 		
 		try {
 			
 			PreparedStatement pstmt = DBManager.getInstance().preparedStatement(query);
 			
 			
-			pstmt.setInt(1, payment.getBasket().getId());
+			pstmt.setInt(1, id);
+			
 			
 			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				
+				int basketId = rs.getInt("basket_id");
+				Timestamp date = rs.getTimestamp("created_at");
+				float Amount = rs.getFloat("amount");
+				PaymentType type = PaymentType.valueOf(rs.getString("type"));
+				
+								
+				Basket basket = new Basket(basketId, id, null, null, null);
+				payment.setBasket(basket);
+				payment.setAmount(rs.getFloat("amount"));
+				payment.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+				System.out.println(type);
+				payment.setType(type);
+			}
 			
 			
 						
@@ -75,6 +96,7 @@ public class PaymentRepository {
 			DBManager.getInstance().close();
 		}
 		
+		System.out.println(payment.getType());
 		
 		return payment;
 	}
