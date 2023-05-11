@@ -1,22 +1,21 @@
 package model.dto;
 
 import model.PaymentType;
-import model.entities.Basket;
 
 
 public class PaymentDto {
 	
 	private float amount;
 	private PaymentType paymentType;
-	private Basket basket;
+	private int basketId;
 	
-	public PaymentDto(float amount, PaymentType paymentType, Basket basket) {
+	public PaymentDto(float amount, PaymentType paymentType, int basketId) {
 		
 		this.amount = amount;
 		this.paymentType = paymentType;
-		this.basket = basket;
+		this.basketId = basketId;
 	}
-	
+
 	public PaymentDto() {
 		
 	}
@@ -37,14 +36,13 @@ public class PaymentDto {
 		this.paymentType = paymentType;
 	}
 
-	public Basket getBasket() {
-		return basket;
+	public int getBasketId() {
+		return basketId;
 	}
 
-	public void setBasket(Basket basket) {
-		this.basket = basket;
+	public void setBasketId(int basketId) {
+		this.basketId = basketId;
 	}
-		
 	
 	
 

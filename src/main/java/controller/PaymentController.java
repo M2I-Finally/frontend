@@ -25,11 +25,14 @@ public class PaymentController {
 	
 	
 	public void create(PaymentDto dto) {
+		
+		
 		service.createPayment(dto);
 	}
 	
-	public PaymentDto read() {
+	public PaymentDto read(int basketId) {
 		PaymentDto dto = new PaymentDto();
+		dto = service.readPayment(basketId);
 		
 		return dto;
 	}
