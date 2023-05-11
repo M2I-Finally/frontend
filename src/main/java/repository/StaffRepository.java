@@ -3,7 +3,8 @@ package repository;
 import model.entities.Staff;
 
 public class StaffRepository {
-	public Staff findById(int id)
+	
+	public Staff findById(Integer id)
 	{
 		return new Staff();
 	}
@@ -21,7 +22,7 @@ public class StaffRepository {
 		
 	}
 	
-	public void delete() {
+	public void delete(Integer id) {
 		
 	}
 	
