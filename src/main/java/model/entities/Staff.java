@@ -3,7 +3,7 @@ package model.entities;
 import java.time.LocalDate;
 
 public class Staff {
-	private int id;
+	private Integer id;
 	private String username;
 	private String password;
 	private String passwordTrial;
@@ -28,9 +28,8 @@ public class Staff {
 	}
 
 	//constructor w/ id
-	public Staff(int id, String userName, String password, String passwordTrial, String role, boolean status,
+	public Staff(Integer id, String userName, String password, String passwordTrial, String role, boolean status,
 			LocalDate createdAt, LocalDate updateAt) {
-		super();
 		this.id = id;
 		this.username = userName;
 		this.password = password;
