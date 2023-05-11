@@ -8,6 +8,11 @@ public class StaffRepository {
 		return new Staff();
 	}
 	
+	public Staff findByName(String name)
+	{
+		return new Staff();
+	}
+	
 	public void update() {
 		
 	}
