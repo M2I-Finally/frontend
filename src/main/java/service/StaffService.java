@@ -47,7 +47,7 @@ public class StaffService {
 		if (staffId != null && staffRepository.findById(staffId) != null) {
 			Staff staff = new Staff();
 			staff.setUpdateAt(LocalDate.now());
-			staff.setUpdatedBy("USER");
+			//staff.setUpdatedBy("USER");
 			staffRepository.update(staffId);
 		}
 		
@@ -55,9 +55,9 @@ public class StaffService {
 	}
 	
 	//delete staff
-	public void deleteById(Integer staffId) {
+	public void deleteById(Integer staffId) throws Exception {
 		if(staffId != null) {
-			return staffRepository.deleteById(staffId);
+			staffRepository.deleteById(staffId);
 		}
 		throw new Exception("Product ID is incorrect");
 	}
