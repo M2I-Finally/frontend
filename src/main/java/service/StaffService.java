@@ -1,21 +1,24 @@
 package service;
 
+import java.time.LocalDate;
+
 import model.dto.StaffDto;
+import model.entities.Product;
 import model.entities.Staff;
 import repository.StaffRepository;
 
 public class StaffService {
-	private StaffRepository repository = new StaffRepository();
+	private StaffRepository staffRepository = new StaffRepository();
 	
 	public void createStaff(StaffDto staffDto) {
 		//Staff staff = map (staffDto, Staff.class)
 		
-		repository.insert(staff);
+		staffRepository.insert(staff);
 		
 	}
 	
 	//find a staff by id
-	public Staff getStaffById(Integer staffId ) {
+	public Staff getStaffById(Integer staffId ) throws Exception  {
 		if(staffId != null) {
 			return staffRepository.findById(staffId);
 		}
@@ -29,17 +32,33 @@ public class StaffService {
 	}
 	
 	//insert new staff
-	public void insert(Staff staff) {
-		return staffRepository.save(staff);
+	public void insert(Integer staffId, Staff staffDto) throws Exception {
+		if (staffId != null && staffRepository.findById(staffId) != null) {
+			Staff staff = new Staff();
+			staffRepository.insert(staff);
+		}
+		
+		throw new Exception("Product ID is incorrect or doesn't exist");
+		
 	}
 	
 	//update staff
-	public void update() {
-		return staffRepository.save();
+	public void update(Integer staffId, Staff staffDto) throws Exception {
+		if (staffId != null && staffRepository.findById(staffId) != null) {
+			Staff staff = new Staff();
+			staff.setUpdateAt(LocalDate.now());
+			staff.setUpdatedBy("USER");
+			staffRepository.update(staffId);
+		}
+		
+		throw new Exception("Product ID is incorrect or doesn't exist");
 	}
 	
 	//delete staff
 	public void deleteById(Integer staffId) {
-		return staffRepository.deleteById(staffId);
+		if(staffId != null) {
+			return staffRepository.deleteById(staffId);
+		}
+		throw new Exception("Product ID is incorrect");
 	}
 }

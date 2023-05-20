@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-//final pour eviter l'heritage
+//singleton
 public final class DBManager {
 	
 	private String identifiant = "test";
@@ -19,7 +19,7 @@ public final class DBManager {
     	try {
 			Class.forName("org.postgresql.Driver");
 		}catch(ClassNotFoundException e) {
-			System.out.println("le driver n'a pas été trouvé !!!!");
+			System.out.println("le driver n'a pas Ã©tÃ© trouvÃ© !!!!");
 			System.exit(1);
 		}
 		
@@ -33,9 +33,12 @@ public final class DBManager {
 			System.out.println(e.getMessage());
 		}
     }
-
-    //le role de cette methode est de soit de creer une instance de la classe si
-    //elle n'existe pas
+    
+    /*
+     * le role de cette methode est de soit de creer une instance de la classe 
+     * si elle n'existe pas
+     */
+    
     public static DBManager getInstance() {
         if (instance == null) {
             instance = new DBManager();

@@ -14,15 +14,15 @@ public class StaffRepository {
 		return new Staff();
 	}
 	
-	public void update() {
+	public void update(Integer id) {
 		
 	}
 	
-	public void insert() {
+	public void insert(Staff staff) {
 		
 	}
 	
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		
 	}
 	
