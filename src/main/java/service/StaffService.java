@@ -12,7 +12,7 @@ public class StaffService {
 	
 	public void createStaff(StaffDto staffDto) {
 		//Staff staff = map (staffDto, Staff.class)
-		
+		Staff staff = new Staff();
 		staffRepository.insert(staff);
 		
 	}
