@@ -11,7 +11,7 @@ public class Main {
 		
 		Basket basket = new Basket(1, 0, null, null, null);
 		
-		PaymentDto dto = new PaymentDto(5f, PaymentType.CASH, basket);
+		PaymentDto dto = new PaymentDto(5f, PaymentType.CASH, basket.getId());
 		
 		PaymentController controller = new PaymentController();
 		
