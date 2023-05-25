@@ -24,7 +24,7 @@ header #search-block {
 #search-block input {
     width: 75%;
     height: 30px;
-    background: url("assets/search.svg") no-repeat;
+    background: url("../assets/icons/search.svg") no-repeat;
     background-position: right 10px center;
     padding-right: 40px;
     background-color: #fefefe;
@@ -97,7 +97,7 @@ header #search-block {
         flex-shrink: 0;
         width: 100%;
         height: 30px;
-        background: url("search.svg") no-repeat;
+        background: url("../assets/icons/search.svg") no-repeat;
         background-position: right 10px center;
         padding-right: 40px;
         background-color: #fefefe;
