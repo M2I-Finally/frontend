@@ -39,6 +39,10 @@ body{
     background-color: var(--brand-red);
 }
 
+.btn-bg-green{
+    background-color: var(--primary-green);
+}
+
 @media (hover:hover) {
     .btn:hover{
         background-color: var(--text-on-dk-bg);
