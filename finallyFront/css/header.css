@@ -1,0 +1,136 @@
+header {
+    background-color: #524c7d;
+    display: flex;
+    align-items: center;
+    height: 75px;
+}
+
+header #logo {
+    width: 25%;
+    text-align: center;
+}
+
+#logo .logo-mobile {
+    display: none;
+}
+
+header #search-block {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+#search-block input {
+    width: 75%;
+    height: 30px;
+    background: url("assets/search.svg") no-repeat;
+    background-position: right 10px center;
+    padding-right: 40px;
+    background-color: #fefefe;
+}
+
+#search-block input:focus {
+    background-image: none;
+}
+
+.navigation {
+    list-style-type: none;
+    display: flex;
+    justify-content: end;
+    gap: 10px 30px;
+    width: 25%;
+    margin-right: 25px;
+    gap: 10px 15px;
+}
+
+.navigation li {
+    vertical-align: middle;
+    border-radius: 3px;
+    width: 30%;
+    text-align: center;
+}
+
+.navigation .screen-button {
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.navigation .screen-icon {
+    padding: 5px;
+    width: 10%;
+    font-size: 25px;
+}
+
+.navigation .phone-icon {
+    display: none;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+    
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    header #logo {
+        width: 20%;
+    }
+
+    #logo .logo-mobile {
+        display: block;
+        width: 50%;
+        margin: auto;
+    }
+
+    #logo .logo-screen {
+        display: none;
+    }
+
+    header #search-block {
+        display: block;
+        width: 70%;
+    }
+
+    #search-block input {
+        flex-shrink: 0;
+        width: 100%;
+        height: 30px;
+        background: url("search.svg") no-repeat;
+        background-position: right 10px center;
+        padding-right: 40px;
+        background-color: #fefefe;
+    }
+
+    .navigation .screen-button {
+        display: none;
+    }
+
+    .navigation .screen-icon {
+        display: none;
+    }
+
+    .navigation .phone-icon {
+        display: block;
+        padding: 5px;
+        width: 10%;
+        font-size: 25px;
+    }
+}
+
+.tx-yellow {
+    color: #fdf887;
+}
+
+.tx-red {
+    color: #f86f6f;
+}
+
+.bg-yellow {
+    background-color: #fdf887;
+}
+
+.bg-red {
+    background-color: #f86f6f;
+}
