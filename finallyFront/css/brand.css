@@ -7,7 +7,7 @@
     --brand-red: #F86F6F;
     --text-color:#563444;
     --text-on-dk-bg:#FFFFFF;
-    --80-bg-color:rgba(82, 76, 125, 0.8);
+    --bg-color-80:rgba(82, 76, 125, 0.8);
     --title-font:'Quicksand', sans-serif;
     --paragraph-font:'Open Sans', sans-serif;
 }
@@ -16,6 +16,10 @@ body{
     font-family: var(--paragraph-font);
     font-size: 16px;
     color: var(--text-color);
+}
+
+img{
+    width: 100%;
 }
 
 .title{
