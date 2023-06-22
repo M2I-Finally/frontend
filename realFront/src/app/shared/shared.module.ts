@@ -10,6 +10,9 @@ import { GenericButtonComponent } from './components/generic-button/generic-butt
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    GenericButtonComponent
   ]
 })
 export class SharedModule { }

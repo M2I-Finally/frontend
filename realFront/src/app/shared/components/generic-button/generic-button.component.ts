@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-generic-button',
+  selector: 'generic-button',
   templateUrl: './generic-button.component.html',
   styleUrls: ['./generic-button.component.scss']
 })
