@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { Product } from 'src/app/shared/entities/product';
 
+//mockup data
 let productList: Product[] = [
   {productId: 1, productName: 'Pain au chocolat', price: 3},
   {productId: 2, productName: 'Croissant', price: 3},
@@ -22,6 +23,6 @@ let productList: Product[] = [
 
 export class ListRecapComponent {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Total', 'delete'];
   dataSource = productList;
 }
