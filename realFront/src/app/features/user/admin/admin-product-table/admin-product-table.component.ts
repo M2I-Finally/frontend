@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 import { Product } from 'src/app/shared/entities/product';
+import { MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'admin-products-table',
   templateUrl: './admin-product-table.component.html',
-  styleUrls: ['./admin-product-table.component.scss']
+  styleUrls: ['./admin-product-table.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MatTableModule, MatSlideToggleModule],
 })
 export class AdminProductsTableComponent {
 

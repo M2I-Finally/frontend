@@ -16,7 +16,7 @@ table {
         height: 30px;
     }
 
-    td img {
+    td svg {
         width: 16px;
         height: 16px;
         margin-left: 16px;
@@ -29,7 +29,9 @@ table {
     tr:nth-child(even) {
         background-color: #FFFFFF;
     }
+   
 }
+
 
 
 .tx-centered {

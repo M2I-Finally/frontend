@@ -7,6 +7,7 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
 
 
 import { ListRecapComponent } from './features/payment/list-recap/list-recap.component';
+import { AdminProductsTableComponent } from './features/user/admin/admin-product-table/admin-product-table.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path:"list-recap",
     component:ListRecapComponent
+  },
+  {
+    path:"table",
+    component: AdminProductsTableComponent
   }
 ]
 
