@@ -1,0 +1,31 @@
+#generic-header {
+    background-color: #524c7d;
+    display: flex;
+    align-items: center;
+    height: auto;
+
+    &-logo {
+        width: 25%;
+        text-align: center;
+    }
+}
+
+#logo {
+    &-screen {
+        width: 40%;
+        padding: 30px 0px;
+    }
+
+    &-mobile {
+        display: none;
+    }
+}
+
+.btn-yellow{
+    color: var(--primary-yellow);  
+
+    &:hover {
+        color: var(--primary-bg-color);
+        background-color: var(--primary-yellow);
+    }
+}
