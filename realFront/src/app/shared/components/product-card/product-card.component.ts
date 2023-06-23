@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent {
+  qty = 0;
 
+  minus(){
+    if (this.qty>0){
+      this.qty--;
+      //function to add with cart
+    }
+  }
+
+  add(){
+    this.qty++;
+    //function to add with cart
+  }
 }
