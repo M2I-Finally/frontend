@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GenericButtonComponent } from './components/generic-button/generic-button.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { GenericHeaderComponent } from './components/generic-header/generic-header.component';
 
 
 
@@ -10,7 +11,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
   declarations: [
     GenericButtonComponent,
     SearchBarComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    GenericHeaderComponent
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
   exports: [
     GenericButtonComponent,
     SearchBarComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    GenericHeaderComponent
   ]
 })
 export class SharedModule { }
