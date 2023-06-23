@@ -1,6 +1,7 @@
 export interface Product {
-    productId:number;
-    productName:string;
+    id: number;
+    name:string;
     price: number
     isActive: boolean;
+    qty: number;
 }

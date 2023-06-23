@@ -1,0 +1,64 @@
+/* ------------------ MOBILE ------------------ */
+#cart {
+    display: none;
+}
+
+
+
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    #cart {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 25%;
+        position: absolute;
+        right: 0;
+        font-family: 'Quicksand', sans-serif;
+        background-color: var(--secondary-bg-color);
+    }
+    
+    #cart-products {
+        width: 100%;
+        height: 60vh;   
+        overflow-y: scroll;
+    }
+    
+    #cart-sum {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 25vh;
+        color: var(--primary-green);
+        background-color: var(--primary-bg-color);
+        font-size: 1.5em;
+    }
+    
+    .cart-total {
+        width: 90%;
+        padding: 0;
+        text-align: center;
+    }
+    
+    .cart-total:first-child {
+        padding-top: 20px;
+    }
+    
+    .bold {
+        font-weight: 700;
+        padding-bottom: 20px;
+    }
+}
+
+
+/* ------------------ DESKTOP ------------------ */
+@media screen and (min-width: 1024px) {
+    // #cart {
+    //     width: 20%;
+    // }
+    
+    // #cart-sum {
+    //     font-size: 2em;
+    // }
+}
+ 

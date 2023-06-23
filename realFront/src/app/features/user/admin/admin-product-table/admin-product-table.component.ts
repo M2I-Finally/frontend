@@ -14,13 +14,13 @@ import { CommonModule } from '@angular/common';
 export class AdminProductsTableComponent {
 
   productList: Product[] = [
-    {productId: 1, productName: 'Pain au chocolat', price: 3, isActive: true},
-    {productId: 2, productName: 'Croissant', price: 3, isActive: true},
-    {productId: 3, productName: 'Baguette', price: 1.5, isActive: true},
-    {productId: 4, productName: 'Pain au raison', price: 1, isActive: true},
-    {productId: 5, productName: 'Chausson au pomme', price: 2, isActive: true},
-    {productId: 6, productName: 'Brioche', price: 7, isActive: true},
-    {productId: 7, productName: 'Cookie', price: 2, isActive: true}
+    {id: 1, name: 'Pain au chocolat', price: 3, isActive: true},
+    {id: 2, name: 'Croissant', price: 3, isActive: true},
+    {id: 3, name: 'Baguette', price: 1.5, isActive: true},
+    {id: 4, name: 'Pain au raison', price: 1, isActive: true},
+    {id: 5, name: 'Chausson au pomme', price: 2, isActive: true},
+    {id: 6, name: 'Brioche', price: 7, isActive: true},
+    {id: 7, name: 'Cookie', price: 2, isActive: true}
   ];
 
   constructor() {}
