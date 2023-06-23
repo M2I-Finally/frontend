@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GenericButtonComponent } from './components/generic-button/generic-button.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,11 +12,13 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     SearchBarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     GenericButtonComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
