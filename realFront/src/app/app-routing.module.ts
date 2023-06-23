@@ -4,8 +4,13 @@ import { GenericButtonComponent } from './shared/components/generic-button/gener
 import { GenericHeaderComponent } from './shared/components/generic-header/generic-header.component';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
 
-const routes: Routes = [
+import { ListRecapComponent } from './features/payment/list-recap/list-recap.component';
 
+const routes: Routes = [
+  {
+    path:"list-recap",
+    component:ListRecapComponent
+  }
 ];
 
 @NgModule({
