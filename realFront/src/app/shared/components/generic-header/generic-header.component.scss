@@ -2,6 +2,7 @@
     background-color: #524c7d;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: auto;
 
     &-logo {
@@ -21,11 +22,8 @@
     }
 }
 
-.btn-yellow{
-    color: var(--primary-yellow);  
-
-    &:hover {
-        color: var(--primary-bg-color);
-        background-color: var(--primary-yellow);
-    }
+#logout {
+    cursor: pointer;
+    margin-right: 2%;
+    color: var(--primary-yellow);
 }
