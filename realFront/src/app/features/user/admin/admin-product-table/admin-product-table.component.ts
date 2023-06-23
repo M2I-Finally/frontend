@@ -31,5 +31,6 @@ export class AdminProductsTableComponent {
 
   public deleteItem(id: number): void {
     console.log("Deleted item number " + id);
+    this.productList.splice(id - 1, 1);
   }
 }
