@@ -1,0 +1,18 @@
+.green-button {
+    all:unset;
+    cursor: pointer;
+    padding:0.8rem 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 10px 5px 5px var(--bg-color-80);
+    margin:0 1rem; 
+    color: var(--validation-green);
+    border: 3px solid var(--validation-green);
+    font-family: 'Quicksand';
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--validation-green);
+        color: var(--primary-bg-color);
+    }
+}
