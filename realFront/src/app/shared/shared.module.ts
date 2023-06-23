@@ -4,6 +4,7 @@ import { GenericButtonComponent } from './components/generic-button/generic-butt
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { GenericHeaderComponent } from './components/generic-header/generic-header.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 
 
@@ -12,7 +13,8 @@ import { GenericHeaderComponent } from './components/generic-header/generic-head
     GenericButtonComponent,
     SearchBarComponent,
     ProductCardComponent,
-    GenericHeaderComponent
+    GenericHeaderComponent,
+    NavigationComponent,
   ],
   imports: [
     CommonModule
@@ -21,7 +23,8 @@ import { GenericHeaderComponent } from './components/generic-header/generic-head
     GenericButtonComponent,
     SearchBarComponent,
     ProductCardComponent,
-    GenericHeaderComponent
+    GenericHeaderComponent,    
+    NavigationComponent,
   ]
 })
 export class SharedModule { }
