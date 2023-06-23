@@ -10,7 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { NgFor } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon'
     NgFor, 
     MatInputModule,
     MatIconModule,
+    MatSlideToggleModule
 
   ],
   providers: [],
