@@ -3,13 +3,19 @@ import { CommonModule } from '@angular/common';
 import { GenericButtonComponent } from './components/generic-button/generic-button.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { GenericHeaderComponent } from './components/generic-header/generic-header.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 
 
 @NgModule({
   declarations: [
     GenericButtonComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ProductCardComponent,
+    GenericHeaderComponent,
+    NavigationComponent,
   ],
   imports: [
     CommonModule,
@@ -18,7 +24,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     GenericButtonComponent,
     SearchBarComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProductCardComponent,
+    GenericHeaderComponent,    
+    NavigationComponent,
+
   ]
 })
 export class SharedModule { }

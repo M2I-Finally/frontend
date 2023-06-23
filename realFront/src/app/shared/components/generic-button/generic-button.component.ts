@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'generic-button',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./generic-button.component.scss']
 })
 export class GenericButtonComponent {
-
+  @Input() color: string | undefined;
+  @Input() content: string | undefined;
 }

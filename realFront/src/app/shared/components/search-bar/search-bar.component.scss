@@ -2,20 +2,46 @@ div{
     width: 100%;
     max-height: 30px;
     display: flex;
+    
+   
 
     input{
         min-width: 30%;
         border-radius: 10px 0 0 10px;
         background-color: transparent;
+        padding: 0.5rem;
+        border: 1px solid var(--primary-yellow);
+        color:var(--primary-yellow);
+        border-right: none;
+
+        &:focus{
+            background-color: var(--text-on-dk-bg);
+            color: var(--text-color);
+            border: transparent;
+        }
     }
 
     button{
        background-color: transparent;
        border-radius: 0 10px 10px 0;
+       padding: 0.3rem;
+       border: 1px solid var(--primary-yellow);
+       border-left:none ;
     }
 
     svg{
         width: 20px;
-        
+        fill: var(--primary-yellow);
+    }
+
+    input:focus + button{
+        background-color: var(--text-on-dk-bg);
+        color: var(--text-color);
+        border: transparent;
+
+        svg{
+            width: 20px;
+            fill: var(--text-color);
+        }
     }
 }
