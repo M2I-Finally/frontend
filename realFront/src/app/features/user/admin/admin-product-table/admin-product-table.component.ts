@@ -24,4 +24,12 @@ export class AdminProductsTableComponent {
   ];
 
   constructor() {}
+
+  public updateItem(id: number): void {
+    console.log("Redirection to item editing... ID : " + id)
+  }
+
+  public deleteItem(id: number): void {
+    console.log("Deleted item number " + id);
+  }
 }

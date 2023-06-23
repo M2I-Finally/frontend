@@ -5,7 +5,6 @@ import { LoginComponent } from './features/user/login/login.component';
 import { GenericHeaderComponent } from './shared/components/generic-header/generic-header.component';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
 
-
 import { ListRecapComponent } from './features/payment/list-recap/list-recap.component';
 import { AdminProductsTableComponent } from './features/user/admin/admin-product-table/admin-product-table.component';
 

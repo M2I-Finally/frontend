@@ -20,6 +20,11 @@ table {
         width: 16px;
         height: 16px;
         margin-left: 16px;
+        color: #000000;
+    }
+
+    td svg:hover {
+        cursor: pointer;
     }
 
     tr:nth-child(odd) {
@@ -31,8 +36,6 @@ table {
     }
    
 }
-
-
 
 .tx-centered {
     text-align: center;
