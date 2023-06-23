@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Actif - Inactif</th>
+            <th></th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let row of productList">
+            <td>{{ row.name }} </td>
+            <td>{{ row.price }} €</td>
+            <td><mat-slide-toggle [checked]="row.isActive"></mat-slide-toggle></td>
+            <td><img src="/assets/icons/pen.svg"> <img src="/assets/icons/trash.svg"></td>
+        </tr>
+    </tbody>
+</table>
