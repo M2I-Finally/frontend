@@ -16,10 +16,15 @@ table {
         height: 30px;
     }
 
-    td img {
+    td svg {
         width: 16px;
         height: 16px;
         margin-left: 16px;
+        color: #000000;
+    }
+
+    td svg:hover {
+        cursor: pointer;
     }
 
     tr:nth-child(odd) {
@@ -29,8 +34,8 @@ table {
     tr:nth-child(even) {
         background-color: #FFFFFF;
     }
+   
 }
-
 
 .tx-centered {
     text-align: center;

@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { Product } from 'src/app/shared/entities/product';
 
+//mockup data
 let productList: Product[] = [
-  {productId: 1, productName: 'Pain au chocolat', price: 3, isActive: true},
-  {productId: 2, productName: 'Croissant', price: 3, isActive: true},
-  {productId: 3, productName: 'Baguette', price: 1.5, isActive: true},
-  {productId: 4, productName: 'Pain au raison', price: 1, isActive: true},
-  {productId: 5, productName: 'Chausson au pomme', price: 2, isActive: true},
-  {productId: 6, productName: 'Brioche', price: 7, isActive: true},
-  {productId: 7, productName: 'Cookie', price: 2, isActive: true}
+  {id: 1, name: 'Pain au chocolat', price: 3, isActive: true, qty:0},
+  {id: 2, name: 'Croissant', price: 3, isActive: true, qty:0},
+  {id: 3, name: 'Baguette', price: 1.5, isActive: true, qty:0},
+  {id: 4, name: 'Pain au raison', price: 1, isActive: true, qty:0},
+  {id: 5, name: 'Chausson au pomme', price: 2, isActive: true, qty:0},
+  {id: 6, name: 'Brioche', price: 7, isActive: true, qty:0},
+  {id: 7, name: 'Cookie', price: 2, isActive: true, qty:0}
 ];
 
 @Component({
@@ -21,7 +22,21 @@ let productList: Product[] = [
 })
 
 export class ListRecapComponent {
-
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Total', 'delete'];
   dataSource = productList;
+
+  minus(id:number){
+    if (productList[id].qty > 0 ){
+      productList[id].qty--;
+      //function to add with cart
+    }
+  }
+
+  add(id:number){
+    productList[id].qty++;
+    //function to add with cart
+  }
+
+  // totalCost : number = 
+
 }

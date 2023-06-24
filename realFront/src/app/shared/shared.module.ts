@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { GenericHeaderComponent } from './components/generic-header/generic-header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { BasketProductComponent } from './components/basket-product/basket-product.component';
 
 
 
@@ -16,6 +18,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     ProductCardComponent,
     GenericHeaderComponent,
     NavigationComponent,
+    BasketComponent,
+    BasketProductComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     ProductCardComponent,
     GenericHeaderComponent,    
     NavigationComponent,
-
+    BasketComponent,
+    BasketProductComponent,
   ]
 })
 export class SharedModule { }
