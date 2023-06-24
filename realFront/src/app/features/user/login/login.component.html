@@ -1,12 +1,12 @@
-<main id="container">
+<main>
     <div>
         <div id="logo">
-            <img src="" alt="logo de finally">
+            <img src="../../../../assets/logo/logoYelloBlue.png" alt="logo de finally">
         </div>
         <p id="slogan">
             Qui peut le plus fait le moins
         </p>
-        <form [formGroup]="loginForm" (ngSubmit)="submit()" >            
+        <form [formGroup]="loginForm" (ngSubmit)="submit()" id="flogin" >            
                 <div class="label">
                     <label for="fname">Nom d'utilisateur</label>
                 </div>
@@ -20,7 +20,7 @@
                     <input type="password" id="lname" name="lname" formControlName="password">                    
                </div>                
                <div class="fieldlogin">
-                    <button type="submit" [disabled]="!loginForm.valid"></button>                
+                    <button class="generic-button yellow" [disabled]=!loginForm.valid>Connexion</button>              
                </div>                    
         </form>
 
