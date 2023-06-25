@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { MatTableModule } from '@angular/material/table';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { Product } from 'src/app/shared/entities/product';
@@ -26,28 +26,25 @@ import { Product } from 'src/app/shared/entities/product';
 export class ListRecapComponent implements OnInit{
   displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Total', 'delete'];
   productList$:Observable<Product[]> | undefined;
-  productList: Product[];
+  productList: Product[] = [];
 
   constructor(private productService: ProductService){};
 
   ngOnInit(): void {
     this.productList$ = this.productService.getProducts();
+    this.productList$.subscribe(products => { this.productList = products});
+    console.log(this.productList);
+  }
 
-    this.productList = this.productService.getProducts().subscribe({next: res =>{this.productList = res}})
-
-    minus(id: number){
-      if (this.productList[id].qty > 0) {
-        this.productList[id].qty--;
-        //function to add with cart
-      }
-    }
-
-    add(id: number){
-      this.productList[id].qty++;
+  minus(id: number){
+    if (this.productList[id].qty > 0) {
+      this.productList[id].qty--;
       //function to add with cart
     }
+  }
 
-    // totalCost : number = 
-
+  add(id: number){
+    this.productList[id].qty++;
+    //function to add with cart
   }
 }
