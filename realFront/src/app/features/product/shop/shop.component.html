@@ -1,3 +1,6 @@
 <generic-header></generic-header>
 <navigation></navigation>
 <basket></basket>
+<ng-container *ngFor="let product of productList$ | async; index as i">
+    <product-card [product]="product"></product-card>
+</ng-container>

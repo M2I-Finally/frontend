@@ -4,4 +4,5 @@ export interface Product {
     price: number
     isActive: boolean;
     qty: number;
+    image: string;
 }

@@ -14,13 +14,13 @@ import { CommonModule } from '@angular/common';
 export class AdminProductsTableComponent {
 
   productList: Product[] = [
-    {id: 1, name: 'Pain au chocolat', price: 3, isActive: true, qty:0},
-    {id: 2, name: 'Croissant', price: 3, isActive: true, qty:0},
-    {id: 3, name: 'Baguette', price: 1.5, isActive: true, qty:0},
-    {id: 4, name: 'Pain au raison', price: 1, isActive: true, qty:0},
-    {id: 5, name: 'Chausson au pomme', price: 2, isActive: true, qty:0},
-    {id: 6, name: 'Brioche', price: 7, isActive: true, qty:0},
-    {id: 7, name: 'Cookie', price: 2, isActive: true, qty:0}
+    {id: 1, name: 'Pain au chocolat', price: 3, isActive: true, qty:0, "image":"/assets/img/viennoiserie/cookie.jpg"},
+    {id: 2, name: 'Croissant', price: 3, isActive: true, qty:0, "image":"/assets/img/viennoiserie/cookie.jpg"},
+    {id: 3, name: 'Baguette', price: 1.5, isActive: true, qty:0, "image":"/assets/img/viennoiserie/cookie.jpg"},
+    {id: 4, name: 'Pain au raison', price: 1, isActive: true, qty:0, "image":"/assets/img/viennoiserie/cookie.jpg"},
+    {id: 5, name: 'Chausson au pomme', price: 2, isActive: true, qty:0, "image":"/assets/img/viennoiserie/cookie.jpg"},
+    {id: 6, name: 'Brioche', price: 7, isActive: true, qty:0, "image":"/assets/img/viennoiserie/cookie.jpg"},
+    {id: 7, name: 'Cookie', price: 2, isActive: true, qty:0, "image":"/assets/img/viennoiserie/cookie.jpg"}
   ];
 
   constructor() {}
