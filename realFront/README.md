@@ -1,27 +1,12 @@
-# RealFront
+# Documentation JSON-SERVER
+Dans le dossier `src/app/mockupData` nous avons un fichier db.json qui mock notre base de données.
+Afin de faire fonctionner ce jeu de données, il faut lancer un serveur grâce à la dépendance json-server.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+Pour que le serveur fonctionne il faut :
+- `npm install -g json-server` pour installer la dépendance json-server
+- `json-server --watch db.json` va démarrer notre serveur avec le fichier json (veillez à bien être dans le dossier)
 
-## Development server
+En regardant le fichier `mockupData/product.service.ts` on remarque que l'url `http://localhost:3000/products`
+contient notre jeu de données concernant les produits.
+C'est un observable qui est retourné, il faut donc y faire les manipulations usuelles.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
