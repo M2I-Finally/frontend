@@ -7,26 +7,41 @@
         color: var(--text-on-dk-bg);
         border-bottom: solid 1px var(--text-on-dk-bg);
     }
-    
-    .product-name {
-        width: 80%;
-        padding-bottom: 15px;
+
+    .product {
+
+        &-name {
+            width: 80%;
+            padding-bottom: 15px;            
+        }
+        
+        &-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;    
+        }
+
+        &-quantity {
+            font-size: large;
+        }
+
+        &-price {
+            width: 30%;
+            text-align: right;
+            font-weight: 700;
+            font-size: large;
+            padding-right: 5%;
+        }
     }
     
-    .bi-trash3 {
+    .bi-trash {
         width: 20%;
     }
     
-    .bi-dash-circle, .product-quantity, .bi-plus-circle {
-        width: 15%;
+    .bi-dash-circle, .bi-plus-circle {
         padding-bottom: 15px;
         text-align: center;
-    }
-    
-    .product-price {
-        width: 55%;
-        text-align: center;
-        font-weight: 700;
     }
 }
 

@@ -7,6 +7,7 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
 
 import { ListRecapComponent } from './features/payment/list-recap/list-recap.component';
 import { AdminProductsTableComponent } from './features/user/admin/admin-product-table/admin-product-table.component';
+import { ShopComponent } from './features/product/shop/shop.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,11 @@ const routes: Routes = [
   {
     path:"table",
     component: AdminProductsTableComponent
-  }
+  },
+  {
+    path:"shop",
+    component: ShopComponent,
+  },
 ]
 
 

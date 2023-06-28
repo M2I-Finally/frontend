@@ -1,12 +1,12 @@
 <div class="container container-card">
-    <img src="/assets/img/viennoiserie/croissants.jpg" alt="image de coirssant">
+    <img class="image-card" src="{{ product?.image }}" alt="image de {{ product?.name }}">
     <div class="container container-card-details">
-        <h3 class="title card-title">croissant</h3>
-        <div class="card-price">3 &euro;</div>
+        <h3 class="title card-title">{{ product?.name }}</h3>
+        <div class="card-price">{{ product?.price }} &euro;</div>
         <div class="container qty-controller">
-            <button class="btn btn-qty-controller card-btn-minus" (click)="minus()">-</button>
-            <div class="card-affiche-qty">{{qty}}</div>
-            <button class="btn btn-qty-controller card-btn-add" (click)="add()">+</button>
+            <button class="btn-qty-controller card-btn-minus" (click)="minus()">-</button>
+            <div class="card-affiche-qty">{{ product?.qty }}</div>
+            <button class="btn-qty-controller card-btn-add" (click)="add()">+</button>
         </div>
     </div>
 </div>
