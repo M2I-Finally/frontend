@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MatTableModule } from '@angular/material/table';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { Product } from 'src/app/shared/entities/product';
