@@ -8,29 +8,16 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
 import { ListRecapComponent } from './features/payment/list-recap/list-recap.component';
 import { AdminProductsTableComponent } from './features/user/admin/admin-product-table/admin-product-table.component';
 import { ShopComponent } from './features/product/shop/shop.component';
+import { FormProductComponent } from './features/user/admin/admin-product-table/form-product/form-product.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LoginComponent
-  },
-  {
-    path: 'button',
-    component: GenericButtonComponent,
-  },
-  {
-    path:"list-recap",
-    component:ListRecapComponent
-  },
-  {
-    path:"table",
-    component: AdminProductsTableComponent
-  },
-  {
-    path:"shop",
-    component: ShopComponent,
-  },
-]
+  { path: '', component: LoginComponent },
+  { path: 'button', component: GenericButtonComponent },
+  { path:"list-recap", component:ListRecapComponent },
+  { path:"table", component: AdminProductsTableComponent },
+  { path:'form-edit', component: FormProductComponent },
+  { path:"shop", component: ShopComponent }
+];
 
 
 @NgModule({
