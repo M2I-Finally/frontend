@@ -5,10 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { map, pipe } from 'rxjs';
 
+
 @Component({
   selector: 'app-form-product',
   templateUrl: './form-product.component.html',
-  styleUrls: ['./form-product.component.scss']
+  styleUrls: ['./form-product.component.scss'],
+ 
 })
 export class FormProductComponent implements OnInit {
 
@@ -17,7 +19,10 @@ export class FormProductComponent implements OnInit {
 
   formEditProduct = new UntypedFormGroup({
     id: new UntypedFormControl(),
-    productName: new UntypedFormControl()
+    productName: new UntypedFormControl(),
+    productDescription: new UntypedFormControl(),
+    productPrice: new UntypedFormControl(),
+    productImage: new UntypedFormControl()
   });
 
   ngOnInit(): void {
@@ -35,9 +40,12 @@ export class FormProductComponent implements OnInit {
     });
 
     // Setting controls on edit
-    
+   
 
   }
 
+  submit():void{
+
+  };
 
 }

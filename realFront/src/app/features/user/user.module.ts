@@ -19,7 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
   ]
 })
 export class UserModule { }
