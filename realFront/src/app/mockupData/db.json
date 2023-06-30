@@ -1,11 +1,18 @@
 {
-    "products": [
-    {"id": 1, "name": "Pain au chocolat", "price": 3, "isActive": true, "qty":0},
-    {"id": 2, "name": "Croissant", "price": 3, "isActive": true, "qty":0},
-    {"id": 3, "name": "Baguette", "price": 1.5, "isActive": true, "qty":0},
-    {"id": 4, "name": "Pain au raison", "price": 1, "isActive": true, "qty":0},
-    {"id": 5, "name": "Chausson au pomme", "price": 2, "isActive": true, "qty":0},
-    {"id": 6, "name": "Brioche", "price": 7, "isActive": true, "qty":0},
-    {"id": 7, "name": "Cookie", "price": 2, "isActive": true, "qty":0}
+  
+    "products": [ 
+    {"id": 1, "name": "Pain au chocolat", "price": 3, "isActive": true, "stock":10},
+    {"id": 2, "name": "Croissant", "price": 3, "isActive": true, "stock":20},
+    {"id": 3, "name": "Baguette", "price": 1.5, "isActive": true, "stock":30},
+    {"id": 4, "name": "Pain au raison", "price": 1, "isActive": true, "stock":5},
+    {"id": 5, "name": "Chausson au pomme", "price": 2, "isActive": false, "stock":0},
+    {"id": 6, "name": "Brioche", "price": 7, "isActive": true, "stock":1},
+    {"id": 7, "name": "Cookie", "price": 2, "isActive": true, "stock":50}
+  ],
+  "cart": [ 
+    [{"id": 1, "name": "Pain au chocolat", "price": 3, "discount":0,"quantity":0},
+    {"id": 2, "name": "Croissant", "price": 3, "discount":0, "quantity":0},
+    {"id": 4, "name": "Pain au raison", "price": 1, "discount":0,"quantity":0},
+    {"id": 7, "name": "Cookie", "price": 2, "discount":0, "quantity":0}],{"total" : 0}
   ]
 }
