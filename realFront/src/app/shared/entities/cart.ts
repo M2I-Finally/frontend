@@ -1,7 +1,7 @@
+import { CartLine } from "./cart-line";
+
 export interface Cart {
-    id: number;
-    name: string;
-    price: number;
+    cartLines: Cart[];
+    total: number;
     discount: number;
-    quantity: number;
 }
