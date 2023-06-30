@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Product } from '../../entities/product';
 
 @Component({
   selector: 'product-card',
@@ -6,17 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent {
-  qty = 0;
+  @Input() product: Product | undefined;
+  // name: string | undefined;
+  // price: number | undefined;
+  // qty = 0;
 
   minus(){
-    if (this.qty>0){
-      this.qty--;
-      //function to add with cart
-    }
+    // if (this.product.qty>0){
+      // this.product.qty--;
+      // function to add with cart
+    // }
   }
 
   add(){
-    this.qty++;
-    //function to add with cart
+    // this.qty++;
+    // function to add with cart
   }
 }

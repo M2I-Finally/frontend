@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ProductModule } from './features/product/product.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatIconModule,
     MatSlideToggleModule,
     HttpClientModule,
-  
+    ProductModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
