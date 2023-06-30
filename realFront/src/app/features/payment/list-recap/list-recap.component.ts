@@ -26,14 +26,14 @@ export class ListRecapComponent implements OnInit{
   }
 
   minus(id: number){
-    if (this.productList[id].quantity > 0) {
-      this.productList[id].quantity--;
+    if (this.productList[id].stock > 0) {
+      this.productList[id].stock--;
       //function to add with cart
     }
   }
 
   add(id: number){
-    this.productList[id].quantity++;
+    this.productList[id].stock++;
     //function to add with cart
   }
 }
