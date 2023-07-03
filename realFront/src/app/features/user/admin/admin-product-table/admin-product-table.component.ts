@@ -10,8 +10,6 @@ import { Observable } from 'rxjs';
   selector: 'admin-products-table',
   templateUrl: './admin-product-table.component.html',
   styleUrls: ['./admin-product-table.component.scss'],
-  standalone: true,
-  imports: [CommonModule, MatTableModule, MatSlideToggleModule],
 })
 export class AdminProductsTableComponent implements OnInit {
 
@@ -24,9 +22,6 @@ export class AdminProductsTableComponent implements OnInit {
     this.productList$.subscribe(products => { this.productList = products});
     console.log(this.productList);
 
-  }
-  public updateItem(id: number): void {
-    console.log("Redirection to item editing... ID : " + this.productList[id].id)
   }
 
   public deleteItem(id: number): void {

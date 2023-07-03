@@ -14,7 +14,8 @@ import { map, pipe } from 'rxjs';
 })
 export class FormProductComponent implements OnInit {
 
-  currentProduct: Product | undefined;  
+  currentProduct: Product | undefined;
+  idParameter!: number;  
   constructor(private route: ActivatedRoute, private productService: ProductService) {};
 
   formEditProduct = new UntypedFormGroup({
@@ -26,24 +27,37 @@ export class FormProductComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    
-    // Getting parameters
-    this.route.queryParams
-      .subscribe(params => {
-        console.log(params); 
-    });
-
-    this.productService.getSingleProduct(1).subscribe({
-      next: res => { 
-        this.formEditProduct.controls["id"].setValue(res.id);
+    this.productService.getProductById(this.getIdParameterFromUrl())
+    .subscribe(
+      {
+        next: res => { 
+          this.currentProduct = res
+          this.populateForm(this.currentProduct);
+        }
       }
-    });
-
-    // Setting controls on edit
-   
-
+    );
   }
 
+  /* Called to get the "id" get parameter in the url
+  Does additionnal checks on the input (not implemented yet !)*/
+  getIdParameterFromUrl(): number {
+    this.route.queryParamMap.subscribe(params => {
+      this.idParameter = Number(params?.get("id"));
+    });
+
+    return this.idParameter;
+  }
+
+  // Called when observable gets a result
+  populateForm(product: Product): void {
+    this.formEditProduct.controls["id"].setValue(product.id);
+    this.formEditProduct.controls["productName"].setValue(product.name);
+    this.formEditProduct.controls["productDescription"].setValue(product.id);
+    this.formEditProduct.controls["productPrice"].setValue(product.price);
+    this.formEditProduct.controls["productImage"].setValue(product.image);
+  }
+
+  // Called when form is submitted
   submit():void{
 
   };
