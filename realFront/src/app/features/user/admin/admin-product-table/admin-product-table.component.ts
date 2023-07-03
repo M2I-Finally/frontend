@@ -20,8 +20,6 @@ export class AdminProductsTableComponent implements OnInit {
   ngOnInit(): void {
     this.productList$ = this.productService.getProducts();
     this.productList$.subscribe(products => { this.productList = products});
-    console.log(this.productList);
-
   }
 
   public deleteItem(id: number): void {
