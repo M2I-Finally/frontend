@@ -7,6 +7,7 @@ import { FormProductComponent } from './admin/admin-product-table/form-product/f
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,7 +22,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     SharedModule,
     ReactiveFormsModule,
     MatTableModule, 
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    RouterModule
   ],
   exports: [
     LoginComponent,
