@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Product } from '../shared/entities/product';
+import { TemporaryGetByIdProductResult } from './temporary-get-by-id-product-result';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,12 @@ export class ProductService {
     return this.http.get<Product[]>(this.url + '/products');
   }
 
-  getSingleProduct(productId: number): Observable<Product> {
-    return this.http.get<Product>(this.url + '/products?id=' + productId);
+  getProductById(productId: number): Observable<Product> {
+    return this.http.get<TemporaryGetByIdProductResult>(this.url + '/products?id=' + productId)
+    .pipe(
+      map(res => {
+          return res['0'];
+      })
+    );
   }
 }
