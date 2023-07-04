@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'generic-header',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./generic-header.component.scss']
 })
 export class GenericHeaderComponent {
+
+  constructor(private router: Router) {}
+
+  goToPage(pageName:string): void {
+    this.router.navigate([`${pageName}`])
+  }
 
 }

@@ -10,6 +10,7 @@ import { BasketComponent } from './components/basket/basket.component';
 import { BasketProductComponent } from './components/basket-product/basket-product.component';
 import { ShopComponent } from '../features/product/shop/shop.component';
 import { GenericPaymentButtonComponent } from './components/generic-payment-button/generic-payment-button.component';
+import { Router } from '@angular/router';
 
 
 @NgModule({

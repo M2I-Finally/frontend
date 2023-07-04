@@ -9,6 +9,7 @@ import { ListRecapComponent } from './features/payment/list-recap/list-recap.com
 import { AdminProductsTableComponent } from './features/user/admin/admin-product-table/admin-product-table.component';
 import { ShopComponent } from './features/product/shop/shop.component';
 import { GenericPaymentButtonComponent } from './shared/components/generic-payment-button/generic-payment-button.component';
+import { LogoutComponent } from './features/user/logout/logout.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path:"payment-button",
     component:GenericPaymentButtonComponent,
+  },
+  {
+    path:"logout",
+    component:LogoutComponent,
   }
 ]
 
