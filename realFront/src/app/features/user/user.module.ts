@@ -17,7 +17,8 @@ import { LogoutComponent } from './logout/logout.component';
     SharedModule
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ]
 })
 export class UserModule { }
