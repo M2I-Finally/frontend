@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/mockupData/product.service';
+import { BasketService } from 'src/app/shared/services/basket.service';
 import { Product } from 'src/app/shared/entities/product';
+import { Cart } from 'src/app/shared/entities/cart';
+import { CartLine } from 'src/app/shared/entities/cart-line';
 
 @Component({
   selector: 'list-recap',
@@ -9,31 +12,79 @@ import { Product } from 'src/app/shared/entities/product';
   styleUrls: ['./list-recap.component.scss']
 })
 
-export class ListRecapComponent implements OnInit{
+export class ListRecapComponent implements OnInit {
 
   //voir Basket & Product-card
 
-  displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Total', 'delete'];
+  @Input() product?: Product;
+  @Input() quantity!: number;
+  @Input() cartLine?: CartLine;
+
+  total!: number;
+
+  basket$!: Cart;
+  cartLine$!: CartLine[];
+
+
+
+  displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Discount', 'Total', 'delete'];
   productList$: Observable<Product[]> | undefined;
   productList: Product[] = [];
 
-  constructor(private productService: ProductService){};
+
+  constructor(private productService: ProductService, private basketService: BasketService) { };
 
   ngOnInit(): void {
     this.productList$ = this.productService.getProducts();
-    this.productList$.subscribe(products => { this.productList = products});
+    this.productList$.subscribe(products => { this.productList = products });
     console.log(this.productList);
+
+    this.basketService.basket$.subscribe((basket: Cart) => {
+      this.basket$ = basket;
+      console.log(basket);
+      this.cartLine$ = basket.getCartLines();
+      this.calculateTotal();
+    });
+
   }
 
-  minus(id: number){
-    if (this.productList[id].stock > 0) {
-      this.productList[id].stock--;
-      //function to add with cart
-    }
+  minus(id: number) {
+    console.log("idMinus" + id);
+    this.basket$.getCartLines().forEach((line) => {
+      if (line.getId() === id) {
+        line.setQuantity(-1);
+      }
+    })
+
   }
 
-  add(id: number){
-    this.productList[id].stock++;
-    //function to add with cart
+  add(id: number) {
+    this.basket$.getCartLines().forEach((line) => {
+      line.setQuantity(1);
+
+
+      // if( this.product?.id === line.getId()){ 
+      //   if ( line.getQuantity() < this.product.stock ){
+      //     line.setQuantity(1);
+      //   }          
+      // }
+    })
+
+    this.basketService.updateBasket(this.basket$);
+
+  }
+
+  calculateTotal(): void {
+    this.basket$.getTotal();
+
+    /*let total = 0;
+  
+    this.cartLine$.forEach((cartLine) => {
+      total += cartLine.getPrice() * cartLine.getQuantity() * cartLine.getDiscount();
+    });
+  
+    this.total = total;
+    this.basket$.setTotal(total);*/
+    // this.basketService.updateBasket(this.basket$);
   }
 }
