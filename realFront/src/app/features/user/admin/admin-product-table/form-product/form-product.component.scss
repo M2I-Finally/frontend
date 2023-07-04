@@ -8,8 +8,8 @@
 
     section {
 
-        border: 1px solid pink;
         width: 50%;
+        border-right: 1px solid black;
         
         h1{
             font-weight: bold;
@@ -78,18 +78,16 @@
     }
 
     aside {
+        
         width: 20%;
-        border: 1px solid blue;
 
         h2{
-            font-weight: bold;
             font-size: x-large;
             padding: 1rem;
         }
 
-        .preview-container {
-            width: 90%;
-            border: 1px solid green;
+        .preview-container {          
+            width: 230px;
             margin: 0 auto;
         }
     }

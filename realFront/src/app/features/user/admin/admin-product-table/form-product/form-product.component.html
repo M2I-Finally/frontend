@@ -44,7 +44,7 @@
 
                 <div class="formContainer">
                     <label>Image</label>
-                    <input type="url" formControlName="productImage">
+                    <input type="text" formControlName="productImage">
                 </div>
                 
             
@@ -61,7 +61,19 @@
     <aside>
         <h2>Aperçu produit</h2>
         <div class="preview-container">
-            <product-card></product-card>
+            <div class="container-card">
+                <img class="image-card" src="{{ formProduct.controls['productImage'].value }}">
+                <div class="container-card-details">
+                    <h3 class="title card-title"> {{ formProduct.controls['productName'].value }} </h3>
+                    <div class="card-price"> {{ formProduct.controls['productPrice'].value }} &euro;</div>
+                    <div class="qty-controller">
+                        <button class="btn-qty-controller card-btn-minus">-</button>
+                        <div class="card-affiche-qty">0</div>
+                        <button class="btn-qty-controller card-btn-add">+</button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </aside>
 
