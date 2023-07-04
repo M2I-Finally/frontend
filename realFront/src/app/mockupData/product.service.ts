@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Product } from '../shared/entities/product';
 import { TemporaryGetByIdProductResult } from './temporary-get-by-id-product-result';
+import { Category } from '../shared/entities/category';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,9 @@ export class ProductService {
 
   deleteProduct(productId: number): Observable<Product> {
     return this.http.delete<Product>(this.url + '/products/' + productId);
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.url + '/categories');
+
   }
 }

@@ -1,0 +1,22 @@
+button{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding:0.5rem;
+    border: 1px solid var(--primary-bg-color);
+    border-radius: 10px;
+    color: var(--primary-bg-color);
+    min-width: 18rem;
+
+    svg{
+        max-width: 40px;
+        max-height: 40px;
+        fill: var(--primary-bg-color);
+    }
+
+    .title{
+        font-weight: 700;
+        font-size: 1rem;
+    }
+}

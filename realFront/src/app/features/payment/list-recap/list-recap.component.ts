@@ -1,31 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MatTableModule } from '@angular/material/table';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { Product } from 'src/app/shared/entities/product';
 
-//mockup data
-// let productList: Product[] = [
-//   {id: 1, name: 'Pain au chocolat', price: 3, isActive: true, qty:0},
-//   {id: 2, name: 'Croissant', price: 3, isActive: true, qty:0},
-//   {id: 3, name: 'Baguette', price: 1.5, isActive: true, qty:0},
-//   {id: 4, name: 'Pain au raison', price: 1, isActive: true, qty:0},
-//   {id: 5, name: 'Chausson au pomme', price: 2, isActive: true, qty:0},
-//   {id: 6, name: 'Brioche', price: 7, isActive: true, qty:0},
-//   {id: 7, name: 'Cookie', price: 2, isActive: true, qty:0}
-// ];
-
 @Component({
-  selector: 'app-list-recap',
+  selector: 'list-recap',
   templateUrl: './list-recap.component.html',
-  styleUrls: ['./list-recap.component.scss'],
-  standalone: true,
-  imports: [MatTableModule],
+  styleUrls: ['./list-recap.component.scss']
 })
 
 export class ListRecapComponent implements OnInit{
+
+  //voir Basket & Product-card
+
   displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Total', 'delete'];
-  productList$:Observable<Product[]> | undefined;
+  productList$: Observable<Product[]> | undefined;
   productList: Product[] = [];
 
   constructor(private productService: ProductService){};
@@ -37,14 +26,14 @@ export class ListRecapComponent implements OnInit{
   }
 
   minus(id: number){
-    if (this.productList[id].qty > 0) {
-      this.productList[id].qty--;
+    if (this.productList[id].stock > 0) {
+      this.productList[id].stock--;
       //function to add with cart
     }
   }
 
   add(id: number){
-    this.productList[id].qty++;
+    this.productList[id].stock++;
     //function to add with cart
   }
 }
