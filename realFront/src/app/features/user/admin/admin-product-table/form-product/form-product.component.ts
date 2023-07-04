@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/mockupData/product.service';
@@ -19,11 +19,11 @@ export class FormProductComponent implements OnInit {
 
   // Form that handles the addition or edition of a product
   formProduct = new UntypedFormGroup({
-    productId: new UntypedFormControl(),
-    productName: new UntypedFormControl(),
-    productDescription: new UntypedFormControl(),
-    productPrice: new UntypedFormControl(),
-    productImage: new UntypedFormControl(),
+    productId: new UntypedFormControl(''),
+    productName: new UntypedFormControl('', [Validators.required]),
+    productDescription: new UntypedFormControl(''),
+    productPrice: new UntypedFormControl('', [Validators.required, Validators.min(0)]),
+    productImage: new UntypedFormControl(''),
   });
 
   ngOnInit(): void {

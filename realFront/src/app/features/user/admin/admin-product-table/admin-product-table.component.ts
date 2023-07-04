@@ -18,6 +18,7 @@ export class AdminProductsTableComponent implements OnInit {
   productList$:Observable<Product[]> | undefined;
 
   public ngOnInit(): void {
+    // This will merge the new results even after page refresh
     this.productList$ =  this.productService.getProducts().pipe(
       mergeMap(() => this.productService.getProducts())
     );
