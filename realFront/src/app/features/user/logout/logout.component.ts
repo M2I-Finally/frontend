@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
@@ -9,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class LogoutComponent {
   currentDate: Date = new Date();
+
+  constructor(private router: Router) {}
+
+  goToPage(pageName:string): void {
+    this.router.navigate([`${pageName}`])
+  }
 }
