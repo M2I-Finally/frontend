@@ -103,7 +103,7 @@ export class FormProductComponent implements OnInit {
             name: this.formProduct.controls["productName"].value,
             price: this.formProduct.controls["productPrice"].value,
             isActive: true,
-            qty: 0,
+            stock: 0,
             image: this.formProduct.controls["productImage"].value,
         }).subscribe(data => console.log(data));
 
@@ -119,7 +119,7 @@ export class FormProductComponent implements OnInit {
           name: this.formProduct.controls["productName"].value,
           price: this.formProduct.controls["productPrice"].value,
           isActive: true,
-          qty: 0,
+          stock: 0,
           image: this.formProduct.controls["productImage"].value,
         }).subscribe(data => console.log(data));
 
