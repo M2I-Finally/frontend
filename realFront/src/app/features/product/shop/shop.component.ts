@@ -5,6 +5,7 @@ import { Category } from 'src/app/shared/entities/category';
 import { Cart } from 'src/app/shared/entities/cart';
 import { Product } from 'src/app/shared/entities/product';
 import { BasketService } from 'src/app/shared/services/basket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'shop',
@@ -12,7 +13,7 @@ import { BasketService } from 'src/app/shared/services/basket.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit{
-  constructor(private productService: ProductService, private basketService : BasketService) {}
+  constructor(private productService: ProductService, private basketService : BasketService, private router: Router) {}
  
   productList$: Observable<Product[]> | undefined;
   
@@ -38,6 +39,10 @@ export class ShopComponent implements OnInit{
     }))
     
   } 
+
+  goToPage(pageName:string): void {
+    this.router.navigate([`${pageName}`])
+  }
  
 
 }

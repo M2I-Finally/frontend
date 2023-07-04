@@ -23,31 +23,6 @@
             display: none;
         }
     }
-
-    #logout {
-        position: absolute;
-        top: 1.2%;
-        right: 0;
-        cursor: pointer;
-        margin-right: 2%;
-        margin-top: 1rem;
-        color: var(--primary-yellow);
-
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
-            text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
-        }
-
-        &-input {
-            margin-top: 1rem;
-            width: 100%;
-        }
-    }
 }
 
 /* ------------------ DESKTOP ------------------ */
