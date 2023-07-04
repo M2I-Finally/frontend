@@ -1,29 +1,119 @@
 {
- "products": [ 
-      {"id": 1, "name": "Pain au chocolat", "price": 3,"tax":0.5, "isActive": true, "stock":5, "image":"/assets/img/viennoiserie/painAuChocolat.jpg" },
-      {"id": 2, "name": "Croissant", "price": 3, "tax":0.5,"isActive": true, "stock":5, "image":"/assets/img/viennoiserie/croissants.jpg"},
-      {"id": 3, "name": "Baguette", "price": 1.5, "tax":0.5,"isActive": true, "stock":5, "image":"/assets/img/viennoiserie/baguette.jpg"},
-      {"id": 4, "name": "Pain au raisin", "price": 1, "tax":0.5, "isActive": true, "stock":5, "image":"/assets/img/viennoiserie/painAuxRaisins.jpg"},
-      {"id": 5, "name": "Chausson au pomme", "price": 2, "tax":0.5,"isActive": true, "stock":5, "image":"/assets/img/viennoiserie/chaussonAuxPommes.jpg"},
-      {"id": 6, "name": "Brioche", "price": 7, "tax":0.5,"isActive": false, "stock":0, "image":"/assets/img/viennoiserie/brioche.jpg"},
-      {"id": 7, "name": "Cookie", "price": 2, "tax":0.5,"isActive": true, "stock":5, "image":"/assets/img/viennoiserie/cookie.jpg"}
+  "products": [
+    {
+      "id": 1,
+      "name": "Pain au chocolat",
+      "price": 3,
+      "tax": 0.5,
+      "isActive": true,
+      "stock": 5,
+      "image": "/assets/img/viennoiserie/painAuChocolat.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Croissant",
+      "price": 3,
+      "tax": 0.5,
+      "isActive": true,
+      "stock": 5,
+      "image": "/assets/img/viennoiserie/croissants.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Baguette",
+      "price": 1.5,
+      "tax": 0.5,
+      "isActive": true,
+      "stock": 5,
+      "image": "/assets/img/viennoiserie/baguette.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Pain au raisin",
+      "price": 1,
+      "tax": 0.5,
+      "isActive": true,
+      "stock": 5,
+      "image": "/assets/img/viennoiserie/painAuxRaisins.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Chausson au pomme",
+      "price": 2,
+      "tax": 0.5,
+      "isActive": true,
+      "stock": 5,
+      "image": "/assets/img/viennoiserie/chaussonAuxPommes.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Brioche",
+      "price": 7,
+      "tax": 0.5,
+      "isActive": false,
+      "stock": 0,
+      "image": "/assets/img/viennoiserie/brioche.jpg"
+    }
   ],
   "cart": {
-    "cartLines": 
-    [
-      {"id": 1, "name": "Pain au chocolat", "price": 3, "discount":1,"quantity":5},
-      {"id": 2, "name": "Croissant", "price": 3, "discount":1, "quantity":5},
-      {"id": 4, "name": "Pain au raison", "price": 1, "discount":1,"quantity":5},
-      {"id": 7, "name": "Cookie", "price": 2, "discount":1, "quantity":5}
+    "cartLines": [
+      {
+        "id": 1,
+        "name": "Pain au chocolat",
+        "price": 3,
+        "discount": 1,
+        "quantity": 5
+      },
+      {
+        "id": 2,
+        "name": "Croissant",
+        "price": 3,
+        "discount": 1,
+        "quantity": 5
+      },
+      {
+        "id": 4,
+        "name": "Pain au raison",
+        "price": 1,
+        "discount": 1,
+        "quantity": 5
+      },
+      {
+        "id": 7,
+        "name": "Cookie",
+        "price": 2,
+        "discount": 1,
+        "quantity": 5
+      }
     ],
-    "total" : 0, 
-    "discount":1 
+    "total": 0,
+    "discount": 1
   },
   "categories": [
-    {"id": 1, "name": "Pain", "isActive": true},
-    {"id": 2, "name": "Viennoiserie", "isActive": true},
-    {"id": 3, "name": "Pâtisserie", "isActive": true},
-    {"id": 4, "name": "Sandwich", "isActive": false},
-    {"id": 5, "name": "Tarterie", "isActive": true}
+    {
+      "id": 1,
+      "name": "Pain",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Viennoiserie",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Pâtisserie",
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "name": "Sandwich",
+      "isActive": false
+    },
+    {
+      "id": 5,
+      "name": "Tarterie",
+      "isActive": true
+    }
   ]
-}              
+}
