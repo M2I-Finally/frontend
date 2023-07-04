@@ -15,10 +15,18 @@
             gap: 1rem;
         }
     }
+
+    #gestion-button {
+        position: absolute;
+        top: 1.2%;
+        right: 10%;
+    }
 }
 
 
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
-
+    #gestion-button {
+        right: 6%;
+    }
 }
