@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MatTableModule } from '@angular/material/table';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { Product } from 'src/app/shared/entities/product';
 
 @Component({
-  selector: 'app-list-recap',
+  selector: 'list-recap',
   templateUrl: './list-recap.component.html',
-  styleUrls: ['./list-recap.component.scss'],
-  standalone: true,
-  imports: [MatTableModule],
+  styleUrls: ['./list-recap.component.scss']
 })
 
 export class ListRecapComponent implements OnInit{
+
+  //voir Basket & Product-card
+
   displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Total', 'delete'];
-  productList$:Observable<Product[]> | undefined;
+  productList$: Observable<Product[]> | undefined;
   productList: Product[] = [];
 
   constructor(private productService: ProductService){};

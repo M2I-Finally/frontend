@@ -1,3 +1,35 @@
 table{
     background-color: var(--primary-green);
+    text-align: center;
+    vertical-align: baseline;
+  
+
+    .btn-qty-controller {
+        background-color: transparent;
+        border: 1px solid var(--text-color);
+        border-radius: 50%;
+        text-align: center;
+        color: var(--text-color);
+        width: 30px;
+        height: 30px;
+        margin: 0;
+        padding: 0;
+    }
+
+    th{
+        background-color: var(--primary-bg-color);
+        color:var(--text-on-dk-bg);
+        font-size: 1.2rem;
+        padding-top: 0.8rem;
+    }
+
+    tr:nth-child(even){
+        background-color: var(--text-on-dk-bg);
+    }
+
+    td{
+        padding-top:0.5rem;
+    }
+
+
 }

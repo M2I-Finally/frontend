@@ -4,32 +4,31 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonModule } from '@angular/common';
 import { ProductService } from 'src/app/mockupData/product.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, concat, first, mergeMap, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'admin-products-table',
   templateUrl: './admin-product-table.component.html',
   styleUrls: ['./admin-product-table.component.scss'],
-  standalone: true,
-  imports: [CommonModule, MatTableModule, MatSlideToggleModule],
 })
 export class AdminProductsTableComponent implements OnInit {
 
-  constructor( private productService: ProductService) {}
+  constructor(private productService: ProductService) {}
+  
   productList$:Observable<Product[]> | undefined;
-  productList: Product[] = [];
 
-  ngOnInit(): void {
-    this.productList$ = this.productService.getProducts();
-    this.productList$.subscribe(products => { this.productList = products});
-    console.log(this.productList);
-
-  }
-  public updateItem(id: number): void {
-    console.log("Redirection to item editing... ID : " + this.productList[id].id)
+  public ngOnInit(): void {
+    // This will merge the new results even after page refresh
+    this.productList$ =  this.productService.getProducts().pipe(
+      mergeMap(() => this.productService.getProducts())
+    );
   }
 
-  public deleteItem(id: number): void {
-    console.log("Deleted item number " + this.productList[id].id);
+  protected deleteItem(tableIndex: number, productId: number): void {
+    // This will subscribe to the only result returned from the observable (and thus unsubscribe)
+    this.productList$ = this.productService.deleteProduct(productId).pipe(
+      mergeMap(() => this.productService.getProducts())
+    );
   }
+
 }

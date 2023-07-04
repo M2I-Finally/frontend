@@ -10,6 +10,9 @@ import { AdminProductsTableComponent } from './features/user/admin/admin-product
 import { ShopComponent } from './features/product/shop/shop.component';
 import { GenericPaymentButtonComponent } from './shared/components/generic-payment-button/generic-payment-button.component';
 import { LogoutComponent } from './features/user/logout/logout.component';
+import { PaymentConfirmationPageComponent } from './features/payment/payment-confirmation-page/payment-confirmation-page.component';
+import { ReturnToProductsPageButtonComponent } from './shared/components/return-to-products-page-button/return-to-products-page-button.component';
+import { FormProductComponent } from './features/user/admin/admin-product-table/form-product/form-product.component';
 
 const routes: Routes = [
   {
@@ -20,10 +23,8 @@ const routes: Routes = [
     path:"list-recap",
     component:ListRecapComponent
   },
-  {
-    path:"table",
-    component: AdminProductsTableComponent
-  },
+  { path:"table", component: AdminProductsTableComponent },
+  { path:'form-edit', component: FormProductComponent },
   {
     path:"shop",
     component: ShopComponent,
@@ -35,9 +36,12 @@ const routes: Routes = [
   {
     path:"logout",
     component:LogoutComponent,
+  },
+  {
+    path:"payment-page",
+    component:PaymentConfirmationPageComponent,
   }
 ]
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

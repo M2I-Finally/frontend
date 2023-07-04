@@ -8,9 +8,9 @@ import { GenericHeaderComponent } from './components/generic-header/generic-head
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { BasketProductComponent } from './components/basket-product/basket-product.component';
-import { ShopComponent } from '../features/product/shop/shop.component';
 import { GenericPaymentButtonComponent } from './components/generic-payment-button/generic-payment-button.component';
 import { Router } from '@angular/router';
+import { ReturnToProductsPageButtonComponent } from './components/return-to-products-page-button/return-to-products-page-button.component';
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import { Router } from '@angular/router';
     BasketComponent,
     BasketProductComponent,
     GenericPaymentButtonComponent,
+    ReturnToProductsPageButtonComponent
   ],
  // providers: [BasketService],
   imports: [
@@ -38,6 +39,8 @@ import { Router } from '@angular/router';
     NavigationComponent,
     BasketComponent,
     BasketProductComponent,
+    GenericPaymentButtonComponent,
+    ReturnToProductsPageButtonComponent
   ]
 })
 export class SharedModule { }

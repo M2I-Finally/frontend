@@ -1,0 +1,54 @@
+<h1 class="title">{{ modeText }} un produit</h1>
+<div>
+    <form [formGroup]="formProduct" (ngSubmit)="submit()">
+
+        <div class="formContainer">
+            <label><b>product Id</b> (needs to be set in order to work with json-server)</label>
+            <input type="number" formControlName="productId">
+        </div>
+         
+        <div class="formContainer">
+            <label>Nom du produit</label>
+            <input type="text" formControlName="productName">
+
+            <div class="error-msg" *ngIf="!formProduct.controls['productName'].valid && formProduct.controls['productName'].dirty">
+                Le champ ne peut pas être vide
+            </div>
+        </div>
+
+        <div class="formContainer">
+            <label>Descriptif produit</label>
+            <textarea type="text" formControlName="productDescription"></textarea>
+        </div>
+
+        <div class="formContainer">
+            <label>Catégorie</label>
+            <select>
+                <option value="viennoiserie">Viennoiserie</option>
+                <option value="patisserie">Pâtisserie</option>
+            </select>
+        </div>
+
+        <div class="formContainer">
+            <label>Prix à l'unité</label>
+            <input type="number" formControlName="productPrice" min="0">
+
+            <div class="error-msg" *ngIf="!formProduct.controls['productPrice'].valid && formProduct.controls['productPrice'].dirty">
+                Le prix doit être supérieur à 0€.
+            </div>
+        </div>
+
+        <div class="formContainer">
+            <label>Image</label>
+            <input type="url" formControlName="productImage">
+        </div>
+        
+       
+        <button type="submit" [disabled]="!formProduct.valid" class="btn btn-bg-yellow">{{ modeText }} le produit</button>
+     
+
+    </form>
+    
+    <generic-button routerLink="/table" color="red" content="Annuler" ></generic-button>
+
+</div>

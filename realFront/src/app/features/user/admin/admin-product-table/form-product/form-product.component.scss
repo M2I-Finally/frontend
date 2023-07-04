@@ -1,0 +1,62 @@
+h1{
+    font-weight: bold;
+    font-size: x-large;
+    padding: 1rem;
+}
+form{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+    width: 50%;
+
+    .formContainer {
+        
+        height: auto;
+        display: flex;
+        flex-wrap:wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+        label{
+            width: 30%;
+            min-width: 200px;
+        }
+
+        .error-msg {
+            height: 1.2rem;
+            width: 100%;
+            text-align: right;
+            font-size: 0.8rem;
+            color: darkred;
+
+        }
+
+        input,
+        textarea,
+        select{
+            border: 1px solid var(--text-color);
+            background-color: var(--text-on-dk-bg);
+            width: 70%;
+            resize: none; 
+            appearance: textfield;
+        }
+    
+        input[type="file"]{
+           
+        } 
+
+    }
+    
+    button{
+        border: 3px solid var(--primary-yellow);
+        color: var(--text-color);
+        font-size: large;
+        box-shadow: 10px 5px 5px var(--bg-color-80);
+        width: 50%;
+        align-self: flex-end;
+     }
+}

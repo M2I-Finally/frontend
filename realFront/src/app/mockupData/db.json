@@ -1,5 +1,5 @@
 {
-    "products": [ 
+ "products": [ 
       {"id": 1, "name": "Pain au chocolat", "price": 3,"tax":0.5, "isActive": true, "stock":5, "image":"/assets/img/viennoiserie/painAuChocolat.jpg" },
       {"id": 2, "name": "Croissant", "price": 3, "tax":0.5,"isActive": true, "stock":5, "image":"/assets/img/viennoiserie/croissants.jpg"},
       {"id": 3, "name": "Baguette", "price": 1.5, "tax":0.5,"isActive": true, "stock":5, "image":"/assets/img/viennoiserie/baguette.jpg"},
