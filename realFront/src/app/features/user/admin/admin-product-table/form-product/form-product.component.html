@@ -30,9 +30,12 @@
             <label>Image</label>
             <input type="url" formControlName="productImage">
         </div>
+        
         <!-- this button should be generic-button -->
         <button type="submit" [disabled]="!formEditProduct.valid" class="btn btn-bg-yellow">Ajouter le produit</button>
         <!-- <generic-button type="submit" color="yellow" content="valider" ></generic-button> -->
     </form>
+    
     <a routerLink="/table">Annuler</a>
+
 </div>

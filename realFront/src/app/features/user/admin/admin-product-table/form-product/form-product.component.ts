@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Product } from 'src/app/shared/entities/product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { map, pipe } from 'rxjs';
 
@@ -15,8 +15,8 @@ import { map, pipe } from 'rxjs';
 export class FormProductComponent implements OnInit {
 
   currentProduct: Product | undefined;
-  idParameter!: number;  
-  constructor(private route: ActivatedRoute, private productService: ProductService) {};
+
+  constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
   formEditProduct = new UntypedFormGroup({
     id: new UntypedFormControl(),
@@ -27,29 +27,59 @@ export class FormProductComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.productService.getProductById(this.getIdParameterFromUrl())
-    .subscribe(
-      {
-        next: res => { 
-          this.currentProduct = res
-          this.populateForm(this.currentProduct);
+    
+    // If form is on edit mode and the id is correct
+    if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl() != null) {
+      this.productService.getProductById(this.getIdParameterFromUrl())
+      .subscribe(
+        {
+          next: res => { 
+            this.currentProduct = res
+            this.populateForm(this.currentProduct);
+          }
         }
-      }
-    );
+      );
+    }
+
   }
 
   /* Called to get the "id" get parameter in the url
   Does additionnal checks on the input (not implemented yet !)*/
-  getIdParameterFromUrl(): number {
+  private getIdParameterFromUrl(): number {
+    let temporaryIdParameter;
     this.route.queryParamMap.subscribe(params => {
-      this.idParameter = Number(params?.get("id"));
+      temporaryIdParameter = params?.get("id");
     });
 
-    return this.idParameter;
+    // If it's not a number then we redirect the user to the table page
+    if(isNaN(Number(temporaryIdParameter))) {
+      this.router.navigate(['/table']);
+    } 
+
+    // Otherwise, we return the id
+    return Number(temporaryIdParameter);
+  }
+
+  /**
+   * Called to get the "action" get parameter in the url
+   * Action either takes "edit" or "add" depending on the context
+   */
+  private getActionParameterFromUrl(): string | undefined {
+    
+    let temporaryActionParameter;
+    this.route.queryParamMap.subscribe(params => {
+      temporaryActionParameter = params?.get("action");
+    });
+
+    if(!(temporaryActionParameter === "edit" || temporaryActionParameter === "add")) {
+      this.router.navigate(['/table']);
+    }
+
+    return temporaryActionParameter;
   }
 
   // Called when observable gets a result
-  populateForm(product: Product): void {
+  private populateForm(product: Product): void {
     this.formEditProduct.controls["id"].setValue(product.id);
     this.formEditProduct.controls["productName"].setValue(product.name);
     this.formEditProduct.controls["productDescription"].setValue(product.id);
@@ -58,7 +88,7 @@ export class FormProductComponent implements OnInit {
   }
 
   // Called when form is submitted
-  submit():void{
+  private submit():void{
 
   };
 

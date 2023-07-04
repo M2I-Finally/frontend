@@ -15,15 +15,12 @@ export class AdminProductsTableComponent implements OnInit {
 
   constructor( private productService: ProductService) {}
   productList$:Observable<Product[]> | undefined;
-  productList: Product[] = [];
 
   ngOnInit(): void {
     this.productList$ = this.productService.getProducts();
-    this.productList$.subscribe(products => { this.productList = products});
   }
 
   public deleteItem(id: number): void {
     console.log("Deleted item number " + id);
-    this.productList.splice(id - 1, 1);
   }
 }
