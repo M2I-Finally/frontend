@@ -3,11 +3,11 @@
     <generic-button color="yellow" content="Gestion" id="gestion-button">Gestion</generic-button>
 </div>
 <navigation></navigation>
-<basket></basket>
+<basket [quantity]="quantity"></basket>
 <div id="shop-container">
     <ng-container *ngFor="let product of productList$ | async; index as i">
         <ng-template [ngIf]="product.isActive">
-            <product-card [product]="product"></product-card>
+            <product-card [product]="product" [quantity]="quantity"></product-card>
         </ng-template>
     </ng-container>
 </div>

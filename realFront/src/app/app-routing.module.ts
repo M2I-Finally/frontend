@@ -8,6 +8,7 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
 import { ListRecapComponent } from './features/payment/list-recap/list-recap.component';
 import { AdminProductsTableComponent } from './features/user/admin/admin-product-table/admin-product-table.component';
 import { ShopComponent } from './features/product/shop/shop.component';
+import { GenericPaymentButtonComponent } from './shared/components/generic-payment-button/generic-payment-button.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
     path:"shop",
     component: ShopComponent,
   },
+  {
+    path:"payment-button",
+    component:GenericPaymentButtonComponent,
+  }
 ]
 
 
