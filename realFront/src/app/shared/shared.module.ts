@@ -9,6 +9,7 @@ import { GenericHeaderComponent } from './components/generic-header/generic-head
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { BasketProductComponent } from './components/basket-product/basket-product.component';
+import { ShopComponent } from '../features/product/shop/shop.component';
 
 
 
@@ -24,7 +25,7 @@ import { BasketProductComponent } from './components/basket-product/basket-produ
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     GenericButtonComponent,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/mockupData/product.service';
+import { Category } from 'src/app/shared/entities/category';
 import { Product } from 'src/app/shared/entities/product';
 
 @Component({
