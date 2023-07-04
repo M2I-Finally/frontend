@@ -37,9 +37,10 @@ export class ProductService {
 
   deleteProduct(productId: number): Observable<Product> {
     return this.http.delete<Product>(this.url + '/products/' + productId);
+  }
 
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url + '/categories');
-
   }
+  
 }
