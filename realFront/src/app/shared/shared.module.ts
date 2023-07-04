@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { GenericButtonComponent } from './components/generic-button/generic-button.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -9,7 +8,6 @@ import { GenericHeaderComponent } from './components/generic-header/generic-head
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { BasketProductComponent } from './components/basket-product/basket-product.component';
-
 
 
 @NgModule({
@@ -21,7 +19,10 @@ import { BasketProductComponent } from './components/basket-product/basket-produ
     NavigationComponent,
     BasketComponent,
     BasketProductComponent,
+    
+    
   ],
+ // providers: [BasketService],
   imports: [
     CommonModule,
     ReactiveFormsModule

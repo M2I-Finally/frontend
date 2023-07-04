@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
+import { CartLine } from '../../entities/cart-line';
 
 @Component({
   selector: 'basket-product',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./basket-product.component.scss']
 })
 export class BasketProductComponent {
+    @Input() cartLine? :CartLine ;
+   
+    
+    minus(){
+     
+      if(this.cartLine && this.cartLine?.getQuantity() > 0)
+       this.cartLine.setQuantity(-1);     
+    
+  }
 
+  add(){
+    
+    if(this.cartLine && this.cartLine?.getQuantity() > 0)
+       this.cartLine.setQuantity(1);
+  }
+
+    
 }
