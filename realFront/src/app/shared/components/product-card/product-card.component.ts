@@ -47,10 +47,10 @@ export class ProductCardComponent implements OnInit{
       this.basket$.getCartLines().forEach((line) => {
 
         if( this.product?.id == line.getId()){ 
-          if ( line.getQuantity() < this.product.stock ){
+          //if ( line.getQuantity() < this.product.stock ){
             line.setQuantity(1);
             this.quantity = line.getQuantity();           
-          }          
+          //}          
           lineExist = true;
         }
 

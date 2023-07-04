@@ -19,7 +19,7 @@ export class BasketProductComponent {
 
   add(){
     
-    if(this.cartLine && this.cartLine?.getQuantity() > 0)
+    if(this.cartLine)
        this.cartLine.setQuantity(1);
   }
 
