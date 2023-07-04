@@ -4,8 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonModule } from '@angular/common';
 import { ProductService } from 'src/app/mockupData/product.service';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Observable, first, take } from 'rxjs';
 
 @Component({
   selector: 'admin-products-table',
@@ -14,18 +13,18 @@ import { Router } from '@angular/router';
 })
 export class AdminProductsTableComponent implements OnInit {
 
-  constructor(private router: Router, private productService: ProductService) {}
+  constructor(private productService: ProductService) {}
   productList$:Observable<Product[]> | undefined;
   productList: Product[] = [];
 
   ngOnInit(): void {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.productList$ = this.productService.getProducts();
     this.productList$.subscribe(products => { this.productList = products});
   }
 
-  public deleteItem(id: number): void {
-    console.log("Deleted item number " + id);
-    this.productList.splice(id - 1, 1);
+  protected deleteItem(tableIndex: number, productId: number): void {
+    // This will subscribe to the only result returned from the observable (and thus unsubscribe)
+    this.productService.deleteProduct(productId).pipe(first()).subscribe(data => console.log(data));
+    this.productList.splice(tableIndex, 1)
   }
 }
