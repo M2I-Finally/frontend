@@ -115,5 +115,19 @@
       "name": "Tarterie",
       "isActive": true
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Mael",
+      "password": "toto",
+      "role": "Manager"
+    },
+    {
+      "id": 2,
+      "username": "Jordan",
+      "password": "tata",
+      "role": "Employé"
+    }
   ]
 }

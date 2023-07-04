@@ -1,0 +1,97 @@
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    #gestion-button {
+        position: absolute;
+        top: 1.2%;
+        right: 10%;
+    }
+
+    #logout {
+        position: absolute;
+        top: 1.2%;
+        right: 0;
+        cursor: pointer;
+        margin-right: 2%;
+        margin-top: 1rem;
+        color: var(--primary-yellow);
+
+        &-dialog {
+            padding: 4rem;
+            box-shadow: 10px 5px 5px var(--bg-color-80);
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Quicksand';
+            font-weight: 600;
+            border-color: #524c7d;
+        }
+
+        &-input {
+            margin-top: 1rem;
+            width: 100%;
+        }
+    }
+
+    #form {
+        &-title {
+            font-family: 'Quicksand';
+            font-weight: bold;
+            font-size: x-large;
+            padding: 1rem;
+        }
+
+        &-user {
+            font-family: 'Quicksand';
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem;
+            gap: 1rem;
+            width: 50%;
+        }
+    }
+
+    .formContainer {    
+        height: auto;
+        display: flex;
+        flex-wrap:wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+        &-label {
+            width: 30%;
+            min-width: 200px;
+        }
+
+        &-input {
+            border: 1px solid var(--text-color);
+            background-color: var(--text-on-dk-bg);
+            width: 70%;
+            resize: none; 
+            appearance: textfield;
+        }
+    }
+}
+
+input[type='radio'] {
+    accent-color: #524c7d;
+}
+
+
+
+/* ------------------ DESKTOP ------------------ */
+@media screen and (min-width: 1024px) {
+    #gestion-button {
+        right: 8%;
+    }
+}
+
+
+// .error-msg {
+//     height: 1.2rem;
+//     width: 100%;
+//     text-align: right;
+//     font-size: 0.8rem;
+//     color: darkred;
+
+// }
