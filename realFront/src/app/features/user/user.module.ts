@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
     FormProductComponent,
     AdminProductsTableComponent
   ],
