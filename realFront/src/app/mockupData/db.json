@@ -18,5 +18,12 @@
     ],
     "total" : 0, 
     "discount":1 
-  }
+  },
+  "categories": [
+    {"id": 1, "name": "Pain", "isActive": true},
+    {"id": 2, "name": "Viennoiserie", "isActive": true},
+    {"id": 3, "name": "Pâtisserie", "isActive": true},
+    {"id": 4, "name": "Sandwich", "isActive": false},
+    {"id": 5, "name": "Tarterie", "isActive": true}
+  ]
 }              

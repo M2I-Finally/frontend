@@ -1,29 +1,41 @@
-#generic-header {
-    background-color: #524c7d;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: auto;
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    #generic-header {
+        background-color: #524c7d;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+    
+        &-logo {
+            width: 25%;
+            text-align: center;
+        }
+    }
+    
+    #logo {
+        &-screen {
+            width: 40%;
+            padding: 30px 0px;
+        }
+    
+        &-mobile {
+            display: none;
+        }
+    }
 
-    &-logo {
-        width: 25%;
-        text-align: center;
+    #logout {
+        position: absolute;
+        top: 1.2%;
+        right: 0;
+        cursor: pointer;
+        margin-right: 2%;
+        margin-top: 1rem;
+        color: var(--primary-yellow);
     }
 }
 
-#logo {
-    &-screen {
-        width: 40%;
-        padding: 30px 0px;
-    }
-
-    &-mobile {
-        display: none;
-    }
-}
-
-#logout {
-    cursor: pointer;
-    margin-right: 2%;
-    color: var(--primary-yellow);
+/* ------------------ DESKTOP ------------------ */
+@media screen and (min-width: 1024px) {
+    
 }
