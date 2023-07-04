@@ -1,3 +1,4 @@
+<a routerLink="/form-edit" [queryParams]="{action: 'add'}">Ajouter un produit</a>
 <table>
     <thead>
         <tr>
@@ -10,7 +11,7 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let row of productList; index as index">
+        <tr *ngFor="let row of productList$ | async; index as index">
             <td>{{ row.name }} </td>
             <td>{{ row.price }} €</td>
             <td><mat-slide-toggle color="primary" [checked]="row.isActive"></mat-slide-toggle></td>
@@ -29,6 +30,6 @@
         </tr>
     </tbody>
 </table>
-<a routerLink="/form-edit" [queryParams]="{action: 'add'}">Ajouter un produit</a>
+
 
 

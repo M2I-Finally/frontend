@@ -1,4 +1,4 @@
-<h1 class="title">Titre</h1>
+<h1 class="title">{{ modeText }} un produit</h1>
 <div>
     <form [formGroup]="formProduct" (ngSubmit)="submit()">
 
@@ -31,10 +31,9 @@
         </div>
         
         <!-- this button should be generic-button -->
-        <button type="submit" [disabled]="!formProduct.valid" class="btn btn-bg-yellow">{{ productButtonText }}</button>
-        <!-- <generic-button type="submit" color="yellow" content="valider" ></generic-button> -->
+        <button type="submit" [disabled]="!formProduct.valid" class="btn btn-bg-yellow">{{ modeText }} le produit</button>
     </form>
-
-    <a routerLink="/table">Annuler</a>
+    
+    <generic-button routerLink="/table" color="red" content="Annuler" ></generic-button>
 
 </div>

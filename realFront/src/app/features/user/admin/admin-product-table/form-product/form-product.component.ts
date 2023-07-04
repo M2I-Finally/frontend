@@ -14,7 +14,7 @@ import { map, pipe } from 'rxjs';
 })
 export class FormProductComponent implements OnInit {
 
-  productButtonText: string = "Ajouter le produit";
+  modeText: string = "Ajouter";
   constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
   // Form that handles the addition or edition of a product
@@ -83,16 +83,16 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productDescription"].setValue(product.id);
     this.formProduct.controls["productPrice"].setValue(product.price);
     this.formProduct.controls["productImage"].setValue(product.image);
-    this.productButtonText = "Editer le produit";
+    this.modeText = "Editer";
   }
 
   // Called when redirecting to table and refresh the component to get the new datas
-  private redirectToTable(): void {
-    this.router.navigateByUrl('/table', { skipLocationChange: true }).then(() => {
+  protected redirectToTable(): void {
+    this.router.navigateByUrl('/table', { skipLocationChange: false }).then(() => {
       this.router.navigate(['/table']);
     }); 
   }
-  
+
   // Called when form is submitted
   protected submit():void{
       if(this.getActionParameterFromUrl() == "add") {
@@ -112,7 +112,18 @@ export class FormProductComponent implements OnInit {
 
       } 
       else if(this.getActionParameterFromUrl() == "edit") {
-        console.log("let's edit !");
+        
+        // Save product to database (temporary until we make the database)
+        this.productService.putProduct(this.formProduct.controls["productId"].value, {
+          id: this.formProduct.controls["productId"].value,
+          name: this.formProduct.controls["productName"].value,
+          price: this.formProduct.controls["productPrice"].value,
+          isActive: true,
+          qty: 0,
+          image: this.formProduct.controls["productImage"].value,
+        }).subscribe(data => console.log(data));
+
+        this.redirectToTable();
       }
   };
 
