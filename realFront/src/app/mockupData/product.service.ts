@@ -41,6 +41,6 @@ export class ProductService {
 
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url + '/categories');
-
   }
+  
 }
