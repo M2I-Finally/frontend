@@ -10,7 +10,7 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let row of productList$ | async;">
+        <tr *ngFor="let row of productList">
             <td>{{ row.name }} </td>
             <td>{{ row.price }} €</td>
             <td><mat-slide-toggle color="primary" [checked]="row.isActive"></mat-slide-toggle></td>

@@ -1,10 +1,10 @@
-<h1 class="title">getMode()</h1>
+<h1 class="title">Titre</h1>
 <div>
     <form [formGroup]="formProduct" (ngSubmit)="submit()">
 
         <div class="formContainer">
-            <label class="hidden">product Id</label>
-            <input type="hidden" formControlName="productId">
+            <label><b>product Id</b> (needs to be set in order to work with json-server)</label>
+            <input type="number" formControlName="productId">
         </div>
         <div class="formContainer">
             <label>Nom du produit</label>

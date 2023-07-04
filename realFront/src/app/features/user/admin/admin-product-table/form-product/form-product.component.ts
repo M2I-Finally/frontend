@@ -17,7 +17,7 @@ export class FormProductComponent implements OnInit {
   productButtonText: string = "Ajouter le produit";
   constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
-  // Form that handles the addition or removal of a product
+  // Form that handles the addition or edition of a product
   formProduct = new UntypedFormGroup({
     productId: new UntypedFormControl(),
     productName: new UntypedFormControl(),
@@ -51,7 +51,7 @@ export class FormProductComponent implements OnInit {
 
     // If it's not a number then we redirect the user to the table page
     if(isNaN(Number(temporaryIdParameter)) || temporaryIdParameter == undefined || !temporaryIdParameter) {
-      this.router.navigate(['/table']);
+      this.redirectToTable();
     } 
 
     return Number(temporaryIdParameter);
@@ -70,7 +70,7 @@ export class FormProductComponent implements OnInit {
 
     // If the action mode is incorrect then we redirect the user to the table page
     if(!(temporaryActionParameter === "edit" || temporaryActionParameter === "add") || temporaryActionParameter == undefined || !temporaryActionParameter) {
-      this.router.navigate(['/table']);
+      this.redirectToTable();
     }
 
     return temporaryActionParameter;
@@ -86,10 +86,30 @@ export class FormProductComponent implements OnInit {
     this.productButtonText = "Editer le produit";
   }
 
+  // Called when redirecting to table and refresh the component to get the new datas
+  private redirectToTable(): void {
+    this.router.navigateByUrl('/table', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/table']);
+    }); 
+  }
+  
   // Called when form is submitted
   protected submit():void{
       if(this.getActionParameterFromUrl() == "add") {
-        console.log("let's add !");
+        
+        // Save product to database (temporary until we make the database)
+        this.productService.postProduct({
+            id: this.formProduct.controls["productId"].value,
+            name: this.formProduct.controls["productName"].value,
+            price: this.formProduct.controls["productPrice"].value,
+            isActive: true,
+            qty: 0,
+            image: this.formProduct.controls["productImage"].value,
+        }).subscribe(data => console.log(data));
+
+        // Redirects when product is saved
+        this.redirectToTable();
+
       } 
       else if(this.getActionParameterFromUrl() == "edit") {
         console.log("let's edit !");
