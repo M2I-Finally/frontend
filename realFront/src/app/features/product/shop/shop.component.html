@@ -6,6 +6,8 @@
 <basket></basket>
 <div id="shop-container">
     <ng-container *ngFor="let product of productList$ | async; index as i">
-        <product-card [product]="product"></product-card>
+        <ng-template [ngIf]="product.isActive">
+            <product-card [product]="product"></product-card>
+        </ng-template>
     </ng-container>
 </div>
