@@ -9,6 +9,7 @@ import { GenericHeaderComponent } from './components/generic-header/generic-head
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { BasketProductComponent } from './components/basket-product/basket-product.component';
+import { GenericPaymentButtonComponent } from './components/generic-payment-button/generic-payment-button.component';
 
 
 
@@ -21,6 +22,7 @@ import { BasketProductComponent } from './components/basket-product/basket-produ
     NavigationComponent,
     BasketComponent,
     BasketProductComponent,
+    GenericPaymentButtonComponent,
   ],
   imports: [
     CommonModule,

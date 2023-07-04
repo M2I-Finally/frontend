@@ -1,0 +1,12 @@
+button{
+    background-color: var(--text-on-dk-bg);
+    border: 1px solid var(--text-color);
+    border-radius: 10px;
+    padding: 1rem;
+
+    
+    svg{
+        max-width: 70px;
+        max-height: 70px;
+    }
+}
