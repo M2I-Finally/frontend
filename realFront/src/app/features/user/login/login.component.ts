@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -9,6 +10,8 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 export class LoginComponent {
   content = "connexion";
   color = "yellow";
+
+  constructor(private router: Router) {}
   
   loginForm : UntypedFormGroup= new UntypedFormGroup({
     username: new UntypedFormControl('',[Validators.required]),
@@ -19,4 +22,7 @@ export class LoginComponent {
     console.log(this.loginForm.value)
   }
 
+  goToPage(pageName:string): void {
+    this.router.navigate([`${pageName}`])
+  }
 }
