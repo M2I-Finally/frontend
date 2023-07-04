@@ -17,10 +17,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'button',
-    component: GenericButtonComponent,
-  },
-  {
     path:"list-recap",
     component:ListRecapComponent
   },
