@@ -50,4 +50,5 @@ export class CartLine {
         this.quantity = this.quantity + quantity;
     }
 
+
 }
