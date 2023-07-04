@@ -14,8 +14,6 @@ import { map, pipe } from 'rxjs';
 })
 export class FormProductComponent implements OnInit {
 
-  currentProduct: Product | undefined;
-
   constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
   formEditProduct = new UntypedFormGroup({
@@ -29,13 +27,12 @@ export class FormProductComponent implements OnInit {
   ngOnInit(): void {
     
     // If form is on edit mode and the id is correct
-    if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl() != null) {
+    if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl()) {
       this.productService.getProductById(this.getIdParameterFromUrl())
       .subscribe(
         {
           next: res => { 
-            this.currentProduct = res
-            this.populateForm(this.currentProduct);
+            this.populateForm(res);
           }
         }
       );
@@ -48,15 +45,14 @@ export class FormProductComponent implements OnInit {
   private getIdParameterFromUrl(): number {
     let temporaryIdParameter;
     this.route.queryParamMap.subscribe(params => {
-      temporaryIdParameter = params?.get("id");
+      temporaryIdParameter = params.get("id");
     });
 
     // If it's not a number then we redirect the user to the table page
-    if(isNaN(Number(temporaryIdParameter))) {
+    if(isNaN(Number(temporaryIdParameter)) || temporaryIdParameter == undefined || !temporaryIdParameter) {
       this.router.navigate(['/table']);
     } 
 
-    // Otherwise, we return the id
     return Number(temporaryIdParameter);
   }
 
@@ -71,7 +67,8 @@ export class FormProductComponent implements OnInit {
       temporaryActionParameter = params?.get("action");
     });
 
-    if(!(temporaryActionParameter === "edit" || temporaryActionParameter === "add")) {
+    // If the action mode is incorrect then we redirect the user to the table page
+    if(!(temporaryActionParameter === "edit" || temporaryActionParameter === "add") || temporaryActionParameter == undefined || !temporaryActionParameter) {
       this.router.navigate(['/table']);
     }
 
@@ -88,7 +85,7 @@ export class FormProductComponent implements OnInit {
   }
 
   // Called when form is submitted
-  private submit():void{
+  protected submit():void{
 
   };
 
