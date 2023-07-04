@@ -12,9 +12,9 @@ import { Product } from 'src/app/shared/entities/product';
 export class ListRecapComponent implements OnInit{
 
   //voir Basket & Product-card
-  
+
   displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Total', 'delete'];
-  productList$:Observable<Product[]> | undefined;
+  productList$: Observable<Product[]> | undefined;
   productList: Product[] = [];
 
   constructor(private productService: ProductService){};

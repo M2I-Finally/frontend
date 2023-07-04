@@ -4,7 +4,13 @@ generic-header {
 
 }
 
-list-recap {
+h1{
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin: 1rem auto;
+}
+
+.recapWrapper {
     grid-area: content;
     margin: 0 auto;
     min-width: 80%;

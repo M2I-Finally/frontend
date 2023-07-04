@@ -8,8 +8,8 @@ import { GenericHeaderComponent } from './components/generic-header/generic-head
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { BasketProductComponent } from './components/basket-product/basket-product.component';
-import { ShopComponent } from '../features/product/shop/shop.component';
 import { GenericPaymentButtonComponent } from './components/generic-payment-button/generic-payment-button.component';
+import { ReturnToProductsPageButtonComponent } from './components/return-to-products-page-button/return-to-products-page-button.component';
 
 
 @NgModule({
@@ -22,6 +22,7 @@ import { GenericPaymentButtonComponent } from './components/generic-payment-butt
     BasketComponent,
     BasketProductComponent,
     GenericPaymentButtonComponent,
+    ReturnToProductsPageButtonComponent
   ],
  // providers: [BasketService],
   imports: [
@@ -37,7 +38,8 @@ import { GenericPaymentButtonComponent } from './components/generic-payment-butt
     NavigationComponent,
     BasketComponent,
     BasketProductComponent,
-    GenericPaymentButtonComponent
+    GenericPaymentButtonComponent,
+    ReturnToProductsPageButtonComponent
   ]
 })
 export class SharedModule { }

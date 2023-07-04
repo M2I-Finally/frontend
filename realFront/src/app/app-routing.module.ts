@@ -8,8 +8,8 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
 import { ListRecapComponent } from './features/payment/list-recap/list-recap.component';
 import { AdminProductsTableComponent } from './features/user/admin/admin-product-table/admin-product-table.component';
 import { ShopComponent } from './features/product/shop/shop.component';
-import { GenericPaymentButtonComponent } from './shared/components/generic-payment-button/generic-payment-button.component';
 import { PaymentConfirmationPageComponent } from './features/payment/payment-confirmation-page/payment-confirmation-page.component';
+import { ReturnToProductsPageButtonComponent } from './shared/components/return-to-products-page-button/return-to-products-page-button.component';
 
 const routes: Routes = [
   {
@@ -33,8 +33,8 @@ const routes: Routes = [
     component: ShopComponent,
   },
   {
-    path:"payment-button",
-    component:GenericPaymentButtonComponent,
+    path:"reutrn-to-products",
+    component:ReturnToProductsPageButtonComponent,
   },
   {
     path:"payment-page",
