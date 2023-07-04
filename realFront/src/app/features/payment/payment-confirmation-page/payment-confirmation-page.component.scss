@@ -1,0 +1,38 @@
+generic-header {
+    grid-area: header;
+    margin-bottom: 2rem;
+
+}
+
+list-recap {
+    grid-area: content;
+    margin: 0 auto;
+    min-width: 80%;
+}
+
+aside {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper {
+    display: grid;
+    /*   grid-gap: 20px; */
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        "header  header"
+        "content sidebar"
+        "content sidebar";
+}
+
+@media (max-width: 40rem) {
+    .wrapper {
+        grid-template-columns: 3fr;
+        grid-template-areas:
+            "header"
+            "content"
+            "sidebar";
+    }
+}

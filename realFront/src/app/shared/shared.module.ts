@@ -36,6 +36,7 @@ import { GenericPaymentButtonComponent } from './components/generic-payment-butt
     NavigationComponent,
     BasketComponent,
     BasketProductComponent,
+    GenericPaymentButtonComponent
   ]
 })
 export class SharedModule { }
