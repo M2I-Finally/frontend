@@ -8,6 +8,8 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
 import { ListRecapComponent } from './features/payment/list-recap/list-recap.component';
 import { AdminProductsTableComponent } from './features/user/admin/admin-product-table/admin-product-table.component';
 import { ShopComponent } from './features/product/shop/shop.component';
+import { GenericPaymentButtonComponent } from './shared/components/generic-payment-button/generic-payment-button.component';
+import { LogoutComponent } from './features/user/logout/logout.component';
 import { PaymentConfirmationPageComponent } from './features/payment/payment-confirmation-page/payment-confirmation-page.component';
 import { ReturnToProductsPageButtonComponent } from './shared/components/return-to-products-page-button/return-to-products-page-button.component';
 import { FormProductComponent } from './features/user/admin/admin-product-table/form-product/form-product.component';
@@ -16,10 +18,6 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent
-  },
-  {
-    path: 'button',
-    component: GenericButtonComponent,
   },
   {
     path:"list-recap",
@@ -32,8 +30,12 @@ const routes: Routes = [
     component: ShopComponent,
   },
   {
-    path:"reutrn-to-products",
-    component:ReturnToProductsPageButtonComponent,
+    path:"payment-button",
+    component:GenericPaymentButtonComponent,
+  },
+  {
+    path:"logout",
+    component:LogoutComponent,
   },
   {
     path:"payment-page",
