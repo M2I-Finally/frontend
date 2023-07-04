@@ -14,14 +14,16 @@ import { map, pipe } from 'rxjs';
 })
 export class FormProductComponent implements OnInit {
 
+  productButtonText: string = "Ajouter le produit";
   constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
-  formEditProduct = new UntypedFormGroup({
-    id: new UntypedFormControl(),
+  // Form that handles the addition or removal of a product
+  formProduct = new UntypedFormGroup({
+    productId: new UntypedFormControl(),
     productName: new UntypedFormControl(),
     productDescription: new UntypedFormControl(),
     productPrice: new UntypedFormControl(),
-    productImage: new UntypedFormControl()
+    productImage: new UntypedFormControl(),
   });
 
   ngOnInit(): void {
@@ -37,7 +39,6 @@ export class FormProductComponent implements OnInit {
         }
       );
     }
-
   }
 
   /* Called to get the "id" get parameter in the url
@@ -75,18 +76,24 @@ export class FormProductComponent implements OnInit {
     return temporaryActionParameter;
   }
 
-  // Called when observable gets a result
+  // Called when observable gets a result on getProductById()
   private populateForm(product: Product): void {
-    this.formEditProduct.controls["id"].setValue(product.id);
-    this.formEditProduct.controls["productName"].setValue(product.name);
-    this.formEditProduct.controls["productDescription"].setValue(product.id);
-    this.formEditProduct.controls["productPrice"].setValue(product.price);
-    this.formEditProduct.controls["productImage"].setValue(product.image);
+    this.formProduct.controls["productId"].setValue(product.id);
+    this.formProduct.controls["productName"].setValue(product.name);
+    this.formProduct.controls["productDescription"].setValue(product.id);
+    this.formProduct.controls["productPrice"].setValue(product.price);
+    this.formProduct.controls["productImage"].setValue(product.image);
+    this.productButtonText = "Editer le produit";
   }
 
   // Called when form is submitted
   protected submit():void{
-
+      if(this.getActionParameterFromUrl() == "add") {
+        console.log("let's add !");
+      } 
+      else if(this.getActionParameterFromUrl() == "edit") {
+        console.log("let's edit !");
+      }
   };
 
 }

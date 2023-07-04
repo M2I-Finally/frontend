@@ -1,11 +1,10 @@
-<h1 class="title">Ajouter un produit</h1>
-
+<h1 class="title">getMode()</h1>
 <div>
-    <form [formGroup]="formEditProduct" (ngSubmit)="submit()">
+    <form [formGroup]="formProduct" (ngSubmit)="submit()">
 
         <div class="formContainer">
             <label class="hidden">product Id</label>
-            <input type="hidden" formControlName="id">
+            <input type="hidden" formControlName="productId">
         </div>
         <div class="formContainer">
             <label>Nom du produit</label>
@@ -32,10 +31,10 @@
         </div>
         
         <!-- this button should be generic-button -->
-        <button type="submit" [disabled]="!formEditProduct.valid" class="btn btn-bg-yellow">Ajouter le produit</button>
+        <button type="submit" [disabled]="!formProduct.valid" class="btn btn-bg-yellow">{{ productButtonText }}</button>
         <!-- <generic-button type="submit" color="yellow" content="valider" ></generic-button> -->
     </form>
-    
+
     <a routerLink="/table">Annuler</a>
 
 </div>
