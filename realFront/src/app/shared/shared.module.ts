@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GenericButtonComponent } from './components/generic-button/generic-button.component';
@@ -41,6 +41,10 @@ import { ReturnToProductsPageButtonComponent } from './components/return-to-prod
     BasketProductComponent,
     GenericPaymentButtonComponent,
     ReturnToProductsPageButtonComponent
-  ]
+  ],
+  providers: [{
+    provide: LOCALE_ID,
+    useValue: 'fr' // 'de' for Germany, 'fr' for France ...
+   }]
 })
 export class SharedModule { }
