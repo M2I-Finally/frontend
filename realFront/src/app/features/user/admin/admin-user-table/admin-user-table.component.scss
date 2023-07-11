@@ -31,12 +31,23 @@
         }
     }
 
+    #user-container {
+        width: 60%;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-top: 2rem;
+    }
+
     #form {
         &-title {
             font-family: 'Quicksand';
             font-weight: bold;
             font-size: x-large;
             padding: 1rem;
+            width: 100%;
         }
 
         &-user {
@@ -46,7 +57,8 @@
             justify-content: center;
             padding: 1rem;
             gap: 1rem;
-            width: 50%;
+            width: 57%;
+            border-right: 1px #000 solid;
         }
     }
 
@@ -66,15 +78,61 @@
         &-input {
             border: 1px solid var(--text-color);
             background-color: var(--text-on-dk-bg);
-            width: 70%;
+            width: 100%;
             resize: none; 
             appearance: textfield;
         }
     }
-}
 
-input[type='radio'] {
-    accent-color: #524c7d;
+    aside {
+        width: 40%;
+    }
+
+
+    input[type='radio'] {
+        accent-color: #524c7d;
+    }
+
+    table {
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+        width: 100%;
+
+        tr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 30px;
+            font-weight: 700;
+        }
+
+        td {
+            margin-left: 0.5rem;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #DDFEF2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #524C7D;
+            color: #FFF;
+        }
+
+        .svg-icon:nth-child(odd) {
+            background-color: #DDFEF2;
+        }
+
+        .svg-icon:nth-child(even) {
+            background-color: #524C7D;
+            color: #FFF;
+        }
+    }    
+
+    .bi {
+        cursor: pointer;
+        margin-right: 1rem;
+    }
 }
 
 
@@ -83,6 +141,12 @@ input[type='radio'] {
 @media screen and (min-width: 1024px) {
     #gestion-button {
         right: 8%;
+    }
+
+    .formContainer {
+        &-input {
+            width: 80%;
+        }
     }
 }
 
