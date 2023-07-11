@@ -27,7 +27,7 @@ export class FormProductComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    
+  
     // If form is on edit mode and the id is correct
     if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl()) {
       this.productService.getProductById(this.getIdParameterFromUrl())
@@ -82,8 +82,12 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productName"].setValue(product.name);
     this.formProduct.controls["productDescription"].setValue(product.id);
     this.formProduct.controls["productPrice"].setValue(product.price);
-    this.formProduct.controls["productImage"].setValue(product.image);
-    this.modeText = "Editer";
+
+    if(product.image) {
+      this.formProduct.controls["productImage"].setValue(product.image);
+    }
+
+    this.modeText = "Modifier";
   }
 
   // Called when redirecting to table and refresh the component to get the new datas
@@ -126,5 +130,13 @@ export class FormProductComponent implements OnInit {
         this.redirectToTable();
       }
   };
+
+  // If image input is empty, then we put a placeholder image
+  photoFill(productImageUrl: string): string | undefined {
+    if(productImageUrl == undefined || !productImageUrl) {
+      return "./assets/img/no-photo.jpg"
+    } 
+    return productImageUrl;
+  }
 
 }

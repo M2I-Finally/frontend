@@ -2,6 +2,7 @@
 
 <div id="container">
     <section>
+        <return-to-products-page-button back="Retour à la page d'administration" routerLink="/table"></return-to-products-page-button>
         <h1 class="title">{{ modeText }} un produit</h1>
         <div>
             <form [formGroup]="formProduct" (ngSubmit)="submit()">
@@ -47,22 +48,17 @@
                     <input type="text" formControlName="productImage">
                 </div>
                 
-            
-                <button type="submit" [disabled]="!formProduct.valid" class="btn btn-bg-yellow">{{ modeText }} le produit</button>
-            
-
+                <div class="buttonContainer">
+                    <button type="submit" [disabled]="!formProduct.valid" class="btn btn-bg-yellow">{{ modeText }} le produit</button>
+                </div>
             </form>
-            
-            <generic-button routerLink="/table" color="red" content="Annuler" ></generic-button>
-
         </div>
     </section>
-
     <aside>
         <h2>Aperçu produit</h2>
         <div class="preview-container">
             <div class="container-card">
-                <img class="image-card" src="{{ formProduct.controls['productImage'].value }}">
+                <img class="image-card" [src]="photoFill(formProduct.controls['productImage'].value)">
                 <div class="container-card-details">
                     <h3 class="title card-title"> {{ formProduct.controls['productName'].value }} </h3>
                     <div class="card-price"> {{ formProduct.controls['productPrice'].value }} &euro;</div>

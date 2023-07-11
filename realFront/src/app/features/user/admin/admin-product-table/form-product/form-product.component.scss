@@ -62,19 +62,23 @@
                 input[type="file"]{
                    
                 } 
-        
             }
-            
-            button  {
-                border: 3px solid var(--primary-yellow);
-                color: var(--text-color);
-                font-size: large;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                width: 50%;
-                align-self: flex-end;
-             }
-        }
 
+            .buttonContainer {
+                margin-top: 2vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: flex-end;
+                
+                button  {
+                    border: 3px solid var(--primary-yellow);
+                    color: var(--text-color);
+                    font-size: large;
+                    width: 50%;
+                }
+            }
+        }
     }
 
     aside {

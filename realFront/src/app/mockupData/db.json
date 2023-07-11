@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Pain au chocolate",
+      "name": "Pain au chocolat",
       "price": 3,
       "isActive": true,
       "stock": 0,
@@ -38,19 +38,17 @@
       "id": 5,
       "name": "Chausson au pomme",
       "price": 2,
-      "tax": 0.5,
       "isActive": true,
-      "stock": 5,
-      "image": "/assets/img/viennoiserie/chaussonAuxPommes.jpg"
+      "stock": 0,
+      "image": ""
     },
     {
       "id": 6,
       "name": "Brioche",
       "price": 7,
-      "tax": 0.5,
-      "isActive": false,
+      "isActive": true,
       "stock": 0,
-      "image": "/assets/img/viennoiserie/brioche.jpg"
+      "image": ""
     },
     {
       "id": 7,
@@ -75,14 +73,6 @@
       "isActive": true,
       "stock": 0,
       "image": "https://images.unsplash.com/photo-1526346698789-22fd84314424?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-    },
-    {
-      "id": 10,
-      "name": "Titi la pistache",
-      "price": 10000000,
-      "isActive": true,
-      "stock": 0,
-      "image": "https://images.unsplash.com/photo-1502825751399-28baa9b81efe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
     }
   ],
   "cart": {
