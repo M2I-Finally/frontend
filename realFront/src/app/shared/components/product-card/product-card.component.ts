@@ -3,6 +3,9 @@ import { Product } from '../../entities/product';
 import { BasketService } from '../../services/basket.service';
 import { CartLine } from 'src/app/shared/entities/cart-line';
 import { Cart } from '../../entities/cart';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'product-card',

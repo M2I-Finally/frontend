@@ -2,7 +2,7 @@
     <img class="image-card" src="{{ product?.image }}" alt="image de {{ product?.name }}">
     <div class="container container-card-details">
         <h3 class="title card-title">{{ product?.name }}</h3>
-        <div class="card-price">{{ product?.price | currency:"EUR"}} </div>
+        <div class="card-price">{{ product?.price | currency:'EUR'}} </div>
         <div class="container qty-controller">
             <button class="btn-qty-controller card-btn-minus" (click)="minus()">-</button>
             <div class="card-affiche-qty">{{ quantity | number:"2.0"}}</div>
