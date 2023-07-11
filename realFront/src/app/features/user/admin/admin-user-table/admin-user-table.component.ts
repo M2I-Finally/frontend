@@ -31,4 +31,8 @@ export class AdminUserTableComponent implements OnInit {
   goToPage(pageName:string): void {
     this.router.navigate([`${pageName}`])
   }
+
+  onClick(event:Event): void {
+    console.log((event.currentTarget as HTMLInputElement).id);
+  }
 }

@@ -1,5 +1,9 @@
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
+    span {
+        color: var(--brand-red);
+    }
+
     #gestion-button {
         position: absolute;
         top: 1.2%;
@@ -42,12 +46,21 @@
     }
 
     #form {
+        &-header {
+            width: 100%;            
+            padding: 1rem;
+        }
+
         &-title {
             font-family: 'Quicksand';
             font-weight: bold;
             font-size: x-large;
-            padding: 1rem;
             width: 100%;
+        }
+
+        &-info {
+            font-size: small;
+            color: var(--brand-red);
         }
 
         &-user {
@@ -69,6 +82,10 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+
+        &:first-child {
+            display: none;
+        }
         
         &-label {
             width: 30%;
@@ -87,7 +104,6 @@
     aside {
         width: 40%;
     }
-
 
     input[type='radio'] {
         accent-color: #524c7d;
@@ -132,6 +148,18 @@
     .bi {
         cursor: pointer;
         margin-right: 1rem;
+    }
+
+    #delete {
+        &-dialog {
+            padding: 4rem;
+            box-shadow: 10px 5px 5px var(--bg-color-80);
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Quicksand';
+            font-weight: 600;
+            border-color: #524c7d;
+        }
     }
 }
 
