@@ -9,11 +9,11 @@ import { map, pipe } from 'rxjs';
 @Component({
   selector: 'app-form-product',
   templateUrl: './form-product.component.html',
-  styleUrls: ['./form-product.component.scss'],
+  styleUrls: ['./form-product.component.scss', '../../../../../shared/components/product-card/product-card.component.scss'],
  
 })
 export class FormProductComponent implements OnInit {
-
+  
   modeText: string = "Ajouter";
   constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
