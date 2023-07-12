@@ -14,6 +14,8 @@ export class AdminUserTableComponent implements OnInit {
   modeText: string = "Ajouter";
   userList: User[] | undefined;
   userList$: Observable<User[]> | undefined;
+  selectedUser: User | undefined;
+  selectedUserName: string | undefined;
 
   constructor(private router: Router, private userService: UserService) {};
 
@@ -40,7 +42,7 @@ export class AdminUserTableComponent implements OnInit {
 
   onClick(event:Event): void {
     let userId: number = parseInt((event.currentTarget as HTMLInputElement).id);
-    let selectedUser: User | undefined = this.userList?.find(user => user.id === userId);
-    console.log(selectedUser?.username);
+    this.selectedUser = this.userList?.find(user => user.id === userId);
+    this.selectedUserName = this.selectedUser?.username;
   }
 }
