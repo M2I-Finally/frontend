@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
+import { AdminUserTableComponent } from './admin/admin-user-table/admin-user-table.component';
 
 
 
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     LogoutComponent,
     FormProductComponent,
-    AdminProductsTableComponent
+    AdminProductsTableComponent,
+    AdminUserTableComponent
   ],
   imports: [
     CommonModule,

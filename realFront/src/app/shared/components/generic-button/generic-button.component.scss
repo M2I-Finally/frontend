@@ -66,6 +66,12 @@
             color: var(--primary-bg-color);
         }
     }
+
+    .yellow-full {
+        background-color: var(--primary-yellow);
+        border: 3px solid var(--primary-yellow);
+        color: var(--primary-bg-color);
+    }
 }
 
 
