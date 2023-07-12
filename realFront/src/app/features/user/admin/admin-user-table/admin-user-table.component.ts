@@ -12,6 +12,7 @@ import { User } from 'src/app/shared/entities/user';
 })
 export class AdminUserTableComponent implements OnInit {
   modeText: string = "Ajouter";
+  userList: User[] | undefined;
   userList$: Observable<User[]> | undefined;
 
   constructor(private router: Router, private userService: UserService) {};
@@ -26,6 +27,11 @@ export class AdminUserTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.userList$ = this.userService.getUsers();
+    this.userService.getUsers()
+      .subscribe({
+        next: (res) => this.userList = res,
+        error: (err) => console.log(err)
+      });
   }
 
   goToPage(pageName:string): void {
@@ -33,6 +39,7 @@ export class AdminUserTableComponent implements OnInit {
   }
 
   onClick(event:Event): void {
-    console.log((event.currentTarget as HTMLInputElement).id);
+    let userId: number = parseInt((event.currentTarget as HTMLInputElement).id);
+    console.log(userId);
   }
 }
