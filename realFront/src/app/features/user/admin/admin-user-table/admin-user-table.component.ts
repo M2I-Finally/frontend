@@ -40,6 +40,7 @@ export class AdminUserTableComponent implements OnInit {
 
   onClick(event:Event): void {
     let userId: number = parseInt((event.currentTarget as HTMLInputElement).id);
-    console.log(userId);
+    let selectedUser: User | undefined = this.userList?.find(user => user.id === userId);
+    console.log(selectedUser?.username);
   }
 }
