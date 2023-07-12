@@ -20,11 +20,10 @@
     },
     {
       "id": 3,
-      "name": "Baguette",
+      "name": "Baguette de charbon",
       "price": 1.5,
-      "tax": 0.5,
       "isActive": true,
-      "stock": 5,
+      "stock": 0,
       "image": "/assets/img/viennoiserie/baguette.jpg"
     },
     {
@@ -53,6 +52,38 @@
       "isActive": false,
       "stock": 0,
       "image": "/assets/img/viennoiserie/brioche.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Fraisier de Mélanie",
+      "price": 15,
+      "isActive": true,
+      "stock": 0,
+      "image": "https://images.unsplash.com/photo-1587393855524-087f83d95bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=760&q=80"
+    },
+    {
+      "id": 8,
+      "name": "Cookie a la banane",
+      "price": 12,
+      "isActive": true,
+      "stock": 0,
+      "image": "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
+    },
+    {
+      "id": 9,
+      "name": "Piment de Huan",
+      "price": 5000,
+      "isActive": true,
+      "stock": 0,
+      "image": "https://images.unsplash.com/photo-1526346698789-22fd84314424?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    },
+    {
+      "id": 10,
+      "name": "Titi la pistache",
+      "price": 10000000,
+      "isActive": true,
+      "stock": 0,
+      "image": "https://images.unsplash.com/photo-1502825751399-28baa9b81efe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
     }
   ],
   "cart": {

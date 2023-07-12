@@ -1,40 +1,88 @@
-table {
-    font-family: 'Quicksand', sans-serif;
-    text-align: center;
+#container {
 
-    th {
-        background-color: #524C7D;
-        font-weight: bold;
-        color: #FEFEFE;
-        width: 20%;
-        height: 40px;
-        vertical-align:middle !important;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+    margin: 0 auto;
+
+    div.title {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        h1.main-title {
+            height: 100%;
+            font-size: 2rem;
+            vertical-align: middle;
+        }
+
+        .add-button {
+            all:unset;
+            cursor: pointer;
+            padding:0.8rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 10px 5px 5px var(--bg-color-80);
+            margin: 1rem;
+            color: black;
+            border: 3px solid black;
+            font-family: 'Quicksand';
+            font-weight: 600;
+        }
+
+        .green-full {
+            background-color: var(--validation-green);
+            border: 3px solid var(--validation-green);
+            color: var(--primary-bg-color);
+        }
+    
     }
 
-    td {
-        vertical-align:middle !important;
-        height: 30px;
+    table {
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+
+        th {
+            background-color: #524C7D;
+            font-weight: bold;
+            color: #FEFEFE;
+            width: 20%;
+            height: 40px;
+            vertical-align:middle !important;
+        }
+
+        td {
+            vertical-align:middle !important;
+            height: 2.5rem;
+        }
+
+        td svg {
+            width: 24px;
+            height: 24px;
+            margin-left: 16px;
+            color: #000000;
+        }
+
+        td svg:hover {
+            cursor: pointer;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #DDFEF2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+    
     }
 
-    td svg {
-        width: 16px;
-        height: 16px;
-        margin-left: 16px;
-        color: #000000;
-    }
 
-    td svg:hover {
-        cursor: pointer;
-    }
-
-    tr:nth-child(odd) {
-        background-color: #DDFEF2;
-    }
-
-    tr:nth-child(even) {
-        background-color: #FFFFFF;
-    }
-   
 }
 
 .tx-centered {
