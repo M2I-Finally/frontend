@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GenericButtonComponent } from './components/generic-button/generic-button.component';
@@ -11,6 +11,8 @@ import { BasketProductComponent } from './components/basket-product/basket-produ
 import { GenericPaymentButtonComponent } from './components/generic-payment-button/generic-payment-button.component';
 import { Router } from '@angular/router';
 import { ReturnToProductsPageButtonComponent } from './components/return-to-products-page-button/return-to-products-page-button.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 
 
 @NgModule({
@@ -43,7 +45,7 @@ import { ReturnToProductsPageButtonComponent } from './components/return-to-prod
     ReturnToProductsPageButtonComponent
   ],
   providers: [{
-    provide: LOCALE_ID,
+    provide: localeFr,
     useValue: 'fr' // 'de' for Germany, 'fr' for France ...
    }]
 })
