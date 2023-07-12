@@ -49,25 +49,21 @@ export class ListRecapComponent implements OnInit {
   }
 
   minus(id: number) {
-    console.log("idMinus" + id);
+    
     this.basket$.getCartLines().forEach((line) => {
       if (line.getId() === id) {
         line.setQuantity(-1);
       }
     })
-
+    this.basketService.updateBasket(this.basket$);
   }
 
   add(id: number) {
-    this.basket$.getCartLines().forEach((line) => {
-      line.setQuantity(1);
-
-
-      // if( this.product?.id === line.getId()){ 
-      //   if ( line.getQuantity() < this.product.stock ){
-      //     line.setQuantity(1);
-      //   }          
-      // }
+   
+      this.basket$.getCartLines().forEach((line) => {
+        if (line.getId() === id) {
+          line.setQuantity(1);
+        }
     })
 
     this.basketService.updateBasket(this.basket$);

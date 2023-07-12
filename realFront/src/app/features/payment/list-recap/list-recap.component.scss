@@ -2,8 +2,23 @@ table{
     background-color: var(--primary-green);
     text-align: center;
     vertical-align: baseline;
-  
+    width: 100%;
+    
+    
 
+    thead{
+        th{
+            font-family: var(--title-font);
+            font-weight: 700;
+            padding:2rem 2rem;
+            background-color: var(--primary-bg-color);
+            color:var(--text-on-dk-bg);
+            font-size: 1.3rem;
+           
+        }
+    }
+   
+  
     .btn-qty-controller {
         background-color: transparent;
         border: 1px solid var(--text-color);
@@ -15,21 +30,53 @@ table{
         margin: 0;
         padding: 0;
     }
-
-    th{
-        background-color: var(--primary-bg-color);
-        color:var(--text-on-dk-bg);
-        font-size: 1.2rem;
-        padding-top: 0.8rem;
+    tbody{
+        tr:nth-child(even){
+            background-color: var(--text-on-dk-bg);
+        }
+    
+        td{
+            padding:1rem;
+        }
     }
+  
+    
+ 
 
-    tr:nth-child(even){
-        background-color: var(--text-on-dk-bg);
+
+}
+
+.table-footer{
+    font-family: var(--title-font);
+    font-weight: 700;
+    padding:2rem 2rem;
+    background-color: var(--primary-bg-color);
+    color:var(--text-on-dk-bg);
+    font-size: 1.3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:1rem 4rem;
+
+    form{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-right: 3rem;
+        
+        label{
+            margin-right: 3rem;
+        }
+
+        input, 
+        select{
+            padding: 0.5rem;
+        }
+
+        input{
+            width: 50%;
+        }
     }
-
-    td{
-        padding-top:0.5rem;
-    }
-
-
 }

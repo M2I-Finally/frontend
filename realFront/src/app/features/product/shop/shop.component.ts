@@ -24,8 +24,7 @@ export class ShopComponent implements OnInit{
 
   ngOnInit(): void {
     this.basketService.basket$.subscribe((basket: Cart) => {
-      this.basket$= basket;
-      
+      this.basket$= basket;      
     });
     this.productList$ = this.productService.getProducts();
 
@@ -36,8 +35,7 @@ export class ShopComponent implements OnInit{
           console.log(res[index])
         }},
       error: (err) => console.error(err)
-    }))
-    
+    }))    
   } 
 
   goToPage(pageName:string): void {
