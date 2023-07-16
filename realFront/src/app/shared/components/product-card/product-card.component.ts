@@ -14,10 +14,8 @@ export class ProductCardComponent implements OnInit{
   constructor(private basketService : BasketService){}
   
   @Input() product?: Product;
-  @Input() quantity!: number; 
-  test! : number;
-  basket$!: Cart;
-  test2 : number = 0;  
+  @Input() quantity!: number;  
+  basket$!: Cart;  
 
   ngOnInit(): void {
     this.basketService.basket$.subscribe((basket: Cart) => {
@@ -73,7 +71,7 @@ export class ProductCardComponent implements OnInit{
   }
   
   initQuantity(){
-    //this.setTest2();
+    
     if ( this.product ){
 
       if( (this.basket$.getCartLines().find(cart => cart.getId() == this.product?.id )?.getQuantity()) == undefined){
@@ -86,21 +84,13 @@ export class ProductCardComponent implements OnInit{
             
             this.quantity= line.getQuantity(); 
                    
-        }else{
+        }/*else{
           this.quantity = 0;
-        }
+        }*/
        
       })
     }
-    console.log("dans le setTest : "+ this.test)    
-  }
-  /*
-  setTest2(){
-         
-      if( (this.basket$.getCartLines().find(cart => cart.getId() == this.product?.id )?.getQuantity()) == undefined){
-        this.quantity=0 ;
-      }
-  
-  }*/
+    console.log("dans le setTest : "+ this.quantity)    
+  } 
   
 }
