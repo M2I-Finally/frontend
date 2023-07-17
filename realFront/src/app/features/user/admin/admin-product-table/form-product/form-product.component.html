@@ -4,7 +4,7 @@
     <section>
         <return-to-products-page-button back="Retour à l'administration" routerLink="/table"></return-to-products-page-button>
         <h1 class="title">{{ modeText }} un produit</h1>
-        
+
         <div>
             <form [formGroup]="formProduct" (ngSubmit)="submit()">
 
@@ -46,7 +46,7 @@
 
                 <div class="formContainer">
                     <label>Image</label>
-                    <input type="file" formControlName="productImage">
+                    <input type="file" accept="image/*" (change)="selectFile($event)" formControlName="productImage">
                 </div>
                 
                 <div class="buttonContainer">
@@ -59,7 +59,7 @@
         <h2>Aperçu produit</h2>
         <div class="preview-container">
             <div class="container-card">
-                <img class="image-card" [src]="photoFill(formProduct.controls['productImage'].value)">
+                <img class="image-card" [src]="imagePreview || imagePlaceHolderURI ">
                 <div class="container-card-details">
                     <h3 class="title card-title"> {{ formProduct.controls['productName'].value }} </h3>
                     <div class="card-price"> {{ formProduct.controls['productPrice'].value }} &euro;</div>

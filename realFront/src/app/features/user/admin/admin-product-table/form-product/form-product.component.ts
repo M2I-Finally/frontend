@@ -12,6 +12,10 @@ import { ProductService } from 'src/app/mockupData/product.service';
 })
 export class FormProductComponent implements OnInit {
   
+  protected imagePlaceHolderURI = "./assets/img/no-photo.jpg";
+  protected currentFile?: File;
+  protected imagePreview = '';
+ 
   modeText: string = "Ajouter";
   constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
@@ -129,13 +133,27 @@ export class FormProductComponent implements OnInit {
       }
   };
 
-  // If image input is empty, then we put a placeholder image
-  photoFill(productImageUrl: string): string | undefined {
-    if(productImageUrl == undefined || !productImageUrl) {
-      return "./assets/img/no-photo.jpg"
-    } 
-    return productImageUrl;
+  selectFile(event: any): void {
+    this.imagePreview = '';
+
+    if (event.target.files) {
+      const file: File | null = event.target.files.item(0);
+  
+      if (file) {
+        this.imagePreview = '';
+        this.currentFile = file;
+  
+        const reader = new FileReader();
+  
+        reader.onload = (e: any) => {
+          this.imagePreview = e.target.result;
+        };
+  
+        reader.readAsDataURL(this.currentFile);
+      }
+    }
   }
+  
 
 }
 
