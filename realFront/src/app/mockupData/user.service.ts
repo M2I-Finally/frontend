@@ -14,4 +14,16 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url + '/users');
   }
+
+  postUsert(user: User): Observable<User> {
+    return this.http.post<User>(this.url + '/users', user);
+  }
+
+  putUser(userId: number, user: User): Observable<User> {
+    return this.http.put<User>(this.url + '/users/' + userId, user);
+  }
+
+  deleteUser(userId: number | undefined): Observable<User> {
+    return this.http.delete<User>(this.url + '/users/' + userId);
+  }
 }

@@ -79,7 +79,7 @@
     <form id="delete-form">
         <p>Supprimer {{ selectedUserName }} ?</p>
     </form>
-    <generic-button color="green-full" content="Valider" (click)="onClick($event)"></generic-button>
+    <generic-button color="green-full" content="Valider" (click)="deleteUser(); dialogDelete.close()"></generic-button>
     <generic-button color="red-full" content="Annuler" (click)="dialogDelete.close()"></generic-button>
 </dialog>
 
