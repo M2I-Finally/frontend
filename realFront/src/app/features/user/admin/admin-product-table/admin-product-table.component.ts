@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/entities/product';
-import { MatTableModule } from '@angular/material/table';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CommonModule } from '@angular/common';
 import { ProductService } from 'src/app/mockupData/product.service';
-import { Observable, Subscription, concat, first, mergeMap, switchMap, timer } from 'rxjs';
+import { Observable, mergeMap,} from 'rxjs';
 
 @Component({
   selector: 'admin-products-table',

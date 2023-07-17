@@ -10,8 +10,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   declarations: [
     LoginComponent,

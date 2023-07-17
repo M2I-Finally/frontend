@@ -1,10 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/mockupData/product.service';
-import { map, pipe } from 'rxjs';
-
 
 @Component({
   selector: 'app-form-product',
@@ -140,3 +138,4 @@ export class FormProductComponent implements OnInit {
   }
 
 }
+

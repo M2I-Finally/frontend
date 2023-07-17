@@ -40,7 +40,7 @@ const routes: Routes = [
   {
     path:"payment-page",
     component:PaymentConfirmationPageComponent,
-  }
+  },
 ]
 
 @NgModule({
