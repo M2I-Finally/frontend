@@ -159,6 +159,12 @@
       "username": "Jordan",
       "password": "tata",
       "role": "employee"
+    },
+    {
+      "id": 3,
+      "username": "Mélanie",
+      "password": "tata",
+      "role": "employee"
     }
   ]
 }

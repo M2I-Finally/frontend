@@ -91,7 +91,12 @@ export class AdminUserTableComponent implements OnInit {
       this.getUser();
       this.formUser.reset();
     } else if(this.modeText == "Modifier") {
-      console.log("nope");
+      this.userService.putUser(this.selectedUserId, {
+        id: this.formUser.controls["userId"].value,
+        username: this.formUser.controls["userName"].value,
+        password: this.formUser.controls["userPassword"].value,
+        role: this.formUser.controls["userRole"].value
+      }).subscribe(data => console.log(data));
     }
   }
 }
