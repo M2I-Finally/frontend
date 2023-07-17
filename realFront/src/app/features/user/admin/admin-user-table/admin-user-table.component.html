@@ -50,7 +50,10 @@
                 </div>
             </fieldset>
         </div>
-        <button type="submit" [disabled]="!formUser.valid" id="form-button">{{ modeText }} l'utilisateur</button>
+        <div id="button-container">
+            <button type="submit" [disabled]="!formUser.valid" id="form-button">{{ modeText }} l'utilisateur</button>
+            <button type="button" id="cancel-button" (click)="cancel()">Annuler</button>
+        </div>
     </form>    
     <aside>
         <table>        

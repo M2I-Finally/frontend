@@ -91,7 +91,7 @@ export class AdminUserTableComponent implements OnInit {
         role: this.formUser.controls["userRole"].value
       }).subscribe(data => console.log(data));
       this.getUser();
-      this.formUser.reset();      
+      this.cancel();      
       this.formUser.controls["userRole"].setValue('employee');
     } else if(this.modeText == "Modifier") {
       this.userService.putUser(this.selectedUserId, {
@@ -101,9 +101,15 @@ export class AdminUserTableComponent implements OnInit {
         role: this.formUser.controls["userRole"].value
       }).subscribe(data => console.log(data));
       this.getUser();
-      this.formUser.reset();
+      this.cancel();
       this.modeText = "Ajouter";      
       this.formUser.controls["userRole"].setValue('employee');
     }
+  }
+
+  protected cancel(): void {
+    this.formUser.reset();
+    this.modeText = "Ajouter";
+    this.formUser.controls["userRole"].setValue('employee');
   }
 }

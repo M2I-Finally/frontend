@@ -81,14 +81,37 @@
             border-radius: 10px;
             text-align: center;
             box-shadow: 10px 5px 5px var(--bg-color-80);
-            margin: 1rem;
+            margin: 0 1rem;
             font-family: 'Quicksand';
             font-weight: 600;
             width: 100px;
             background-color: var(--primary-yellow);
             border: 3px solid var(--primary-yellow);
             color: var(--primary-bg-color);
+            height: 30px;
         }
+    }
+
+    #cancel-button {
+        all:unset;
+        cursor: pointer;
+        padding:0.8rem 2rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 10px 5px 5px var(--bg-color-80);
+        margin: 0 1rem;
+        font-family: 'Quicksand';
+        font-weight: 600;
+        width: 100px;
+        background-color: var(--brand-red);
+        border: 3px solid var(--brand-red);
+        color: var(--primary-bg-color);
+        height: 30px;
+    }
+
+    #button-container {
+        display: flex;
+        justify-content: center;
     }
 
     .formContainer {    
