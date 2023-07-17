@@ -37,7 +37,7 @@ export class AdminUserTableComponent implements OnInit {
       });
   }
 
-  goToPage(pageName:string): void {
+  protected goToPage(pageName:string): void {
     this.router.navigate([`${pageName}`])
   }
 
@@ -48,10 +48,23 @@ export class AdminUserTableComponent implements OnInit {
     );
   }
 
-  onClick(event:Event): void {
+  protected onClick(event:Event): void {
     let userId: number = parseInt((event.currentTarget as HTMLInputElement).id);
     this.selectedUser = this.userList?.find(user => user.id === userId);
     this.selectedUserName = this.selectedUser?.username;
     this.selectedUserId = this.selectedUser?.id;
+  }
+
+  protected submit(): void {
+    if(this.modeText == "Ajouter") {
+      this.userService.postUser({
+        id: parseInt(this.formUser.controls["userId"].value),
+        username: this.formUser.controls["userName"].value,
+        password: this.formUser.controls["userPassword"].value,
+        role: this.formUser.controls["userRole"].value
+      }).subscribe(data => console.log(data));
+    } else {
+      console.log("nope");
+    }
   }
 }

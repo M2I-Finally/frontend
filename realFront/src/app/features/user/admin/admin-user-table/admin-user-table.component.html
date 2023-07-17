@@ -11,7 +11,7 @@
         <h1 id="form-title">{{ modeText }} un utilisateur</h1>
         <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
     </div>
-    <form id="form-user" [formGroup]="formUser">
+    <form id="form-user" [formGroup]="formUser" (ngSubmit)="submit()">
         <div class="formContainer">
             <label class="formContainer-label" for="userid">Id utilisateur</label>
             <input class="formContainer-input" type="text" formControlName="userId" id="userid">
@@ -84,7 +84,7 @@
 </dialog>
 
 <dialog #dialogEdit id="edit-dialog">
-    <form id="delete-form">
+    <form id="edit-form">
         <p>Modifier {{ selectedUserName }} ?</p>
     </form>
     <generic-button color="green-full" content="Valider" (click)="onClick($event)"></generic-button>

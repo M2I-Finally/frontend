@@ -15,7 +15,7 @@ export class UserService {
     return this.http.get<User[]>(this.url + '/users');
   }
 
-  postUsert(user: User): Observable<User> {
+  postUser(user: User): Observable<User> {
     return this.http.post<User>(this.url + '/users', user);
   }
 
