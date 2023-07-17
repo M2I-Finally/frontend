@@ -25,8 +25,6 @@ export class ListRecapComponent implements OnInit {
   basket$!: Cart;
   cartLine$!: CartLine[];
 
-
-
   displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Discount', 'Total', 'delete'];
   productList$: Observable<Product[]> | undefined;
   productList: Product[] = [];
@@ -71,16 +69,13 @@ export class ListRecapComponent implements OnInit {
   }
 
   calculateTotal(): void {
-    this.basket$.getTotal();
-
-    /*let total = 0;
+    let total = 0;
   
     this.cartLine$.forEach((cartLine) => {
-      total += cartLine.getPrice() * cartLine.getQuantity() * cartLine.getDiscount();
+      total += cartLine.getTotal();
     });
   
     this.total = total;
-    this.basket$.setTotal(total);*/
-    // this.basketService.updateBasket(this.basket$);
+    this.basket$.setTotal(total);
   }
 }

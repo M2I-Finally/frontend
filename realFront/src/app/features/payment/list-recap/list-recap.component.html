@@ -14,9 +14,9 @@
         <button class="btn btn-qty-controller card-btn-add" (click)="add(line.getId())">+</button>
       </td>
 
-      <td >{{line.getPrice() | currency }}</td>
+      <td >{{line.getPrice() |  currency }}</td>
       <td >{{line.getDiscount() }}</td>
-      <td >this is line's total</td>
+      <td >{{line.getTotal() |  currency }}</td>
       <td>
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -39,6 +39,6 @@
     </select>
     <generic-button color="yellow" content="Appliquer" type="submit" ></generic-button>
   </form>
-  <div>finalTotal</div>
+  <div>{{total | currency }}</div>
 </div>
 

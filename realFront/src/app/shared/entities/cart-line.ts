@@ -5,6 +5,7 @@ export class CartLine {
     private price: number;
     private discount: number;
     private quantity: number;
+    
 
     constructor(id : number | 0, name : string | "", price : number | 0, discount: number | 0, quantity: number | 0){
         this.id = id;
@@ -50,5 +51,9 @@ export class CartLine {
         this.quantity = this.quantity + quantity;
     }
 
+    public getTotal(){
+        let total :number = this.quantity * this.price * this.discount;
+        return total;
+    }
 
 }
