@@ -4,16 +4,17 @@
     <section>
         <return-to-products-page-button back="Retour à l'administration" routerLink="/table"></return-to-products-page-button>
         <h1 class="title">{{ modeText }} un produit</h1>
+        
         <div>
             <form [formGroup]="formProduct" (ngSubmit)="submit()">
 
                 <div class="formContainer">
-                    <label><b>product Id</b> (needs to be set in order to work with json-server)</label>
+                    <label class="required">ID (Need for json-server)</label>
                     <input type="number" formControlName="productId">
                 </div>
                 
                 <div class="formContainer">
-                    <label>Nom du produit</label>
+                    <label class="required">Nom du produit</label>
                     <input type="text" formControlName="productName">
 
                     <div class="error-msg" *ngIf="!formProduct.controls['productName'].valid && formProduct.controls['productName'].dirty">
@@ -35,7 +36,7 @@
                 </div>
 
                 <div class="formContainer">
-                    <label>Prix à l'unité</label>
+                    <label class="required">Prix à l'unité</label>
                     <input type="number" formControlName="productPrice" min="0">
 
                     <div class="error-msg" *ngIf="!formProduct.controls['productPrice'].valid && formProduct.controls['productPrice'].dirty">
@@ -45,7 +46,7 @@
 
                 <div class="formContainer">
                     <label>Image</label>
-                    <input type="text" formControlName="productImage">
+                    <input type="file" formControlName="productImage">
                 </div>
                 
                 <div class="buttonContainer">

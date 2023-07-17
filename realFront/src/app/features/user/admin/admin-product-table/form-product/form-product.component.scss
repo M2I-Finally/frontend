@@ -55,12 +55,14 @@
                     border: 1px solid var(--text-color);
                     background-color: var(--text-on-dk-bg);
                     width: 70%;
+                    height: 2rem;
                     resize: none; 
                     appearance: textfield;
                 }
             
                 input[type="file"]{
-                   
+                    border: 0px;
+                    height: 2rem;
                 } 
             }
 
@@ -94,6 +96,11 @@
             width: 230px;
             margin: 0 auto;
         }
+    }
+
+    .required::after {
+        content: "*";
+        color: red;
     }
 }
 
