@@ -59,7 +59,7 @@
         <h2>Aperçu produit</h2>
         <div class="preview-container">
             <div class="container-card">
-                <img class="image-card" [src]="imagePreview || imagePlaceHolderURI ">
+                <img class="image-card" [src]="imagePreview || this.formProduct.controls['productImage'].value || imagePlaceholderURI">
                 <div class="container-card-details">
                     <h3 class="title card-title"> {{ formProduct.controls['productName'].value }} </h3>
                     <div class="card-price"> {{ formProduct.controls['productPrice'].value }} &euro;</div>

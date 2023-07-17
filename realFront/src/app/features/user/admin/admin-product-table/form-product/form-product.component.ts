@@ -12,13 +12,15 @@ import { ProductService } from 'src/app/mockupData/product.service';
 })
 export class FormProductComponent implements OnInit {
   
-  protected imagePlaceHolderURI = "./assets/img/no-photo.jpg";
-  protected currentFile?: File;
-  protected imagePreview = '';
- 
-  modeText: string = "Ajouter";
   constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
+  protected modeText: string = "Ajouter";
+  
+  // Image preview related informations
+  protected imagePlaceholderURI = "./assets/img/no-photo.jpg";
+  protected currentImage?: File;
+  protected imagePreview = '';
+ 
   // Form that handles the addition or edition of a product
   formProduct = new UntypedFormGroup({
     productId: new UntypedFormControl(''),
@@ -133,7 +135,8 @@ export class FormProductComponent implements OnInit {
       }
   };
 
-  selectFile(event: any): void {
+  protected selectFile(event: any): void {
+    // Ensure that the placeholder is set when loading the image
     this.imagePreview = '';
 
     if (event.target.files) {
@@ -141,15 +144,15 @@ export class FormProductComponent implements OnInit {
   
       if (file) {
         this.imagePreview = '';
-        this.currentFile = file;
+        this.currentImage = file;
   
         const reader = new FileReader();
-  
         reader.onload = (e: any) => {
           this.imagePreview = e.target.result;
         };
-  
-        reader.readAsDataURL(this.currentFile);
+
+        // This method transforms the data output by the result into a real object image
+        reader.readAsDataURL(this.currentImage);
       }
     }
   }
