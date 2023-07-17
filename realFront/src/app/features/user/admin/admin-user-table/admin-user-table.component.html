@@ -11,7 +11,7 @@
         <h1 id="form-title">{{ modeText }} un utilisateur</h1>
         <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
     </div>
-    <form id="form-user" [formGroup]="formUser" (ngSubmit)="submit()">
+    <form id="form-user" [formGroup]="formUser" (ngSubmit)="submit(); dialogSuccess.showModal()">
         <div class="formContainer">
             <label class="formContainer-label" for="userid">Id utilisateur</label>
             <input class="formContainer-input" type="text" formControlName="userId" id="userid">
@@ -99,8 +99,9 @@
     <generic-button color="red-full" content="Annuler" (click)="dialogEdit.close()"></generic-button>
 </dialog>
 
-
-
-<!-- <div class="error-msg" *ngIf="!formProduct.controls['productName'].valid && formProduct.controls['productName'].dirty">
-    Le champ ne peut pas être vide
-</div> -->
+<dialog #dialogSuccess id="success-dialog">
+    <form id="success-form">
+        <p>{{ successText }}</p>
+    </form>
+    <generic-button color="red-full" content="Retour" (click)="dialogSuccess.close(); goToPage('users')"></generic-button>
+</dialog>

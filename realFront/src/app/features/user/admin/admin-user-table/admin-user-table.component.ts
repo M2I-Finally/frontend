@@ -12,6 +12,7 @@ import { User } from 'src/app/shared/entities/user';
 })
 export class AdminUserTableComponent implements OnInit {
   modeText: string = "Ajouter";
+  successText: string = "Utilisateur créé";
   userList: User[] | undefined;
   userList$: Observable<User[]> | undefined;
   selectedUser: User | undefined;
@@ -64,6 +65,7 @@ export class AdminUserTableComponent implements OnInit {
 
   protected editUser(): void {
     this.modeText = "Modifier";
+    this.successText = "Utilisateur modifié";
     this.userService.getUserById(this.selectedUserId).subscribe({
       next: res => {
         this.populateForm(res);
@@ -89,7 +91,8 @@ export class AdminUserTableComponent implements OnInit {
         role: this.formUser.controls["userRole"].value
       }).subscribe(data => console.log(data));
       this.getUser();
-      this.formUser.reset();
+      this.formUser.reset();      
+      this.formUser.controls["userRole"].setValue('employee');
     } else if(this.modeText == "Modifier") {
       this.userService.putUser(this.selectedUserId, {
         id: this.formUser.controls["userId"].value,
@@ -97,6 +100,10 @@ export class AdminUserTableComponent implements OnInit {
         password: this.formUser.controls["userPassword"].value,
         role: this.formUser.controls["userRole"].value
       }).subscribe(data => console.log(data));
+      this.getUser();
+      this.formUser.reset();
+      this.modeText = "Ajouter";      
+      this.formUser.controls["userRole"].setValue('employee');
     }
   }
 }
