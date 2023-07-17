@@ -1,4 +1,5 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input   } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'return-to-products-page-button',
@@ -7,4 +8,9 @@ import { Component,Input } from '@angular/core';
 })
 export class ReturnToProductsPageButtonComponent {
   @Input() back: string | undefined;
+  constructor(private location: Location) { };
+
+  cancel() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
 }

@@ -4,8 +4,9 @@
       "id": 1,
       "name": "Pain au chocolat",
       "price": 3,
+      "tax": 0.5,
       "isActive": true,
-      "stock": 0,
+      "stock": 5,
       "image": "/assets/img/viennoiserie/painAuChocolat.jpg"
     },
     {
@@ -134,6 +135,20 @@
       "id": 5,
       "name": "Tarterie",
       "isActive": true
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Mael",
+      "password": "toto",
+      "role": "Manager"
+    },
+    {
+      "id": 2,
+      "username": "Jordan",
+      "password": "tata",
+      "role": "Employé"
     }
   ]
 }

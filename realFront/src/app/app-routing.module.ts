@@ -13,6 +13,7 @@ import { LogoutComponent } from './features/user/logout/logout.component';
 import { PaymentConfirmationPageComponent } from './features/payment/payment-confirmation-page/payment-confirmation-page.component';
 import { ReturnToProductsPageButtonComponent } from './shared/components/return-to-products-page-button/return-to-products-page-button.component';
 import { FormProductComponent } from './features/user/admin/admin-product-table/form-product/form-product.component';
+import { AdminUserTableComponent } from './features/user/admin/admin-user-table/admin-user-table.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,14 @@ const routes: Routes = [
     path:"list-recap",
     component:ListRecapComponent
   },
-  { path:"table", component: AdminProductsTableComponent },
-  { path:'form-edit', component: FormProductComponent },
+  { 
+    path:"table",
+    component: AdminProductsTableComponent
+  },
+  { 
+    path:'form-edit',
+    component: FormProductComponent
+  },
   {
     path:"shop",
     component: ShopComponent,
@@ -41,6 +48,10 @@ const routes: Routes = [
     path:"payment-page",
     component:PaymentConfirmationPageComponent,
   },
+  {
+    path:"users",
+    component:AdminUserTableComponent,
+  }
 ]
 
 @NgModule({
