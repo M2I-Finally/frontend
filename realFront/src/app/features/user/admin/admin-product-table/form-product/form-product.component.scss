@@ -1,95 +1,133 @@
-#container {
+@media screen and (min-width: 768px) {
+    #container {
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 0 auto;
-    margin-top: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+        margin-top: 2rem;
 
-    section {
+        section {
 
-        width: 50%;
-        border-right: 1px solid black;
-        
-        h1{
-            font-weight: bold;
-            font-size: x-large;
-            padding: 1rem;
-        }
-        
-        form{
+            width: 60%;
+            border-right: 1px solid black;
             
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 1rem;
-            gap: 1rem;
-            width: 80%;
-        
-            .formContainer {
-                
-                height: auto;
-                display: flex;
-                flex-wrap:wrap;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                
-                label{
-                    width: 30%;
-                    min-width: 200px;
-                }
-        
-                .error-msg {
-                    height: 1.2rem;
-                    width: 100%;
-                    text-align: right;
-                    font-size: 0.8rem;
-                    color: darkred;
-        
-                }
-        
-                input,
-                textarea,
-                select{
-                    border: 1px solid var(--text-color);
-                    background-color: var(--text-on-dk-bg);
-                    width: 70%;
-                    resize: none; 
-                    appearance: textfield;
-                }
-            
-                input[type="file"]{
-                   
-                } 
-        
+            h1{
+                font-weight: bold;
+                font-size: x-large;
+            }
+
+            #form-info {
+                font-size: small;
+                color: var(--brand-red);
             }
             
-            button  {
-                border: 3px solid var(--primary-yellow);
-                color: var(--text-color);
-                font-size: large;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                width: 50%;
-                align-self: flex-end;
-             }
+            form{
+                
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 1rem;
+                gap: 1rem;
+                width: 100%;
+            
+                .formContainer {
+                    
+                    height: auto;
+                    display: flex;
+                    flex-wrap:wrap;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    
+                    label{
+                        width: 30%;
+                        min-width: 200px;
+                    }
+            
+                    .error-msg {
+                        height: 1.2rem;
+                        width: 100%;
+                        text-align: right;
+                        font-size: 0.8rem;
+                        color: darkred;
+            
+                    }
+            
+                    input,
+                    textarea,
+                    select{
+                        border: 1px solid var(--text-color);
+                        background-color: var(--text-on-dk-bg);
+                        width: 100%;
+                        height: 2rem;
+                        resize: none; 
+                        appearance: textfield;
+                    }
+                
+                    input[type="file"]{
+                        border: 0px;
+                        height: 2rem;
+                    } 
+                }
+
+                .buttonContainer {
+                    margin-top: 2vh;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                }
+            }
         }
 
-    }
+        aside {
+            
+            width: 30%;
 
-    aside {
-        
-        width: 20%;
+            h2{
+                font-weight: bold;
+                font-size: x-large;
+                padding-left: 1rem;
+            }
 
-        h2{
-            font-size: x-large;
-            padding: 1rem;
+            .preview-container {    
+                padding-top: 1rem;   
+                width: 150px;
+                margin: 0 auto;
+            }
         }
 
-        .preview-container {          
-            width: 230px;
-            margin: 0 auto;
+        .required::after {
+            content: "*";
+            color: red;
         }
     }
 }
 
+@media screen and (min-width: 1024px) {
+    #container {
+        section {
+            width: 50%;
+     
+            form {
+    
+                width: 80%;
+            
+                .formContainer {
+                    input, textarea, select{
+                        width: 70%;
+                    }
+                }
+            }
+        }
+
+        aside { 
+            width: 20%;
+
+            .preview-container {          
+                width: 230px;
+            }
+        }
+    }
+}

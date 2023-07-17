@@ -1,10 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/mockupData/product.service';
-import { map, pipe } from 'rxjs';
-
 
 @Component({
   selector: 'app-form-product',
@@ -14,9 +12,15 @@ import { map, pipe } from 'rxjs';
 })
 export class FormProductComponent implements OnInit {
   
-  modeText: string = "Ajouter";
   constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
 
+  protected modeText: string = "Ajouter";
+  
+  // Image preview related informations
+  protected imagePlaceholderURI = "./assets/img/no-photo.jpg";
+  protected currentImage?: File;
+  protected imagePreview = '';
+ 
   // Form that handles the addition or edition of a product
   formProduct = new UntypedFormGroup({
     productId: new UntypedFormControl(''),
@@ -27,7 +31,7 @@ export class FormProductComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    
+  
     // If form is on edit mode and the id is correct
     if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl()) {
       this.productService.getProductById(this.getIdParameterFromUrl())
@@ -82,8 +86,12 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productName"].setValue(product.name);
     this.formProduct.controls["productDescription"].setValue(product.id);
     this.formProduct.controls["productPrice"].setValue(product.price);
-    this.formProduct.controls["productImage"].setValue(product.image);
-    this.modeText = "Editer";
+
+    if(product.image) {
+      this.formProduct.controls["productImage"].setValue(product.image);
+    }
+
+    this.modeText = "Modifier";
   }
 
   // Called when redirecting to table and refresh the component to get the new datas
@@ -127,4 +135,28 @@ export class FormProductComponent implements OnInit {
       }
   };
 
+  protected selectFile(event: any): void {
+    // Ensure that the placeholder is set when loading the image
+    this.imagePreview = '';
+
+    if (event.target.files) {
+      const file: File | null = event.target.files.item(0);
+  
+      if (file) {
+        this.imagePreview = '';
+        this.currentImage = file;
+  
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imagePreview = e.target.result;
+        };
+
+        // This method transforms the data output by the result into a real object image
+        reader.readAsDataURL(this.currentImage);
+      }
+    }
+  }
+  
+
 }
+

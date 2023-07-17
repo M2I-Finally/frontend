@@ -58,7 +58,7 @@
 
         td {
             vertical-align:middle !important;
-            height: 2.5rem;
+            height: 3.555555rem;
         }
 
         td svg {
@@ -79,28 +79,73 @@
         tr:nth-child(even) {
             background-color: #FFFFFF;
         }
+
+        .update-cell {
+            
+            .switch {
+                --secondary-container: #4CAD8A;
+                --primary: #fefefe;
+                font-size: 17px;
+                position: relative;
+                display: inline-block;
+                width: 3.3em;
+                height: 1.8em;
+
+                input {
+                    display: none;
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                   }
+               }
+               
+               .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #ccc;
+                    transition: .2s;
+                    border-radius: 30px;
+
+                    &:before {
+                        position: absolute;
+                        content: "";
+                        height: 1.4em;
+                        width: 1.4em;
+                        border-radius: 20px;
+                        left: 0.2em;
+                        bottom: 0.2em;
+                        background-color: #fefefe;
+                        transition: .2s;
+                   }
+               }
+               
+               input {
+                    &:checked{
+                        & + .slider{
+                            background-color: var(--secondary-container);
+
+                            &::before{
+                                background-color: var(--primary);
+                            }
+
+                            &:before {
+                                transform: translateX(1.5em);
+                            }
+                        }
+                    }
+
+                    &:focus + .slider{
+                        box-shadow: 0 0 1px var(--secondary-container);
+                    }
+               }
+               
+               
+        }
     
     }
-
-
 }
 
-.tx-centered {
-    text-align: center;
-}
-
-.tx-yellow {
-    color: #fdf887;
-}
-
-.tx-red {
-    color: #f86f6f;
-}
-
-.bg-yellow {
-    background-color: #fdf887;
-}
-
-.bg-red {
-    background-color: #f86f6f;
-}

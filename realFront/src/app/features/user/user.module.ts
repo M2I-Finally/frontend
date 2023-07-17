@@ -11,8 +11,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { AdminUserTableComponent } from './admin/admin-user-table/admin-user-table.component';
 
-
-
 @NgModule({
   declarations: [
     LoginComponent,

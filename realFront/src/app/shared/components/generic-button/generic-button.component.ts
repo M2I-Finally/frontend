@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class GenericButtonComponent {
   @Input() color: string | undefined;
   @Input() content: string | undefined;
+  @Input() isDisabled: boolean = false;
 }

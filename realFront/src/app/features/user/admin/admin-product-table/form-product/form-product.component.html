@@ -3,16 +3,18 @@
 <div id="container">
     <section>
         <h1 class="title">{{ modeText }} un produit</h1>
+        <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
+
         <div>
             <form [formGroup]="formProduct" (ngSubmit)="submit()">
 
                 <div class="formContainer">
-                    <label><b>product Id</b> (needs to be set in order to work with json-server)</label>
+                    <label class="required">ID (Need for json-server)</label>
                     <input type="number" formControlName="productId">
                 </div>
                 
                 <div class="formContainer">
-                    <label>Nom du produit</label>
+                    <label class="required">Nom du produit</label>
                     <input type="text" formControlName="productName">
 
                     <div class="error-msg" *ngIf="!formProduct.controls['productName'].valid && formProduct.controls['productName'].dirty">
@@ -34,7 +36,7 @@
                 </div>
 
                 <div class="formContainer">
-                    <label>Prix à l'unité</label>
+                    <label class="required">Prix à l'unité</label>
                     <input type="number" formControlName="productPrice" min="0">
 
                     <div class="error-msg" *ngIf="!formProduct.controls['productPrice'].valid && formProduct.controls['productPrice'].dirty">
@@ -44,25 +46,22 @@
 
                 <div class="formContainer">
                     <label>Image</label>
-                    <input type="text" formControlName="productImage">
+                    <input type="file" accept="image/*" (change)="selectFile($event)" formControlName="productImage">
                 </div>
                 
-            
-                <button type="submit" [disabled]="!formProduct.valid" class="btn btn-bg-yellow">{{ modeText }} le produit</button>
-            
-
+                <div class="buttonContainer">
+                    <generic-button [isDisabled]="!formProduct.valid" type="submit" color="yellow-full" content="{{ modeText }}"></generic-button>
+                    <generic-button routerLink="/table" color="red-full" content="Annuler"></generic-button>
+                </div>
+                
             </form>
-            
-            <generic-button routerLink="/table" color="red" content="Annuler" ></generic-button>
-
         </div>
     </section>
-
     <aside>
         <h2>Aperçu produit</h2>
         <div class="preview-container">
             <div class="container-card">
-                <img class="image-card" src="{{ formProduct.controls['productImage'].value }}">
+                <img class="image-card" [src]="imagePreview || this.formProduct.controls['productImage'].value || imagePlaceholderURI">
                 <div class="container-card-details">
                     <h3 class="title card-title"> {{ formProduct.controls['productName'].value }} </h3>
                     <div class="card-price"> {{ formProduct.controls['productPrice'].value }} &euro;</div>
