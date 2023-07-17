@@ -142,13 +142,13 @@
       "id": 1,
       "username": "Mael",
       "password": "toto",
-      "role": "Manager"
+      "role": "manager"
     },
     {
       "id": 2,
       "username": "Jordan",
       "password": "tata",
-      "role": "Employé"
+      "role": "employee"
     }
   ]
 }

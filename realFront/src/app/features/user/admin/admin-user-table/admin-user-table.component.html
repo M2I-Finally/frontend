@@ -11,38 +11,49 @@
         <h1 id="form-title">{{ modeText }} un utilisateur</h1>
         <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
     </div>
-    <form id="form-user" [formGroup]="formUser">
+    <form id="form-user" [formGroup]="formUser" (ngSubmit)="submit(); dialogSuccess.showModal()">
         <div class="formContainer">
             <label class="formContainer-label" for="userid">Id utilisateur</label>
             <input class="formContainer-input" type="text" formControlName="userId" id="userid">
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="username">Nom de l'utilisateur<span>*</span></label>
-            <input class="formContainer-input" type="text" formControlName="userName" id="username">
+            <input class="formContainer-input" type="text" formControlName="userName" id="username" required>
+            <div class="error-msg" *ngIf="!formUser.controls['userName'].valid && (formUser.controls['userName'].dirty || formUser.controls['userName'].touched)">
+                Nom d'utilisateur requis
+            </div>
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="userpassword">Mot de passe<span>*</span></label>
-            <input class="formContainer-input" type="password" formControlName="userPassword" id="userpassword">
+            <input class="formContainer-input" type="password" formControlName="userPassword" id="userpassword" required>
+            <div class="error-msg" *ngIf="!formUser.controls['userPassword'].valid && (formUser.controls['userPassword'].dirty || formUser.controls['userPassword'].touched)">
+                Mot de passe requis
+            </div>
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="confirmationpassword">Confirmer le mot de passe<span>*</span></label>
-            <input class="formContainer-input" type="password" formControlName="confirmationPassword" id="confirmationpassword">
+            <input class="formContainer-input" type="password" formControlName="confirmationPassword" id="confirmationpassword" required>
+            <div class="error-msg" *ngIf="!formUser.controls['confirmationPassword'].valid && (formUser.controls['confirmationPassword'].dirty || formUser.controls['confirmationPassword'].touched)">
+                Confirmation du mot de passe requise
+            </div>
         </div>
         <div class="formContainer">
             <fieldset>
                 <legend>Rôle<span>*</span></legend>            
                 <div>
-                  <input type="radio" id="manager" name="role" value="manager"
-                         checked>
-                  <label for="manager">Manager</label>
+                  <input type="radio" id="employee" name="userRole" formControlName="userRole" value="employee">
+                  <label for="employee">Employé</label>
                 </div>            
                 <div>
-                  <input type="radio" id="employee" name="role" value="employee">
-                  <label for="employee">Employé</label>
+                  <input type="radio" id="manager" name="userRole" formControlName="userRole" value="manager">
+                  <label for="manager">Manager</label>
                 </div>
             </fieldset>
         </div>
-        <generic-button type="submit" color="yellow-full formButton" content="{{ modeText }} l'utilisateur"></generic-button>
+        <div id="button-container">
+            <button type="submit" [disabled]="!formUser.valid" id="form-button">{{ modeText }} l'utilisateur</button>
+            <button type="button" id="cancel-button" (click)="cancel()">Annuler</button>
+        </div>
     </form>    
     <aside>
         <table>        
@@ -79,20 +90,21 @@
     <form id="delete-form">
         <p>Supprimer {{ selectedUserName }} ?</p>
     </form>
-    <generic-button color="green-full" content="Valider" (click)="onClick($event)"></generic-button>
+    <generic-button color="green-full" content="Valider" (click)="deleteUser(); dialogDelete.close()"></generic-button>
     <generic-button color="red-full" content="Annuler" (click)="dialogDelete.close()"></generic-button>
 </dialog>
 
 <dialog #dialogEdit id="edit-dialog">
-    <form id="delete-form">
+    <form id="edit-form">
         <p>Modifier {{ selectedUserName }} ?</p>
     </form>
-    <generic-button color="green-full" content="Valider" (click)="onClick($event)"></generic-button>
+    <generic-button color="green-full" content="Valider" (click)="editUser(); dialogEdit.close()"></generic-button>
     <generic-button color="red-full" content="Annuler" (click)="dialogEdit.close()"></generic-button>
 </dialog>
 
-
-
-<!-- <div class="error-msg" *ngIf="!formProduct.controls['productName'].valid && formProduct.controls['productName'].dirty">
-    Le champ ne peut pas être vide
-</div> -->
+<dialog #dialogSuccess id="success-dialog">
+    <form id="success-form">
+        <p>{{ successText }}</p>
+    </form>
+    <generic-button color="red-full" content="Retour" (click)="dialogSuccess.close(); goToPage('users')"></generic-button>
+</dialog>
