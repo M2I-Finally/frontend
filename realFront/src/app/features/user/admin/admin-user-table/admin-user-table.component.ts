@@ -17,6 +17,8 @@ export class AdminUserTableComponent implements OnInit {
   selectedUser: User | undefined;
   selectedUserName: string | undefined;
   selectedUserId: number | undefined;
+  selectedUserPassword: string | undefined;
+  selectedUserRole: string | undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {};
 
@@ -25,7 +27,7 @@ export class AdminUserTableComponent implements OnInit {
     userName: new UntypedFormControl('', [Validators.required]),
     userPassword: new UntypedFormControl('', [Validators.required]),
     confirmationPassword: new UntypedFormControl('', [Validators.required]),
-    userRole: new UntypedFormControl('', [Validators.required]),
+    userRole: new UntypedFormControl('employee', [Validators.required]),
   })
 
   ngOnInit(): void {
@@ -52,11 +54,30 @@ export class AdminUserTableComponent implements OnInit {
     );
   }
 
+  private populateForm(user: User) {
+    this.formUser.controls["userId"].setValue(this.selectedUserId);
+    this.formUser.controls["userName"].setValue(this.selectedUserName);
+    this.formUser.controls["userPassword"].setValue(this.selectedUserPassword);
+    this.formUser.controls["confirmationPassword"].setValue(this.selectedUserPassword);
+    this.formUser.controls["userRole"].setValue(this.selectedUserRole);
+  }
+
+  protected editUser(): void {
+    this.modeText = "Modifier";
+    this.userService.getUserById(this.selectedUserId).subscribe({
+      next: res => {
+        this.populateForm(res);
+      }
+    })
+  }
+
   protected onClick(event:Event): void {
     let userId: number = parseInt((event.currentTarget as HTMLInputElement).id);
     this.selectedUser = this.userList?.find(user => user.id === userId);
     this.selectedUserName = this.selectedUser?.username;
     this.selectedUserId = this.selectedUser?.id;
+    this.selectedUserPassword = this.selectedUser?.password;
+    this.selectedUserRole = this.selectedUser?.role;
   }
 
   protected submit(): void {
@@ -69,7 +90,7 @@ export class AdminUserTableComponent implements OnInit {
       }).subscribe(data => console.log(data));
       this.getUser();
       this.formUser.reset();
-    } else {
+    } else if(this.modeText == "Modifier") {
       console.log("nope");
     }
   }

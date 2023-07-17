@@ -19,20 +19,29 @@
         <div class="formContainer">
             <label class="formContainer-label" for="username">Nom de l'utilisateur<span>*</span></label>
             <input class="formContainer-input" type="text" formControlName="userName" id="username" required>
+            <div class="error-msg" *ngIf="!formUser.controls['userName'].valid && (formUser.controls['userName'].dirty || formUser.controls['userName'].touched)">
+                Nom d'utilisateur requis
+            </div>
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="userpassword">Mot de passe<span>*</span></label>
             <input class="formContainer-input" type="password" formControlName="userPassword" id="userpassword" required>
+            <div class="error-msg" *ngIf="!formUser.controls['userPassword'].valid && (formUser.controls['userPassword'].dirty || formUser.controls['userPassword'].touched)">
+                Mot de passe requis
+            </div>
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="confirmationpassword">Confirmer le mot de passe<span>*</span></label>
             <input class="formContainer-input" type="password" formControlName="confirmationPassword" id="confirmationpassword" required>
+            <div class="error-msg" *ngIf="!formUser.controls['confirmationPassword'].valid && (formUser.controls['confirmationPassword'].dirty || formUser.controls['confirmationPassword'].touched)">
+                Confirmation du mot de passe requise
+            </div>
         </div>
         <div class="formContainer">
             <fieldset>
                 <legend>Rôle<span>*</span></legend>            
                 <div>
-                  <input type="radio" id="employee" name="userRole" formControlName="userRole" value="employee" checked>
+                  <input type="radio" id="employee" name="userRole" formControlName="userRole" value="employee">
                   <label for="employee">Employé</label>
                 </div>            
                 <div>
@@ -86,7 +95,7 @@
     <form id="edit-form">
         <p>Modifier {{ selectedUserName }} ?</p>
     </form>
-    <generic-button color="green-full" content="Valider" (click)="onClick($event)"></generic-button>
+    <generic-button color="green-full" content="Valider" (click)="editUser(); dialogEdit.close()"></generic-button>
     <generic-button color="red-full" content="Annuler" (click)="dialogEdit.close()"></generic-button>
 </dialog>
 

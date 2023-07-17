@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { User } from '../shared/entities/user';
 
 @Injectable({
@@ -13,6 +13,15 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url + '/users');
+  }
+
+  getUserById(userId: number | undefined): Observable<User> {
+    return this.http.get<User>(this.url + '/users?id=' + userId)
+      .pipe(
+        map(res => {
+          return res;
+        })
+      )
   }
 
   postUser(user: User): Observable<User> {
