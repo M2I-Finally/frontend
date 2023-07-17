@@ -51,6 +51,7 @@ export class CartLine {
         this.quantity = this.quantity + quantity;
     }
 
+    //created this method for list-recap
     public getTotal(){
         let total :number = this.quantity * this.price * this.discount;
         return total;

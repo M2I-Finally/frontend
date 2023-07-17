@@ -47,7 +47,6 @@ export class ListRecapComponent implements OnInit {
   }
 
   minus(id: number) {
-    
     this.basket$.getCartLines().forEach((line) => {
       if (line.getId() === id) {
         line.setQuantity(-1);
@@ -77,5 +76,12 @@ export class ListRecapComponent implements OnInit {
   
     this.total = total;
     this.basket$.setTotal(total);
+  }
+
+  removeItem(id:number){
+      console.log("this is removeItem");
+      this.basket$.removeLines(id);
+      this.basketService.updateBasket(this.basket$);
+      
   }
 }
