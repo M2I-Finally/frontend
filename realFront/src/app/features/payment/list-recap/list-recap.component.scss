@@ -1,7 +1,7 @@
 table{
     background-color: var(--primary-green);
     text-align: center;
-    vertical-align: baseline;
+    vertical-align: middle;
     width: 100%;
     
     
@@ -37,7 +37,22 @@ table{
     
         td{
             padding:1rem;
+        
+            #removeItem{
+                background: none;
+                border: none;
+                padding:0.5rem;
+
+                svg{
+                    min-width: 25px;
+                    min-height: 25px;
+                    fill:var(--text-color);
+                    
+                }
+            }
         }
+
+
     }
   
     
