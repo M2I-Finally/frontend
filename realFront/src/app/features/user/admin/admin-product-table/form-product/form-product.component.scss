@@ -1,106 +1,141 @@
-#container {
+@media screen and (min-width: 768px) {
+    #container {
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 0 auto;
-    margin-top: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+        margin-top: 2rem;
 
-    section {
+        section {
 
-        width: 50%;
-        border-right: 1px solid black;
-        
-        h1{
-            font-weight: bold;
-            font-size: x-large;
-            padding: 1rem;
-        }
-        
-        form{
+            width: 60%;
+            border-right: 1px solid black;
             
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 1rem;
-            gap: 1rem;
-            width: 80%;
-        
-            .formContainer {
+            h1{
+                font-weight: bold;
+                font-size: x-large;
+                padding: 0.5rem;
+            }
+            
+            form{
                 
-                height: auto;
                 display: flex;
-                flex-wrap:wrap;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                
-                label{
-                    width: 30%;
-                    min-width: 200px;
-                }
-        
-                .error-msg {
-                    height: 1.2rem;
-                    width: 100%;
-                    text-align: right;
-                    font-size: 0.8rem;
-                    color: darkred;
-        
-                }
-        
-                input,
-                textarea,
-                select{
-                    border: 1px solid var(--text-color);
-                    background-color: var(--text-on-dk-bg);
-                    width: 70%;
-                    height: 2rem;
-                    resize: none; 
-                    appearance: textfield;
-                }
+                flex-direction: column;
+                justify-content: center;
+                padding: 1rem;
+                gap: 1rem;
+                width: 100%;
             
-                input[type="file"]{
-                    border: 0px;
-                    height: 2rem;
-                } 
+                .formContainer {
+                    
+                    height: auto;
+                    display: flex;
+                    flex-wrap:wrap;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    
+                    label{
+                        width: 30%;
+                        min-width: 200px;
+                    }
+            
+                    .error-msg {
+                        height: 1.2rem;
+                        width: 100%;
+                        text-align: right;
+                        font-size: 0.8rem;
+                        color: darkred;
+            
+                    }
+            
+                    input,
+                    textarea,
+                    select{
+                        border: 1px solid var(--text-color);
+                        background-color: var(--text-on-dk-bg);
+                        width: 100%;
+                        height: 2rem;
+                        resize: none; 
+                        appearance: textfield;
+                    }
+                
+                    input[type="file"]{
+                        border: 0px;
+                        height: 2rem;
+                    } 
+                }
+
+                .buttonContainer {
+                    margin-top: 2vh;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    
+                    button  {
+                        border: 3px solid var(--primary-yellow);
+                        color: var(--text-color);
+                        font-size: large;
+                        width: 50%;
+                    }
+                }
+            }
+        }
+
+        aside {
+            
+            width: 30%;
+
+            h2{
+                font-weight: bold;
+                font-size: x-large;
+                padding: 0.5rem;
             }
 
-            .buttonContainer {
-                margin-top: 2vh;
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-end;
-                align-items: flex-end;
-                
-                button  {
-                    border: 3px solid var(--primary-yellow);
-                    color: var(--text-color);
-                    font-size: large;
-                    width: 50%;
-                }
+            .preview-container {          
+                width: 150px;
+                margin: 0 auto;
             }
         }
-    }
 
-    aside {
-        
-        width: 20%;
-
-        h2{
-            font-size: x-large;
-            padding: 1rem;
+        .required::after {
+            content: "*";
+            color: red;
         }
-
-        .preview-container {          
-            width: 230px;
-            margin: 0 auto;
-        }
-    }
-
-    .required::after {
-        content: "*";
-        color: red;
     }
 }
 
+@media screen and (min-width: 1024px) {
+    #container {
+
+        section {
+
+            width: 50%;
+
+            h1 {
+                padding: 1rem;
+            }
+            
+            form {
+    
+                width: 80%;
+            
+                .formContainer {
+                    input, textarea, select{
+                        width: 70%;
+                    }
+                }
+            }
+        }
+
+        aside { 
+            width: 20%;
+
+            .preview-container {          
+                width: 230px;
+            }
+        }
+    }
+}
