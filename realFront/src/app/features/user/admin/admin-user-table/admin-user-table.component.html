@@ -18,15 +18,15 @@
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="username">Nom de l'utilisateur<span>*</span></label>
-            <input class="formContainer-input" type="text" formControlName="userName" id="username">
+            <input class="formContainer-input" type="text" formControlName="userName" id="username" required>
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="userpassword">Mot de passe<span>*</span></label>
-            <input class="formContainer-input" type="password" formControlName="userPassword" id="userpassword">
+            <input class="formContainer-input" type="password" formControlName="userPassword" id="userpassword" required>
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="confirmationpassword">Confirmer le mot de passe<span>*</span></label>
-            <input class="formContainer-input" type="password" formControlName="confirmationPassword" id="confirmationpassword">
+            <input class="formContainer-input" type="password" formControlName="confirmationPassword" id="confirmationpassword" required>
         </div>
         <div class="formContainer">
             <fieldset>
@@ -42,7 +42,7 @@
                 </div>
             </fieldset>
         </div>
-        <generic-button type="submit" color="yellow-full formButton" content="{{ modeText }} l'utilisateur"></generic-button>
+        <button type="submit" [disabled]="!formUser.valid" id="form-button">{{ modeText }} l'utilisateur</button>
     </form>    
     <aside>
         <table>        

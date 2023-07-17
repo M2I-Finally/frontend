@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, mergeMap } from 'rxjs';
 import { UserService } from 'src/app/mockupData/user.service';
@@ -22,9 +22,9 @@ export class AdminUserTableComponent implements OnInit {
 
   formUser = new UntypedFormGroup({
     userId: new UntypedFormControl(''),
-    userName: new UntypedFormControl(''),
-    userPassword: new UntypedFormControl(''),
-    confirmationPassword: new UntypedFormControl(''),
+    userName: new UntypedFormControl('', [Validators.required]),
+    userPassword: new UntypedFormControl('', [Validators.required]),
+    confirmationPassword: new UntypedFormControl('', [Validators.required]),
     userRole: new UntypedFormControl(''),
   })
 

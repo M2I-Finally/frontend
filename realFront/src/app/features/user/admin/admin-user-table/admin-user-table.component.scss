@@ -73,6 +73,22 @@
             width: 57%;
             border-right: 1px #000 solid;
         }
+
+        &-button {
+            all:unset;
+            cursor: pointer;
+            padding:0.8rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 10px 5px 5px var(--bg-color-80);
+            margin: 1rem;
+            font-family: 'Quicksand';
+            font-weight: 600;
+            width: 100px;
+            background-color: var(--primary-yellow);
+            border: 3px solid var(--primary-yellow);
+            color: var(--primary-bg-color);
+        }
     }
 
     .formContainer {    
@@ -83,9 +99,9 @@
         justify-content: space-between;
         align-items: center;
 
-        // &:first-child {
-        //     display: none;
-        // }
+        &:first-child {
+            display: none;
+        }
         
         &-label {
             width: 30%;
