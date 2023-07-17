@@ -84,26 +84,34 @@ export class AdminUserTableComponent implements OnInit {
 
   protected submit(): void {
     if(this.modeText == "Ajouter") {
-      this.userService.postUser({
-        id: parseInt(this.formUser.controls["userId"].value),
-        username: this.formUser.controls["userName"].value,
-        password: this.formUser.controls["userPassword"].value,
-        role: this.formUser.controls["userRole"].value
-      }).subscribe(data => console.log(data));
-      this.getUser();
-      this.cancel();      
-      this.formUser.controls["userRole"].setValue('employee');
+      if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
+        this.userService.postUser({
+          id: parseInt(this.formUser.controls["userId"].value),
+          username: this.formUser.controls["userName"].value,
+          password: this.formUser.controls["userPassword"].value,
+          role: this.formUser.controls["userRole"].value
+        }).subscribe(data => console.log(data));
+        this.getUser();
+        this.cancel();      
+        this.formUser.controls["userRole"].setValue('employee');
+      } else {
+        console.log("Mots de passe pas identiques");
+      }
     } else if(this.modeText == "Modifier") {
-      this.userService.putUser(this.selectedUserId, {
-        id: this.formUser.controls["userId"].value,
-        username: this.formUser.controls["userName"].value,
-        password: this.formUser.controls["userPassword"].value,
-        role: this.formUser.controls["userRole"].value
-      }).subscribe(data => console.log(data));
-      this.getUser();
-      this.cancel();
-      this.modeText = "Ajouter";      
-      this.formUser.controls["userRole"].setValue('employee');
+      if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
+        this.userService.putUser(this.selectedUserId, {
+          id: this.formUser.controls["userId"].value,
+          username: this.formUser.controls["userName"].value,
+          password: this.formUser.controls["userPassword"].value,
+          role: this.formUser.controls["userRole"].value
+        }).subscribe(data => console.log(data));
+        this.getUser();
+        this.cancel();
+        this.modeText = "Ajouter";      
+        this.formUser.controls["userRole"].setValue('employee');
+      } else {
+        console.log("Mots de passe pas identiques");
+      }
     }
   }
 
