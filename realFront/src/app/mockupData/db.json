@@ -159,12 +159,6 @@
       "username": "Jordan",
       "password": "tata",
       "role": "Employé"
-    },
-    {
-      "id": 3,
-      "username": "Mélanie",
-      "password": "dhbd",
-      "role": ""
     }
   ]
 }

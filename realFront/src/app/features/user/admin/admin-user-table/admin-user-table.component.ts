@@ -25,20 +25,24 @@ export class AdminUserTableComponent implements OnInit {
     userName: new UntypedFormControl('', [Validators.required]),
     userPassword: new UntypedFormControl('', [Validators.required]),
     confirmationPassword: new UntypedFormControl('', [Validators.required]),
-    userRole: new UntypedFormControl(''),
+    userRole: new UntypedFormControl('', [Validators.required]),
   })
 
   ngOnInit(): void {
+    this.getUser();
+  }
+
+  protected goToPage(pageName:string): void {
+    this.router.navigate([`${pageName}`])
+  }
+
+  protected getUser(): void {
     this.userList$ = this.userService.getUsers();
     this.userService.getUsers()
       .subscribe({
         next: (res) => this.userList = res,
         error: (err) => console.log(err)
       });
-  }
-
-  protected goToPage(pageName:string): void {
-    this.router.navigate([`${pageName}`])
   }
 
   protected deleteUser(): void {
@@ -63,12 +67,8 @@ export class AdminUserTableComponent implements OnInit {
         password: this.formUser.controls["userPassword"].value,
         role: this.formUser.controls["userRole"].value
       }).subscribe(data => console.log(data));
-      this.userList$ = this.userService.getUsers();
-      this.userService.getUsers()
-        .subscribe({
-          next: (res) => this.userList = res,
-          error: (err) => console.log(err)
-        });
+      this.getUser();
+      this.formUser.reset();
     } else {
       console.log("nope");
     }
