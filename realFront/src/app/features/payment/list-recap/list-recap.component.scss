@@ -73,10 +73,24 @@ table{
         input, 
         select{
             padding: 0.5rem;
+            appearance: textfield;
         }
 
         input{
             width: 50%;
+        }
+
+        select{
+            background-color: var(--text-on-dk-bg);
+            width: 5.5rem;
+            font-size: 1rem;
+            border: none;
+            margin-left: 0.5rem;
+            
+            option{
+                font-size: 1.2rem;
+                padding:0.5rem;
+            }
         }
     }
 }
