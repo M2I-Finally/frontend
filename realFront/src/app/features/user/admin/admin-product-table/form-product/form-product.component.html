@@ -3,6 +3,7 @@
 <div id="container">
     <section>
         <h1 class="title">{{ modeText }} un produit</h1>
+        <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
 
         <div>
             <form [formGroup]="formProduct" (ngSubmit)="submit()">
@@ -49,8 +50,10 @@
                 </div>
                 
                 <div class="buttonContainer">
-                    <button type="submit" [disabled]="!formProduct.valid" class="btn btn-bg-yellow">{{ modeText }} le produit</button>
+                    <generic-button [isDisabled]="!formProduct.valid" type="submit" color="yellow-full" content="{{ modeText }}"></generic-button>
+                    <generic-button routerLink="/table" color="red-full" content="Annuler"></generic-button>
                 </div>
+                
             </form>
         </div>
     </section>

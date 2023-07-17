@@ -15,7 +15,11 @@
             h1{
                 font-weight: bold;
                 font-size: x-large;
-                padding: 0.5rem;
+            }
+
+            #form-info {
+                font-size: small;
+                color: var(--brand-red);
             }
             
             form{
@@ -73,13 +77,6 @@
                     flex-direction: row;
                     justify-content: flex-end;
                     align-items: flex-end;
-                    
-                    button  {
-                        border: 3px solid var(--primary-yellow);
-                        color: var(--text-color);
-                        font-size: large;
-                        width: 50%;
-                    }
                 }
             }
         }
@@ -91,10 +88,11 @@
             h2{
                 font-weight: bold;
                 font-size: x-large;
-                padding: 0.5rem;
+                padding-left: 1rem;
             }
 
-            .preview-container {          
+            .preview-container {    
+                padding-top: 1rem;   
                 width: 150px;
                 margin: 0 auto;
             }
@@ -109,15 +107,9 @@
 
 @media screen and (min-width: 1024px) {
     #container {
-
         section {
-
             width: 50%;
-
-            h1 {
-                padding: 1rem;
-            }
-            
+     
             form {
     
                 width: 80%;
