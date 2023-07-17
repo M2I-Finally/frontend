@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, mergeMap } from 'rxjs';
 import { UserService } from 'src/app/mockupData/user.service';
 import { User } from 'src/app/shared/entities/user';
@@ -18,7 +18,7 @@ export class AdminUserTableComponent implements OnInit {
   selectedUserName: string | undefined;
   selectedUserId: number | undefined;
 
-  constructor(private router: Router, private userService: UserService) {};
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {};
 
   formUser = new UntypedFormGroup({
     userId: new UntypedFormControl(''),
@@ -63,6 +63,12 @@ export class AdminUserTableComponent implements OnInit {
         password: this.formUser.controls["userPassword"].value,
         role: this.formUser.controls["userRole"].value
       }).subscribe(data => console.log(data));
+      this.userList$ = this.userService.getUsers();
+      this.userService.getUsers()
+        .subscribe({
+          next: (res) => this.userList = res,
+          error: (err) => console.log(err)
+        });
     } else {
       console.log("nope");
     }
