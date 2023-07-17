@@ -19,9 +19,22 @@
 
         <tbody>
             <tr *ngFor="let row of productList$ | async; index as index">
+                
+                <!-- Nom du produit -->
                 <td>{{ row.name }} </td>
+                
+                <!-- Prix en euros -->
                 <td>{{ row.price }} €</td>
-                <td><mat-slide-toggle color="primary" [checked]="row.isActive"></mat-slide-toggle></td>
+                
+                <!-- Gestion de l'état actif / inactif -->
+                <td class="update-cell">
+                    <label class="switch">
+                        <input type="checkbox" (change)="changeActiveState($event, row.id)" [checked]="row.isActive">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+                
+                <!-- Gestion de l'édition et de la suppression -->
                 <td>
                     <a routerLink="/form-edit" [queryParams]="{action: 'edit', id: row.id}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
