@@ -96,8 +96,8 @@ export class FormProductComponent implements OnInit {
 
   // Called when redirecting to table and refresh the component to get the new datas
   protected redirectToTable(): void {
-    this.router.navigateByUrl('/table', { skipLocationChange: false }).then(() => {
-      this.router.navigate(['/table']);
+    this.router.navigateByUrl('/products', { skipLocationChange: false }).then(() => {
+      this.router.navigate(['/products']);
     }); 
   }
 

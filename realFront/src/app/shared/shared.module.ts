@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { ReturnToProductsPageButtonComponent } from './components/return-to-products-page-button/return-to-products-page-button.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import localeFr from '@angular/common/locales/fr';
     BasketComponent,
     BasketProductComponent,
     GenericPaymentButtonComponent,
-    ReturnToProductsPageButtonComponent
+    ReturnToProductsPageButtonComponent,
+    AdminNavComponent
   ],
  // providers: [BasketService],
   imports: [
@@ -42,7 +44,8 @@ import localeFr from '@angular/common/locales/fr';
     BasketComponent,
     BasketProductComponent,
     GenericPaymentButtonComponent,
-    ReturnToProductsPageButtonComponent
+    ReturnToProductsPageButtonComponent,
+    AdminNavComponent
   ],
   providers: [{
     provide: localeFr,

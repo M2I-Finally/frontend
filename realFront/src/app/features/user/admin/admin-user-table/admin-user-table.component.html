@@ -6,6 +6,7 @@
         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
     </svg>
 </div>
+<admin-nav></admin-nav>
 <div id="user-container">  
     <div id="form-header">  
         <h1 id="form-title">{{ modeText }} un utilisateur</h1>
@@ -20,21 +21,21 @@
             <label class="formContainer-label" for="username">Nom de l'utilisateur<span>*</span></label>
             <input class="formContainer-input" type="text" formControlName="userName" id="username" required>
             <div class="error-msg" *ngIf="!formUser.controls['userName'].valid && (formUser.controls['userName'].dirty || formUser.controls['userName'].touched)">
-                Nom d'utilisateur requis
+                Veuillez saisir un nom d'utilisateur
             </div>
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="userpassword">Mot de passe<span>*</span></label>
             <input class="formContainer-input" type="password" formControlName="userPassword" id="userpassword" required>
             <div class="error-msg" *ngIf="!formUser.controls['userPassword'].valid && (formUser.controls['userPassword'].dirty || formUser.controls['userPassword'].touched)">
-                Mot de passe requis
+                Au moins 8 caractères, 1 chiffre, 1 minuscule, 1 majuscule et un caractère spécial ($@$!%*?&)
             </div>
         </div>
         <div class="formContainer">
             <label class="formContainer-label" for="confirmationpassword">Confirmer le mot de passe<span>*</span></label>
             <input class="formContainer-input" type="password" formControlName="confirmationPassword" id="confirmationpassword" required>
             <div class="error-msg" *ngIf="!formUser.controls['confirmationPassword'].valid && (formUser.controls['confirmationPassword'].dirty || formUser.controls['confirmationPassword'].touched)">
-                Confirmation du mot de passe requise
+                Veuillez confirmer le mot de passe
             </div>
         </div>
         <div class="formContainer">
