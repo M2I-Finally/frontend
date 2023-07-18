@@ -35,12 +35,12 @@
                     
                     height: auto;
                     display: flex;
-                    flex-wrap:wrap;
+                    flex-wrap: no-wrap;
                     flex-direction: row;
                     justify-content: space-between;
                     align-items: center;
                     
-                    label{
+                    label {
                         width: 30%;
                         min-width: 200px;
                     }
@@ -65,10 +65,47 @@
                         appearance: textfield;
                     }
                 
-                    input[type="file"]{
-                        border: 0px;
-                        height: 2rem;
-                    } 
+                    #file-container {
+                        
+                        display: flex;
+                        flex-direction : row;
+                        gap: 10px;
+                        width: 70%;
+                        
+                        #file-input {
+                            width: 100%;
+                        }
+ 
+                        #file-input[type=file]::file-selector-button {
+                            background-color: #fff;
+                            color: #000;
+                            border: 1px solid #e5e5e5;
+                            padding: 0.4rem;
+                            margin-right: 20px;
+                            transition: .5s;
+                          }
+                          
+                          #file-input[type=file]::file-selector-button:hover {
+                            background-color: #eee;
+                          }
+
+                          #file-delete {
+                            all: unset;
+                            width: 10%;
+                            display: none;
+                            color: var(--primary-color);
+                            text-align: center;
+                            vertical-align: center;
+
+                            svg {
+                                display: inline-block;
+                                width: 29px;
+                                height: 29px;
+                                padding: 0.1rem;
+                            }
+                          }
+
+                    }
                 }
 
                 .buttonContainer {

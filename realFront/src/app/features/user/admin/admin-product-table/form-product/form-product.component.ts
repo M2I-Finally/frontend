@@ -34,6 +34,7 @@ export class FormProductComponent implements OnInit {
   
     // If form is on edit mode and the id is correct
     if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl()) {
+      this.modeText = "Modifier";
       this.productService.getProductById(this.getIdParameterFromUrl())
       .subscribe(
         {
@@ -90,8 +91,6 @@ export class FormProductComponent implements OnInit {
     if(product.image) {
       this.formProduct.controls["productImage"].setValue(product.image);
     }
-
-    this.modeText = "Modifier";
   }
 
   // Called when redirecting to table and refresh the component to get the new datas
@@ -153,10 +152,29 @@ export class FormProductComponent implements OnInit {
 
         // This method transforms the data output by the result into a real object image
         reader.readAsDataURL(this.currentImage);
+        this.toggleImageDeleteButton(true);
       }
     }
   }
-  
+
+  // Toggle the image delete button when image is uploaded
+  protected toggleImageDeleteButton(isToggled: boolean): void {
+      const fileInput = document.getElementById("file-input") as HTMLInputElement;
+      const fileDelete = document.getElementById("file-delete") as HTMLButtonElement;
+      
+      // Cosmetics on button
+      if(isToggled) {
+        fileInput.style.width = "90%";
+        fileDelete.style.display = "inline-block";
+      } else {
+        fileInput.style.width = "100%";
+        fileDelete.style.display = "none";
+
+        // Delete the image from the input and change the preview to placeholder
+        this.imagePreview = this.imagePlaceholderURI;
+        fileInput.value = "";
+      }
+  }
 
 }
 
