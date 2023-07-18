@@ -43,4 +43,10 @@ export class ProductService {
     return this.http.get<Category[]>(this.url + '/categories');
   }
   
+  //This is for search bar
+  searchProducts(searchValue:string):Observable<Product[]>{
+    return this.http.get<Product[]>(
+      `${this.url}/products?name_like=${searchValue}`
+    );
+  }
 }

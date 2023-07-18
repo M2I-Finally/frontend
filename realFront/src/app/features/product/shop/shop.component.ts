@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { Category } from 'src/app/shared/entities/category';
@@ -14,7 +15,8 @@ import { Router } from '@angular/router';
 })
 export class ShopComponent implements OnInit{
   constructor(private productService: ProductService, private basketService : BasketService, private router: Router) {}
- 
+  searchText="";
+  products: Product[] = [];
   productList$: Observable<Product[]> | undefined;
   
   quantity: number = 0;
@@ -36,9 +38,17 @@ export class ShopComponent implements OnInit{
         }},
       error: (err) => console.error(err)
     }))    
+
   } 
 
   goToPage(pageName:string): void {
     this.router.navigate([`${pageName}`])
+  }
+
+
+
+  onSearchTextEntered(searchValue:string){
+    this.searchText = searchValue;
+    console.log(this.searchText);
   }
 }

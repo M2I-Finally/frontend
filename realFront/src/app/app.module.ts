@@ -19,6 +19,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProductModule } from './features/product/product.module';
 import { PaymentModule } from './features/payment/payment.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
