@@ -12,7 +12,7 @@
 
     #logout {
         position: absolute;
-        top: 1.2%;
+        top: 1%;
         right: 0;
         cursor: pointer;
         margin-right: 2%;
@@ -36,7 +36,7 @@
     }
 
     #user-container {
-        width: 60%;
+        width: 95%;
         margin: auto;
         display: flex;
         flex-direction: row;
@@ -230,8 +230,14 @@
 
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
+    
     #gestion-button {
+        top: 1%;
         right: 8%;
+    }
+
+     #logout {
+        top: 0.8%;
     }
 
     .formContainer {

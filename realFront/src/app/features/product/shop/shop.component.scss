@@ -24,7 +24,7 @@
 
     #logout {
         position: absolute;
-        top: 1.2%;
+        top: 1%;
         right: 0;
         cursor: pointer;
         margin-right: 2%;
@@ -52,6 +52,11 @@
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
     #gestion-button {
+        top: 1%;
         right: 8%;
+    }
+
+    #logout {
+        top: 0.8%;
     }
 }
