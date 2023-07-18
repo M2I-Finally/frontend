@@ -19,8 +19,8 @@ export class BasketProductComponent {
     this.basketService.basket$.subscribe((basket: Cart) => {
       this.basket$ = basket;
       if(this.cartLine)
-     this.totalLine = this.cartLine?.getQuantity() * this.cartLine.getPrice();
-    });
+        this.totalLine = this.cartLine?.getQuantity() * this.cartLine.getPrice();
+      });
    }
  
   minus(){
