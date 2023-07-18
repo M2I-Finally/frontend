@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProductModule } from './features/product/product.module';
 import { PaymentModule } from './features/payment/payment.module';
+import { AdminNavComponent } from './shared/components/admin-nav/admin-nav.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { PaymentModule } from './features/payment/payment.module';
     MatSlideToggleModule,
     HttpClientModule,
     ProductModule,
-    PaymentModule
+    PaymentModule,
   ],
   providers: [
     {
