@@ -10,13 +10,8 @@ import { BasketComponent } from './components/basket/basket.component';
 import { BasketProductComponent } from './components/basket-product/basket-product.component';
 import { GenericPaymentButtonComponent } from './components/generic-payment-button/generic-payment-button.component';
 import { ReturnToProductsPageButtonComponent } from './components/return-to-products-page-button/return-to-products-page-button.component';
-<<<<<<< HEAD
-
-=======
-import { registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
->>>>>>> 88f4cb1742c7649219c000acc5c01b352266e478
+
 
 
 @NgModule({
@@ -54,3 +49,4 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
   providers: []
 })
 export class SharedModule { }
+
