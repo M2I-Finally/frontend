@@ -20,9 +20,7 @@ export class ShopComponent implements OnInit{
   productList$: Observable<Product[]> | undefined;
   
   quantity: number = 0;
-  basket$!: Cart;
-  
-  
+  basket$!: Cart;  
 
   ngOnInit(): void {
     this.basketService.basket$.subscribe((basket: Cart) => {

@@ -63,6 +63,11 @@
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
     #gestion-button {
+        top: 1%;
         right: 8%;
+    }
+
+    #logout {
+        top: 0.8%;
     }
 }

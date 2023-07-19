@@ -25,11 +25,11 @@ const routes: Routes = [
     component:ListRecapComponent
   },
   { 
-    path:"table",
+    path:"products",
     component: AdminProductsTableComponent
   },
   { 
-    path:'form-edit',
+    path:'product-edit',
     component: FormProductComponent
   },
   {

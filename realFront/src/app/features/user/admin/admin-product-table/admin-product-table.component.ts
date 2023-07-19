@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/entities/product';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { Observable, first, mergeMap} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-products-table',
@@ -10,7 +11,7 @@ import { Observable, first, mergeMap} from 'rxjs';
 })
 export class AdminProductsTableComponent implements OnInit {
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
   
   protected modalDelete!: HTMLDialogElement;
   protected productList$:Observable<Product[]> | undefined;
@@ -24,6 +25,10 @@ export class AdminProductsTableComponent implements OnInit {
     this.productList$ =  this.productService.getProducts().pipe(
       mergeMap(() => this.productService.getProducts())
     );
+  }
+
+  protected goToPage(pageName:string): void {
+    this.router.navigate([`${pageName}`])
   }
 
   // Change active state of a product when clicked
