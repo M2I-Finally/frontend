@@ -20,3 +20,12 @@ button{
         font-size: 1rem;
     }
 }
+
+button:hover{
+    background-color: var(--primary-bg-color);
+    color: var(--text-on-dk-bg);
+    box-shadow: 10px 5px 5px var(--bg-color-80);
+    svg{
+        fill: var(--text-on-dk-bg);
+    }
+}

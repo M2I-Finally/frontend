@@ -5,10 +5,13 @@ button{
     padding: 1rem;
     margin: 0.5rem auto;
     width: 150px;
-    box-shadow: 10px 5px 5px var(--bg-color-80);
-    
-    svg{
-        max-width: 70px;
-        max-height: 70px;
-    }
+    box-shadow: 10px 5px 15px var(--bg-color-80);
 }
+
+button:hover{
+    background-color: var(--bg-color-80);
+    color: var(--text-on-dk-bg);
+    box-shadow: 10px 5px 5px var(--bg-color-80);
+
+}
+
