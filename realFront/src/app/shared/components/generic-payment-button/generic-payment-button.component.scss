@@ -13,5 +13,9 @@ button:hover{
     color: var(--text-on-dk-bg);
     box-shadow: 10px 5px 5px var(--bg-color-80);
 
+    .payment-icon{
+        fill:var(--text-on-dk-bg);
+        color: var(--text-on-dk-bg);
+    }
 }
 

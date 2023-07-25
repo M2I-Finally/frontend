@@ -38,8 +38,12 @@ svg{
     max-width:30px;
     max-height: 30px;
     fill: var(--text-color);
+
 }
 
+generic-payment-button:hover svg{
+    fill: var(--text-on-dk-bg);
+}
 
 @media (max-width: 40rem) {
     .wrapper {
