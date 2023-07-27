@@ -40,7 +40,7 @@
 
             td {
                 vertical-align:middle !important;
-                height: 3.555555rem;
+                height: 3.5rem;
             }
 
             td svg {
@@ -60,6 +60,45 @@
 
             tr:nth-child(even) {
                 background-color: #FFFFFF;
+            }
+
+            .update-name {
+
+                display: none;
+                
+                input {
+                    padding: 0.5rem;
+                    appearance: textfield;
+                    width: 50%;
+                }
+
+                button {
+                    
+                    all: unset;
+                    margin-left: 1rem;
+                    border-radius: 2px;
+                    
+                    &:hover {
+                        filter: brightness(80%);
+                    }
+
+                    svg {
+                        margin-left: 0px;
+                        vertical-align: middle;
+                    }
+                }
+
+                .confirm-update {
+                    background-color: var(--validation-green);
+                }
+
+                .cancel-update {
+                    background-color: var(--text-color);
+                    svg {
+                        fill: var(--text-on-dk-bg);
+                    }
+                }
+
             }
 
             .update-cell {
@@ -143,6 +182,7 @@
 
             button {
                 all: unset;
+                cursor:pointer;
                 margin-left: 2rem;
                 background-color: var(--primary-yellow);
                 padding: 0.5rem;
