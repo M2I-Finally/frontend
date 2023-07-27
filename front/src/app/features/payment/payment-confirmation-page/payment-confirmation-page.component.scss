@@ -45,7 +45,7 @@ generic-payment-button:hover svg{
     fill: var(--text-on-dk-bg);
 }
 
-
+/*flex in dialog will make it open, that's why we need to add open attribut.*/
 dialog[open] {
     padding: 1rem 2rem 2rem 2rem;
     box-shadow: 10px 5px 5px var(--bg-color-80);
@@ -98,15 +98,18 @@ dialog{
             width: 30px;
             height: 30px;
             fill: var(--validation-green);
-        }
-        
+        }      
     }
-
+    
+    button:hover svg{
+        background-color: transparent;
+        box-shadow: 10px 5px 10px var(--bg-color-80);
+    }
 }   
 
 
 
-@media (max-width: 50rem) {
+@media (max-width: 60rem) {
     .wrapper {
         grid-template-columns: 3fr;
         grid-template-areas:
@@ -119,6 +122,6 @@ dialog{
         flex-direction: row;
         flex-wrap: wrap;
         gap: 2rem;
-        margin-bottom: 2rem;
+        margin:0 2rem 2rem 2rem;
     }
 }

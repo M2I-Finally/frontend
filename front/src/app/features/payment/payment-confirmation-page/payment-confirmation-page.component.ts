@@ -14,15 +14,15 @@ export class PaymentConfirmationPageComponent implements OnInit {
   constructor(private basketService: BasketService) { };
   
   formPayByCard = new UntypedFormGroup({
-    sumCard:new UntypedFormControl('', [Validators.required])
+    sumCard:new UntypedFormControl('', [Validators.required, Validators.min(0), Validators.max(this.total)])
   });
   
   formPayByCash = new UntypedFormGroup({
-    sumCash:new UntypedFormControl('', [Validators.required])
+    sumCash:new UntypedFormControl('', [Validators.required, Validators.min(0), Validators.max(this.total)])
   });
 
   formPayByOther = new UntypedFormGroup({
-    sumOther:new UntypedFormControl('', [Validators.required])
+    sumOther:new UntypedFormControl('', [Validators.required, Validators.min(0),Validators.max(this.total)])
   });
 
   ngOnInit(): void {
@@ -33,5 +33,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
   };
 
-  submit(){};
+  submit(){
+    console.log("submit() called")
+  };
 }
