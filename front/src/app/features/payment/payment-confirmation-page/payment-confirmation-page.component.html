@@ -1,10 +1,15 @@
 <div class="wrapper">
+    <!-- header -->
     <generic-header></generic-header>
+
+    <!-- content -->
     <div class="recapWrapper">
         <return-to-products-page-button back="RETOUR AUX PRODUITS"></return-to-products-page-button>
         <h1 class="title">Récapitulatif de la commande</h1>
         <list-recap></list-recap>
     </div>
+
+    <!-- payments -->
     <aside>
         <div>
             <generic-payment-button (click)="dialogCard.showModal()"
@@ -77,6 +82,8 @@
     </aside>
 </div>
 
+
+<!-- dialogs -->
 <dialog #dialogCard id="payment-by-card-dialog" >
     <button (click)="dialogCard.close()">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" id="logout-exit" >
