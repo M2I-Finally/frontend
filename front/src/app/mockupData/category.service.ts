@@ -19,4 +19,8 @@ export class CategoryService {
     return this.http.post<Category>(this.url + '/categories', category);
   }
 
+  deleteCategory(categoryId: number): Observable<Category> {
+    return this.http.delete<Category>(this.url + '/categories/' + categoryId);
+  }
+
 }

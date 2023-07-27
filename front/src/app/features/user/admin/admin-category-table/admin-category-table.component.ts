@@ -26,7 +26,7 @@ export class AdminCategoryTableComponent implements OnInit {
     if(categoryInput.value) {
       
       // Creates a category and merge the result to the current table
-      const newCategory = this.categoryService.postCategory({
+      this.categoryService.postCategory({
           id: Math.floor(Math.random() *9999999),
           name: categoryInput.value,
           isActive: true,
@@ -34,7 +34,12 @@ export class AdminCategoryTableComponent implements OnInit {
           this.categoryList?.push(category);
       })
     }
- 
+  }
+
+  protected deleteCategory(categoryIndex: number, categoryId: number): void {
+    this.categoryService.deleteCategory(categoryId).subscribe(() => {
+      this.categoryList?.splice(categoryIndex, 1);
+    })
   }
 
 }
