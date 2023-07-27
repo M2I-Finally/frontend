@@ -60,17 +60,13 @@ export class AdminCategoryTableComponent implements OnInit {
     const categoryNameInputBlock = categoryNameCell?.getElementsByTagName("div").item(0)!;
     const categoryNameInput = categoryNameInputBlock?.getElementsByTagName("input").item(0)! as HTMLInputElement;
 
-    console.log(categoryNameCell);
-
     // Get initial value and populate it in the input
     const initialValue = categoryNameValue.innerText;
     if(initialValue) {
         categoryNameInput.value = initialValue;
     }
 
-    categoryNameValue.style.display = "none";
-    categoryNameInputBlock.style.display = "block";
-
+    this.toggleInputBlock(true, categoryIndex);
   }
 
   /**
@@ -83,8 +79,7 @@ export class AdminCategoryTableComponent implements OnInit {
     const categoryNameInputBlock = categoryNameCell?.getElementsByTagName("div").item(0)!;
 
     // Hide input block
-    categoryNameValue.style.display = "block";
-    categoryNameInputBlock.style.display = "none";
+    this.toggleInputBlock(false, categoryIndex);
   }
 
   /**
@@ -98,9 +93,7 @@ export class AdminCategoryTableComponent implements OnInit {
     const categoryNameInputBlock = categoryNameCell?.getElementsByTagName("div").item(0)!;
     const categoryNameInput = categoryNameInputBlock?.getElementsByTagName("input").item(0)! as HTMLInputElement;
 
-    // Hide input block
-    categoryNameValue.style.display = "block";
-    categoryNameInputBlock.style.display = "none";
+    this.toggleInputBlock(false, categoryIndex);
     
     // Edit the value on the list
     categoryNameValue.innerText = categoryNameInput.value;
@@ -112,6 +105,26 @@ export class AdminCategoryTableComponent implements OnInit {
       isActive: true,
     }).subscribe(data => console.log(data));
   }
+
+  /**
+   * Toggles the input block for category editing
+   * @param isToggled  a boolean, true if we want to show the input, otherwise false
+   * @param categoryIndex Number that represents the category number in database
+   */
+  private toggleInputBlock(isToggled: boolean, categoryIndex: number): void {
+    const categoryNameCell = document.getElementById(`category-name-${categoryIndex}`)!;
+    const categoryNameValue = categoryNameCell.getElementsByTagName("span").item(0)!;
+    const categoryNameInputBlock = categoryNameCell?.getElementsByTagName("div").item(0)!;
+    const categoryNameInput = categoryNameInputBlock?.getElementsByTagName("input").item(0)! as HTMLInputElement;
+
+    if(isToggled) {
+      categoryNameValue.style.display = "none";
+      categoryNameInputBlock.style.display = "block";
+    } else {
+      categoryNameValue.style.display = "block";
+      categoryNameInputBlock.style.display = "none";
+    }
+  } 
 
 
 }
