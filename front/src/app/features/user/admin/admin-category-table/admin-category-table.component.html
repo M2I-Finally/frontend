@@ -15,7 +15,7 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let category of categoryList$ | async; index as index">
+            <tr *ngFor="let category of categoryList; index as i">
                 <td>{{ category.name }}</td>      
                 <td>05</td>
                 

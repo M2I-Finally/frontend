@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, mergeMap } from 'rxjs';
+import { Observable, first, mergeMap } from 'rxjs';
 import { CategoryService } from 'src/app/mockupData/category.service';
 import { Category } from 'src/app/shared/entities/category';
 
@@ -10,21 +10,29 @@ import { Category } from 'src/app/shared/entities/category';
 })
 export class AdminCategoryTableComponent implements OnInit {
 
-  protected categoryList$: Observable<Category[]> | undefined;
+  protected categoryList: Category[] | undefined;
   constructor(private categoryService: CategoryService) {}
   
   ngOnInit(): void {
-      this.categoryList$ =  this.categoryService.getCategories().pipe(
-        mergeMap(() => this.categoryService.getCategories())
-      );
+      this.categoryService.getCategories().subscribe(categories => {
+        this.categoryList = categories as Category[]
+      })
   }
 
   // Creates a category and append it to the table
-  protected createCategory():void {
+  protected createCategory(): void {
     const categoryInput = document.getElementById("input-category") as HTMLInputElement;
-    this.categoryService.getCategories();
+ 
     if(categoryInput.value) {
-      console.log("valid")
+      
+      // Creates a category and merge the result to the current table
+      const newCategory = this.categoryService.postCategory({
+          id: Math.floor(Math.random() *9999999),
+          name: categoryInput.value,
+          isActive: true,
+      }).subscribe(category => {
+          this.categoryList?.push(category);
+      })
     }
  
   }
