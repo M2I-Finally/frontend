@@ -1,21 +1,5 @@
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
-    #gestion-button {
-        position: absolute;
-        top: 1.2%;
-        right: 10%;
-    }
-
-    #logout {
-        position: absolute;
-        top: 1%;
-        right: 0;
-        cursor: pointer;
-        margin-right: 2%;
-        margin-top: 1rem;
-        color: var(--primary-yellow);
-    }
-
     #container {
 
         display: flex;
@@ -35,21 +19,8 @@
                 height: 100%;
                 font-size: 2rem;
                 vertical-align: middle;
+                margin-bottom: 1rem;
             }
-
-            .add-button {
-                all:unset;
-                cursor: pointer;
-                padding:0.8rem 2rem;
-                border-radius: 10px;
-                text-align: center;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                margin: 1rem;
-                color: black;
-                border: 3px solid black;
-                font-family: 'Quicksand';
-                font-weight: 600;
-            }  
         }
 
         table {
@@ -152,50 +123,35 @@
                         &:focus + .slider{
                             box-shadow: 0 0 1px var(--secondary-container);
                         }
-                }
-                
-                
+                }   
             }
+
         
         }
-    }
+        
+        #category-footer {
+            width: 100%;
+            background-color: #524C7D;
+            padding: 1rem;
 
-    #delete {
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
-            text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
-        }
-    }
+            input {
+                margin-left: 2rem;
+                width: 35%;
+                padding: 0.5rem;
+                appearance: textfield;
+            }
 
-    #logout {
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
-            text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
+            button {
+                all: unset;
+                margin-left: 2rem;
+                background-color: var(--primary-yellow);
+                padding: 0.5rem;
+                border-radius: 2px;
+            }
+
+            button:hover {
+                filter: brightness(90%);
+            }
         }
     }
 }
-
-
-
-/* ------------------ DESKTOP ------------------ */
-@media screen and (min-width: 1024px) {
-    #gestion-button {
-        top: 1%;
-        right: 8%;
-    }
-
-    #logout {
-        top: 0.8%;
-    }
-}
-
