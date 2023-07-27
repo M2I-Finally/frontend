@@ -2,8 +2,11 @@ import { NgModule, LOCALE_ID, DEFAULT_CURRENCY_CODE} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+//location in france, this pass currency to FR format:
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
+// to use ngSrc:
+import { NgOptimizedImage } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +43,7 @@ import { AdminNavComponent } from './shared/components/admin-nav/admin-nav.compo
     HttpClientModule,
     ProductModule,
     PaymentModule,
+    NgOptimizedImage
   ],
   providers: [
     {
