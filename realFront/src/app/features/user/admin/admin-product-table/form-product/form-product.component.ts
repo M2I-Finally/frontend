@@ -83,13 +83,13 @@ export class FormProductComponent implements OnInit {
 
   // Called when observable gets a result on getProductById()
   private populateForm(product: Product): void {
-    this.formProduct.controls["productId"].setValue(product.id);
+    this.formProduct.controls["productId"].setValue(product.productId);
     this.formProduct.controls["productName"].setValue(product.name);
-    this.formProduct.controls["productDescription"].setValue(product.id);
+    this.formProduct.controls["productDescription"].setValue(product.description);
     this.formProduct.controls["productPrice"].setValue(product.price);
 
-    if(product.image) {
-      this.formProduct.controls["productImage"].setValue(product.image);
+    if(product.picture) {
+      this.formProduct.controls["productImage"].setValue(product.picture);
     }
   }
 
@@ -106,12 +106,13 @@ export class FormProductComponent implements OnInit {
         
         // Save product to database (temporary until we make the database)
         this.productService.postProduct({
-            id: this.formProduct.controls["productId"].value,
+            productId: this.formProduct.controls["productId"].value,
             name: this.formProduct.controls["productName"].value,
             price: this.formProduct.controls["productPrice"].value,
-            isActive: true,
+            description: this.formProduct.controls["productDescription"].value,
+            status: true,
             stock: 0,
-            image: this.formProduct.controls["productImage"].value,
+            picture: this.formProduct.controls["productImage"].value,
         }).subscribe(data => console.log(data));
 
         // Redirects when product is saved
@@ -122,12 +123,13 @@ export class FormProductComponent implements OnInit {
         
         // Save product to database (temporary until we make the database)
         this.productService.putProduct(this.formProduct.controls["productId"].value, {
-          id: this.formProduct.controls["productId"].value,
+          productId: this.formProduct.controls["productId"].value,
           name: this.formProduct.controls["productName"].value,
           price: this.formProduct.controls["productPrice"].value,
-          isActive: true,
+          description: this.formProduct.controls["productDescription"].value,
+          status: true,
           stock: 0,
-          image: this.formProduct.controls["productImage"].value,
+          picture: this.formProduct.controls["productImage"].value,
         }).subscribe(data => console.log(data));
 
         this.redirectToTable();

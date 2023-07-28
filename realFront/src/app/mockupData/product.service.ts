@@ -9,12 +9,12 @@ import { Category } from '../shared/entities/category';
   providedIn: 'root'
 })
 export class ProductService {
-  url = 'http://localhost:3000';
+  url = 'http://localhost:8080';
  
   constructor(private http: HttpClient) { }
   
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.url + '/products');
+    return this.http.get<Product[]>(this.url + '/shop');
   }
 
   // Temporary solution for json-server database mock-up
