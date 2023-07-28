@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, first, mergeMap } from 'rxjs';
-import { CategoryService } from 'src/app/mockupData/category.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
 import { Category } from 'src/app/shared/entities/category';
 
 @Component({
@@ -28,9 +28,7 @@ export class AdminCategoryTableComponent implements OnInit {
     if(categoryInput.value) {
       // Creates a category and merge the result to the current table
       this.categoryService.postCategory({
-          id: Math.floor(Math.random() *9999999),
-          name: categoryInput.value,
-          isActive: true,
+          name: categoryInput.value
       }).subscribe(category => {
           this.categoryList?.push(category);
       })
@@ -43,9 +41,8 @@ export class AdminCategoryTableComponent implements OnInit {
    * @param categoryId Number that represents the category number in database
    */
   protected deleteCategory(categoryIndex: number, categoryId: number): void {
-    this.categoryService.deleteCategory(categoryId).subscribe(() => {
-      this.categoryList?.splice(categoryIndex, 1);
-    })
+    this.categoryService.deleteCategory(categoryId).subscribe();
+    this.categoryList?.splice(categoryIndex, 1);
   }
 
   /**
@@ -99,11 +96,7 @@ export class AdminCategoryTableComponent implements OnInit {
     categoryNameValue.innerText = categoryNameInput.value;
 
     // Save product to database (temporary until we make the database)
-    this.categoryService.putCategory(categoryId, {
-      id: categoryId,
-      name: categoryNameInput.value,
-      isActive: true,
-    }).subscribe(data => console.log(data));
+    this.categoryService.patchCategoryName(categoryId, categoryNameInput.value).subscribe();
   }
 
   /**
@@ -126,5 +119,11 @@ export class AdminCategoryTableComponent implements OnInit {
     }
   } 
 
-
+  /**
+   * Patch the status of a given category
+   * @param categoryId Number tha represents the category number in database
+   */
+  protected changeActiveState(categoryId: number): void {
+    this.categoryService.patchCategoryStatus(categoryId).subscribe();
+  }
 }

@@ -43,7 +43,7 @@
                 
                 <td class="update-cell">
                     <label class="switch">
-                        <input type="checkbox" [checked]="category.isActive">
+                        <input type="checkbox" (change)="changeActiveState(category.id)" [checked]="category.status">
                         <span class="slider"></span>
                     </label>
                 </td>
