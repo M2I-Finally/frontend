@@ -9,11 +9,12 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private isLogged = false;
+  //private isLogged = false;
 
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<boolean> {
+    this.logout();
     console.log(username + " " + password);
     const loginUrl = 'https://dummyjson.com/auth/login';
 
@@ -23,12 +24,12 @@ export class AuthService {
           if (response && response.token) {
             // Le backend a renvoyé un token JWT valide, nous considérons l'utilisateur comme connecté.
             localStorage.setItem('token', response.token); 
-            this.isLogged = true;
+            //this.isLogged = true;
             console.log("token dans localstorage")
             return true;
           } else {
             console.log("erreur d'authentification")
-            this.isLogged = false;
+            //this.isLogged = false;
             return false;
           }
         })
@@ -38,11 +39,11 @@ export class AuthService {
   logout(): void {
    
     localStorage.removeItem('token'); 
-    this.isLogged = false;
+    //this.isLogged = false;
   }
 
   isLoggedIn(): boolean {
-    return this.isLogged;
+    return !!localStorage.getItem("token");
   }
 
   getToken(): string | null {
