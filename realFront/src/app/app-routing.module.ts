@@ -14,6 +14,7 @@ import { PaymentConfirmationPageComponent } from './features/payment/payment-con
 import { ReturnToProductsPageButtonComponent } from './shared/components/return-to-products-page-button/return-to-products-page-button.component';
 import { FormProductComponent } from './features/user/admin/admin-product-table/form-product/form-product.component';
 import { AdminUserTableComponent } from './features/user/admin/admin-user-table/admin-user-table.component';
+import { GuardService } from './shared/services/guard.service';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
   {
     path:"shop",
     component: ShopComponent,
+    canActivate: [GuardService]
   },
   {
     path:"payment-button",

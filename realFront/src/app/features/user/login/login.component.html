@@ -11,7 +11,7 @@
                     <label for="fname">Nom d'utilisateur</label>
                 </div>
                 <div class="fieldlogin">
-                    <input type="text" id="fname" name="fname" formControlName="username">
+                    <input type="text" id="fname" name="fname" formControlName="username" >
                 </div>
                 <div class="label">
                     <label for="lname">Mot de passe</label>
@@ -20,7 +20,7 @@
                     <input type="password" id="lname" name="lname" formControlName="password">                    
                </div>                
                <div class="fieldlogin">
-                    <button class="yellow" [disabled]=!loginForm.valid (click)="goToPage('shop')">Connexion</button>              
+                    <button class="yellow" [disabled]=!loginForm.valid>Connexion</button>              
                </div>                    
         </form>
 
