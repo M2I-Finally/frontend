@@ -36,7 +36,7 @@
                 <!-- Gestion de l'état actif / inactif -->
                 <td class="update-cell">
                     <label class="switch">
-                        <input type="checkbox" (change)="changeActiveState($event, row.productId)" [checked]="row.status">
+                        <input type="checkbox" (change)="changeActiveState(row.productId)" [checked]="row.status">
                         <span class="slider"></span>
                     </label>
                 </td>

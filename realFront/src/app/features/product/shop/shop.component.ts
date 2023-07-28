@@ -31,7 +31,6 @@ export class ShopComponent implements OnInit{
     console.log(this.productList$.subscribe({
       next: (res) => {
         for (let index = 0; index < res.length; index++) {
-         
           console.log(res[index])
         }},
       error: (err) => console.error(err)

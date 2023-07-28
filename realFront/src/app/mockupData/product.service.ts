@@ -14,7 +14,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
   
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.url + '/shop');
+    return this.http.get<Product[]>(this.url + '/products');
   }
 
   // Temporary solution for json-server database mock-up
@@ -33,6 +33,10 @@ export class ProductService {
 
   putProduct(productId: number, product: Product): Observable<Product> {
     return this.http.put<Product>(this.url + '/products/' + productId, product);
+  }
+
+  patchProductStatus(productId: number): Observable<Product> {
+    return this.http.patch<Product>(this.url + '/products/' + productId, {});
   }
 
   deleteProduct(productId: number): Observable<Product> {
