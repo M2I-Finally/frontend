@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NotificationStatusEnum } from './notification-status-enum';
 
 @Component({
   selector: 'message-notification',
@@ -8,5 +9,5 @@ import { Component, Input } from '@angular/core';
 export class MessageNotificationComponent {
   
     @Input() message: String | undefined;
-
+    @Input() type: NotificationStatusEnum | undefined;
 }

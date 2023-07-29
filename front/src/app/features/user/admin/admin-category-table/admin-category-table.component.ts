@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, first, mergeMap } from 'rxjs';
+import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { Category } from 'src/app/shared/entities/category';
+import { MessageNotificationComponent } from 'src/app/shared/components/message-notification/message-notification.component';
+import { NotificationStatusEnum } from 'src/app/shared/components/message-notification/notification-status-enum';
 
 @Component({
   selector: 'app-admin-category-table',
@@ -12,11 +13,21 @@ export class AdminCategoryTableComponent implements OnInit {
 
   protected categoryList: Category[] | undefined;
   constructor(private categoryService: CategoryService) {}
+
+  // For future references : https://devm.io/angular/dynamically-create-component-angular-142720-001
+  @ViewChild('notifications', { read: ViewContainerRef }) entry: ViewContainerRef | undefined;
   
   ngOnInit(): void {
       this.categoryService.getCategories().subscribe(categories => {
         this.categoryList = categories as Category[]
       })
+  }
+
+  public showNotification(message: String, type: NotificationStatusEnum): any {
+    this.entry?.clear();
+    const component = this.entry?.createComponent(MessageNotificationComponent)!;
+    component.instance.message = message;
+    component.instance.type = type;
   }
 
   /**
@@ -29,9 +40,11 @@ export class AdminCategoryTableComponent implements OnInit {
       // Creates a category and merge the result to the current table
       this.categoryService.postCategory({
           name: categoryInput.value
-      }).subscribe(category => {
-          this.categoryList?.push(category);
       })
+      .subscribe({
+        next: category => this.categoryList?.push(category),
+        error: error => this.showNotification(error.error.message, NotificationStatusEnum.FAILURE),
+    });
     }
   }
 
