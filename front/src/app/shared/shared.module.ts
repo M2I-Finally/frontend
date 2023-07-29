@@ -11,9 +11,6 @@ import { BasketProductComponent } from './components/basket-product/basket-produ
 import { GenericPaymentButtonComponent } from './components/generic-payment-button/generic-payment-button.component';
 import { ReturnToProductsPageButtonComponent } from './components/return-to-products-page-button/return-to-products-page-button.component';
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
-import { MessageNotificationComponent } from './components/message-notification/message-notification.component';
-import { NotificationStatusEnum } from './components/message-notification/notification-status-enum';
-
 
 @NgModule({
   declarations: [
@@ -26,8 +23,7 @@ import { NotificationStatusEnum } from './components/message-notification/notifi
     BasketProductComponent,
     GenericPaymentButtonComponent,
     ReturnToProductsPageButtonComponent,
-    AdminNavComponent,
-    MessageNotificationComponent,
+    AdminNavComponent
   ],
  // providers: [BasketService],
   imports: [
@@ -46,8 +42,7 @@ import { NotificationStatusEnum } from './components/message-notification/notifi
     BasketProductComponent,
     GenericPaymentButtonComponent,
     ReturnToProductsPageButtonComponent,
-    AdminNavComponent,
-    MessageNotificationComponent
+    AdminNavComponent
   ],
   providers: []
 })
