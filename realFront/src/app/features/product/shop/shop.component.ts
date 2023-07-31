@@ -27,25 +27,13 @@ export class ShopComponent implements OnInit{
       this.basket$= basket;      
     });
     this.productList$ = this.productService.getProducts();
-
-    console.log(this.productList$.subscribe({
-      next: (res) => {
-        for (let index = 0; index < res.length; index++) {
-          console.log(res[index])
-        }},
-      error: (err) => console.error(err)
-    }))    
-
   } 
 
   goToPage(pageName:string): void {
     this.router.navigate([`${pageName}`])
   }
-
-
-
+  
   onSearchTextEntered(searchValue:string){
     this.searchText = searchValue;
-    console.log(this.searchText);
   }
 }

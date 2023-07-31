@@ -36,7 +36,6 @@ export class FormProductComponent implements OnInit {
     // If form is on edit mode and the id is correct
     if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl()) {
       this.modeText = "Modifier";
-      console.log(this.getIdParameterFromUrl());
       this.productService.getProductById(this.getIdParameterFromUrl())
       .subscribe(
         {
@@ -117,7 +116,7 @@ export class FormProductComponent implements OnInit {
             status: true,
             stock: 0,
             picture: this.formProduct.controls["productImage"].value,
-        }).subscribe(data => console.log(data));
+        }).subscribe();
 
         // Redirects when product is saved
         this.redirectToTable();
@@ -135,7 +134,7 @@ export class FormProductComponent implements OnInit {
           status: true,
           stock: 0,
           picture: this.formProduct.controls["productImage"].value,
-        }).subscribe(data => console.log(data));
+        }).subscribe();
 
         this.redirectToTable();
       }
