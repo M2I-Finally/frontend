@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductService } from 'src/app/mockupData/product.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import { Product } from 'src/app/shared/entities/product';
 import { Cart } from 'src/app/shared/entities/cart';

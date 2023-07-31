@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { Product } from '../shared/entities/product';
-import { TemporaryGetByIdProductResult } from './temporary-get-by-id-product-result';
-import { Category } from '../shared/entities/category';
+import { Product } from '../entities/product';
+import { TemporaryGetByIdProductResult } from '../../mockupData/temporary-get-by-id-product-result';
+import { Category } from '../entities/category';
 
 @Injectable({
   providedIn: 'root'

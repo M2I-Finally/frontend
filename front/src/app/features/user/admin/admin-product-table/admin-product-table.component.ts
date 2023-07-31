@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/entities/product';
-import { ProductService } from 'src/app/mockupData/product.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { Observable, first, mergeMap} from 'rxjs';
 import { Router } from '@angular/router';
 

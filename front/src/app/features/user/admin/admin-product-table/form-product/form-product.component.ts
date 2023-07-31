@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from 'src/app/mockupData/product.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
@@ -31,6 +31,7 @@ export class FormProductComponent implements OnInit {
     productPrice: new UntypedFormControl('', [Validators.required, Validators.min(0)]),
     productTax: new UntypedFormControl('', [Validators.required]),
     productImage: new UntypedFormControl(''),
+    productCategory: new UntypedFormControl(''),
   });
 
   ngOnInit(): void {
@@ -91,6 +92,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productDescription"].setValue(product.description);
     this.formProduct.controls["productPrice"].setValue(product.price);
     this.formProduct.controls["productTax"].setValue(product.tax);
+    this.formProduct.controls["productCategory"].setValue(product.category.id);
 
     if(product.picture) {
       this.formProduct.controls["productImage"].setValue(product.picture);
@@ -118,6 +120,7 @@ export class FormProductComponent implements OnInit {
             status: true,
             stock: 0,
             picture: this.formProduct.controls["productImage"].value,
+            category: this.formProduct.controls["productCategory"].value,
         }).subscribe({
           // Redirects when product is saved
           next: () => {
@@ -139,6 +142,7 @@ export class FormProductComponent implements OnInit {
           status: true,
           stock: 0,
           picture: this.formProduct.controls["productImage"].value,
+          category: this.formProduct.controls["productCategory"].value,
         }).subscribe({
           // Redirects when product is saved
           next: () => {
