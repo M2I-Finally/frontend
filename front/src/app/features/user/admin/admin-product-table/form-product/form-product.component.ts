@@ -118,12 +118,14 @@ export class FormProductComponent implements OnInit {
             status: true,
             stock: 0,
             picture: this.formProduct.controls["productImage"].value,
-        }).subscribe();
+        }).subscribe({
+          // Redirects when product is saved
+          next: () => {
+            this.router.navigate(['products']);
+          }
+        });
 
-        // Redirects when product is saved
-        setTimeout(() => {
-          this.router.navigate(['products']);
-        }, 400);
+        
       } 
       else if(this.getActionParameterFromUrl() == "edit") {
         
@@ -137,11 +139,12 @@ export class FormProductComponent implements OnInit {
           status: true,
           stock: 0,
           picture: this.formProduct.controls["productImage"].value,
-        }).subscribe();
-
-        setTimeout(() => {
-          this.router.navigate(['products']);
-        }, 400);
+        }).subscribe({
+          // Redirects when product is saved
+          next: () => {
+            this.router.navigate(['products']);
+          }
+        });
       }
   };
 
