@@ -32,6 +32,10 @@
                 width: 100%;
             
                 .formContainer {
+
+                    &:first-child {
+                        display: none;
+                    }
                     
                     height: auto;
                     display: flex;
