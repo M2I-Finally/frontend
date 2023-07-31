@@ -112,11 +112,6 @@
   },
   "categories": [
     {
-      "id": 1,
-      "name": "Pain",
-      "isActive": true
-    },
-    {
       "id": 2,
       "name": "Viennoiserie",
       "isActive": true
@@ -129,7 +124,7 @@
     {
       "id": 4,
       "name": "Sandwich",
-      "isActive": false
+      "isActive": true
     },
     {
       "id": 5,

@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { AdminUserTableComponent } from './admin/admin-user-table/admin-user-table.component';
+import { AdminCategoryTableComponent } from './admin/admin-category-table/admin-category-table.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AdminUserTableComponent } from './admin/admin-user-table/admin-user-tab
     LogoutComponent,
     FormProductComponent,
     AdminProductsTableComponent,
-    AdminUserTableComponent
+    AdminUserTableComponent,
+    AdminCategoryTableComponent
   ],
   imports: [
     CommonModule,
