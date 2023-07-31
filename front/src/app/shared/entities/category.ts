@@ -1,5 +1,6 @@
 export interface Category {
     id: number;
     name: string;
-    isActive: boolean;
+    status: boolean;
+    productCount: number | undefined;
 }
