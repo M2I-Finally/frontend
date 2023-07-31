@@ -25,11 +25,12 @@ export class ProductService {
   postProduct(formData: FormData): Observable<Product> {
     const httpOptions = {
       headers: new HttpHeaders({
-       "Content-Type": "multipart/form-data" 
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Headers" : "Origin, X-Requested-With, Content-Type, Accept"
       })
     };
 
-    return this.http.post<Product>(this.url, formData);
+    return this.http.post<Product>(this.url, formData, httpOptions);
   }
 
   putProduct(productId: number, product: Product): Observable<Product> {

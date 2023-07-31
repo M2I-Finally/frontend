@@ -121,12 +121,17 @@ export class FormProductComponent implements OnInit {
         }
 
         let formData:FormData = new FormData();
-        formData.append('file', this.formProduct.controls["productImage"].value);
-        formData.append('product', JSON.stringify(product));
+        formData.append('file', this.currentImage!);
+        // https://stackoverflow.com/questions/63021659/spring-api-request-giving-content-type-application-octet-stream-not-supported
+        const json = JSON.stringify(product);
+        const blob = new Blob([json], {
+          type: 'application/json'
+        });
+        formData.append('product', blob);
         
         this.productService.postProduct(formData).subscribe(console.log);
 
-        // Redirects when product is saved
+        //Redirects when product is saved
         setTimeout(() => {
           this.router.navigate(['products']);
         }, 400);
