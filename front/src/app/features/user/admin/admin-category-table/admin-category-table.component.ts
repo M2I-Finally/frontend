@@ -31,7 +31,11 @@ export class AdminCategoryTableComponent implements OnInit {
           name: categoryInput.value
       })
       .subscribe({
-        next: category => this.categoryList?.push(category),
+        next: category => { 
+          this.categoryList?.push(category);
+          categoryInput.value = "";
+          this.toastr.success("Catégorie créée avec succès", "Succès")
+        },
         error: error => this.toastr.error(error.error.message, "Erreur"),
     });
     }
@@ -43,8 +47,14 @@ export class AdminCategoryTableComponent implements OnInit {
    * @param categoryId Number that represents the category number in database
    */
   protected deleteCategory(categoryIndex: number, categoryId: number): void {
-    this.categoryService.deleteCategory(categoryId).subscribe();
-    this.categoryList?.splice(categoryIndex, 1);
+    this.categoryService.deleteCategory(categoryId).subscribe({
+      next: category => { 
+        this.categoryList?.splice(categoryIndex, 1);
+        this.toastr.success("Catégorie supprimée avec succès", "Succès")
+      },
+      error: error => this.toastr.error(error.error.message, "Erreur"),
+    });
+    
   }
 
   /**

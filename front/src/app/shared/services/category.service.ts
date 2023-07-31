@@ -21,7 +21,7 @@ export class CategoryService {
   }
 
   deleteCategory(categoryId: number): Observable<Category> {
-    return this.http.delete<Category>(Environment.apiUrl + '/categories/' + categoryId);
+    return this.http.delete<Category>(Environment.apiUrl + '/categories/' + categoryId, {});
   }
 
   patchCategoryStatus(categoryId: number): Observable<Category> {
