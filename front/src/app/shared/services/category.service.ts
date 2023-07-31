@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../entities/category';
 import { Observable } from 'rxjs';
-import { CreateCategory } from '../entities/create-category';
 import { Environment } from 'src/environment/environment';
 
 @Injectable({
@@ -13,11 +12,11 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(Environment.apiUrl + '/categories/all');
+    return this.http.get<Category[]>(Environment.apiUrl + '/categories');
   }
 
-  postCategory(categoryToCreate: CreateCategory): Observable<Category> {
-    return this.http.post<Category>(Environment.apiUrl + '/categories', categoryToCreate);
+  postCategory(categoryName: string): Observable<Category> {
+    return this.http.post<Category>(Environment.apiUrl + '/categories', { name: categoryName });
   }
 
   deleteCategory(categoryId: number): Observable<Category> {

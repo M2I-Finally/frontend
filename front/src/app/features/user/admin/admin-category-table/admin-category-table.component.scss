@@ -193,6 +193,11 @@
             button:hover {
                 filter: brightness(90%);
             }
+
+            .validation-error {
+                color: #fefefe;
+                margin-left: 2rem;
+            }
         }
     }
 }

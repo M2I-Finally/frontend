@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { Category } from 'src/app/shared/entities/category';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-category-table',
@@ -12,6 +13,10 @@ export class AdminCategoryTableComponent implements OnInit {
 
   protected categoryList: Category[] | undefined;
   constructor(private categoryService: CategoryService, private toastr: ToastrService) {}
+
+  // Form control for category name input
+  categoryName = new FormControl('',
+           [Validators.pattern("[a-zA-Z ]+")]);
 
   ngOnInit(): void {
       this.categoryService.getCategories().subscribe(categories => {
@@ -27,16 +32,15 @@ export class AdminCategoryTableComponent implements OnInit {
  
     if(categoryInput.value) {
       // Creates a category and merge the result to the current table
-      this.categoryService.postCategory({
-          name: categoryInput.value
-      })
+      this.categoryService.postCategory(categoryInput.value)
       .subscribe({
         next: category => { 
+          category.productCount = 0;
           this.categoryList?.push(category);
           categoryInput.value = "";
-          this.toastr.success("Catégorie créée avec succès", "Succès")
+          this.toastr.success("Catégorie créée avec succès")
         },
-        error: error => this.toastr.error(error.error.message, "Erreur"),
+        error: error => this.toastr.error(error.error.message),
     });
     }
   }
@@ -50,9 +54,9 @@ export class AdminCategoryTableComponent implements OnInit {
     this.categoryService.deleteCategory(categoryId).subscribe({
       next: category => { 
         this.categoryList?.splice(categoryIndex, 1);
-        this.toastr.success("Catégorie supprimée avec succès", "Succès")
+        this.toastr.success("Catégorie supprimée avec succès")
       },
-      error: error => this.toastr.error(error.error.message, "Erreur"),
+      error: error => this.toastr.error(error.error.message),
     });
     
   }
@@ -104,11 +108,14 @@ export class AdminCategoryTableComponent implements OnInit {
 
     this.toggleInputBlock(false, categoryIndex);
     
-    // Edit the value on the list
-    categoryNameValue.innerText = categoryNameInput.value;
-
-    // Save product to database (temporary until we make the database)
-    this.categoryService.patchCategoryName(categoryId, categoryNameInput.value).subscribe();
+    // Save product to database
+    this.categoryService.patchCategoryName(categoryId, categoryNameInput.value).subscribe({
+      next: () => {
+        categoryNameValue.innerText = categoryNameInput.value;
+        this.toastr.success(`La catégorie a été modifiée`)
+      },
+      error: error => this.toastr.error(error.error.message),
+    });
   }
 
   /**
@@ -136,6 +143,8 @@ export class AdminCategoryTableComponent implements OnInit {
    * @param categoryId Number tha represents the category number in database
    */
   protected changeActiveState(categoryId: number): void {
-    this.categoryService.patchCategoryStatus(categoryId).subscribe();
+    this.categoryService.patchCategoryStatus(categoryId).subscribe({
+      error: error => this.toastr.error(error.error.message)
+    });
   }
 }
