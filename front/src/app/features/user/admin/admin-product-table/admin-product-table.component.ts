@@ -31,18 +31,10 @@ export class AdminProductsTableComponent implements OnInit {
     this.router.navigate([`${pageName}`])
   }
 
+  // Get informations about the protected on the selected line
   // Change active state of a product when clicked
-  protected changeActiveState(event: Event, productId: number): void {
-   
-    const checkbox = event.target as HTMLInputElement;
-    console.log(checkbox);
-
-    if(checkbox.checked == true) {
-      console.log("Handling active state");
-    } else {
-      console.log("Handling inactive state")
-    }
-
+  protected changeActiveState(productId: number): void {
+    this.productService.patchProductStatus(productId).subscribe();
   }
 
   // Shows the delete modal with appropriate product settings
