@@ -27,6 +27,7 @@ export class FormProductComponent implements OnInit {
     productName: new UntypedFormControl('', [Validators.required]),
     productDescription: new UntypedFormControl(''),
     productPrice: new UntypedFormControl('', [Validators.required, Validators.min(0)]),
+    productTax: new UntypedFormControl('', [Validators.required]),
     productImage: new UntypedFormControl(''),
   });
 
@@ -87,6 +88,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productName"].setValue(product.name);
     this.formProduct.controls["productDescription"].setValue(product.description);
     this.formProduct.controls["productPrice"].setValue(product.price);
+    this.formProduct.controls["productTax"].setValue(product.tax);
 
     if(product.picture) {
       this.formProduct.controls["productImage"].setValue(product.picture);
@@ -109,6 +111,7 @@ export class FormProductComponent implements OnInit {
             productId: this.formProduct.controls["productId"].value,
             name: this.formProduct.controls["productName"].value,
             price: this.formProduct.controls["productPrice"].value,
+            tax: this.formProduct.controls["productTax"].value,
             description: this.formProduct.controls["productDescription"].value,
             status: true,
             stock: 0,
@@ -126,6 +129,7 @@ export class FormProductComponent implements OnInit {
           productId: this.formProduct.controls["productId"].value,
           name: this.formProduct.controls["productName"].value,
           price: this.formProduct.controls["productPrice"].value,
+          tax: this.formProduct.controls["productTax"].value,
           description: this.formProduct.controls["productDescription"].value,
           status: true,
           stock: 0,
