@@ -19,12 +19,7 @@ export class ProductService {
 
   // Temporary solution for json-server database mock-up
   getProductById(productId: number): Observable<Product> {
-    return this.http.get<TemporaryGetByIdProductResult>(this.url + '/' +  productId)
-    .pipe(
-      map(res => {
-          return res['0'];
-      })
-    );
+    return this.http.get<Product>(this.url + '/' +  productId);
   }
 
   postProduct(product: Product): Observable<Product> {

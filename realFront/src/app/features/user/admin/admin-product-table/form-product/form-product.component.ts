@@ -36,6 +36,7 @@ export class FormProductComponent implements OnInit {
     // If form is on edit mode and the id is correct
     if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl()) {
       this.modeText = "Modifier";
+      console.log(this.getIdParameterFromUrl());
       this.productService.getProductById(this.getIdParameterFromUrl())
       .subscribe(
         {
