@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { Category } from 'src/app/shared/entities/category';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-category-table',
@@ -12,6 +13,10 @@ export class AdminCategoryTableComponent implements OnInit {
 
   protected categoryList: Category[] | undefined;
   constructor(private categoryService: CategoryService, private toastr: ToastrService) {}
+
+  // Form control for category name input
+  categoryName = new FormControl('',
+           [Validators.pattern("[a-zA-Z ]+")]);
 
   ngOnInit(): void {
       this.categoryService.getCategories().subscribe(categories => {
@@ -27,9 +32,7 @@ export class AdminCategoryTableComponent implements OnInit {
  
     if(categoryInput.value) {
       // Creates a category and merge the result to the current table
-      this.categoryService.postCategory({
-          name: categoryInput.value,
-      })
+      this.categoryService.postCategory(categoryInput.value)
       .subscribe({
         next: category => { 
           category.productCount = 0;

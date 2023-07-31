@@ -67,8 +67,9 @@
     </table>
     
     <div id="category-footer">
-        <input type="text" id="input-category" placeholder="Nouvelle catégorie">
-        <button (click)="createCategory()">Créer une catégorie</button>
+        <input type="text" id="input-category"  [formControl]="categoryName" placeholder="Nouvelle catégorie">
+        <button (click)="createCategory()" [disabled]="categoryName.invalid">Créer une catégorie</button>
+        <span class="validation-error" *ngIf="categoryName.invalid && categoryName.dirty">Le nom de la catégorie ne peut contenir que des lettres et des espaces</span>
     </div>
 </div>
 
