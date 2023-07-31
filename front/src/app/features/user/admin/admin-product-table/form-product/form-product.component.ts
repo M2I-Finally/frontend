@@ -3,7 +3,7 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/mockupData/product.service';
-import { delay } from 'rxjs';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'app-form-product',
@@ -13,7 +13,7 @@ import { delay } from 'rxjs';
 })
 export class FormProductComponent implements OnInit {
   
-  constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) {};
+  constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService, private categoryService: CategoryService) {};
 
   protected modeText: string = "Ajouter";
   
@@ -21,6 +21,7 @@ export class FormProductComponent implements OnInit {
   protected imagePlaceholderURI = "./assets/img/no-photo.jpg";
   protected currentImage?: File;
   protected imagePreview = '';
+  protected categoryList$ = this.categoryService.getCategories();
  
   // Form that handles the addition or edition of a product
   formProduct = new UntypedFormGroup({

@@ -1,7 +1,7 @@
 <nav id="main-nav">
     <div id="main-container">
         <ng-container *ngFor="let category of categoryList$ | async; index as i">
-            <ng-template [ngIf]="category.isActive">
+            <ng-template [ngIf]="category.status">
                 <generic-button color="blue" content="{{ category?.name }}"></generic-button>
             </ng-template>
         </ng-container>
