@@ -9,17 +9,17 @@ import { Category } from '../shared/entities/category';
   providedIn: 'root'
 })
 export class ProductService {
-  url = 'http://localhost:8080';
+  url = 'http://localhost:8080/products';
  
   constructor(private http: HttpClient) { }
   
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.url + '/products');
+    return this.http.get<Product[]>(this.url);
   }
 
   // Temporary solution for json-server database mock-up
   getProductById(productId: number): Observable<Product> {
-    return this.http.get<TemporaryGetByIdProductResult>(this.url + '/products?id=' + productId)
+    return this.http.get<TemporaryGetByIdProductResult>(this.url + '/' +  productId)
     .pipe(
       map(res => {
           return res['0'];
@@ -28,19 +28,19 @@ export class ProductService {
   }
 
   postProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.url + '/products', product);
+    return this.http.post<Product>(this.url, product);
   }
 
   putProduct(productId: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(this.url + '/products/' + productId, product);
+    return this.http.put<Product>(this.url + '/' + productId, product);
   }
 
   patchProductStatus(productId: number): Observable<Product> {
-    return this.http.patch<Product>(this.url + '/products/' + productId, {});
+    return this.http.patch<Product>(this.url + '/' + productId, {});
   }
 
   deleteProduct(productId: number): Observable<Product> {
-    return this.http.delete<Product>(this.url + '/products/' + productId);
+    return this.http.delete<Product>(this.url + '/' + productId);
   }
 
   getCategories(): Observable<Category[]> {

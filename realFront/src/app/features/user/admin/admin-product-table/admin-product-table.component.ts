@@ -16,7 +16,6 @@ export class AdminProductsTableComponent implements OnInit {
   protected modalDelete!: HTMLDialogElement;
   protected productList$:Observable<Product[]> | undefined;
   protected selectedProduct: Product | undefined;
-  protected selectedProductId: number | undefined;
 
   public ngOnInit(): void {
 
@@ -35,8 +34,7 @@ export class AdminProductsTableComponent implements OnInit {
   // Get informations about the protected on the selected line
   // Change active state of a product when clicked
   protected changeActiveState(productId: number): void {
-    this.selectedProductId = productId;
-    this.productService.patchProductStatus(this.selectedProductId).subscribe();
+    this.productService.patchProductStatus(productId).subscribe();
   }
 
   // Shows the delete modal with appropriate product settings
