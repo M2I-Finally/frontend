@@ -3,6 +3,7 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/mockupData/product.service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-form-product',
@@ -119,8 +120,9 @@ export class FormProductComponent implements OnInit {
         }).subscribe();
 
         // Redirects when product is saved
-        this.redirectToTable();
-
+        setTimeout(() => {
+          this.router.navigate(['products']);
+        }, 400);
       } 
       else if(this.getActionParameterFromUrl() == "edit") {
         
@@ -136,7 +138,9 @@ export class FormProductComponent implements OnInit {
           picture: this.formProduct.controls["productImage"].value,
         }).subscribe();
 
-        this.redirectToTable();
+        setTimeout(() => {
+          this.router.navigate(['products']);
+        }, 400);
       }
   };
 
