@@ -28,15 +28,16 @@ export class AdminCategoryTableComponent implements OnInit {
     if(categoryInput.value) {
       // Creates a category and merge the result to the current table
       this.categoryService.postCategory({
-          name: categoryInput.value
+          name: categoryInput.value,
       })
       .subscribe({
         next: category => { 
+          category.productCount = 0;
           this.categoryList?.push(category);
           categoryInput.value = "";
-          this.toastr.success("Catégorie créée avec succès", "Succès")
+          this.toastr.success("Catégorie créée avec succès")
         },
-        error: error => this.toastr.error(error.error.message, "Erreur"),
+        error: error => this.toastr.error(error.error.message),
     });
     }
   }
@@ -50,9 +51,9 @@ export class AdminCategoryTableComponent implements OnInit {
     this.categoryService.deleteCategory(categoryId).subscribe({
       next: category => { 
         this.categoryList?.splice(categoryIndex, 1);
-        this.toastr.success("Catégorie supprimée avec succès", "Succès")
+        this.toastr.success("Catégorie supprimée avec succès")
       },
-      error: error => this.toastr.error(error.error.message, "Erreur"),
+      error: error => this.toastr.error(error.error.message),
     });
     
   }
@@ -104,11 +105,14 @@ export class AdminCategoryTableComponent implements OnInit {
 
     this.toggleInputBlock(false, categoryIndex);
     
-    // Edit the value on the list
-    categoryNameValue.innerText = categoryNameInput.value;
-
-    // Save product to database (temporary until we make the database)
-    this.categoryService.patchCategoryName(categoryId, categoryNameInput.value).subscribe();
+    // Save product to database
+    this.categoryService.patchCategoryName(categoryId, categoryNameInput.value).subscribe({
+      next: () => {
+        categoryNameValue.innerText = categoryNameInput.value;
+        this.toastr.success(`La catégorie a été modifiée`)
+      },
+      error: error => this.toastr.error(error.error.message),
+    });
   }
 
   /**
@@ -136,6 +140,8 @@ export class AdminCategoryTableComponent implements OnInit {
    * @param categoryId Number tha represents the category number in database
    */
   protected changeActiveState(categoryId: number): void {
-    this.categoryService.patchCategoryStatus(categoryId).subscribe();
+    this.categoryService.patchCategoryStatus(categoryId).subscribe({
+      error: error => this.toastr.error(error.error.message)
+    });
   }
 }
