@@ -6,5 +6,5 @@ export interface Product {
     tax: number;
     status: boolean;
     stock: number;
-    picture: string;
+    picture: string | undefined;
 }

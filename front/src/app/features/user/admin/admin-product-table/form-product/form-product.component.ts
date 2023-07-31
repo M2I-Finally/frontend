@@ -4,6 +4,7 @@ import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/mockupData/product.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import { Environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-form-product',
@@ -93,7 +94,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productTax"].setValue(product.tax);
 
     if(product.picture) {
-      this.formProduct.controls["productImage"].setValue(product.picture);
+      this.formProduct.controls["productImage"].setValue(`${Environment.apiUrl}${product.picture}`);
     }
   }
 
@@ -109,16 +110,21 @@ export class FormProductComponent implements OnInit {
       if(this.getActionParameterFromUrl() == "add") {
         
         // Save product to database (temporary until we make the database)
-        this.productService.postProduct({
-            productId: this.formProduct.controls["productId"].value,
-            name: this.formProduct.controls["productName"].value,
-            price: this.formProduct.controls["productPrice"].value,
-            tax: this.formProduct.controls["productTax"].value,
-            description: this.formProduct.controls["productDescription"].value,
-            status: true,
-            stock: 0,
-            picture: this.formProduct.controls["productImage"].value,
-        }).subscribe();
+        const product = {
+          productId: this.formProduct.controls["productId"].value,
+          name: this.formProduct.controls["productName"].value,
+          price: this.formProduct.controls["productPrice"].value,
+          tax: this.formProduct.controls["productTax"].value,
+          description: this.formProduct.controls["productDescription"].value,
+          status: true,
+          stock: 0
+        }
+
+        let formData:FormData = new FormData();
+        formData.append('file', this.formProduct.controls["productImage"].value);
+        formData.append('product', JSON.stringify(product));
+        
+        this.productService.postProduct(formData).subscribe(console.log);
 
         // Redirects when product is saved
         setTimeout(() => {

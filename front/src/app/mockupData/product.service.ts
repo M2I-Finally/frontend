@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Product } from '../shared/entities/product';
 import { TemporaryGetByIdProductResult } from './temporary-get-by-id-product-result';
@@ -10,7 +10,7 @@ import { Category } from '../shared/entities/category';
 })
 export class ProductService {
   url = 'http://localhost:8080/products';
- 
+
   constructor(private http: HttpClient) { }
   
   getProducts(): Observable<Product[]> {
@@ -22,8 +22,14 @@ export class ProductService {
     return this.http.get<Product>(this.url + '/' +  productId);
   }
 
-  postProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.url, product);
+  postProduct(formData: FormData): Observable<Product> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+       "Content-Type": "multipart/form-data" 
+      })
+    };
+
+    return this.http.post<Product>(this.url, formData);
   }
 
   putProduct(productId: number, product: Product): Observable<Product> {
