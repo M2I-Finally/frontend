@@ -3,12 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Environment } from 'src/environment/environment';
 import { Product } from '../entities/product';
+import { TemporaryGetByIdProductResult } from '../../mockupData/temporary-get-by-id-product-result';
+import { Category } from '../entities/category';
+import { Environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
+  url = Environment.apiUrl + '/products';
   constructor(private http: HttpClient) { }
   
   getProducts(): Observable<Product[]> {
@@ -18,6 +21,10 @@ export class ProductService {
   // Temporary solution for json-server database mock-up
   getProductById(productId: number): Observable<Product> {
     return this.http.get<Product>(Environment.apiUrl + '/products/' +  productId);
+  }
+  
+  getProductByCategoryId(categoryId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(this.url + '/category/' +  categoryId);
   }
 
   postProduct(formData: FormData): Observable<Product> {
