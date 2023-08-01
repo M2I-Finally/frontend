@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Observable, map } from 'rxjs';
+import { Observable, filter, map } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Category } from 'src/app/shared/entities/category';
 import { Cart } from 'src/app/shared/entities/cart';
 import { Product } from 'src/app/shared/entities/product';
 import { BasketService } from 'src/app/shared/services/basket.service';
-import { Router } from '@angular/router';
+import { Event, Router } from '@angular/router';
 
 @Component({
   selector: 'shop',
@@ -18,6 +18,8 @@ export class ShopComponent implements OnInit{
   searchText="";
   products: Product[] = [];
   productList$: Observable<Product[]> | undefined;
+  selectedCategoryId: number | undefined;
+  filteredProductList$: Observable<Product[]> | undefined;
   
   quantity: number = 0;
   basket$!: Cart;  
@@ -35,5 +37,11 @@ export class ShopComponent implements OnInit{
   
   onSearchTextEntered(searchValue:string){
     this.searchText = searchValue;
+  }
+
+  categoryFilter(event: number) {
+    console.log("filtre catégorie", event);
+    this.selectedCategoryId = event;
+    this.productList$ = this.productService.getProductByCategoryId(this.selectedCategoryId);
   }
 }

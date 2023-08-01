@@ -1,4 +1,4 @@
-<div class="container container-card">
+<div class="container container-card" [attr.category]="product?.categoryId">
     <img class="image-card" src="{{ product?.picture }}" alt="image de {{ product?.name }}">
     <div class="container container-card-details">
         <h3 class="title card-title">{{ product?.name }}</h3>
