@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth-service.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent {
   content = "connexion";
   color = "yellow";
 
-  constructor(private router: Router, private authService : AuthService) {}
+  constructor(private router: Router, private authService : AuthService,private toastr: ToastrService) {}
   
   loginForm : UntypedFormGroup= new UntypedFormGroup({
     username: new UntypedFormControl('atuny0',[Validators.required]),
@@ -30,10 +31,11 @@ export class LoginComponent {
     },
     error: (error) => {
       if (error.status === 400) {
-        console.log("Erreur 400: Identifiants invalides");
+        console.log("Erreur 400: Identifiants invalides");        
       } else {
-        console.log("Erreur inattendue: " + error.message);
+        console.log("Erreur inattendue: " + error.message);        
       }
+      this.toastr.error(error.error.message)
     }
   });
   }
