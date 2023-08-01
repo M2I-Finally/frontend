@@ -19,7 +19,7 @@ export class FormProductComponent implements OnInit {
   protected modeText: string = "Ajouter";
   
   // Image preview related informations
-  protected imagePlaceholderURI = "./assets/img/no-photo.jpg";
+  protected imagePlaceholderURI = Environment.imagePlaceholderUrl;
   protected currentImage?: File;
   protected imagePreview = '';
   protected categoryList$ = this.categoryService.getCategories();
@@ -94,7 +94,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productTax"].setValue(product.tax);
 
     if(product.picture) {
-      this.formProduct.controls["productImage"].setValue(`${Environment.apiUrl}${product.picture}`);
+      this.formProduct.controls["productImage"].setValue(product.picture);
     }
   }
 

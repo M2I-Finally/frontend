@@ -4,6 +4,7 @@ import { BasketService } from '../../services/basket.service';
 import { CartLine } from 'src/app/shared/entities/cart-line';
 import { Cart } from '../../entities/cart';
 import { _isNumberValue } from '@angular/cdk/coercion';
+import { Environment } from 'src/environment/environment';
 
 @Component({
   selector: 'product-card',
@@ -12,7 +13,8 @@ import { _isNumberValue } from '@angular/cdk/coercion';
 })
 export class ProductCardComponent implements OnInit{
   constructor(private basketService : BasketService){}
-  
+  placeholderUrl = Environment.imagePlaceholderUrl;
+
   @Input() product?: Product;
   @Input() quantity!: number;  
   basket$!: Cart;  

@@ -18,7 +18,7 @@ export class ProductService {
 
   // Temporary solution for json-server database mock-up
   getProductById(productId: number): Observable<Product> {
-    return this.http.get<Product>(Environment.apiUrl + '/products' +  productId);
+    return this.http.get<Product>(Environment.apiUrl + '/products/' +  productId);
   }
 
   postProduct(formData: FormData): Observable<Product> {
