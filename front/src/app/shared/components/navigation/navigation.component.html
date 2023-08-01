@@ -2,8 +2,8 @@
     <div id="main-container">
         <ng-container *ngFor="let category of categoryList$ | async; index as i">
             <ng-template [ngIf]="category.status">
-                <generic-button color="blue" content="{{ category?.name }}"></generic-button>
+                <button class="navigation-button" id="{{ category?.id }}">{{ category?.name }}</button>
             </ng-template>
         </ng-container>
     </div>
-</nav>  
+</nav>

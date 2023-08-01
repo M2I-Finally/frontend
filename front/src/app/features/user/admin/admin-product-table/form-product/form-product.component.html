@@ -29,7 +29,7 @@
 
                 <div class="formContainer">
                     <label>Catégorie</label>
-                    <select>
+                    <select formControlName="productCategory">
                         <option *ngFor="let category of categoryList$ | async;" value="{{category.id}}"> {{ category.name }} </option>
                     </select>
                 </div>
