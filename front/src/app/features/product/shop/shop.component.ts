@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Category } from 'src/app/shared/entities/category';

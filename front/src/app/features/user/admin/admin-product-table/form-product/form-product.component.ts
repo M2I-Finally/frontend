@@ -4,6 +4,7 @@ import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import { Environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-form-product',
@@ -18,7 +19,7 @@ export class FormProductComponent implements OnInit {
   protected modeText: string = "Ajouter";
   
   // Image preview related informations
-  protected imagePlaceholderURI = "./assets/img/no-photo.jpg";
+  protected imagePlaceholderURI = Environment.imagePlaceholderUrl;
   protected currentImage?: File;
   protected imagePreview = '';
   protected categoryList$ = this.categoryService.getCategories();
@@ -108,28 +109,9 @@ export class FormProductComponent implements OnInit {
 
   // Called when form is submitted
   protected submit():void{
-      if(this.getActionParameterFromUrl() == "add") {
-        // Save product to database
-        this.productService.postProduct({
-            productId: this.formProduct.controls["productId"].value,
-            name: this.formProduct.controls["productName"].value,
-            price: this.formProduct.controls["productPrice"].value,
-            tax: this.formProduct.controls["productTax"].value,
-            description: this.formProduct.controls["productDescription"].value,
-            status: true,
-            stock: 0,
-            picture: this.formProduct.controls["productImage"].value,
-            categoryId: this.formProduct.controls["productCategory"].value,
-        }).subscribe({
-          // Redirects when product is saved
-          next: () => {
-            this.router.navigate(['products']);
-          }
-        });        
-      } else if(this.getActionParameterFromUrl() == "edit") {
-        
+      if(this.getActionParameterFromUrl() == "add") {     
         // Save product to database (temporary until we make the database)
-        this.productService.putProduct(this.formProduct.controls["productId"].value, {
+        const product = {
           productId: this.formProduct.controls["productId"].value,
           name: this.formProduct.controls["productName"].value,
           price: this.formProduct.controls["productPrice"].value,
@@ -137,9 +119,57 @@ export class FormProductComponent implements OnInit {
           description: this.formProduct.controls["productDescription"].value,
           status: true,
           stock: 0,
-          picture: this.formProduct.controls["productImage"].value,
           categoryId: this.formProduct.controls["productCategory"].value,
-        }).subscribe({
+        }
+
+        // Form datas
+        let formData:FormData = new FormData();
+
+        if(this.currentImage != undefined) {
+          formData.append('file', this.currentImage);
+        }
+        
+        const json = JSON.stringify(product);
+        const blob = new Blob([json], {
+          type: 'application/json'
+        });
+        formData.append('product', blob);
+        
+        this.productService.postProduct(formData).subscribe({
+          // Redirects when product is saved
+          next: () => {
+            this.router.navigate(['products']);
+          }
+        });
+      } 
+      else if(this.getActionParameterFromUrl() == "edit") {
+
+        const product = {
+          productId: this.formProduct.controls["productId"].value,
+          name: this.formProduct.controls["productName"].value,
+          price: this.formProduct.controls["productPrice"].value,
+          tax: this.formProduct.controls["productTax"].value,
+          description: this.formProduct.controls["productDescription"].value,
+          status: true,
+          stock: 0,
+          categoryId: this.formProduct.controls["productCategory"].value,
+        }
+        
+        // Form datas
+        let formData:FormData = new FormData();
+
+        if(this.currentImage != undefined) {
+          formData.append('file', this.currentImage);
+        }
+        
+        const json = JSON.stringify(product);
+        const blob = new Blob([json], {
+          type: 'application/json'
+        });
+        formData.append('product', blob);
+        
+        // Save product to database (temporary until we make the database)
+        this.productService.putProduct(this.formProduct.controls["productId"].value, formData).subscribe({
           // Redirects when product is saved
           next: () => {
             this.router.navigate(['products']);
