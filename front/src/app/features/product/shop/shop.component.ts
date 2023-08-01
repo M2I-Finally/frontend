@@ -40,7 +40,6 @@ export class ShopComponent implements OnInit{
   }
 
   categoryFilter(event: number) {
-    console.log("filtre catégorie", event);
     this.selectedCategoryId = event;
     this.productList$ = this.productService.getProductByCategoryId(this.selectedCategoryId);
   }
