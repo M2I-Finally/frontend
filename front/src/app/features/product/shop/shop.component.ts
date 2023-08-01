@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { ProductService } from 'src/app/mockupData/product.service';
-import { Category } from 'src/app/shared/entities/category';
 import { Cart } from 'src/app/shared/entities/cart';
 import { Product } from 'src/app/shared/entities/product';
 import { BasketService } from 'src/app/shared/services/basket.service';

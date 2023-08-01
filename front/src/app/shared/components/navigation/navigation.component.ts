@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../../entities/category';
-import { ProductService } from 'src/app/mockupData/product.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'navigation',
@@ -11,9 +11,9 @@ import { ProductService } from 'src/app/mockupData/product.service';
 export class NavigationComponent {
   categoryList$: Observable<Category[]> | undefined;
 
-  constructor(private productService: ProductService) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.categoryList$ = this.productService.getCategories();
+    this.categoryList$ = this.categoryService.getCategories();
   }
 }
