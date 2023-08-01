@@ -31,12 +31,11 @@ export class LoginComponent {
     },
     error: (error) => {
       if (error.status === 400) {
-        console.log("Erreur 400: Identifiants invalides");
-        this.toastr.error(error.error.message)
+        console.log("Erreur 400: Identifiants invalides");        
       } else {
-        console.log("Erreur inattendue: " + error.message);
-        this.toastr.error(error.error.message)
+        console.log("Erreur inattendue: " + error.message);        
       }
+      this.toastr.error(error.error.message)
     }
   });
   }
