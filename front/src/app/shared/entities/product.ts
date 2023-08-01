@@ -9,5 +9,5 @@ export interface Product {
     status: boolean;
     stock: number;
     picture: string;
-    category: Category;
+    categoryId: number;
 }

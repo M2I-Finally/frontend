@@ -12,7 +12,7 @@ import { CategoryService } from '../../services/category.service';
 export class NavigationComponent {
   categoryList$: Observable<Category[]> | undefined;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, private productService: ProductService) {}
 
   ngOnInit(): void {
     this.categoryList$ = this.categoryService.getCategories();

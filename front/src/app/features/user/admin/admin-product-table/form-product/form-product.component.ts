@@ -92,7 +92,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productDescription"].setValue(product.description);
     this.formProduct.controls["productPrice"].setValue(product.price);
     this.formProduct.controls["productTax"].setValue(product.tax);
-    this.formProduct.controls["productCategory"].setValue(product.category.id);
+    this.formProduct.controls["productCategory"].setValue(product.categoryId);
 
     if(product.picture) {
       this.formProduct.controls["productImage"].setValue(product.picture);
@@ -109,8 +109,7 @@ export class FormProductComponent implements OnInit {
   // Called when form is submitted
   protected submit():void{
       if(this.getActionParameterFromUrl() == "add") {
-        
-        // Save product to database (temporary until we make the database)
+        // Save product to database
         this.productService.postProduct({
             productId: this.formProduct.controls["productId"].value,
             name: this.formProduct.controls["productName"].value,
@@ -120,17 +119,15 @@ export class FormProductComponent implements OnInit {
             status: true,
             stock: 0,
             picture: this.formProduct.controls["productImage"].value,
-            category: this.formProduct.controls["productCategory"].value,
+            categoryId: this.formProduct.controls["productCategory"].value,
+            //récupérer la catégorie via le service en front
         }).subscribe({
           // Redirects when product is saved
           next: () => {
             this.router.navigate(['products']);
           }
-        });
-
-        
-      } 
-      else if(this.getActionParameterFromUrl() == "edit") {
+        });        
+      } else if(this.getActionParameterFromUrl() == "edit") {
         
         // Save product to database (temporary until we make the database)
         this.productService.putProduct(this.formProduct.controls["productId"].value, {
@@ -142,7 +139,7 @@ export class FormProductComponent implements OnInit {
           status: true,
           stock: 0,
           picture: this.formProduct.controls["productImage"].value,
-          category: this.formProduct.controls["productCategory"].value,
+          categoryId: this.formProduct.controls["productCategory"].value,
         }).subscribe({
           // Redirects when product is saved
           next: () => {
