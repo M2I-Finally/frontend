@@ -5,7 +5,6 @@ import { Environment } from 'src/environment/environment';
 import { Product } from '../entities/product';
 import { TemporaryGetByIdProductResult } from '../../mockupData/temporary-get-by-id-product-result';
 import { Category } from '../entities/category';
-import { Environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
