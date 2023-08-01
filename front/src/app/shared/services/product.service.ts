@@ -4,12 +4,13 @@ import { Observable, map } from 'rxjs';
 import { Product } from '../entities/product';
 import { TemporaryGetByIdProductResult } from '../../mockupData/temporary-get-by-id-product-result';
 import { Category } from '../entities/category';
+import { Environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  url = 'http://localhost:8080/products';
+  url = Environment.apiUrl + '/products';
  
   constructor(private http: HttpClient) { }
   
