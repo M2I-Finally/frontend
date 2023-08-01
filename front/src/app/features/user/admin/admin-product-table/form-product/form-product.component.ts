@@ -120,9 +120,13 @@ export class FormProductComponent implements OnInit {
           stock: 0
         }
 
+        // Form datas
         let formData:FormData = new FormData();
-        formData.append('file', this.currentImage!);
-        // https://stackoverflow.com/questions/63021659/spring-api-request-giving-content-type-application-octet-stream-not-supported
+
+        if(this.currentImage != undefined) {
+          formData.append('file', this.currentImage);
+        }
+        
         const json = JSON.stringify(product);
         const blob = new Blob([json], {
           type: 'application/json'
@@ -135,11 +139,11 @@ export class FormProductComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['products']);
         }, 400);
+
       } 
       else if(this.getActionParameterFromUrl() == "edit") {
         
-        // Save product to database (temporary until we make the database)
-        this.productService.putProduct(this.formProduct.controls["productId"].value, {
+        const product = {
           productId: this.formProduct.controls["productId"].value,
           name: this.formProduct.controls["productName"].value,
           price: this.formProduct.controls["productPrice"].value,
@@ -147,8 +151,23 @@ export class FormProductComponent implements OnInit {
           description: this.formProduct.controls["productDescription"].value,
           status: true,
           stock: 0,
-          picture: this.formProduct.controls["productImage"].value,
-        }).subscribe();
+        }
+        
+        // Form datas
+        let formData:FormData = new FormData();
+
+        if(this.currentImage != undefined) {
+          formData.append('file', this.currentImage);
+        }
+        
+        const json = JSON.stringify(product);
+        const blob = new Blob([json], {
+          type: 'application/json'
+        });
+        formData.append('product', blob);
+        
+        // Save product to database (temporary until we make the database)
+        this.productService.putProduct(this.formProduct.controls["productId"].value, formData).subscribe(console.log);
 
         setTimeout(() => {
           this.router.navigate(['products']);

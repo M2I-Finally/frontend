@@ -32,8 +32,17 @@ export class ProductService {
     return this.http.post<Product>(Environment.apiUrl + '/products', formData, httpOptions);
   }
 
-  putProduct(productId: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(Environment.apiUrl + '/products/' + productId, product);
+  putProduct(productId: number, formData: FormData): Observable<Product> {
+    
+    // Headers specified for image uploading
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Headers" : "Origin, X-Requested-With, Content-Type, Accept"
+      })
+    };
+
+    return this.http.put<Product>(Environment.apiUrl + '/products/' + productId, formData);
   }
 
   patchProductStatus(productId: number): Observable<Product> {
