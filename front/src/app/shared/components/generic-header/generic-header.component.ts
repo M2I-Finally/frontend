@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'generic-header',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class GenericHeaderComponent {
 
+  @Output() backHome = new EventEmitter();
+
+  goHome(): void {
+    console.log("retour accueil");
+    this.backHome.emit();
+  }
 }

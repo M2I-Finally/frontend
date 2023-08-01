@@ -39,8 +39,12 @@ export class ShopComponent implements OnInit{
     this.searchText = searchValue;
   }
 
-  categoryFilter(event: number) {
+  categoryFilter(event: number): void {
     this.selectedCategoryId = event;
     this.productList$ = this.productService.getProductByCategoryId(this.selectedCategoryId);
+  }
+
+  deleteFilter(): void {
+    this.productList$ = this.productService.getProducts();
   }
 }

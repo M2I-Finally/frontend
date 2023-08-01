@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../../entities/category';
-import { ProductService } from 'src/app/shared/services/product.service';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class NavigationComponent {
 
   @Output() categorySelected = new EventEmitter<number>();
 
-  constructor(private categoryService: CategoryService, private productService: ProductService) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.categoryList$ = this.categoryService.getCategories();
