@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/shared/entities/product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from 'src/app/mockupData/product.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { Environment } from 'src/environment/environment';
 
@@ -32,6 +32,7 @@ export class FormProductComponent implements OnInit {
     productPrice: new UntypedFormControl('', [Validators.required, Validators.min(0)]),
     productTax: new UntypedFormControl('', [Validators.required]),
     productImage: new UntypedFormControl(''),
+    productCategory: new UntypedFormControl(''),
   });
 
   ngOnInit(): void {
@@ -92,6 +93,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls["productDescription"].setValue(product.description);
     this.formProduct.controls["productPrice"].setValue(product.price);
     this.formProduct.controls["productTax"].setValue(product.tax);
+    this.formProduct.controls["productCategory"].setValue(product.categoryId);
 
     if(product.picture) {
       this.formProduct.controls["productImage"].setValue(product.picture);
@@ -107,42 +109,8 @@ export class FormProductComponent implements OnInit {
 
   // Called when form is submitted
   protected submit():void{
-      if(this.getActionParameterFromUrl() == "add") {
-        
+      if(this.getActionParameterFromUrl() == "add") {     
         // Save product to database (temporary until we make the database)
-        const product = {
-          productId: this.formProduct.controls["productId"].value,
-          name: this.formProduct.controls["productName"].value,
-          price: this.formProduct.controls["productPrice"].value,
-          tax: this.formProduct.controls["productTax"].value,
-          description: this.formProduct.controls["productDescription"].value,
-          status: true,
-          stock: 0
-        }
-
-        // Form datas
-        let formData:FormData = new FormData();
-
-        if(this.currentImage != undefined) {
-          formData.append('file', this.currentImage);
-        }
-        
-        const json = JSON.stringify(product);
-        const blob = new Blob([json], {
-          type: 'application/json'
-        });
-        formData.append('product', blob);
-        
-        this.productService.postProduct(formData).subscribe(console.log);
-
-        //Redirects when product is saved
-        setTimeout(() => {
-          this.router.navigate(['products']);
-        }, 400);
-
-      } 
-      else if(this.getActionParameterFromUrl() == "edit") {
-        
         const product = {
           productId: this.formProduct.controls["productId"].value,
           name: this.formProduct.controls["productName"].value,
@@ -151,6 +119,40 @@ export class FormProductComponent implements OnInit {
           description: this.formProduct.controls["productDescription"].value,
           status: true,
           stock: 0,
+          categoryId: this.formProduct.controls["productCategory"].value,
+        }
+
+        // Form datas
+        let formData:FormData = new FormData();
+
+        if(this.currentImage != undefined) {
+          formData.append('file', this.currentImage);
+        }
+        
+        const json = JSON.stringify(product);
+        const blob = new Blob([json], {
+          type: 'application/json'
+        });
+        formData.append('product', blob);
+        
+        this.productService.postProduct(formData).subscribe({
+          // Redirects when product is saved
+          next: () => {
+            this.router.navigate(['products']);
+          }
+        });
+      } 
+      else if(this.getActionParameterFromUrl() == "edit") {
+
+        const product = {
+          productId: this.formProduct.controls["productId"].value,
+          name: this.formProduct.controls["productName"].value,
+          price: this.formProduct.controls["productPrice"].value,
+          tax: this.formProduct.controls["productTax"].value,
+          description: this.formProduct.controls["productDescription"].value,
+          status: true,
+          stock: 0,
+          categoryId: this.formProduct.controls["productCategory"].value,
         }
         
         // Form datas
@@ -167,11 +169,12 @@ export class FormProductComponent implements OnInit {
         formData.append('product', blob);
         
         // Save product to database (temporary until we make the database)
-        this.productService.putProduct(this.formProduct.controls["productId"].value, formData).subscribe(console.log);
-
-        setTimeout(() => {
-          this.router.navigate(['products']);
-        }, 400);
+        this.productService.putProduct(this.formProduct.controls["productId"].value, formData).subscribe({
+          // Redirects when product is saved
+          next: () => {
+            this.router.navigate(['products']);
+          }
+        });
       }
   };
 

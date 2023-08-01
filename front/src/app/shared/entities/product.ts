@@ -7,4 +7,5 @@ export interface Product {
     status: boolean;
     stock: number;
     picture: string | undefined;
+    categoryId: number;
 }

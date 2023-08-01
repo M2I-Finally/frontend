@@ -15,6 +15,10 @@ export class CategoryService {
     return this.http.get<Category[]>(Environment.apiUrl + '/categories');
   }
 
+  getCategoryById(categoryId: number): Observable<Category> {
+    return this.http.get<Category>(Environment.apiUrl + '/' +  categoryId);
+  }
+
   postCategory(categoryName: string): Observable<Category> {
     return this.http.post<Category>(Environment.apiUrl + '/categories', { name: categoryName });
   }
