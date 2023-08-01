@@ -120,7 +120,6 @@ export class FormProductComponent implements OnInit {
             stock: 0,
             picture: this.formProduct.controls["productImage"].value,
             categoryId: this.formProduct.controls["productCategory"].value,
-            //récupérer la catégorie via le service en front
         }).subscribe({
           // Redirects when product is saved
           next: () => {
