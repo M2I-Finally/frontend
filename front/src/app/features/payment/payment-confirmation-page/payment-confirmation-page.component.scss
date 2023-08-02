@@ -74,8 +74,9 @@ dialog{
 
     form{
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
 
         div{
             width: 100%;
@@ -87,18 +88,19 @@ dialog{
             svg{
                 margin: 0.5rem;
             }
-        }
+        
 
         input[type=number] {
             appearance:textfield;
             width: 80%;
         }
-
+         
         button svg{
             width: 30px;
             height: 30px;
             fill: var(--validation-green);
-        }      
+        }    
+        }  
     }
     
     button:hover svg{
