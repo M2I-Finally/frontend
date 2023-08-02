@@ -7,16 +7,17 @@ div{
     form{
         max-height: 50px;
         display: flex;
+        flex-direction: row-reverse;
         height: 70px;
 
         input{
             min-width: 0;
-            border-radius: 10px 0 0 10px;
+            border-radius: 0 10px 10px 0;
             background-color: transparent;
             padding: 0.5rem;
             border: 1px solid var(--primary-yellow);
             color:var(--primary-yellow);
-            border-right: none;
+            border-left: none;
             left: 49px; 
 
             &:focus{
@@ -33,10 +34,10 @@ div{
 
         button{
         background-color: transparent;
-        border-radius: 0 10px 10px 0;
+        border-radius: 10px 0 0 10px;
         padding: 0.3rem;
         border: 1px solid var(--primary-yellow);
-        border-left:none ;
+        border-right:none ;
         }
 
         svg{
