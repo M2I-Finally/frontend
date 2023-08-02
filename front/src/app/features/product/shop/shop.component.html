@@ -8,7 +8,7 @@
         </svg>
     </div>
 </generic-header>
-    <navigation (categorySelected)="categoryFilter($event)"></navigation>
+<navigation (categorySelected)="categoryFilter($event)"></navigation>
 <basket [quantity]="quantity"></basket>
 <div id="shop-container">
     <ng-container *ngFor="let product of productList$ | async; index as i">

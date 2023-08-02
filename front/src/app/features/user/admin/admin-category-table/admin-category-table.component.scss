@@ -1,5 +1,21 @@
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
+    #gestion-button {
+        position: absolute;
+        top: 1.2%;
+        right: 10%;
+    }
+
+    #logout {
+        position: absolute;
+        top: 1%;
+        right: 0;
+        cursor: pointer;
+        margin-right: 2%;
+        margin-top: 1rem;
+        color: var(--primary-yellow);
+    }
+
     #container {
 
         display: flex;
@@ -199,5 +215,20 @@
                 margin-left: 2rem;
             }
         }
+    }
+}
+
+
+
+
+/* ------------------ DESKTOP ------------------ */
+@media screen and (min-width: 1024px) {
+    #gestion-button {
+        top: 1%;
+        right: 8%;
+    }
+
+    #logout {
+        top: 0.8%;
     }
 }
