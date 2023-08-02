@@ -11,19 +11,17 @@
             flex-wrap: wrap;
             flex-direction: row;
             justify-content: center;
+            align-content: flex-start;
             width: 75%;
+            height: 80vh;
             gap: 1rem;
+            overflow-y: auto;
         }
     }
 
-    
     #logout {
-        // position: absolute;
-        // top: 1.2%;
-        // right: 0;
         cursor: pointer;
         margin-right: 2%;
-        // margin-top: 1rem;
         color: var(--primary-yellow);
 
         &-dialog {

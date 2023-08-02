@@ -3,6 +3,7 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 import { Category } from 'src/app/shared/entities/category';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-category-table',
@@ -12,7 +13,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class AdminCategoryTableComponent implements OnInit {
 
   protected categoryList: Category[] | undefined;
-  constructor(private categoryService: CategoryService, private toastr: ToastrService) {}
+  constructor(private categoryService: CategoryService, private toastr: ToastrService, private router: Router) {}
 
   // Form control for category name input
   categoryName = new FormControl('',
@@ -146,5 +147,9 @@ export class AdminCategoryTableComponent implements OnInit {
     this.categoryService.patchCategoryStatus(categoryId).subscribe({
       error: error => this.toastr.error(error.error.message)
     });
+  }
+
+  protected goToPage(pageName:string): void {
+    this.router.navigate([`${pageName}`])
   }
 }
