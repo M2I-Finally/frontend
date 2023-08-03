@@ -1,4 +1,4 @@
-export class PaymentDtoList {
+export class PaymentDto{
     private amount: number;
     // 0 - cash, 1 - card, 2-other
     private type: number;

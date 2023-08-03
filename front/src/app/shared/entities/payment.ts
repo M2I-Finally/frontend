@@ -1,19 +1,19 @@
 import { CartLine } from "./cart-line";
-import { PaymentDtoList } from "./payment-dto-list";
+import { PaymentDto } from "./payment-dto";
 
 export class Payment {
  
     private basketDetailDto: CartLine[]; // what back needs is productId, quantity, discount
     private total: number;
     private discount: number;
-    private paymentDtoList: PaymentDtoList[]; // amount & payment type [0,1,2]
+    private paymentDtoList: PaymentDto[]; // amount & payment type [0,1,2]
     private sellerId: number;
 
   constructor(
     basketDetailDto: CartLine[], 
     total: number, 
     discount: number, 
-    paymentDtoList: PaymentDtoList[], 
+    paymentDtoList: PaymentDto[], 
     sellerId: number
     ) {
     this.basketDetailDto = basketDetailDto;
@@ -51,7 +51,7 @@ export class Payment {
     return this.paymentDtoList;
   }
 
-  public setPaymentDtoList(paymentDtoList: PaymentDtoList[]){
+  public setPaymentDtoList(paymentDtoList: PaymentDto[]){
     this.paymentDtoList = paymentDtoList;
   }
 
