@@ -67,6 +67,7 @@ export class ListRecapComponent implements OnInit {
       }
     })
     this.basketService.updateBasket(this.basket$);
+    this.cancelDiscount();
   }
 
   add(id: number) {
@@ -78,6 +79,7 @@ export class ListRecapComponent implements OnInit {
     })
 
     this.basketService.updateBasket(this.basket$);
+    this.cancelDiscount();
 
   }
 
@@ -93,9 +95,9 @@ export class ListRecapComponent implements OnInit {
   }
 
   removeItem(id:number){
-      console.log("this is removeItem");
       this.basket$.removeLines(id);
-      this.basketService.updateBasket(this.basket$);      
+      this.basketService.updateBasket(this.basket$);  
+      this.cancelDiscount();    
   }
 
   protected submitDiscount(event: Event): void {
@@ -113,6 +115,7 @@ export class ListRecapComponent implements OnInit {
   protected cancelDiscount(): void {
     this.toggleClassDiscount();
     this.totalAfterDiscount = this.total;
+    this.formDiscount.reset();
   }
 
   private toggleClassDiscount(): void {
