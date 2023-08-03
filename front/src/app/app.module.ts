@@ -1,7 +1,7 @@
 import { NgModule, LOCALE_ID, DEFAULT_CURRENCY_CODE} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
 
@@ -19,6 +19,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProductModule } from './features/product/product.module';
 import { PaymentModule } from './features/payment/payment.module';
 import { ToastrModule } from 'ngx-toastr';
+import { InterceptorService } from './shared/services/interceptor.service';
 
 
 @NgModule({
@@ -51,7 +52,12 @@ import { ToastrModule } from 'ngx-toastr';
      {
        provide: DEFAULT_CURRENCY_CODE,
        useValue: 'EUR'
-     }
+     },
+     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
