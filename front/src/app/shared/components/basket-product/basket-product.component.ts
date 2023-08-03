@@ -23,46 +23,36 @@ export class BasketProductComponent {
       });
    }
  
-  minus(){
-    
+  minus(){    
     if(this.cartLine && this.cartLine?.getQuantity() > 0){
       this.basket$.getCartLines().forEach((line) => {
         if( this.cartLine?.getId() == line.getId() && line.getQuantity() > 0){           
-          line.setQuantity(-1);         
-         
+          line.setQuantity(-1);
           if (line.getQuantity()<=0){   
             this.basket$.removeLines(this.cartLine.getId());               
           }            
-      }
-      this.basketService.updateBasket(this.basket$);
-    })
-    }     
-    
+        }
+        this.basketService.updateBasket(this.basket$);
+      })
+    }
   }
 
   add(){
    
-       if (this.cartLine){
-          this.basket$.getCartLines().forEach((line) => {
-  
-          if( this.cartLine?.getId() == line.getId()){ 
-            
-              line.setQuantity(1);      
-                  
-          }
-  
-        })
-              
-        this.basketService.updateBasket(this.basket$);
-      }               
+    if (this.cartLine){
+      this.basket$.getCartLines().forEach((line) => {
+        if( this.cartLine?.getId() == line.getId()){
+          line.setQuantity(1);
+        }
+    })    
+      this.basketService.updateBasket(this.basket$);
+    }               
   }
 
   trash(){
     if(this.cartLine){
       this.basket$.removeLines(this.cartLine.getId());
       this.basketService.updateBasket(this.basket$);
-    }
-      
+    } 
   }
-    
 }

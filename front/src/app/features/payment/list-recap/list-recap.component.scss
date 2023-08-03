@@ -2,9 +2,7 @@ table{
     background-color: var(--primary-green);
     text-align: center;
     vertical-align: middle;
-    width: 100%;
-    
-    
+    width: 100%;   
 
     thead{
         th{
@@ -16,8 +14,7 @@ table{
             font-size: 1.3rem;
            
         }
-    }
-   
+    }  
   
     .btn-qty-controller {
         background-color: transparent;
@@ -30,6 +27,7 @@ table{
         margin: 0;
         padding: 0;
     }
+
     tbody{
         tr:nth-child(even){
             background-color: var(--text-on-dk-bg);
@@ -51,14 +49,12 @@ table{
                 }
             }
         }
-    }
-  
+    }  
 }
 
 .table-footer{
     font-family: var(--title-font);
     font-weight: 700;
-    padding:2rem 2rem;
     background-color: var(--primary-bg-color);
     color:var(--text-on-dk-bg);
     font-size: 1.3rem;
@@ -102,4 +98,53 @@ table{
             }
         }
     }
+}
+
+#totalAmount {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.totalBeforeDiscount {
+    &-crossed {
+        font-size: small;
+        text-decoration: line-through;
+    }
+}
+
+.totalAfterDiscount {
+    &-hidden {
+        display: none;
+    }
+
+    &-show {
+        display: block;
+    }
+}
+
+#cancel {
+    &-hidden {
+        display: none;
+    }
+
+    &-show {
+        display: block;
+        color: var(--brand-red);
+        cursor: pointer;
+        padding-left: 1rem;
+    }
+}
+
+#apply {
+    &-hidden {
+        display: none;
+    }
+}
+
+#form-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
 }

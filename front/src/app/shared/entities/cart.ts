@@ -15,21 +15,20 @@ export class Cart {
         return this.cartLines;
     }
 
-    
     public addLines(cartLine: CartLine){
         this.cartLines.push(cartLine);
     }
 
     public removeLines(id : number){
-        
-        for (let index = 0; index < this.cartLines.length; index++) {
-                       
+        for (let index = 0; index < this.cartLines.length; index++) {       
             if ( id == this.cartLines[index].getId()){
                 this.cartLines.splice(index, 1);                
             }
-            
         }
-        
+    }
+
+    public resetCart(): void {
+        this.cartLines = [];
     }
 
     public getTotal(){
@@ -46,7 +45,7 @@ export class Cart {
           total += cartline.getPrice()*cartline.getDiscount()*cartline.getQuantity();
         })
         this.setTotal(total);
-       }
+    }
     
 
     public getDiscount(){
