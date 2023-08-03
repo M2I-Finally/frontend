@@ -46,5 +46,6 @@ export class ShopComponent implements OnInit{
 
   deleteFilter(): void {
     this.productList$ = this.productService.getProducts();
+
   }
 }

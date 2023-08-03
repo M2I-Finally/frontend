@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListRecapComponent } from './list-recap/list-recap.component';
 import { PaymentConfirmationPageComponent } from './payment-confirmation-page/payment-confirmation-page.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatTableModule } from '@angular/material/table';
+
 
 
 
@@ -16,7 +16,7 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     SharedModule,
-    MatTableModule
+  
   ],
   exports: [
     ListRecapComponent,

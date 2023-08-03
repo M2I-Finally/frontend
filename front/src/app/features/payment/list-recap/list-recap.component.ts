@@ -53,7 +53,7 @@ export class ListRecapComponent implements OnInit {
 
     this.basketService.basket$.subscribe((basket: Cart) => {
       this.basket$ = basket;
-      console.log(basket);
+      // console.log(basket);
       this.cartLine$ = basket.getCartLines();
       this.calculateTotal();
     });

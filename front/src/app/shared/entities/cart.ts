@@ -39,13 +39,15 @@ export class Cart {
         this.total = total;
     }
 
-    makeTotal(){
+    public makeTotal(){
         let total = 0;
         this.cartLines.forEach((cartline)=> {
           total += cartline.getPrice()*cartline.getDiscount()*cartline.getQuantity();
         })
-        this.setTotal(total);
-    }
+
+        return total;
+     }
+
     
 
     public getDiscount(){
