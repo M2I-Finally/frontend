@@ -30,15 +30,18 @@
 
 </table>
 <div class="table-footer">
-  <form action="">
-    <label for="discountTotal"> Réduction</label>
-    <input type="number" min="0" max="1" step="0.1">
-    <select name="unit" id="unit">
+  <form action="" [formGroup]="formDiscount" (ngSubmit)="discountSubmit($event)">
+    <label for="discountTotal">Réduction</label>
+    <input type="number" min="0" step="0.1" formControlName="discount" id="discountTotal">
+    <select name="unit" id="unit" formControlName="unit">
       <option value="percentage">%</option>
       <option value="euro">&euro;</option>
     </select>
     <generic-button color="yellow" content="Appliquer" type="submit" ></generic-button>
   </form>
-  <div>{{total | currency }}</div>
+  <div id="totalAmount">
+    <div class="{{classNameBeforeDiscount}}">{{total | currency }}</div>
+    <div class="{{classNameAfterDiscount}}">{{totalAfterDiscount | currency }}</div>
+  </div>
 </div>
 

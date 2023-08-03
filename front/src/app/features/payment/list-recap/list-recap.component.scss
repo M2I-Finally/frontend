@@ -103,3 +103,26 @@ table{
         }
     }
 }
+
+#totalAmount {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.totalBeforeDiscount {
+    &-crossed {
+        font-size: small;
+        text-decoration: line-through;
+    }
+}
+
+.totalAfterDiscount {
+    &-hidden {
+        display: none;
+    }
+
+    &-show {
+        display: block;
+    }
+}
