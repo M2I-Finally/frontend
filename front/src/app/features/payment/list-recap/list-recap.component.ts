@@ -34,7 +34,7 @@ export class ListRecapComponent implements OnInit {
 
   formDiscount = new UntypedFormGroup({
     discount: new UntypedFormControl('', [Validators.required]),
-    unit: new UntypedFormControl('percentage', [Validators.pattern('/^\d*\.?\d*$/')]),
+    unit: new UntypedFormControl('percentage'),
   })
 
   discount: number | undefined;
@@ -101,7 +101,7 @@ export class ListRecapComponent implements OnInit {
 
   protected submitDiscount(event: Event): void {
     event.preventDefault();
-    this.discount = parseInt(this.formDiscount.controls["discount"].value);
+    this.discount = parseFloat(this.formDiscount.controls["discount"].value);
     this.discountUnit = this.formDiscount.controls["unit"].value;
     if ( this.discountUnit == 'percentage') {
       this.totalAfterDiscount = this.total - (this.total * this.discount/100);
