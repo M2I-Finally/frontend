@@ -57,7 +57,6 @@ export class ListRecapComponent implements OnInit {
       this.cartLine$ = basket.getCartLines();
       this.calculateTotal();
     });
-
   }
 
   minus(id: number) {
@@ -80,7 +79,6 @@ export class ListRecapComponent implements OnInit {
 
     this.basketService.updateBasket(this.basket$);
     this.cancelDiscount();
-
   }
 
   calculateTotal(): void {
