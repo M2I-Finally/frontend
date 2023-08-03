@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter,Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { BasketService } from 'src/app/shared/services/basket.service';
@@ -20,6 +20,7 @@ export class ListRecapComponent implements OnInit {
   @Input() product?: Product;
   @Input() quantity!: number;
   @Input() cartLine?: CartLine;
+  @Output() discountApplied = new EventEmitter<number>();
 
   total!: number;
   totalAfterDiscount: number | undefined;
@@ -70,7 +71,7 @@ export class ListRecapComponent implements OnInit {
   }
 
   add(id: number) {
-   
+  
       this.basket$.getCartLines().forEach((line) => {
         if (line.getId() === id) {
           line.setQuantity(1);
@@ -107,6 +108,7 @@ export class ListRecapComponent implements OnInit {
     } else if ( this.discountUnit == 'euro' ) {
       this.totalAfterDiscount = this.total - this.discount;
     }
+    this.discountApplied.emit(this.totalAfterDiscount);
     this.toggleClassDiscount();
   }
 

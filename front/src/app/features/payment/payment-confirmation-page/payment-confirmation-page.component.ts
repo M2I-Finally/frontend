@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Cart } from 'src/app/shared/entities/cart';
 import { BasketService } from 'src/app/shared/services/basket.service';
-import { Router } from '@angular/router';
+import { Router, Event } from '@angular/router';
 import { PaymentService } from 'src/app/shared/services/payment.service';
 import { Payment } from 'src/app/shared/entities/payment';
 import { CartLine } from 'src/app/shared/entities/cart-line';
@@ -18,6 +18,7 @@ import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 
 export class PaymentConfirmationPageComponent implements OnInit {
   total!: number
+  totalAfterDiscount: number | undefined;
   basket$!: Cart;
   basketLine!:CartLine[];
   amount:number = 0;
@@ -26,7 +27,6 @@ export class PaymentConfirmationPageComponent implements OnInit {
   sellerId!:number;
   discount!:number;
   paymentDtoList: PaymentDto[] = [];
-
 
   constructor(private basketService: BasketService, private paymentService:PaymentService, private router: Router) { };
   
@@ -52,6 +52,11 @@ export class PaymentConfirmationPageComponent implements OnInit {
     })
      
 
+  };
+
+  totalWithDiscount(event:number){
+    this.totalAfterDiscount = event;
+    console.log(this.totalAfterDiscount);
   };
 
   updatePayment(formGroupName:UntypedFormGroup, name:string, paymentType:string){
@@ -93,11 +98,14 @@ export class PaymentConfirmationPageComponent implements OnInit {
       next: data => console.log(data)
      });
      
+  }
 
-
+  
   protected cancelBasket(): void {
     this.router.navigate([`shop`]);
     this.basket$.resetCart();
 
   }
+
+
 }
