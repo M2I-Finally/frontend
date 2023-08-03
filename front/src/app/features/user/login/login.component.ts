@@ -16,14 +16,15 @@ export class LoginComponent {
   constructor(private router: Router, private authService : AuthService,private toastr: ToastrService) {}
   
   loginForm : UntypedFormGroup= new UntypedFormGroup({
-    username: new UntypedFormControl('atuny0',[Validators.required]),
-    password: new UntypedFormControl('9uQFF1Lh',[Validators.required])
+    username: new UntypedFormControl('admin',[Validators.required]),
+    password: new UntypedFormControl('admin',[Validators.required])
   })
 
   submit(){
    this.authService.login(this.loginForm.get('username')?.value,this.loginForm.get('password')?.value).subscribe({
     next: (loggedIn: boolean) => {
       if (loggedIn) {
+        console.log("redirection vers shop")
         this.router.navigateByUrl('/shop')
       } else {
         console.log(loggedIn + " login non valide")
@@ -33,7 +34,8 @@ export class LoginComponent {
       if (error.status === 400) {
         console.log("Erreur 400: Identifiants invalides");        
       } else {
-        console.log("Erreur inattendue: " + error.message);        
+        console.log("Erreur inattendue: " + error.error.message);
+        this.toastr.error(error.message)        
       }
       this.toastr.error(error.error.message)
     }
