@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../../entities/category';
-import { ProductService } from 'src/app/mockupData/product.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'navigation',
@@ -11,9 +11,16 @@ import { ProductService } from 'src/app/mockupData/product.service';
 export class NavigationComponent {
   categoryList$: Observable<Category[]> | undefined;
 
-  constructor(private productService: ProductService) {}
+  @Output() categorySelected = new EventEmitter<number>();
+
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.categoryList$ = this.productService.getCategories();
+    this.categoryList$ = this.categoryService.getCategories();
+  }
+
+  changeCategory(event: Event) {
+    let categoryId = parseInt((event.currentTarget as HTMLElement).id);
+    this.categorySelected.emit(categoryId);
   }
 }

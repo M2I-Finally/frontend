@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductService } from 'src/app/mockupData/product.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import { Product } from 'src/app/shared/entities/product';
 import { Cart } from 'src/app/shared/entities/cart';
 import { CartLine } from 'src/app/shared/entities/cart-line';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'list-recap',
@@ -21,13 +22,26 @@ export class ListRecapComponent implements OnInit {
   @Input() cartLine?: CartLine;
 
   total!: number;
+  totalAfterDiscount: number | undefined;
 
   basket$!: Cart;
   cartLine$!: CartLine[];
 
-  displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Discount', 'Total', 'delete'];
+  displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Réduction', 'Total', ''];
   productList$: Observable<Product[]> | undefined;
   productList: Product[] = [];
+
+  formDiscount = new UntypedFormGroup({
+    discount: new UntypedFormControl('', [Validators.required]),
+    unit: new UntypedFormControl('percentage', [Validators.pattern('/^\d*\.?\d*$/')]),
+  })
+
+  discount: number | undefined;
+  discountUnit : string | undefined;
+  classNameAfterDiscount: string = 'totalAfterDiscount-hidden';
+  classNameBeforeDiscount: string = 'totalBeforeDiscount';
+  cancelButton: string = 'cancel-hidden';
+  applyButton: string = 'apply';
 
 
   constructor(private productService: ProductService, private basketService: BasketService) { };
@@ -43,7 +57,6 @@ export class ListRecapComponent implements OnInit {
       this.cartLine$ = basket.getCartLines();
       this.calculateTotal();
     });
-
   }
 
   minus(id: number) {
@@ -53,6 +66,7 @@ export class ListRecapComponent implements OnInit {
       }
     })
     this.basketService.updateBasket(this.basket$);
+    this.cancelDiscount();
   }
 
   add(id: number) {
@@ -64,7 +78,7 @@ export class ListRecapComponent implements OnInit {
     })
 
     this.basketService.updateBasket(this.basket$);
-
+    this.cancelDiscount();
   }
 
   calculateTotal(): void {
@@ -79,9 +93,33 @@ export class ListRecapComponent implements OnInit {
   }
 
   removeItem(id:number){
-      console.log("this is removeItem");
       this.basket$.removeLines(id);
-      this.basketService.updateBasket(this.basket$);
-      
+      this.basketService.updateBasket(this.basket$);  
+      this.cancelDiscount();    
+  }
+
+  protected submitDiscount(event: Event): void {
+    event.preventDefault();
+    this.discount = parseInt(this.formDiscount.controls["discount"].value);
+    this.discountUnit = this.formDiscount.controls["unit"].value;
+    if ( this.discountUnit == 'percentage') {
+      this.totalAfterDiscount = this.total - (this.total * this.discount/100);
+    } else if ( this.discountUnit == 'euro' ) {
+      this.totalAfterDiscount = this.total - this.discount;
+    }
+    this.toggleClassDiscount();
+  }
+
+  protected cancelDiscount(): void {
+    this.toggleClassDiscount();
+    this.totalAfterDiscount = this.total;
+    this.formDiscount.reset();
+  }
+
+  private toggleClassDiscount(): void {
+    this.classNameBeforeDiscount == 'totalBeforeDiscount' ? this.classNameBeforeDiscount = 'totalBeforeDiscount-crossed' : this.classNameBeforeDiscount = 'totalBeforeDiscount';
+    this.classNameAfterDiscount == 'totalAfterDiscount-hidden' ? this.classNameAfterDiscount = 'totalAfterDiscount-show' : this.classNameAfterDiscount = 'totalAfterDiscount-hidden';
+    this.cancelButton == 'cancel-hidden' ? this.cancelButton = 'cancel-show' : this.cancelButton = 'cancel-hidden';
+    this.applyButton == 'apply' ? this.applyButton = 'apply-hidden' : this.applyButton = 'apply';
   }
 }

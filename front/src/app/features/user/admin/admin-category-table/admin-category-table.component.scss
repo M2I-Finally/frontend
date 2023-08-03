@@ -39,21 +39,9 @@
                 height: 100%;
                 font-size: 2rem;
                 vertical-align: middle;
+                margin-bottom: 1rem;
+                margin-top: 1rem;
             }
-
-            .add-button {
-                all:unset;
-                cursor: pointer;
-                padding:0.8rem 2rem;
-                border-radius: 10px;
-                text-align: center;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                margin: 1rem;
-                color: black;
-                border: 3px solid black;
-                font-family: 'Quicksand';
-                font-weight: 600;
-            }  
         }
 
         table {
@@ -73,7 +61,7 @@
 
             td {
                 vertical-align:middle !important;
-                height: 3.555555rem;
+                height: 3.5rem;
             }
 
             td svg {
@@ -93,6 +81,45 @@
 
             tr:nth-child(even) {
                 background-color: #FFFFFF;
+            }
+
+            .update-name {
+
+                display: none;
+                
+                input {
+                    padding: 0.5rem;
+                    appearance: textfield;
+                    width: 50%;
+                }
+
+                button {
+                    
+                    all: unset;
+                    margin-left: 1rem;
+                    border-radius: 2px;
+                    
+                    &:hover {
+                        filter: brightness(80%);
+                    }
+
+                    svg {
+                        margin-left: 0px;
+                        vertical-align: middle;
+                    }
+                }
+
+                .confirm-update {
+                    background-color: var(--validation-green);
+                }
+
+                .cancel-update {
+                    background-color: var(--text-color);
+                    svg {
+                        fill: var(--text-on-dk-bg);
+                    }
+                }
+
             }
 
             .update-cell {
@@ -156,38 +183,45 @@
                         &:focus + .slider{
                             box-shadow: 0 0 1px var(--secondary-container);
                         }
-                }
-                
-                
+                }   
             }
+
         
         }
-    }
+        
+        #category-footer {
+            width: 100%;
+            background-color: #524C7D;
+            padding: 1rem;
 
-    #delete {
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
-            text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
-        }
-    }
+            input {
+                margin-left: 2rem;
+                width: 35%;
+                padding: 0.5rem;
+                appearance: textfield;
+            }
 
-    #logout {
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
-            text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
+            button {
+                all: unset;
+                cursor:pointer;
+                margin-left: 2rem;
+                background-color: var(--primary-yellow);
+                padding: 0.5rem 1rem;
+                border-radius: 2px;
+            }
+
+            button:hover {
+                filter: brightness(90%);
+            }
+
+            .validation-error {
+                color: #fefefe;
+                margin-left: 2rem;
+            }
         }
     }
 }
+
 
 
 
@@ -202,4 +236,3 @@
         top: 0.8%;
     }
 }
-

@@ -4,20 +4,24 @@
         color: var(--brand-red);
     }
 
-    #gestion-button {
-        position: absolute;
-        top: 1.2%;
-        right: 10%;
+    #generic-header{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    #groupleft {
+        display: flex;
+        min-width: 300px;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 2rem;
     }
 
     #logout {
-        position: absolute;
-        top: 1%;
-        right: 0;
-        cursor: pointer;
-        margin-right: 2%;
-        margin-top: 1rem;
         color: var(--primary-yellow);
+        cursor: pointer;
 
         &-dialog {
             padding: 4rem;

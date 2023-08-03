@@ -1,8 +1,11 @@
 export interface Product {
-    id: number;
+    productId: number;
     name: string;
+    description: string;
     price: number;
-    isActive: boolean;
+    tax: number;
+    status: boolean;
     stock: number;
-    image: string;
+    picture: string | undefined;
+    categoryId: number;
 }

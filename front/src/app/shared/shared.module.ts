@@ -12,8 +12,6 @@ import { GenericPaymentButtonComponent } from './components/generic-payment-butt
 import { ReturnToProductsPageButtonComponent } from './components/return-to-products-page-button/return-to-products-page-button.component';
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
 
-
-
 @NgModule({
   declarations: [
     GenericButtonComponent,

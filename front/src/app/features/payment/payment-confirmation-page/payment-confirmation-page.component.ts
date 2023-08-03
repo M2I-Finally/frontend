@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Cart } from 'src/app/shared/entities/cart';
 import { BasketService } from 'src/app/shared/services/basket.service';
@@ -8,11 +9,13 @@ import { Payment } from 'src/app/shared/entities/payment';
 import { CartLine } from 'src/app/shared/entities/cart-line';
 import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 
+
 @Component({
   selector: 'app-payment-confirmation-page',
   templateUrl: './payment-confirmation-page.component.html',
   styleUrls: ['./payment-confirmation-page.component.scss']
 })
+
 export class PaymentConfirmationPageComponent implements OnInit {
   total!: number
   basket$!: Cart;
@@ -78,43 +81,6 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
   }
 
-  
-  // cardSubmit(){
-  //   console.log("cardSubmit() called")
-  //   this.paymentDtoList.push(new PaymentDto(this.basket$.getTotal(),1));
-  //   this.paymentService.postPayment(
-  //     new Payment(this.basketLine,
-  //        this.total,
-  //        this.discount,
-  //        this.paymentDtoList,
-  //        this.sellerId)
-  //    );
-  // };
-
-  // cashSubmit(){
-  //   console.log("cashSubmit() called")
-  //   this.paymentDtoList.push(new PaymentDto(this.basket$.getTotal(),0));
-  //   this.paymentService.postPayment(
-  //     new Payment(this.basketLine,
-  //        this.total,
-  //        this.discount,
-  //        this.paymentDtoList,
-  //        this.sellerId)
-  //    );
-  // };
-
-  // otherSubmit(){
-  //   console.log("otherSubmit() called")
-  //   this.paymentDtoList.push(new PaymentDto(this.basket$.getTotal(),2));
-  //   this.paymentService.postPayment(
-  //     new Payment(this.basketLine,
-  //        this.total,
-  //        this.discount,
-  //        this.paymentDtoList,
-  //        this.sellerId)
-  //    );
-  // };
-
   Submit(paymentId:number){
     this.paymentDtoList.push(new PaymentDto(this.basket$.getTotal(),paymentId));
     this.paymentService.postPayment(
@@ -127,5 +93,11 @@ export class PaymentConfirmationPageComponent implements OnInit {
       next: data => console.log(data)
      });
      
+
+
+  protected cancelBasket(): void {
+    this.router.navigate([`shop`]);
+    this.basket$.resetCart();
+
   }
 }

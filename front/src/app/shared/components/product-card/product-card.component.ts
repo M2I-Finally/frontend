@@ -4,6 +4,7 @@ import { BasketService } from '../../services/basket.service';
 import { CartLine } from 'src/app/shared/entities/cart-line';
 import { Cart } from '../../entities/cart';
 import { _isNumberValue } from '@angular/cdk/coercion';
+import { Environment } from 'src/environment/environment';
 
 @Component({
   selector: 'product-card',
@@ -12,7 +13,8 @@ import { _isNumberValue } from '@angular/cdk/coercion';
 })
 export class ProductCardComponent implements OnInit{
   constructor(private basketService : BasketService){}
-  
+  placeholderUrl = Environment.imagePlaceholderUrl;
+
   @Input() product?: Product;
   @Input() quantity!: number;  
   basket$!: Cart;  
@@ -31,12 +33,12 @@ export class ProductCardComponent implements OnInit{
       
       this.basket$.getCartLines().forEach((line) => {
 
-        if( this.product?.id == line.getId() && line.getQuantity() > 0){           
+        if( this.product?.productId == line.getId() && line.getQuantity() > 0){           
             line.setQuantity(-1);
             this.quantity = line.getQuantity();      
            
             if (line.getQuantity()<=0){   
-              this.basket$.removeLines(this.product?.id);
+              this.basket$.removeLines(this.product?.productId);
               this.quantity =0;               
             }            
         }
@@ -51,7 +53,7 @@ export class ProductCardComponent implements OnInit{
     if (this.product){
       this.basket$.getCartLines().forEach((line) => {
 
-        if( this.product?.id == line.getId()){ 
+        if( this.product?.productId == line.getId()){ 
           //if ( line.getQuantity() < this.product.stock ){
             line.setQuantity(1);
             this.quantity = line.getQuantity();           
@@ -61,7 +63,7 @@ export class ProductCardComponent implements OnInit{
 
       })
       if (!lineExist){              
-        let cartLine = new CartLine(this.product?.id | 0,this.product?.name,this.product?.price,1,1);
+        let cartLine = new CartLine(this.product?.productId | 0,this.product?.name,this.product?.price,1,1);
         this.basket$.addLines(cartLine);
         this.quantity = cartLine.getQuantity();       
       }
@@ -74,13 +76,13 @@ export class ProductCardComponent implements OnInit{
     
     if ( this.product ){
 
-      if( (this.basket$.getCartLines().find(cart => cart.getId() == this.product?.id )?.getQuantity()) == undefined){
+      if( (this.basket$.getCartLines().find(cart => cart.getId() == this.product?.productId )?.getQuantity()) == undefined){
         this.quantity=0 ;
       }
 
       this.basket$.getCartLines().forEach((line) => {
         
-        if( this.product?.id == line.getId()){      
+        if( this.product?.productId == line.getId()){      
             
             this.quantity= line.getQuantity(); 
                    

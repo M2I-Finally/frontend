@@ -1,9 +1,9 @@
 <nav id="main-nav">
     <div id="main-container">
         <ng-container *ngFor="let category of categoryList$ | async; index as i">
-            <ng-template [ngIf]="category.isActive">
-                <generic-button color="blue" content="{{ category?.name }}"></generic-button>
+            <ng-template [ngIf]="category.status">
+                <button class="navigation-button" id="{{ category?.id }}" (click)="changeCategory($event)">{{ category?.name }}</button>
             </ng-template>
         </ng-container>
     </div>
-</nav>  
+</nav>
