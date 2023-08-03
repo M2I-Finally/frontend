@@ -40,6 +40,8 @@ export class ListRecapComponent implements OnInit {
   discountUnit : string | undefined;
   classNameAfterDiscount: string = 'totalAfterDiscount-hidden';
   classNameBeforeDiscount: string = 'totalBeforeDiscount';
+  cancelButton: string = 'cancel-hidden';
+  applyButton: string = 'apply';
 
 
   constructor(private productService: ProductService, private basketService: BasketService) { };
@@ -96,7 +98,7 @@ export class ListRecapComponent implements OnInit {
       this.basketService.updateBasket(this.basket$);      
   }
 
-  protected discountSubmit(event: Event): void {
+  protected submitDiscount(event: Event): void {
     event.preventDefault();
     this.discount = parseInt(this.formDiscount.controls["discount"].value);
     this.discountUnit = this.formDiscount.controls["unit"].value;
@@ -105,7 +107,18 @@ export class ListRecapComponent implements OnInit {
     } else if ( this.discountUnit == 'euro' ) {
       this.totalAfterDiscount = this.total - this.discount;
     }
-    this.classNameAfterDiscount = 'totalAfterDiscount-show';
-    this.classNameBeforeDiscount = 'totalBeforeDiscount-crossed';
+    this.toggleClassDiscount();
+  }
+
+  protected cancelDiscount(): void {
+    this.toggleClassDiscount();
+    this.totalAfterDiscount = this.total;
+  }
+
+  private toggleClassDiscount(): void {
+    this.classNameBeforeDiscount == 'totalBeforeDiscount' ? this.classNameBeforeDiscount = 'totalBeforeDiscount-crossed' : this.classNameBeforeDiscount = 'totalBeforeDiscount';
+    this.classNameAfterDiscount == 'totalAfterDiscount-hidden' ? this.classNameAfterDiscount = 'totalAfterDiscount-show' : this.classNameAfterDiscount = 'totalAfterDiscount-hidden';
+    this.cancelButton == 'cancel-hidden' ? this.cancelButton = 'cancel-show' : this.cancelButton = 'cancel-hidden';
+    this.applyButton == 'apply' ? this.applyButton = 'apply-hidden' : this.applyButton = 'apply';
   }
 }
