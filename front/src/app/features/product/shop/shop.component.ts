@@ -22,7 +22,7 @@ export class ShopComponent implements OnInit{
   productList$: Observable<Product[]> | undefined;
   selectedCategoryId: number | undefined;
   filteredProductList$: Observable<Product[]> | undefined;
-  userRole: string = 'user';
+  userRole: string = 'USER';
   classToUse: string = 'groupleft';
   
   quantity: number = 0;
@@ -37,7 +37,7 @@ export class ShopComponent implements OnInit{
     let sessionToken = sessionStorage.getItem('token');
     let decoded: Jwt = jwt_decode(sessionToken!);
     this.userRole = decoded.role;
-    if ( this.userRole == 'user' ) {
+    if ( this.userRole == 'USER' ) {
       this.classToUse = 'groupleft-user';
     }
   } 
