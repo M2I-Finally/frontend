@@ -53,6 +53,14 @@
         justify-content: space-between;
         align-items: center;
         margin-right: 2rem;
+
+        &-user {
+            display: flex;
+            justify-content: flex-end;
+            min-width: 300px;
+            align-items: center;
+            margin-right: 2rem;
+        }
     }
 }
 

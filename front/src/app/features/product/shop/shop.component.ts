@@ -22,6 +22,8 @@ export class ShopComponent implements OnInit{
   productList$: Observable<Product[]> | undefined;
   selectedCategoryId: number | undefined;
   filteredProductList$: Observable<Product[]> | undefined;
+  userRole: string = 'user';
+  classToUse: string = 'groupleft';
   
   quantity: number = 0;
   basket$!: Cart;  
@@ -34,8 +36,10 @@ export class ShopComponent implements OnInit{
     
     let sessionToken = sessionStorage.getItem('token');
     let decoded: Jwt = jwt_decode(sessionToken!);
-    let role = decoded.role;
-    console.log(role);
+    this.userRole = decoded.role;
+    if ( this.userRole == 'user' ) {
+      this.classToUse = 'groupleft-user';
+    }
   } 
 
   goToPage(pageName:string): void {
@@ -53,6 +57,5 @@ export class ShopComponent implements OnInit{
 
   deleteFilter(): void {
     this.productList$ = this.productService.getProducts();
-
   }
 }
