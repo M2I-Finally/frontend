@@ -48,7 +48,9 @@ export class CartLine {
     }
 
     public setQuantity(quantity : number){
-        this.quantity = this.quantity + quantity;
+        if (this.quantity> 0){
+            this.quantity = this.quantity + quantity;
+        }
     }
 
     //created this method for list-recap

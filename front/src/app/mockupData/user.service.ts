@@ -2,21 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { User } from '../shared/entities/user';
+import { Environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  url = 'http://localhost:3000';
+  url = Environment.apiUrl + '/users';
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url + '/users');
+    return this.http.get<User[]>(this.url);
   }
 
   getUserById(userId: number | undefined): Observable<User> {
-    return this.http.get<User>(this.url + '/users?id=' + userId)
+    return this.http.get<User>(this.url + '/' + userId)
       .pipe(
         map(res => {
           return res;
@@ -25,14 +26,14 @@ export class UserService {
   }
 
   postUser(user: User): Observable<User> {
-    return this.http.post<User>(this.url + '/users', user);
+    return this.http.post<User>(this.url, user);
   }
 
   putUser(userId: number | undefined, user: User): Observable<User> {
-    return this.http.put<User>(this.url + '/users/' + userId, user);
+    return this.http.put<User>(this.url + '/' + userId, user);
   }
 
   deleteUser(userId: number | undefined): Observable<User> {
-    return this.http.delete<User>(this.url + '/users/' + userId);
+    return this.http.delete<User>(this.url + '/' + userId);
   }
 }
