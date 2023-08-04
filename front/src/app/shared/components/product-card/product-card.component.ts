@@ -92,7 +92,6 @@ export class ProductCardComponent implements OnInit{
        
       })
     }
-    console.log("dans le setTest : "+ this.quantity)    
   } 
   
 }

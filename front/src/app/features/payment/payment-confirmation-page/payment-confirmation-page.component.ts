@@ -108,9 +108,10 @@ export class PaymentConfirmationPageComponent implements OnInit {
      ).subscribe({
       next: (data) =>{
         this.toastr.success(`Le panier ${data} est bien enregistré, facture est encours de générer.`);
+        // une fois payé, vider le panier et avancer sur la page facture
         this.cancelBasket('facture');
       }, 
-      error: error => this.toastr.error(error.error.message)
+      error: error => this.toastr.error(error.message)
      });
   }
 

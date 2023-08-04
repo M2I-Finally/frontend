@@ -54,7 +54,6 @@ export class ListRecapComponent implements OnInit {
 
     this.basketService.basket$.subscribe((basket: Cart) => {
       this.basket$ = basket;
-      // console.log(basket);
       this.cartLine$ = basket.getCartLines();
       this.calculateTotal();
     });
@@ -64,6 +63,9 @@ export class ListRecapComponent implements OnInit {
     this.basket$.getCartLines().forEach((line) => {
       if (line.getId() === id) {
         line.setQuantity(-1);
+        if (line.getQuantity() === 0){
+          this.removeItem(id);
+        }
       }
     })
     this.basketService.updateBasket(this.basket$);
@@ -100,7 +102,9 @@ export class ListRecapComponent implements OnInit {
   removeItem(id:number){
       this.basket$.removeLines(id);
       this.basketService.updateBasket(this.basket$);  
-      this.cancelDiscount();    
+      if (this.totalAfterDiscount){
+        this.cancelDiscount();    
+      }
   }
 
   protected submitDiscount(event: Event): void {
