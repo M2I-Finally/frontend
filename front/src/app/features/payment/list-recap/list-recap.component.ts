@@ -101,7 +101,7 @@ export class ListRecapComponent implements OnInit {
 
   protected submitDiscount(event: Event): void {
     event.preventDefault();
-    this.discount = parseInt(this.formDiscount.controls["discount"].value);
+    this.discount = parseFloat(this.formDiscount.controls["discount"].value);
     this.discountUnit = this.formDiscount.controls["unit"].value;
     if ( this.discountUnit == 'percentage') {
       this.totalAfterDiscount = this.total - (this.total * this.discount/100);

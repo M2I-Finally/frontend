@@ -24,8 +24,8 @@ export class PaymentConfirmationPageComponent implements OnInit {
   amount:number = 0;
   paymentTypeId:number | undefined;
   payment$!: Payment;
-  sellerId!:number;
-  discount!:number;
+  sellerId:number =1;
+  discount:number =1;
   paymentDtoList: PaymentDto[] = [];
 
   constructor(private basketService: BasketService, private paymentService:PaymentService, private router: Router) { };
@@ -56,7 +56,12 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
   totalWithDiscount(event:number){
     this.totalAfterDiscount = event;
-    console.log(this.totalAfterDiscount);
+
+    if (this.totalAfterDiscount < this.total){
+      this.discount = 1- this.totalAfterDiscount/this.total;
+      this.total = this.totalAfterDiscount;
+      this.basket$.setTotal(this.total);
+    }
   };
 
   updatePayment(formGroupName:UntypedFormGroup, name:string, paymentType:string){
