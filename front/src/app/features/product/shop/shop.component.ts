@@ -7,6 +7,8 @@ import { Cart } from 'src/app/shared/entities/cart';
 import { Product } from 'src/app/shared/entities/product';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import { Event, Router } from '@angular/router';
+import jwt_decode from "jwt-decode";
+import { Jwt } from 'src/app/shared/entities/jwt';
 
 @Component({
   selector: 'shop',
@@ -20,6 +22,8 @@ export class ShopComponent implements OnInit{
   productList$: Observable<Product[]> | undefined;
   selectedCategoryId: number | undefined;
   filteredProductList$: Observable<Product[]> | undefined;
+  userRole: string = 'user';
+  classToUse: string = 'groupleft';
   
   quantity: number = 0;
   basket$!: Cart;  
@@ -29,6 +33,13 @@ export class ShopComponent implements OnInit{
       this.basket$= basket;      
     });
     this.productList$ = this.productService.getProducts();
+    
+    let sessionToken = sessionStorage.getItem('token');
+    let decoded: Jwt = jwt_decode(sessionToken!);
+    this.userRole = decoded.role;
+    if ( this.userRole == 'user' ) {
+      this.classToUse = 'groupleft-user';
+    }
   } 
 
   goToPage(pageName:string): void {
@@ -46,6 +57,5 @@ export class ShopComponent implements OnInit{
 
   deleteFilter(): void {
     this.productList$ = this.productService.getProducts();
-
   }
 }

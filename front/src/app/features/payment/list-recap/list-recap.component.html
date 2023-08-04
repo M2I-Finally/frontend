@@ -34,7 +34,7 @@
   <form action="" [formGroup]="formDiscount" (ngSubmit)="submitDiscount($event)">
     <div id="form-container">
       <label for="discountTotal">Réduction</label>
-      <input type="number" min="0" step="0.1" formControlName="discount" id="discountTotal">
+      <input type="number" min="0" step="0.01" formControlName="discount" id="discountTotal">
       <select name="unit" id="unit" formControlName="unit">
         <option value="percentage">%</option>
         <option value="euro">&euro;</option>

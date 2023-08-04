@@ -34,7 +34,7 @@ export class ListRecapComponent implements OnInit {
 
   formDiscount = new UntypedFormGroup({
     discount: new UntypedFormControl('', [Validators.required]),
-    unit: new UntypedFormControl('percentage', [Validators.pattern('/^\d*\.?\d*$/')]),
+    unit: new UntypedFormControl('percentage'),
   })
 
   discount: number | undefined;
