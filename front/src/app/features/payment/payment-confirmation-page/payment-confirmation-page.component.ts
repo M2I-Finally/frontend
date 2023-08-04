@@ -92,9 +92,9 @@ export class PaymentConfirmationPageComponent implements OnInit {
      
   }
   
-  protected cancelBasket(): void {
+  protected cancelBasket(page:string): void {
     this.basket$.resetCart();
-    this.router.navigate([`facture`]);
+    this.router.navigate([page]);
     
   }
 
@@ -108,7 +108,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
      ).subscribe({
       next: (data) =>{
         this.toastr.success(`Le panier ${data} est bien enregistré, facture est encours de générer.`);
-        this.cancelBasket();
+        this.cancelBasket('facture');
       }, 
       error: error => this.toastr.error(error.error.message)
      });
