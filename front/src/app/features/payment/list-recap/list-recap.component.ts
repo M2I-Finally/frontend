@@ -67,7 +67,9 @@ export class ListRecapComponent implements OnInit {
       }
     })
     this.basketService.updateBasket(this.basket$);
-    this.cancelDiscount();
+    if (this.totalAfterDiscount){
+      this.cancelDiscount();
+    }
   }
 
   add(id: number) {
@@ -79,7 +81,9 @@ export class ListRecapComponent implements OnInit {
     })
 
     this.basketService.updateBasket(this.basket$);
-    this.cancelDiscount();
+    if (this.totalAfterDiscount){
+      this.cancelDiscount();
+    }
   }
 
   calculateTotal(): void {
@@ -114,7 +118,7 @@ export class ListRecapComponent implements OnInit {
 
   protected cancelDiscount(): void {
     this.toggleClassDiscount();
-    this.totalAfterDiscount = this.total;
+    this.totalAfterDiscount = undefined;
     this.formDiscount.reset();
   }
 
