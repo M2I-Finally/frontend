@@ -47,7 +47,7 @@ export class ShopComponent implements OnInit{
   }
   
   onSearchTextEntered(searchValue:string){
-    this.searchText = searchValue;
+    this.searchText = searchValue.toLowerCase();
   }
 
   categoryFilter(event: number): void {
