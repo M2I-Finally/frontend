@@ -24,11 +24,13 @@ import { ProductModule } from './features/product/product.module';
 import { PaymentModule } from './features/payment/payment.module';
 import { ToastrModule } from 'ngx-toastr';
 import { InterceptorService } from './shared/services/interceptor.service';
+import { PagenotfoundComponent } from './features/pagenotfound/pagenotfound.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,

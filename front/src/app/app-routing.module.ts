@@ -14,6 +14,7 @@ import { AdminUserTableComponent } from './features/user/admin/admin-user-table/
 import { GuardService } from './shared/services/guard.service';
 
 import { AdminCategoryTableComponent } from './features/user/admin/admin-category-table/admin-category-table.component';
+import { PagenotfoundComponent } from './features/pagenotfound/pagenotfound.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,11 @@ const routes: Routes = [
     path:"categories",
     component: AdminCategoryTableComponent,
     canActivate: [GuardService]
+  },
+  {
+    path: '**', 
+    pathMatch: 'full', 
+    component: PagenotfoundComponent
   }
 ]
 
