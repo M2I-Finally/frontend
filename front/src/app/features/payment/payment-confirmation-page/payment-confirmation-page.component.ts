@@ -8,7 +8,9 @@ import { PaymentService } from 'src/app/shared/services/payment.service';
 import { Payment } from 'src/app/shared/entities/payment';
 import { CartLine } from 'src/app/shared/entities/cart-line';
 import { PaymentDto } from 'src/app/shared/entities/payment-dto';
-
+import { ToastrService } from 'ngx-toastr';
+import { Jwt } from 'src/app/shared/entities/jwt';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-payment-confirmation-page',
@@ -24,11 +26,11 @@ export class PaymentConfirmationPageComponent implements OnInit {
   amount:number = 0;
   paymentTypeId:number | undefined;
   payment$!: Payment;
-  sellerId:number =1;
+  sellerId:number = 999;
   discount:number =1;
   paymentDtoList: PaymentDto[] = [];
 
-  constructor(private basketService: BasketService, private paymentService:PaymentService, private router: Router) { };
+  constructor(private basketService: BasketService, private paymentService:PaymentService,private toastr: ToastrService, private router: Router) { };
   
   formPayByCard = new UntypedFormGroup({
     sumCard:new UntypedFormControl('', [Validators.required, Validators.min(0), Validators.max(this.total)]),
@@ -50,15 +52,19 @@ export class PaymentConfirmationPageComponent implements OnInit {
       this.basket$ = basket;
       this.total = this.basket$.getTotal();
     })
-     
 
+    //sellerId:
+    let sessionToken = sessionStorage.getItem('token');
+    let decoded: Jwt = jwt_decode(sessionToken!);
+    this.sellerId = decoded.id;
+    
   };
 
   totalWithDiscount(event:number){
     this.totalAfterDiscount = event;
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
     if (this.totalAfterDiscount < this.total){
-      this.discount = 1- this.totalAfterDiscount/this.total;
+      this.discount = 1 - this.totalAfterDiscount/this.total;
       this.total = this.totalAfterDiscount;
       this.basket$.setTotal(this.total);
     }
@@ -76,23 +82,23 @@ export class PaymentConfirmationPageComponent implements OnInit {
     this.paymentDtoList.push(new PaymentDto(this.amount, this.paymentTypeId));
 
     if (this.total === 0 ){
-      //ferme la fenetre
-      this.paymentService.postPayment(
-        new Payment(this.basketLine,
-           this.total,
-           this.discount,
-           this.paymentDtoList,
-           this.sellerId)
-       ).subscribe({
-        next: data => console.log(data)
-       });
+      this.createBasket();
     }
-    console.log(`updatePayment(${formGroupName.controls}) called, paymenttypeId ${this.paymentTypeId}, update List ${this.paymentDtoList}`)
-
   }
 
   Submit(paymentId:number){
     this.paymentDtoList.push(new PaymentDto(this.basket$.getTotal(),paymentId));
+    this.createBasket();
+     
+  }
+  
+  protected cancelBasket(): void {
+    this.basket$.resetCart();
+    this.router.navigate([`facture`]);
+    
+  }
+
+  private createBasket():void{
     this.paymentService.postPayment(
       new Payment(this.basketLine,
          this.total,
@@ -100,17 +106,14 @@ export class PaymentConfirmationPageComponent implements OnInit {
          this.paymentDtoList,
          this.sellerId)
      ).subscribe({
-      next: data => console.log(data)
+      next: (data) =>{
+        this.toastr.success(`Le panier ${data} est bien enregistré, facture est encours de générer.`);
+        this.cancelBasket();
+      }, 
+      error: error => this.toastr.error(error.error.message)
      });
-     
   }
-
-  
-  protected cancelBasket(): void {
-    this.router.navigate([`shop`]);
-    this.basket$.resetCart();
-
-  }
-
 
 }
+
+
