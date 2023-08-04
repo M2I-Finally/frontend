@@ -45,11 +45,15 @@
             <fieldset>
                 <legend>Rôle<span>*</span></legend>            
                 <div>
+                    <input type="radio" id="admin" name="userRole" formControlName="userRole" value="admin">
+                    <label for="admin">Admin</label>
+                  </div>
+                <div>
                   <input type="radio" id="employee" name="userRole" formControlName="userRole" value="employee">
                   <label for="employee">Employé</label>
                 </div>            
                 <div>
-                  <input type="radio" id="manager" name="userRole" formControlName="userRole" value="manager">
+                  <input type="radio" id="manager" name="userRole" formControlName="userRole" value="managere">
                   <label for="manager">Manager</label>
                 </div>
             </fieldset>
