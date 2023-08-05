@@ -56,11 +56,13 @@ export class AdminUserTableComponent implements OnInit {
   }
 
   private populateForm(user: User) {
-    this.formUser.controls["userId"].setValue(this.selectedUserId);
-    this.formUser.controls["userName"].setValue(this.selectedUserName);
-    this.formUser.controls["userPassword"].setValue('Password123!');
-    this.formUser.controls["confirmationPassword"].setValue('Password123!');
-    this.formUser.controls["userRole"].setValue(this.selectedUserRole);
+    
+      this.formUser.controls["userId"].setValue(this.selectedUserId);
+      this.formUser.controls["userName"].setValue(this.selectedUserName);
+      this.formUser.controls["userPassword"].setValue('Password123!');
+      this.formUser.controls["confirmationPassword"].setValue('Password123!');
+      this.formUser.controls["userRole"].setValue(this.selectedUserRole!.toLowerCase);
+
   }
 
   protected editUser(): void {
@@ -69,7 +71,7 @@ export class AdminUserTableComponent implements OnInit {
     this.userService.getUserById(this.selectedUserId).subscribe({
       next: res => {
           this.populateForm(res);
-        //  console.log(res)
+          // console.log(res)
       }
     })
   }
@@ -80,7 +82,7 @@ export class AdminUserTableComponent implements OnInit {
     this.selectedUserName = this.selectedUser?.username;
     this.selectedUserId = this.selectedUser?.id;
     this.selectedUserPassword = this.selectedUser?.password;
-    this.selectedUserRole = this.selectedUser?.role.toLocaleLowerCase();
+    this.selectedUserRole = this.selectedUser?.role.toLowerCase();
   }
 
   protected submit(): void {
