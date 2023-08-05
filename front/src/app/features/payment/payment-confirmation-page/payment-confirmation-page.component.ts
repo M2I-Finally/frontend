@@ -24,10 +24,13 @@ export class PaymentConfirmationPageComponent implements OnInit {
   basket$!: Cart;
   basketLine!:CartLine[];
   amount:number = 0;
+  amountDue:number = 0;
+  amountPaid:number = 0;
+  change:number= 0;
   paymentTypeId:number | undefined;
   payment$!: Payment;
   sellerId:number = 999;
-  discount:number =1;
+  discount:number = 1;
   paymentDtoList: PaymentDto[] = [];
 
   constructor(private basketService: BasketService, private paymentService:PaymentService,private toastr: ToastrService, private router: Router) { };
@@ -51,6 +54,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
     this.basketService.basket$.subscribe((basket: Cart) => {
       this.basket$ = basket;
       this.total = this.basket$.getTotal();
+      this.basketLine = basket.getCartLines();
     })
 
     //sellerId:
@@ -72,18 +76,36 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
   updatePayment(formGroupName:UntypedFormGroup, name:string, paymentType:string){
     // get the payment input
-    
     this.amount = formGroupName.controls[name].value;
+
     // update total
-    this.total -= this.amount;
+    if (this.total>0){
+      if(this.amount<this.total){
+        this.total -= this.amount;
+        this.amountPaid += this.amount;
+        this.amountDue = this.total;  
+      } else {
+        this.amountPaid += this.amount;
+        this.amountDue = 0;
+        this.change = this.amount - this.total;
+      }
+
+
+      if (this.total === 0 ){
+        this.createBasket();
+      }
+
+    } else {
+      this.toastr.error("Il n'y a rien à payer.")
+    }
+    
+
     // note payment id
     this.paymentTypeId = parseInt(formGroupName.controls[paymentType].value);
 
     this.paymentDtoList.push(new PaymentDto(this.amount, this.paymentTypeId));
 
-    if (this.total === 0 ){
-      this.createBasket();
-    }
+    
   }
 
   Submit(paymentId:number){
@@ -98,7 +120,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
     
   }
 
-  private createBasket():void{
+  protected createBasket():void{
     this.paymentService.postPayment(
       new Payment(this.basketLine,
          this.total,
@@ -109,6 +131,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
       next: (data) =>{
         this.toastr.success(`Le panier ${data} est bien enregistré, facture est encours de générer.`);
         // une fois payé, vider le panier et avancer sur la page facture
+        console.log(this.basketLine);
         this.cancelBasket('facture');
       }, 
       error: error => this.toastr.error(error.message)

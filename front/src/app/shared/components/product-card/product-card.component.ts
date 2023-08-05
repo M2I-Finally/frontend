@@ -33,7 +33,7 @@ export class ProductCardComponent implements OnInit{
       
       this.basket$.getCartLines().forEach((line) => {
 
-        if( this.product?.productId == line.getId() && line.getQuantity() > 0){           
+        if( this.product?.productId == line.getProductId() && line.getQuantity() > 0){           
             line.setQuantity(-1);
             this.quantity = line.getQuantity();      
            
@@ -53,7 +53,7 @@ export class ProductCardComponent implements OnInit{
     if (this.product){
       this.basket$.getCartLines().forEach((line) => {
 
-        if( this.product?.productId == line.getId()){ 
+        if( this.product?.productId == line.getProductId()){ 
           //if ( line.getQuantity() < this.product.stock ){
             line.setQuantity(1);
             this.quantity = line.getQuantity();           
@@ -76,13 +76,13 @@ export class ProductCardComponent implements OnInit{
     
     if ( this.product ){
 
-      if( (this.basket$.getCartLines().find(cart => cart.getId() == this.product?.productId )?.getQuantity()) == undefined){
+      if( (this.basket$.getCartLines().find(cart => cart.getProductId() == this.product?.productId )?.getQuantity()) == undefined){
         this.quantity=0 ;
       }
 
       this.basket$.getCartLines().forEach((line) => {
         
-        if( this.product?.productId == line.getId()){      
+        if( this.product?.productId == line.getProductId()){      
             
             this.quantity= line.getQuantity(); 
                    
