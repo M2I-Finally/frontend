@@ -21,6 +21,7 @@ import jwt_decode from "jwt-decode";
 export class PaymentConfirmationPageComponent implements OnInit {
   total!: number
   totalAfterDiscount: number | undefined;
+  cartModified:boolean | undefined;
   basket$!: Cart;
   basketLine!:CartLine[];
   amount:number = 0;
@@ -74,6 +75,15 @@ export class PaymentConfirmationPageComponent implements OnInit {
     }
   };
 
+  isCartModified(event:boolean){
+    this.cartModified = event;
+    console.log(this.cartModified);
+    if (this.cartModified){
+      this.amountPaid = 0;
+      this.amountDue = 0;
+      this.change = 0;
+    }
+  }
   updatePayment(formGroupName:UntypedFormGroup, name:string, paymentType:string){
     // get the payment input
     this.amount = formGroupName.controls[name].value;
@@ -89,7 +99,6 @@ export class PaymentConfirmationPageComponent implements OnInit {
         this.amountDue = 0;
         this.change = this.amount - this.total;
       }
-
 
       if (this.total === 0 ){
         this.createBasket();

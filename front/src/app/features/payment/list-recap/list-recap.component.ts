@@ -22,7 +22,7 @@ export class ListRecapComponent implements OnInit {
   @Input() quantity!: number;
   @Input() cartLine?: CartLine;
   @Output() discountApplied = new EventEmitter<number>();
-  
+  @Output() isCartModified = new EventEmitter<boolean>() ;
 
   total!: number;
   totalAfterDiscount: number | undefined;
@@ -60,7 +60,8 @@ export class ListRecapComponent implements OnInit {
     });
   }
 
-  minus(id: number) {
+  minus(id: number, event: Event) {
+    event.preventDefault();
     this.basket$.getCartLines().forEach((line) => {
       if (line.getProductId() === id) {
         line.setQuantity(-1);
@@ -73,10 +74,11 @@ export class ListRecapComponent implements OnInit {
     if (this.totalAfterDiscount){
       this.cancelDiscount();
     }
+    this.isCartModified.emit(true);
   }
 
-  add(id: number) {
-  
+  add(id: number, event: Event) {
+    event.preventDefault();
       this.basket$.getCartLines().forEach((line) => {
         if (line.getProductId() === id) {
           line.setQuantity(1);
@@ -87,6 +89,7 @@ export class ListRecapComponent implements OnInit {
     if (this.totalAfterDiscount){
       this.cancelDiscount();
     }
+    this.isCartModified.emit(true);
   }
 
   calculateTotal(): void {
@@ -119,7 +122,7 @@ export class ListRecapComponent implements OnInit {
         this.illegalDiscout("Le discount saisi n'est pas valide.", "Error");
       };
     } else if ( this.discountUnit == 'euro' ) {
-      if (this.total > this.discount){
+      if (this.total > this.discount || this.discount < 0){
         this.totalAfterDiscount = this.total - this.discount;
       } else {
         this.illegalDiscout("Le discount saisi n'est pas valide.", "Error");    }
