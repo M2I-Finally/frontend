@@ -3,6 +3,7 @@ import { Product } from 'src/app/shared/entities/product';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Observable, first, mergeMap} from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'admin-products-table',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AdminProductsTableComponent implements OnInit {
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService, private router: Router, private toastr: ToastrService) {}
   
   protected modalDelete!: HTMLDialogElement;
   protected productList$:Observable<Product[]> | undefined;
@@ -55,6 +56,7 @@ export class AdminProductsTableComponent implements OnInit {
       mergeMap(() => this.productService.getProducts())
     );
     
+    this.toastr.success("Produit supprimé avec succès"),
     this.closeDeleteModal();
   }
 }
