@@ -52,14 +52,18 @@ export class AdminCategoryTableComponent implements OnInit {
    * @param categoryId Number that represents the category number in database
    */
   protected deleteCategory(categoryIndex: number, categoryId: number): void {
-    this.categoryService.deleteCategory(categoryId).subscribe({
-      next: category => { 
-        this.categoryList?.splice(categoryIndex, 1);
-        this.toastr.success("Catégorie supprimée avec succès")
-      },
-      error: error => this.toastr.error(error.error.message),
-    });
     
+    if(this.categoryList != undefined && this.categoryList[categoryIndex].productCount! <= 0) {
+      this.categoryService.deleteCategory(categoryId).subscribe({
+        next: category => { 
+          this.categoryList?.splice(categoryIndex, 1);
+          this.toastr.success("Catégorie supprimée avec succès")
+        },
+        error: error => this.toastr.error(error.error.message),
+      });
+    } else {
+      this.toastr.error("Impossible de supprimer une catégorie qui contient des produits");
+    }
   }
 
   /**
