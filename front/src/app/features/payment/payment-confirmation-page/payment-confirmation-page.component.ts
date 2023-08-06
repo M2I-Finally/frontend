@@ -91,27 +91,6 @@ export class PaymentConfirmationPageComponent implements OnInit {
   };
 
   /**
-   * Any modification for quantity will update payment situation.
-   * @param event if quantity is changed. 
-   */
-  isCartLineModified(event:boolean){
-    this.cartModified = event;
-    
-    if (this.cartModified ){
-      
-      this.amountDue = this.total-this.amountPaid;
-      if(this.total>=this.amountPaid){
-        this.change = 0;
-      }
-
-      if (this.total < this.amountPaid) {
-        this.amountDue = 0
-        this.change = this.amountPaid - this.total ;
-      } 
-    }
-  }
-
-  /**
    * Partial payment
    * @param formGroupName get payment amount from input
    * @param name FormControlName for input
@@ -123,14 +102,12 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
     // update total
     if (this.total>0){
+      this.amountPaid += this.amount;
       if(this.amount<this.total){
-        this.total -= this.amount;
-        this.amountPaid += this.amount;
-        this.amountDue = this.total;  
+        this.amountDue -= this.amountPaid;  
       } else {
-        this.amountPaid += this.amount;
         this.amountDue = 0;
-        this.change = this.amount - this.total;
+        this.change = this.amountPaid - this.total;
       }
       
     } else {
@@ -154,6 +131,27 @@ export class PaymentConfirmationPageComponent implements OnInit {
     this.createBasket();    
   }
   
+   /**
+   * Any modification for quantity will update payment situation.
+   * @param event if quantity is changed. 
+   */
+   isCartLineModified(event:boolean){
+    this.cartModified = event;
+    
+    if (this.cartModified ){
+      
+      this.amountDue = this.total-this.amountPaid;
+      if(this.amountDue>=0){
+        this.change = 0;
+      } 
+
+      if(this.amountDue<0) {
+        this.change = this.amountPaid - this.total
+        this.amountDue = 0
+      } 
+    }
+  }
+
   /**
    * cancel payment
    * reset the cart and noted payment list
