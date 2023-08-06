@@ -40,45 +40,60 @@
     }
 
     #user-container {
-        width: 95%;
-        margin: auto;
+        margin: 0 auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
         padding-top: 2rem;
-    }
+        gap: 2rem;
+   
 
-    #form {
-        &-header {
-            width: 100%;            
-            padding: 1rem;
+        #form {
+            
+            &-header {
+                width: 100%;            
+            }
+
+            &-title {
+                font-family: 'Quicksand';
+                font-weight: bold;
+                font-size: x-large;
+            }
+
+            &-info {
+                font-size: small;
+                color: var(--brand-red);
+            }
+
+            &-user {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 1rem;
+                gap: 1rem;
+                width: 40%;
+            }
+
+            &-button {
+                all:unset;
+                cursor: pointer;
+                padding:0.8rem 2rem;
+                border-radius: 10px;
+                text-align: center;
+                box-shadow: 10px 5px 5px var(--bg-color-80);
+                margin: 0 1rem;
+                font-family: 'Quicksand';
+                font-weight: 600;
+                width: 100px;
+                background-color: var(--primary-yellow);
+                border: 3px solid var(--primary-yellow);
+                color: var(--primary-bg-color);
+                height: 30px;
+            }
         }
 
-        &-title {
-            font-family: 'Quicksand';
-            font-weight: bold;
-            font-size: x-large;
-            width: 100%;
-        }
-
-        &-info {
-            font-size: small;
-            color: var(--brand-red);
-        }
-
-        &-user {
-            font-family: 'Quicksand';
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 1rem;
-            gap: 1rem;
-            width: 57%;
-            border-right: 1px #000 solid;
-        }
-
-        &-button {
+        #cancel-button {
             all:unset;
             cursor: pointer;
             padding:0.8rem 2rem;
@@ -89,147 +104,151 @@
             font-family: 'Quicksand';
             font-weight: 600;
             width: 100px;
-            background-color: var(--primary-yellow);
-            border: 3px solid var(--primary-yellow);
+            background-color: var(--brand-red);
+            border: 3px solid var(--brand-red);
             color: var(--primary-bg-color);
             height: 30px;
         }
-    }
 
-    #cancel-button {
-        all:unset;
-        cursor: pointer;
-        padding:0.8rem 2rem;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 10px 5px 5px var(--bg-color-80);
-        margin: 0 1rem;
-        font-family: 'Quicksand';
-        font-weight: 600;
-        width: 100px;
-        background-color: var(--brand-red);
-        border: 3px solid var(--brand-red);
-        color: var(--primary-bg-color);
-        height: 30px;
-    }
-
-    #button-container {
-        display: flex;
-        justify-content: center;
-    }
-
-    .formContainer {    
-        height: auto;
-        display: flex;
-        flex-wrap:wrap;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-
-        &:first-child {
-            display: none;
-        }
-        
-        &-label {
-            width: 30%;
-            min-width: 200px;
-        }
-
-        &-input {
-            border: 1px solid var(--text-color);
-            background-color: var(--text-on-dk-bg);
-            width: 100%;
-            resize: none; 
-            appearance: textfield;
-        }
-    }
-
-    .error-msg {
-        width: 100%;
-    }
-
-    aside {
-        width: 40%;
-    }
-
-    input[type='radio'] {
-        accent-color: #524c7d;
-    }
-
-    table {
-        font-family: 'Quicksand', sans-serif;
-        text-align: center;
-        width: 100%;
-
-        tr {
+        #button-container {
             display: flex;
+            justify-content: center;
+        }
+
+        .formContainer {    
+            height: auto;
+            display: flex;
+            flex-wrap:wrap;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            height: 30px;
-            font-weight: 700;
+
+            .hidden {
+                display: none;
+            }
+
+            &-label {
+                width: 30%;
+                min-width: 200px;
+            }
+
+            &-input {
+                border: 1px solid var(--text-color);
+                background-color: var(--text-on-dk-bg);
+                width: 100%;
+                height: 2rem;
+                resize: none; 
+                appearance: textfield;
+            }
+
+            .error-msg {
+                width: 100%;
+                color: var(--brand-red);
+                font-size: 0.8rem;
+                padding-top: 0.2rem;
+            }
         }
 
-        td {
-            margin-left: 0.5rem;
+        aside {
+            width: 40%;
+            border-left: 1px solid black;
+
+            #users {
+            
+                &-header {
+                    width: 100%;  
+                    padding: 1rem;
+                    margin-left: 1rem;         
+                }
+    
+                &-title {
+                    font-family: 'Quicksand';
+                    font-weight: bold;
+                    font-size: x-large;
+                }
+            }
         }
 
-        tr:nth-child(odd) {
-            background-color: #DDFEF2;
+        input[type='radio'] {
+            accent-color: #524c7d;
         }
 
-        tr:nth-child(even) {
-            background-color: #524C7D;
-            color: #FFF;
-        }
-
-        .svg-icon:nth-child(odd) {
-            background-color: #DDFEF2;
-        }
-
-        .svg-icon:nth-child(even) {
-            background-color: #524C7D;
-            color: #FFF;
-        }
-    }    
-
-    .bi {
-        cursor: pointer;
-        margin-right: 1rem;
-    }
-
-    #delete {
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
+        table {
+            font-family: 'Quicksand', sans-serif;
             text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
-        }
-    }
+            width: 90%;
+            margin-left: 2rem;
 
-    #edit {
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
-            text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
-        }
-    }
+            tr {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 30px;
+                font-weight: 700;
+            }
 
-    #success {
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
-            text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
+            td {
+                margin-left: 0.5rem;
+            }
+
+            tr:nth-child(odd) {
+                background-color: #DDFEF2;
+            }
+
+            tr:nth-child(even) {
+                background-color: #524C7D;
+                color: #FFF;
+            }
+
+            .svg-icon:nth-child(odd) {
+                background-color: #DDFEF2;
+            }
+
+            .svg-icon:nth-child(even) {
+                background-color: #524C7D;
+                color: #FFF;
+            }
+        }    
+
+        .bi {
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+
+        #delete {
+            &-dialog {
+                padding: 4rem;
+                box-shadow: 10px 5px 5px var(--bg-color-80);
+                border-radius: 10px;
+                text-align: center;
+                font-family: 'Quicksand';
+                font-weight: 600;
+                border-color: #524c7d;
+            }
+        }
+
+        #edit {
+            &-dialog {
+                padding: 4rem;
+                box-shadow: 10px 5px 5px var(--bg-color-80);
+                border-radius: 10px;
+                text-align: center;
+                font-family: 'Quicksand';
+                font-weight: 600;
+                border-color: #524c7d;
+            }
+        }
+
+        #success {
+            &-dialog {
+                padding: 4rem;
+                box-shadow: 10px 5px 5px var(--bg-color-80);
+                border-radius: 10px;
+                text-align: center;
+                font-family: 'Quicksand';
+                font-weight: 600;
+                border-color: #524c7d;
+            }
         }
     }
 }

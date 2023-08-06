@@ -11,15 +11,18 @@
 </div>
 <admin-nav></admin-nav>
 <div id="user-container">  
-    <div id="form-header">  
-        <h1 id="form-title">{{ modeText }} un utilisateur</h1>
-        <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
-    </div>
+
     <form id="form-user" [formGroup]="formUser" (ngSubmit)="submit(); dialogSuccess.showModal()">
-        <div class="formContainer">
+        <div id="form-header">  
+            <h1 id="form-title">{{ modeText }} un utilisateur</h1>
+            <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
+        </div>
+        
+        <div class="formContainer hidden">
             <label class="formContainer-label" for="userid">Id utilisateur</label>
             <input class="formContainer-input" type="text" formControlName="userId" id="userid">
         </div>
+
         <div class="formContainer">
             <label class="formContainer-label" for="username">Nom de l'utilisateur<span>*</span></label>
             <input class="formContainer-input" type="text" formControlName="userName" id="username" required>
@@ -64,6 +67,9 @@
         </div>
     </form>    
     <aside>
+        <div id="users-header">  
+            <h1 id="users-title">Liste des utilisateurs</h1>
+        </div>
         <table>        
             <tbody>        
                 <ng-container *ngFor="let user of userList$ | async; index as i">
