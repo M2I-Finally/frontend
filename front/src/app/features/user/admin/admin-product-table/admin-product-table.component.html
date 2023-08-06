@@ -62,7 +62,7 @@
     </table>
 </div>
 
-<dialog #dialogDelete id="delete-dialog">
+<dialog #dialogDelete id="delete-dialog-product">
     <p>Voulez-vous vraiment supprimer <strong>{{ selectedProduct?.name }}</strong> ?</p>
     <generic-button color="green-full" content="Supprimer" (click)="deleteProduct(selectedProduct?.productId!)"></generic-button>
     <generic-button color="red-full" content="Annuler" (click)="closeDeleteModal()"></generic-button>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { Category } from 'src/app/shared/entities/category';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './admin-category-table.component.html',
   styleUrls: ['./admin-category-table.component.scss']
 })
-export class AdminCategoryTableComponent implements OnInit {
+export class AdminCategoryTableComponent implements OnInit{
 
   protected categoryList: Category[] | undefined;
   protected selectedCategory: Category | undefined;
@@ -23,7 +23,9 @@ export class AdminCategoryTableComponent implements OnInit {
            [Validators.pattern("[a-zA-Z ]+")]);
 
   ngOnInit(): void {
-      this.modalDelete = document.getElementById("delete-dialog") as HTMLDialogElement;
+      this.modalDelete = document.getElementById("delete-dialog-category") as HTMLDialogElement;
+      this.closeDeleteModal();
+
       this.categoryService.getCategories().subscribe(categories => {
         this.categoryList = categories as Category[]
       })

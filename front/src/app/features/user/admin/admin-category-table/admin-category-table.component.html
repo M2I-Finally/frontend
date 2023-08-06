@@ -81,7 +81,7 @@
     </div>
 </div>
 
-<dialog #dialogDelete id="delete-dialog">
+<dialog #dialogDelete id="delete-dialog-category">
     <p>Voulez-vous vraiment supprimer <strong>{{ selectedCategory?.name }}</strong> ?</p>
     <generic-button color="green-full" content="Supprimer" (click)="deleteCategory(selectedCategoryIndex!, selectedCategory?.id!)"></generic-button>
     <generic-button color="red-full" content="Annuler" (click)="closeDeleteModal()"></generic-button>
