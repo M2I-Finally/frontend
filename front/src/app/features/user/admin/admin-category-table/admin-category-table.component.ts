@@ -13,6 +13,9 @@ import { Router } from '@angular/router';
 export class AdminCategoryTableComponent implements OnInit {
 
   protected categoryList: Category[] | undefined;
+  protected selectedCategory: Category | undefined;
+  protected selectedCategoryIndex: number | undefined;
+  protected modalDelete: HTMLDialogElement | undefined;
   constructor(private categoryService: CategoryService, private toastr: ToastrService, private router: Router) {}
 
   // Form control for category name input
@@ -20,6 +23,7 @@ export class AdminCategoryTableComponent implements OnInit {
            [Validators.pattern("[a-zA-Z ]+")]);
 
   ngOnInit(): void {
+      this.modalDelete = document.getElementById("delete-dialog") as HTMLDialogElement;
       this.categoryService.getCategories().subscribe(categories => {
         this.categoryList = categories as Category[]
       })
@@ -41,7 +45,7 @@ export class AdminCategoryTableComponent implements OnInit {
           categoryInput.value = "";
           this.toastr.success("Catégorie créée avec succès")
         },
-        error: error => this.toastr.error(error.error.message),
+        error: error => this.toastr.error(error.message),
     });
     }
   }
@@ -64,7 +68,20 @@ export class AdminCategoryTableComponent implements OnInit {
     } else {
       this.toastr.error("Impossible de supprimer une catégorie qui contient des produits");
     }
+    this.modalDelete?.close();
   }
+
+    // Shows the delete modal with appropriate product settings
+    protected showDeleteModal(category: Category, categoryIndex: number): void {
+      this.selectedCategory = category;
+      this.selectedCategoryIndex = categoryIndex;
+      this.modalDelete?.showModal();
+    }
+  
+    // Closes the delete modal
+    protected closeDeleteModal(): void {
+      this.modalDelete?.close();
+    }
 
   /**
    * When clicked, shows the input block in the selected row
