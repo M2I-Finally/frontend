@@ -1,26 +1,26 @@
 
 export class CartLine {
-    private id: number;
+    private productId: number;
     private name: string;
     private price: number;
     private discount: number;
     private quantity: number;
     
 
-    constructor(id : number | 0, name : string | "", price : number | 0, discount: number | 0, quantity: number | 0){
-        this.id = id;
+    constructor(productId : number | 0, name : string | "", price : number | 0, discount: number | 0, quantity: number | 0){
+        this.productId = productId;
         this.name = name;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
     }
 
-    public getId(){
-        return this.id;
+    public getProductId(){
+        return this.productId;
     }
 
-    public setId(id : number){
-        this.id = id;
+    public setProductId(productId : number){
+        this.productId = productId;
     }
 
     public getName(){

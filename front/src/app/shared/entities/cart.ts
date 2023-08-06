@@ -21,7 +21,7 @@ export class Cart {
 
     public removeLines(id : number){
         for (let index = 0; index < this.cartLines.length; index++) {       
-            if ( id == this.cartLines[index].getId()){
+            if ( id == this.cartLines[index].getProductId()){
                 this.cartLines.splice(index, 1);                
             }
         }

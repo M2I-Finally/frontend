@@ -6,7 +6,12 @@
     <div class="recapWrapper">
         <return-to-products-page-button back="RETOUR AUX PRODUITS"></return-to-products-page-button>
         <h1 class="title">Récapitulatif de la commande</h1>
-        <list-recap (discountApplied)="totalWithDiscount($event)"></list-recap>
+        <list-recap (discountApplied)="totalWithDiscount($event)" (isQuantityModified)="isCartLineModified($event)"></list-recap>
+        <div>
+            <span> Montant payé: {{ amountPaid | currency }} </span>    
+            <span> | Reste à payé: {{amountDue | currency }} </span>
+            <span> | Monnaie à rendre: {{change | currency }} </span>
+        </div>
     </div>
 
     <!-- payments -->
@@ -79,6 +84,7 @@
             </generic-payment-button>
         </div>
         <generic-button color="red" content="Annuler" (click)="cancelBasket('shop')"></generic-button>
+        <generic-button color="green-full" content="valider le paiement" (click)="createBasket()"></generic-button>
     </aside>
 </div>
 
@@ -113,7 +119,7 @@
 
     <p >OU</p>
 
-    <generic-button color="green-full" content="Payer {{ total | currency }}" (click)="Submit(1);dialogCard.close()"></generic-button>
+    <generic-button color="green-full" content="Payer {{ amountDue | currency }}" (click)="Submit(1);dialogCard.close()"></generic-button>
 
 </dialog>
 
@@ -148,7 +154,7 @@
 
     <p >OU</p>
     
-    <generic-button color="green-full" content="Payer {{total | currency }}" (click)="Submit(0); dialogCash.close()"></generic-button>
+    <generic-button color="green-full" content="Payer {{amountDue | currency }}" (click)="Submit(0); dialogCash.close()"></generic-button>
 
 </dialog>
 
@@ -185,6 +191,6 @@
 
     <p> OU </p>
 
-    <generic-button color="green-full" content="Payer {{total | currency }}" (click)="Submit(2); dialogOther.close()"></generic-button>
+    <generic-button color="green-full" content="Payer {{amountDue | currency }}" (click)="Submit(2); dialogOther.close()"></generic-button>
 
 </dialog>

@@ -23,13 +23,16 @@ export class BasketProductComponent {
       });
    }
  
+   /**
+    * minus one to cart
+    */
   minus(){    
     if(this.cartLine && this.cartLine?.getQuantity() > 0){
       this.basket$.getCartLines().forEach((line) => {
-        if( this.cartLine?.getId() == line.getId() && line.getQuantity() > 0){           
+        if( this.cartLine?.getProductId() == line.getProductId() && line.getQuantity() > 0){           
           line.setQuantity(-1);
           if (line.getQuantity()<=0){   
-            this.basket$.removeLines(this.cartLine.getId());               
+            this.basket$.removeLines(this.cartLine.getProductId());               
           }            
         }
         this.basketService.updateBasket(this.basket$);
@@ -37,11 +40,14 @@ export class BasketProductComponent {
     }
   }
 
+  /**
+   * add one to cart
+   */
   add(){
    
     if (this.cartLine){
       this.basket$.getCartLines().forEach((line) => {
-        if( this.cartLine?.getId() == line.getId()){
+        if( this.cartLine?.getProductId() == line.getProductId()){
           line.setQuantity(1);
         }
     })    
@@ -49,9 +55,12 @@ export class BasketProductComponent {
     }               
   }
 
+  /**
+   * remove line
+   */
   trash(){
     if(this.cartLine){
-      this.basket$.removeLines(this.cartLine.getId());
+      this.basket$.removeLines(this.cartLine.getProductId());
       this.basketService.updateBasket(this.basket$);
     } 
   }

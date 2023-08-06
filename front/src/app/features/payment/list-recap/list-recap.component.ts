@@ -6,6 +6,7 @@ import { Product } from 'src/app/shared/entities/product';
 import { Cart } from 'src/app/shared/entities/cart';
 import { CartLine } from 'src/app/shared/entities/cart-line';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'list-recap',
@@ -21,6 +22,7 @@ export class ListRecapComponent implements OnInit {
   @Input() quantity!: number;
   @Input() cartLine?: CartLine;
   @Output() discountApplied = new EventEmitter<number>();
+  @Output() isQuantityModified = new EventEmitter<boolean>();
 
   total!: number;
   totalAfterDiscount: number | undefined;
@@ -45,12 +47,11 @@ export class ListRecapComponent implements OnInit {
   applyButton: string = 'apply';
 
 
-  constructor(private productService: ProductService, private basketService: BasketService) { };
+  constructor(private productService: ProductService, private basketService: BasketService,private toastr: ToastrService) { };
 
   ngOnInit(): void {
     this.productList$ = this.productService.getProducts();
     this.productList$.subscribe(products => { this.productList = products });
-    console.log(this.productList);
 
     this.basketService.basket$.subscribe((basket: Cart) => {
       this.basket$ = basket;
@@ -61,7 +62,7 @@ export class ListRecapComponent implements OnInit {
 
   minus(id: number) {
     this.basket$.getCartLines().forEach((line) => {
-      if (line.getId() === id) {
+      if (line.getProductId() === id) {
         line.setQuantity(-1);
         if (line.getQuantity() === 0){
           this.removeItem(id);
@@ -72,12 +73,12 @@ export class ListRecapComponent implements OnInit {
     if (this.totalAfterDiscount){
       this.cancelDiscount();
     }
+    this.isQuantityModified.emit(true);
   }
 
   add(id: number) {
-  
       this.basket$.getCartLines().forEach((line) => {
-        if (line.getId() === id) {
+        if (line.getProductId() === id) {
           line.setQuantity(1);
         }
     })
@@ -86,6 +87,7 @@ export class ListRecapComponent implements OnInit {
     if (this.totalAfterDiscount){
       this.cancelDiscount();
     }
+    this.isQuantityModified.emit(true);
   }
 
   calculateTotal(): void {
@@ -112,9 +114,16 @@ export class ListRecapComponent implements OnInit {
     this.discount = parseFloat(this.formDiscount.controls["discount"].value);
     this.discountUnit = this.formDiscount.controls["unit"].value;
     if ( this.discountUnit == 'percentage') {
-      this.totalAfterDiscount = this.total - (this.total * this.discount/100);
+      if (this.discount < 100){
+        this.totalAfterDiscount = this.total - (this.total * this.discount/100);
+      } else {
+        this.illegalDiscount("Le discount saisi n'est pas valide.", "Error");
+      };
     } else if ( this.discountUnit == 'euro' ) {
-      this.totalAfterDiscount = this.total - this.discount;
+      if (this.total > this.discount || this.discount < 0){
+        this.totalAfterDiscount = this.total - this.discount;
+      } else {
+        this.illegalDiscount("Le discount saisi n'est pas valide.", "Error");    }
     }
     this.discountApplied.emit(this.totalAfterDiscount);
     this.toggleClassDiscount();
@@ -132,4 +141,10 @@ export class ListRecapComponent implements OnInit {
     this.cancelButton == 'cancel-hidden' ? this.cancelButton = 'cancel-show' : this.cancelButton = 'cancel-hidden';
     this.applyButton == 'apply' ? this.applyButton = 'apply-hidden' : this.applyButton = 'apply';
   }
+
+  private illegalDiscount(message:string, title:string){
+    this.toastr.error(message, title);
+    this.discount=undefined;
+  }
+
 }

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Observable, filter, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { Category } from 'src/app/shared/entities/category';
 import { Cart } from 'src/app/shared/entities/cart';
 import { Product } from 'src/app/shared/entities/product';
 import { BasketService } from 'src/app/shared/services/basket.service';
-import { Event, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { Jwt } from 'src/app/shared/entities/jwt';
 
@@ -42,20 +40,36 @@ export class ShopComponent implements OnInit{
     }
   } 
 
+  /**
+   * go to given page
+   * @param pageName given page
+   */
   goToPage(pageName:string): void {
     this.router.navigate([`${pageName}`])
   }
   
+  /**
+   * search product
+   * @param searchValue 
+   */
   onSearchTextEntered(searchValue:string){
     this.searchText = searchValue.toLowerCase();
   }
 
+  /**
+   * filter category
+   * @param event 
+   */
   categoryFilter(event: number): void {
     this.selectedCategoryId = event;
     this.productList$ = this.productService.getProductByCategoryId(this.selectedCategoryId);
   }
 
+  /**
+   * delete the filter and display all products
+   */
   deleteFilter(): void {
     this.productList$ = this.productService.getProducts();
   }
+
 }
