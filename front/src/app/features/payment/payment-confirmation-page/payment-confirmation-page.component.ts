@@ -103,8 +103,8 @@ export class PaymentConfirmationPageComponent implements OnInit {
     // update total
     if (this.total>0){
       this.amountPaid += this.amount;
-      if(this.amount<this.total){
-        this.amountDue -= this.amountPaid;  
+      if(this.amountPaid<this.total){
+        this.amountDue = this.total - this.amountPaid;  
       } else {
         this.amountDue = 0;
         this.change = this.amountPaid - this.total;
