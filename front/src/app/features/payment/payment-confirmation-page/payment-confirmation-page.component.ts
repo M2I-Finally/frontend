@@ -100,7 +100,9 @@ export class PaymentConfirmationPageComponent implements OnInit {
     if (this.cartModified ){
       
       this.amountDue = this.total-this.amountPaid;
-      this.change = 0;
+      if(this.total>=this.amountPaid){
+        this.change = 0;
+      }
 
       if (this.total < this.amountPaid) {
         this.amountDue = 0

@@ -1,7 +1,5 @@
 import { Component,Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { Basket } from '../../entities/basket';
 import { CartLine } from '../../entities/cart-line';
-import { Observable, map ,of} from 'rxjs';
 import { Cart } from '../../entities/cart';
 import { BasketService } from '../../services/basket.service';
 import { Router } from '@angular/router';
@@ -14,13 +12,11 @@ import { Router } from '@angular/router';
 export class BasketComponent implements OnInit {
 
   constructor(private basketService : BasketService, private router:Router ){}
-  //basket : Basket = new Basket("panier");
-  //basket$: Observable<CartLine[]> | undefined;
+
   @Input() quantity!: number;
   total!: number; 
   basket$!: Cart;
   cartLine$!: CartLine[];
-  
   
   ngOnInit(): void {
     /**
@@ -62,5 +58,6 @@ export class BasketComponent implements OnInit {
     this.basket$.resetCart();
     this.cartLine$ = this.basket$.getCartLines();
     this.total = 0;
+    
   }  
 }

@@ -48,8 +48,6 @@ export class Cart {
         return total;
      }
 
-    
-
     public getDiscount(){
         return this.discount;
     }
