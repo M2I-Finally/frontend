@@ -6,7 +6,7 @@ export class CartLine {
     private discount: number;
     private quantity: number;
     
-
+    
     constructor(productId : number | 0, name : string | "", price : number | 0, discount: number | 0, quantity: number | 0){
         this.productId = productId;
         this.name = name;

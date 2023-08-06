@@ -72,4 +72,5 @@ export class ShopComponent implements OnInit{
     this.productList$ = this.productService.getProducts();
   }
 
+  
 }

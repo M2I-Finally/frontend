@@ -55,9 +55,14 @@ export class BasketComponent implements OnInit {
    * cancel the basket
    */
   protected cancelBasket(): void {
+    // reset basketlines
     this.basket$.resetCart();
+    // update empty basket lines 
     this.cartLine$ = this.basket$.getCartLines();
+    //update total
     this.total = 0;
-    
+    //update the productCard quantity
+    this.basketService.updateBasket(this.basket$);
+
   }  
 }
