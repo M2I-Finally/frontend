@@ -20,7 +20,7 @@ export class AdminCategoryTableComponent implements OnInit{
 
   // Form control for category name input
   categoryName = new FormControl('',
-           [Validators.pattern("[a-zA-Z ]+")]);
+           [Validators.pattern("[a-zA-Z  ']+")]);
 
   ngOnInit(): void {
       this.modalDelete = document.getElementById("delete-dialog-category") as HTMLDialogElement;
@@ -75,9 +75,14 @@ export class AdminCategoryTableComponent implements OnInit{
 
     // Shows the delete modal with appropriate product settings
     protected showDeleteModal(category: Category, categoryIndex: number): void {
-      this.selectedCategory = category;
-      this.selectedCategoryIndex = categoryIndex;
-      this.modalDelete?.showModal();
+      if(category.productCount == undefined || category.productCount <= 0){
+        this.selectedCategory = category;
+        this.selectedCategoryIndex = categoryIndex;
+        this.modalDelete?.showModal();
+      }
+      else {
+        this.toastr.error("Impossible de supprimer une catégorie qui contient des produits");
+      }
     }
   
     // Closes the delete modal
