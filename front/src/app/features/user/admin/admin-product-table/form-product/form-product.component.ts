@@ -27,7 +27,7 @@ export class FormProductComponent implements OnInit {
   // Form that handles the addition or edition of a product
   formProduct = new UntypedFormGroup({
     productId: new UntypedFormControl(''),
-    productName: new UntypedFormControl('', [Validators.required]),
+    productName: new UntypedFormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9 ']+")]),
     productDescription: new UntypedFormControl(''),
     productPrice: new UntypedFormControl('', [Validators.required, Validators.min(0)]),
     productTax: new UntypedFormControl('', [Validators.required]),
@@ -38,7 +38,7 @@ export class FormProductComponent implements OnInit {
   ngOnInit(): void {
   
     // If form is on edit mode and the id is correct
-    if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl()) {
+    if(this.getActionParameterFromUrl() == "edit" && this.getIdParameterFromUrl()) {    
       this.modeText = "Modifier";
       this.productService.getProductById(this.getIdParameterFromUrl())
       .subscribe(
