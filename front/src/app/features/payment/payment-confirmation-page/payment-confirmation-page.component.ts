@@ -122,6 +122,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
   
   protected cancelBasket(page:string): void {
     this.basket$.resetCart();
+    this.clearPaymentList();
     this.router.navigate([page]);
     
   }
@@ -146,8 +147,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
 private clearPaymentList(){
   if (this.paymentDtoList.length > 0){
-    let i=0
-    for (i=0; i<this.paymentDtoList.length; i++){
+    for (let i=0; i<this.paymentDtoList.length; i++){
       this.paymentDtoList.pop();
     }
   };
