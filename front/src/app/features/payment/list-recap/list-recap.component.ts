@@ -22,7 +22,7 @@ export class ListRecapComponent implements OnInit {
   @Input() quantity!: number;
   @Input() cartLine?: CartLine;
   @Output() discountApplied = new EventEmitter<number>();
-  @Output() isCartModified = new EventEmitter<boolean>() ;
+  @Output() isQuantityModified = new EventEmitter<boolean>();
 
   total!: number;
   totalAfterDiscount: number | undefined;
@@ -60,8 +60,7 @@ export class ListRecapComponent implements OnInit {
     });
   }
 
-  minus(id: number, event: Event) {
-    event.preventDefault();
+  minus(id: number) {
     this.basket$.getCartLines().forEach((line) => {
       if (line.getProductId() === id) {
         line.setQuantity(-1);
@@ -74,11 +73,10 @@ export class ListRecapComponent implements OnInit {
     if (this.totalAfterDiscount){
       this.cancelDiscount();
     }
-    this.isCartModified.emit(true);
+    this.isQuantityModified.emit(true);
   }
 
-  add(id: number, event: Event) {
-    event.preventDefault();
+  add(id: number) {
       this.basket$.getCartLines().forEach((line) => {
         if (line.getProductId() === id) {
           line.setQuantity(1);
@@ -89,7 +87,7 @@ export class ListRecapComponent implements OnInit {
     if (this.totalAfterDiscount){
       this.cancelDiscount();
     }
-    this.isCartModified.emit(true);
+    this.isQuantityModified.emit(true);
   }
 
   calculateTotal(): void {

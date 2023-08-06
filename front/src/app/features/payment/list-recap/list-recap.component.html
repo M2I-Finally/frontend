@@ -9,9 +9,9 @@
       <td >{{line.getName()}}</td>
       
       <td >
-        <button class="btn btn-qty-controller card-btn-minus" (click)="minus(line.getProductId(),$event)">-</button>
+        <button class="btn btn-qty-controller card-btn-minus" (click)="minus(line.getProductId())">-</button>
         {{line.getQuantity()}}
-        <button class="btn btn-qty-controller card-btn-add" (click)="add(line.getProductId(), $event)" >+</button>
+        <button class="btn btn-qty-controller card-btn-add" (click)="add(line.getProductId())" >+</button>
       </td>
 
       <td >{{line.getPrice() |  currency }}</td>

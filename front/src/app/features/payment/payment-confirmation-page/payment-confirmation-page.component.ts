@@ -75,13 +75,14 @@ export class PaymentConfirmationPageComponent implements OnInit {
     }
   };
 
-  isCartModified(event:boolean){
+  isCartLineModified(event:boolean){
     this.cartModified = event;
-    console.log(this.cartModified);
+    console.log("pass" + this.cartModified);
     if (this.cartModified){
       this.amountPaid = 0;
       this.amountDue = 0;
       this.change = 0;
+      this.clearPaymentList();
     }
   }
   updatePayment(formGroupName:UntypedFormGroup, name:string, paymentType:string){
@@ -98,10 +99,6 @@ export class PaymentConfirmationPageComponent implements OnInit {
         this.amountPaid += this.amount;
         this.amountDue = 0;
         this.change = this.amount - this.total;
-      }
-
-      if (this.total === 0 ){
-        this.createBasket();
       }
 
     } else {
@@ -147,6 +144,14 @@ export class PaymentConfirmationPageComponent implements OnInit {
      });
   }
 
+private clearPaymentList(){
+  if (this.paymentDtoList.length > 0){
+    let i=0
+    for (i=0; i<this.paymentDtoList.length; i++){
+      this.paymentDtoList.pop();
+    }
+  };
+}
 }
 
 
