@@ -60,6 +60,11 @@ export class PaymentConfirmationPageComponent implements OnInit {
       this.total = this.basket$.getTotal();
       this.basketLine = basket.getCartLines();
     })
+    
+    /**
+     * initialize amountDue
+     */
+
     this.amountDue = this.total;
     /**
      * get seller id
