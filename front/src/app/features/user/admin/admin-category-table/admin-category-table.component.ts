@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { Category } from 'src/app/shared/entities/category';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './admin-category-table.component.html',
   styleUrls: ['./admin-category-table.component.scss']
 })
-export class AdminCategoryTableComponent implements OnInit {
+export class AdminCategoryTableComponent implements OnInit{
 
   protected categoryList: Category[] | undefined;
   protected selectedCategory: Category | undefined;
@@ -20,10 +20,12 @@ export class AdminCategoryTableComponent implements OnInit {
 
   // Form control for category name input
   categoryName = new FormControl('',
-           [Validators.pattern("[a-zA-Z ]+")]);
+           [Validators.pattern("[a-zA-Z  ']+")]);
 
   ngOnInit(): void {
-      this.modalDelete = document.getElementById("delete-dialog") as HTMLDialogElement;
+      this.modalDelete = document.getElementById("delete-dialog-category") as HTMLDialogElement;
+      this.closeDeleteModal();
+
       this.categoryService.getCategories().subscribe(categories => {
         this.categoryList = categories as Category[]
       })
@@ -73,9 +75,14 @@ export class AdminCategoryTableComponent implements OnInit {
 
     // Shows the delete modal with appropriate product settings
     protected showDeleteModal(category: Category, categoryIndex: number): void {
-      this.selectedCategory = category;
-      this.selectedCategoryIndex = categoryIndex;
-      this.modalDelete?.showModal();
+      if(category.productCount == undefined || category.productCount <= 0){
+        this.selectedCategory = category;
+        this.selectedCategoryIndex = categoryIndex;
+        this.modalDelete?.showModal();
+      }
+      else {
+        this.toastr.error("Impossible de supprimer une catégorie qui contient des produits");
+      }
     }
   
     // Closes the delete modal

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/entities/product';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Observable, first, mergeMap} from 'rxjs';
@@ -13,20 +13,22 @@ import { ToastrService } from 'ngx-toastr';
 export class AdminProductsTableComponent implements OnInit {
 
   constructor(private productService: ProductService, private router: Router, private toastr: ToastrService) {}
-  
+
   protected modalDelete!: HTMLDialogElement;
   protected productList$:Observable<Product[]> | undefined;
   protected selectedProduct: Product | undefined;
 
   public ngOnInit(): void {
 
-    this.modalDelete = document.getElementById("delete-dialog") as HTMLDialogElement;
+    this.modalDelete = document.getElementById("delete-dialog-product") as HTMLDialogElement;
+    this.closeDeleteModal();
 
     // This will merge the new results even after page refresh
     this.productList$ =  this.productService.getProducts().pipe(
       mergeMap(() => this.productService.getProducts())
     );
   }
+
 
   protected goToPage(pageName:string): void {
     this.router.navigate([`${pageName}`])

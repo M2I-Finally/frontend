@@ -17,7 +17,7 @@
                     <label class="required">Nom du produit</label>
                     <input type="text" formControlName="productName">
                     <div class="error-msg" *ngIf="!formProduct.controls['productName'].valid && formProduct.controls['productName'].dirty">
-                        Le champ ne peut pas être vide
+                        Le champ ne peut contenir que des lettres, des chiffres et des espaces
                     </div>
                 </div>
 
