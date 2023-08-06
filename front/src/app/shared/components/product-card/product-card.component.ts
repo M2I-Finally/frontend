@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Product } from '../../entities/product';
 import { BasketService } from '../../services/basket.service';
 import { CartLine } from 'src/app/shared/entities/cart-line';

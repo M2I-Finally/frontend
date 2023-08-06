@@ -23,6 +23,9 @@ export class BasketProductComponent {
       });
    }
  
+   /**
+    * minus one to cart
+    */
   minus(){    
     if(this.cartLine && this.cartLine?.getQuantity() > 0){
       this.basket$.getCartLines().forEach((line) => {
@@ -37,6 +40,9 @@ export class BasketProductComponent {
     }
   }
 
+  /**
+   * add one to cart
+   */
   add(){
    
     if (this.cartLine){
@@ -49,6 +55,9 @@ export class BasketProductComponent {
     }               
   }
 
+  /**
+   * remove line
+   */
   trash(){
     if(this.cartLine){
       this.basket$.removeLines(this.cartLine.getProductId());

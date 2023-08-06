@@ -13,7 +13,7 @@
 <div id="shop-container">
     <ng-container *ngFor="let product of productList$ | async; index as i">
         <ng-template [ngIf]="product.status">
-            <product-card [product]="product" [quantity]="quantity" *ngIf="searchText==='' || product.name.toLowerCase().includes(searchText)"></product-card>
+            <product-card [product]="product" [quantity]="quantity" *ngIf="searchText==='' || product.name.toLowerCase().includes(searchText)" ></product-card>
         </ng-template>
     </ng-container>
 </div>

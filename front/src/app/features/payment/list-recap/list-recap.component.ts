@@ -117,13 +117,13 @@ export class ListRecapComponent implements OnInit {
       if (this.discount < 100){
         this.totalAfterDiscount = this.total - (this.total * this.discount/100);
       } else {
-        this.illegalDiscout("Le discount saisi n'est pas valide.", "Error");
+        this.illegalDiscount("Le discount saisi n'est pas valide.", "Error");
       };
     } else if ( this.discountUnit == 'euro' ) {
       if (this.total > this.discount || this.discount < 0){
         this.totalAfterDiscount = this.total - this.discount;
       } else {
-        this.illegalDiscout("Le discount saisi n'est pas valide.", "Error");    }
+        this.illegalDiscount("Le discount saisi n'est pas valide.", "Error");    }
     }
     this.discountApplied.emit(this.totalAfterDiscount);
     this.toggleClassDiscount();
@@ -142,7 +142,7 @@ export class ListRecapComponent implements OnInit {
     this.applyButton == 'apply' ? this.applyButton = 'apply-hidden' : this.applyButton = 'apply';
   }
 
-  private illegalDiscout(message:string, title:string){
+  private illegalDiscount(message:string, title:string){
     this.toastr.error(message, title);
     this.discount=undefined;
   }

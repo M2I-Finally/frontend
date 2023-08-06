@@ -52,19 +52,28 @@ export class PaymentConfirmationPageComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    /**
+     * get basket from service
+     */
     this.basketService.basket$.subscribe((basket: Cart) => {
       this.basket$ = basket;
       this.total = this.basket$.getTotal();
       this.basketLine = basket.getCartLines();
     })
-
-    //sellerId:
+    this.amountDue = this.total;
+    /**
+     * get seller id
+     */
     let sessionToken = sessionStorage.getItem('token');
     let decoded: Jwt = jwt_decode(sessionToken!);
     this.sellerId = decoded.id;
     
   };
 
+  /**
+   * update total if there is any discount applied
+   * @param event totalAfterDiscount from recap-list
+   */
   totalWithDiscount(event:number){
     this.totalAfterDiscount = event;
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
@@ -72,19 +81,35 @@ export class PaymentConfirmationPageComponent implements OnInit {
       this.discount = 1 - this.totalAfterDiscount/this.total;
       this.total = this.totalAfterDiscount;
       this.basket$.setTotal(this.total);
+      this.isCartLineModified(true);
     }
   };
 
+  /**
+   * Any modification for quantity will update payment situation.
+   * @param event if quantity is changed. 
+   */
   isCartLineModified(event:boolean){
     this.cartModified = event;
-    console.log("pass" + this.cartModified);
-    if (this.cartModified){
-      this.amountPaid = 0;
-      this.amountDue = 0;
+    
+    if (this.cartModified ){
+      
+      this.amountDue = this.total-this.amountPaid;
       this.change = 0;
-      this.clearPaymentList();
+
+      if (this.total < this.amountPaid) {
+        this.amountDue = 0
+        this.change = this.amountPaid - this.total ;
+      } 
     }
   }
+
+  /**
+   * Partial payment
+   * @param formGroupName get payment amount from input
+   * @param name FormControlName for input
+   * @param paymentType 0 = cash, 1 = bank card, 2 = other
+   */
   updatePayment(formGroupName:UntypedFormGroup, name:string, paymentType:string){
     // get the payment input
     this.amount = formGroupName.controls[name].value;
@@ -100,33 +125,42 @@ export class PaymentConfirmationPageComponent implements OnInit {
         this.amountDue = 0;
         this.change = this.amount - this.total;
       }
-
+      
     } else {
       this.toastr.error("Il n'y a rien à payer.")
     }
     
-
-    // note payment id
+    // get payment id
     this.paymentTypeId = parseInt(formGroupName.controls[paymentType].value);
 
+    // note partial payment amount and id
     this.paymentDtoList.push(new PaymentDto(this.amount, this.paymentTypeId));
-
     
   }
 
-  Submit(paymentId:number){
-    this.paymentDtoList.push(new PaymentDto(this.basket$.getTotal(),paymentId));
-    this.createBasket();
-     
+  /**
+    * total payment
+    * @param paymentTypeId 0 = cash, 1 = bank card, 2 = other
+    */
+  Submit(paymentTypeId:number){
+    this.paymentDtoList.push(new PaymentDto(this.amountDue,paymentTypeId));
+    this.createBasket();    
   }
   
+  /**
+   * cancel payment
+   * reset the cart and noted payment list
+   * @param page back to shop
+   */
   protected cancelBasket(page:string): void {
     this.basket$.resetCart();
     this.clearPaymentList();
-    this.router.navigate([page]);
-    
+    this.router.navigate([page]);  
   }
 
+  /**
+   * valid payment, get success or fail message
+   */
   protected createBasket():void{
     this.paymentService.postPayment(
       new Payment(this.basketLine,
@@ -136,22 +170,24 @@ export class PaymentConfirmationPageComponent implements OnInit {
          this.sellerId)
      ).subscribe({
       next: (data) =>{
-        this.toastr.success(`Le panier ${data} est bien enregistré, facture est encours de générer.`);
+        this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de générer.`);
         // une fois payé, vider le panier et avancer sur la page facture
-        console.log(this.basketLine);
         this.cancelBasket('facture');
       }, 
       error: error => this.toastr.error(error.message)
      });
   }
 
-private clearPaymentList(){
-  if (this.paymentDtoList.length > 0){
-    for (let i=0; i<this.paymentDtoList.length; i++){
-      this.paymentDtoList.pop();
-    }
-  };
-}
+  /**
+   * clear noted payment amount and id in paymentList
+   */
+  private clearPaymentList(){
+    if (this.paymentDtoList.length > 0){
+      for (let i=0; i<this.paymentDtoList.length; i++){
+        this.paymentDtoList.pop();
+      }
+    };
+  }
 }
 
 

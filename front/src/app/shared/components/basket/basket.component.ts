@@ -23,22 +23,20 @@ export class BasketComponent implements OnInit {
   
   
   ngOnInit(): void {
+    /**
+     * get basket from service and calculate total
+     */
     this.basketService.basket$.subscribe((basket: Cart) => {
       this.basket$ = basket;
       this.cartLine$ = basket.getCartLines();
-      this.calculateTotal2();
+      this.calculateTotal();
     });
   }
 
+  /**
+   * calculate total from each line and update to service
+   */
   calculateTotal(): void {
-    // Effectuez le calcul du total en utilisant les données de cartLine$
-    this.total = this.cartLine$.reduce(
-      (acc, cartLine) => acc + cartLine.getPrice() * cartLine.getQuantity(),
-      0
-    );
-  }
-
-  calculateTotal2(): void {
     let total = 0;
 
     this.cartLine$.forEach((cartLine) => {
@@ -49,10 +47,17 @@ export class BasketComponent implements OnInit {
     this.basket$.setTotal(total);
   }
  
+  /**
+   * navigate to given page
+   * @param pageName given page
+   */
   goToPage(pageName:string): void {
     this.router.navigate([`${pageName}`])
   }
 
+  /**
+   * cancel the basket
+   */
   protected cancelBasket(): void {
     this.basket$.resetCart();
     this.cartLine$ = this.basket$.getCartLines();

@@ -119,7 +119,7 @@
 
     <p >OU</p>
 
-    <generic-button color="green-full" content="Payer {{ total | currency }}" (click)="Submit(1);dialogCard.close()"></generic-button>
+    <generic-button color="green-full" content="Payer {{ amountDue | currency }}" (click)="Submit(1);dialogCard.close()"></generic-button>
 
 </dialog>
 
@@ -154,7 +154,7 @@
 
     <p >OU</p>
     
-    <generic-button color="green-full" content="Payer {{total | currency }}" (click)="Submit(0); dialogCash.close()"></generic-button>
+    <generic-button color="green-full" content="Payer {{amountDue | currency }}" (click)="Submit(0); dialogCash.close()"></generic-button>
 
 </dialog>
 
@@ -191,6 +191,6 @@
 
     <p> OU </p>
 
-    <generic-button color="green-full" content="Payer {{total | currency }}" (click)="Submit(2); dialogOther.close()"></generic-button>
+    <generic-button color="green-full" content="Payer {{amountDue | currency }}" (click)="Submit(2); dialogOther.close()"></generic-button>
 
 </dialog>
