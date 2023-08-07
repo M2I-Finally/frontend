@@ -30,7 +30,7 @@ export class UserService {
     return this.http.post<UserDto>(this.url, user);
   }
 
-  putUser(userId: number | undefined, user: User): Observable<User> {
+  putUser(userId: number, user: User): Observable<User> {
     return this.http.put<User>(this.url + '/' + userId, user);
   }
 
