@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/shared/services/auth-service.service';
+import { Auth } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'login',
@@ -13,7 +13,7 @@ export class LoginComponent {
   content = "connexion";
   color = "yellow";
 
-  constructor(private router: Router, private authService : AuthService,private toastr: ToastrService) {}
+  constructor(private router: Router, private authService : Auth,private toastr: ToastrService) {}
   
   loginForm : UntypedFormGroup= new UntypedFormGroup({
     username: new UntypedFormControl('admin',[Validators.required]),

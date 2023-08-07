@@ -8,41 +8,34 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class Auth {
   private customHttpClient: HttpClient;
-  private isLogged = false;
 
   constructor(private backend: HttpBackend) { 
     this.customHttpClient = new HttpClient(backend)
   }
   
   login(username: string, password: string): Observable<boolean> {
-    this.logout();
-    console.log(username + " " + password);
+    this.logout();    
     const loginUrl = 'http://localhost:8080/login';
 
     return this.customHttpClient.post<any>(loginUrl, { username, password })
       .pipe(
         map(response => {
-          if (response && response.token) {
-            // Le backend a renvoyé un token JWT valide, nous considérons l'utilisateur comme connecté.
-            sessionStorage.setItem('token', response.token); 
-            this.isLogged = true;
-            console.log("token dans localstorage")
+          if (response && response.token) {            
+            sessionStorage.setItem('token', response.token);  
+           
             return true;
           } else {
-            console.log("erreur d'authentification")
-            this.isLogged = false;
+                       
             return false;
           }
         })
       );
   }
 
-  logout(): void {
-   
-    sessionStorage.removeItem('token'); 
-    //this.isLogged = false;
+  logout(): void {   
+    sessionStorage.removeItem('token');     
   }
 
   isLoggedIn(): boolean {
