@@ -168,7 +168,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
    * valid payment, get success or fail message
    */
   protected createBasket():void{
-    if (this.total !==0 ){
+    if (this.total > 0 ){
     this.paymentService.postPayment(
       new Payment(this.basketLine,
          this.total,
