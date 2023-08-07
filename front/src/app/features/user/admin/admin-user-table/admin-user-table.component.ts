@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, mergeMap } from 'rxjs';
-import { UserService } from 'src/app/mockupData/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/entities/user';
 
 @Component({
@@ -26,7 +26,7 @@ export class AdminUserTableComponent implements OnInit {
   formUser = new UntypedFormGroup({
     userId: new UntypedFormControl(''),
     userName: new UntypedFormControl('', [Validators.required]),
-    userPassword: new UntypedFormControl('', [Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@<>!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]),
+    userPassword: new UntypedFormControl('', [Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]),
     confirmationPassword: new UntypedFormControl('', [Validators.required]),
     userRole: new UntypedFormControl('employee', [Validators.required]),
   })
@@ -56,13 +56,11 @@ export class AdminUserTableComponent implements OnInit {
   }
 
   private populateForm(user: User) {
-    
-      this.formUser.controls["userId"].setValue(this.selectedUserId);
-      this.formUser.controls["userName"].setValue(this.selectedUserName);
-      this.formUser.controls["userPassword"].setValue('Password123!');
-      this.formUser.controls["confirmationPassword"].setValue('Password123!');
-      this.formUser.controls["userRole"].setValue(this.selectedUserRole!.toLowerCase);
-
+    this.formUser.controls["userId"].setValue(this.selectedUserId);
+    this.formUser.controls["userName"].setValue(this.selectedUserName);
+    this.formUser.controls["userPassword"].setValue(this.selectedUserPassword);
+    this.formUser.controls["confirmationPassword"].setValue(this.selectedUserPassword);
+    this.formUser.controls["userRole"].setValue(this.selectedUserRole);
   }
 
   protected editUser(): void {
@@ -70,8 +68,7 @@ export class AdminUserTableComponent implements OnInit {
     this.successText = "Utilisateur modifié";
     this.userService.getUserById(this.selectedUserId).subscribe({
       next: res => {
-          this.populateForm(res);
-          // console.log(res)
+        this.populateForm(res);
       }
     })
   }
@@ -82,21 +79,21 @@ export class AdminUserTableComponent implements OnInit {
     this.selectedUserName = this.selectedUser?.username;
     this.selectedUserId = this.selectedUser?.id;
     this.selectedUserPassword = this.selectedUser?.password;
-    this.selectedUserRole = this.selectedUser?.role.toLowerCase();
+    this.selectedUserRole = this.selectedUser?.role;
   }
 
   protected submit(): void {
     if(this.modeText == "Ajouter") {
       if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
         this.userService.postUser({
-          id: parseInt(this.formUser.controls["userId"].value),
           username: this.formUser.controls["userName"].value,
           password: this.formUser.controls["userPassword"].value,
-          role: (this.formUser.controls["userRole"].value).toUpperCase()
+          passwordConfirm: this.formUser.controls["confirmationPassword"].value,
+          role: this.formUser.controls["userRole"].value
         }).subscribe(data => console.log(data));
-        this.getUser();
-        this.cancel();      
-        this.formUser.controls["userRole"].setValue('employee');
+        // this.getUser();
+        // this.cancel();      
+        // this.formUser.controls["userRole"].setValue('employee');
       } else {
         console.log("Mots de passe pas identiques");
       }
