@@ -90,10 +90,14 @@ export class AdminUserTableComponent implements OnInit {
           password: this.formUser.controls["userPassword"].value,
           passwordConfirm: this.formUser.controls["confirmationPassword"].value,
           role: this.formUser.controls["userRole"].value
-        }).subscribe(data => console.log(data));
-        // this.getUser();
-        // this.cancel();      
-        // this.formUser.controls["userRole"].setValue('employee');
+        }).subscribe({
+          next: () => {
+            this.getUser()
+          }
+        }
+        );
+        this.cancel();      
+        this.formUser.controls["userRole"].setValue('employee');
       } else {
         console.log("Mots de passe pas identiques");
       }
