@@ -28,7 +28,7 @@ export class AdminUserTableComponent implements OnInit {
     userName: new UntypedFormControl('', [Validators.required]),
     userPassword: new UntypedFormControl('', [Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]),
     confirmationPassword: new UntypedFormControl('', [Validators.required]),
-    userRole: new UntypedFormControl('employee', [Validators.required]),
+    userRole: new UntypedFormControl('EMPLOYEE', [Validators.required]),
   })
 
   ngOnInit(): void {
@@ -75,6 +75,7 @@ export class AdminUserTableComponent implements OnInit {
 
   protected onClick(event:Event): void {
     let userId: number = parseInt((event.currentTarget as HTMLInputElement).id);
+    console.log(this.userList);
     this.selectedUser = this.userList?.find(user => user.id === userId);
     this.selectedUserName = this.selectedUser?.username;
     this.selectedUserId = this.selectedUser?.id;
@@ -96,8 +97,7 @@ export class AdminUserTableComponent implements OnInit {
           }
         }
         );
-        this.cancel();      
-        this.formUser.controls["userRole"].setValue('employee');
+        this.cancel();
       } else {
         console.log("Mots de passe pas identiques");
       }
@@ -122,6 +122,6 @@ export class AdminUserTableComponent implements OnInit {
   protected cancel(): void {
     this.formUser.reset();
     this.modeText = "Ajouter";
-    this.formUser.controls["userRole"].setValue('employee');
+    this.formUser.controls["userRole"].setValue('EMPLOYEE');
   }
 }
