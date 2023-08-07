@@ -166,25 +166,34 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
   /**
    * valid payment, get success or fail message
+   * payment will not pass when there is nothing in the cart nor the cart is been paid.
    */
   protected createBasket():void{
+    // cart cannot be empty
     if (this.total > 0 ){
-    this.paymentService.postPayment(
-      new Payment(this.basketLine,
-         this.total,
-         this.discount,
-         this.paymentDtoList,
-         this.sellerId)
-     ).subscribe({
-      next: (data) =>{
-        this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de générer.`);
-        // une fois payé, vider le panier et avancer sur la page facture
-        this.cancelBasket('facture');
-      }, 
-      error: error => this.toastr.error(error.message)
-     });
+      
+      //payment needs to be done
+      if (this.amountDue > 0) {
+        this.toastr.error("Veuillez finir le paiement.");
+      } else {
+        this.paymentService.postPayment(
+          new Payment(this.basketLine,
+             this.total,
+             this.discount,
+             this.paymentDtoList,
+             this.sellerId)
+         ).subscribe({
+          next: (data) =>{
+            this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de générer.`);
+            // une fois payé, vider le panier et avancer sur la page facture
+            this.cancelBasket('facture');
+          }, 
+          error: error => this.toastr.error(error.message)
+         });
+      }
+   
     } else {
-      this.toastr.error("Nothing in the cart to be paid.");
+      this.toastr.error("Le panier n'est pas encore crée.");
       this.cancelBasket('shop');
     }
   }
