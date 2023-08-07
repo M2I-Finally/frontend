@@ -129,6 +129,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
   Submit(paymentTypeId:number){
     this.paymentDtoList.push(new PaymentDto(this.amountDue,paymentTypeId));
     this.createBasket();    
+    
   }
   
    /**
@@ -167,6 +168,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
    * valid payment, get success or fail message
    */
   protected createBasket():void{
+    if (this.total !==0 ){
     this.paymentService.postPayment(
       new Payment(this.basketLine,
          this.total,
@@ -181,6 +183,10 @@ export class PaymentConfirmationPageComponent implements OnInit {
       }, 
       error: error => this.toastr.error(error.message)
      });
+    } else {
+      this.toastr.error("Nothing in the cart to be paid.");
+      this.cancelBasket('shop');
+    }
   }
 
   /**
