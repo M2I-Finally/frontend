@@ -66,6 +66,8 @@ export class AdminUserTableComponent implements OnInit {
   protected editUser(): void {
     this.modeText = "Modifier";
     this.successText = "Utilisateur modifié";
+    this.formUser.controls["userPassword"].clearValidators();
+    this.formUser.controls["confirmationPassword"].clearValidators();
     this.userService.getUserById(this.selectedUserId).subscribe({
       next: res => {
         this.populateForm(res);
@@ -102,10 +104,6 @@ export class AdminUserTableComponent implements OnInit {
         console.log("Mots de passe pas identiques");
       }
     } else if(this.modeText == "Modifier") {
-      // if( this.formUser.controls["userPassword"].value == '' && this.formUser.controls["confirmationPassword"].value == '' ) {
-      //   this.formUser.controls["userPassword"].clearValidators();
-      //   this.formUser.controls["confirmationPassword"].clearValidators();
-      // }
       if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
         this.userService.putUser(this.selectedUserId!, {
           id: this.formUser.controls["userId"].value,
