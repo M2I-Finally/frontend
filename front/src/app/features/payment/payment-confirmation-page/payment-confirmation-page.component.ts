@@ -184,7 +184,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
              this.sellerId)
          ).subscribe({
           next: (data) =>{
-            this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de générer.`);
+            this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de généreration.`);
             // une fois payé, vider le panier et avancer sur la page facture
             this.cancelBasket('facture');
           }, 

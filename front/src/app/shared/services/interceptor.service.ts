@@ -26,11 +26,7 @@ export class InterceptorService implements HttpInterceptor{
           "authorization" : `Bearer ${token}`      
         })
       };
-      /*req = req.clone({        
-        setHeaders: {
-          Authorization: `Bearer ${token}`         
-        },
-      });*/      
+      
       req = req.clone(httpOptions)      
     }else {
       sessionStorage.clear();

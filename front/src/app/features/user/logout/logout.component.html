@@ -5,14 +5,14 @@
     </svg>
     <div id="logout-sales">
         <h1 id="logout-title">Récapitulatif des ventes</h1>
-        <h2 id="logout-date">Le {{currentDate | date:'dd-MM-yyyy'}} // Machin(vendeur)</h2>
+        <h2 id="logout-date">Le {{currentDate | date:'dd-MM-yyyy'}} - {{ seller }}</h2>
         <div id="logout-details">
             <div id="logout-details-total">
                 <p>
                     Total des ventes :
                 </p>
                 <p>
-                    XXX €
+                    {{ total }} €
                 </p>
             </div>
             <div class="logout-details-type">
@@ -20,7 +20,7 @@
                     dont espèce :
                 </p>
                 <p>
-                    XXX €
+                     {{ paymentCash }} €
                 </p>
             </div>
             <div class="logout-details-type">
@@ -28,15 +28,15 @@
                     dont carte bancaire :
                 </p>
                 <p>
-                    XXX €
+                    {{ paymentBankCard }} €
                 </p>
             </div>
             <div class="logout-details-type">
                 <p>
-                    dont autre :
+                    dont autres :
                 </p>
                 <p>
-                    XXX €
+                    {{ paymentOther }} €
                 </p>
             </div>
         </div>
