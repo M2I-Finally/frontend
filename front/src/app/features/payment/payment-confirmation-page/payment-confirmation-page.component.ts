@@ -128,6 +128,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
     */
   Submit(paymentTypeId:number){
     this.paymentDtoList.push(new PaymentDto(this.amountDue,paymentTypeId));
+    this.amountDue = 0;
     this.createBasket();    
     
   }
