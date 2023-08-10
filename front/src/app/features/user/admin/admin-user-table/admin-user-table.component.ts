@@ -99,6 +99,7 @@ export class AdminUserTableComponent implements OnInit {
   }
 
   protected submit(): void {
+    let regex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}");
     if(this.modeText == "Ajouter") {
       if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
         this.userService.postUser({
@@ -118,7 +119,11 @@ export class AdminUserTableComponent implements OnInit {
         this.toastr.error("Le mot de passe et sa confirmation doivent être identiques");
       }
     } else if(this.modeText == "Modifier") {
-      if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
+      if( this.formUser.controls["userPassword"].value != null && regex.test(this.formUser.controls["userPassword"].value) == false ) {
+        this.toastr.error("Le mot de passe doit contenir au moins 8 caractères, 1 chiffre, 1 minuscule, 1 majuscule et un caractère spécial ($@$!%*?&)");
+      } else if( this.formUser.controls["userPassword"].value != this.formUser.controls["confirmationPassword"].value ) {
+        this.toastr.error("Le mot de passe et sa confirmation doivent être identiques");
+      } else if( this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value ) {
         this.userService.putUser(this.selectedUserId!, {
           id: this.formUser.controls["userId"].value,
           username: this.formUser.controls["userName"].value,
@@ -132,8 +137,6 @@ export class AdminUserTableComponent implements OnInit {
         });
         this.toastr.success("Utilisateur modifié");
         this.cancel();
-      } else {
-        this.toastr.error("Le mot de passe et sa confirmation doivent être identiques");
       }
     }
   }
