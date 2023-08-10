@@ -65,6 +65,7 @@ export class AdminUserTableComponent implements OnInit {
           this.getUser()
         }
       });
+      this.toastr.success("Utilisateur supprimé");
     }
   }
 
@@ -111,9 +112,10 @@ export class AdminUserTableComponent implements OnInit {
           }
         }
         );
+        this.toastr.success("Utilisateur créé");
         this.cancel();
       } else {
-        console.log("Mots de passe pas identiques");
+        this.toastr.error("Le mot de passe et sa confirmation doivent être identiques");
       }
     } else if(this.modeText == "Modifier") {
       if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
@@ -128,9 +130,10 @@ export class AdminUserTableComponent implements OnInit {
             this.getUser()
           }
         });
+        this.toastr.success("Utilisateur modifié");
         this.cancel();
       } else {
-        console.log("Mots de passe pas identiques");
+        this.toastr.error("Le mot de passe et sa confirmation doivent être identiques");
       }
     }
   }

@@ -12,7 +12,7 @@
 <admin-nav></admin-nav>
 <div id="user-container">  
 
-    <form id="form-user" [formGroup]="formUser" (ngSubmit)="submit(); dialogSuccess.showModal()">
+    <form id="form-user" [formGroup]="formUser" (ngSubmit)="submit()">
         <div id="form-header">  
             <h1 id="form-title">{{ modeText }} un utilisateur</h1>
             <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
@@ -116,9 +116,9 @@
     <generic-button color="red-full" content="Annuler" (click)="dialogEdit.close()"></generic-button>
 </dialog>
 
-<dialog #dialogSuccess id="success-dialog">
+<!-- <dialog #dialogSuccess id="success-dialog">
     <form id="success-form">
         <p>{{ successText }}</p>
     </form>
     <generic-button color="red-full" content="Retour" (click)="dialogSuccess.close(); goToPage('users')"></generic-button>
-</dialog>
+</dialog> -->
