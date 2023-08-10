@@ -79,7 +79,6 @@ export class AdminUserTableComponent implements OnInit {
 
   protected onClick(event:Event): void {
     let userId: number = parseInt((event.currentTarget as HTMLInputElement).id);
-    console.log(this.userList);
     this.selectedUser = this.userList?.find(user => user.id === userId);
     this.selectedUserName = this.selectedUser?.username;
     this.selectedUserId = this.selectedUser?.id;
