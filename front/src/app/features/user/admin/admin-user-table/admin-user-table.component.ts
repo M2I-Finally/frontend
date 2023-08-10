@@ -6,6 +6,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/entities/user';
 import { Jwt } from 'src/app/shared/entities/jwt';
 import jwt_decode from "jwt-decode";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-user-table',
@@ -24,7 +25,7 @@ export class AdminUserTableComponent implements OnInit {
   selectedUserRole: string | undefined;
   loggedUserId: number | undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {};
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private toastr: ToastrService) {};
 
   formUser = new UntypedFormGroup({
     userId: new UntypedFormControl(''),
@@ -54,9 +55,9 @@ export class AdminUserTableComponent implements OnInit {
       });
   }
 
-  protected deleteUser(): void {
-    if( this.loggedUserId == this.selectedUserId ) {
-      console.log("impossible de supprimer l'utilisateur connecté");
+  protected deleteUser(): void {    
+    if( this.selectedUserId == this.loggedUserId ) {
+      this.toastr.error("Impossible de supprimer l'utilisateur connecté")
     } else {
       // Delete user = switch status to false in DB
       this.userService.patchUserStatus(this.selectedUserId!).subscribe({
@@ -94,8 +95,6 @@ export class AdminUserTableComponent implements OnInit {
     this.selectedUserId = this.selectedUser?.id;
     this.selectedUserPassword = this.selectedUser?.password;
     this.selectedUserRole = this.selectedUser?.role;
-    console.log(userId);
-    console.log(this.loggedUserId);
   }
 
   protected submit(): void {
