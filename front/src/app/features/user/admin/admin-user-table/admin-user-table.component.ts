@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, mergeMap } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/entities/user';
+import { Jwt } from 'src/app/shared/entities/jwt';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-admin-user-table',
@@ -20,6 +22,7 @@ export class AdminUserTableComponent implements OnInit {
   selectedUserId: number | undefined;
   selectedUserPassword: string | undefined;
   selectedUserRole: string | undefined;
+  loggedUserId: number | undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {};
 
@@ -33,6 +36,9 @@ export class AdminUserTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    let sessionToken = sessionStorage.getItem('token');
+    let decoded: Jwt = jwt_decode(sessionToken!);
+    this.loggedUserId = decoded.id;
   }
 
   protected goToPage(pageName:string): void {
@@ -49,12 +55,16 @@ export class AdminUserTableComponent implements OnInit {
   }
 
   protected deleteUser(): void {
-    // Delete user = switch status to false in DB
-    this.userService.patchUserStatus(this.selectedUserId!).subscribe({
-      next: () => {
-        this.getUser()
-      }
-    });
+    if( this.loggedUserId == this.selectedUserId ) {
+      console.log("impossible de supprimer l'utilisateur connecté");
+    } else {
+      // Delete user = switch status to false in DB
+      this.userService.patchUserStatus(this.selectedUserId!).subscribe({
+        next: () => {
+          this.getUser()
+        }
+      });
+    }
   }
 
   private populateForm(user: User) {
@@ -84,6 +94,8 @@ export class AdminUserTableComponent implements OnInit {
     this.selectedUserId = this.selectedUser?.id;
     this.selectedUserPassword = this.selectedUser?.password;
     this.selectedUserRole = this.selectedUser?.role;
+    console.log(userId);
+    console.log(this.loggedUserId);
   }
 
   protected submit(): void {
@@ -130,3 +142,4 @@ export class AdminUserTableComponent implements OnInit {
     this.formUser.controls["userRole"].setValue('EMPLOYEE');
   }
 }
+
