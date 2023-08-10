@@ -34,7 +34,10 @@ export class UserService {
     return this.http.put<User>(this.url + '/' + userId, user);
   }
 
-  deleteUser(userId: number | undefined): Observable<User> {
-    return this.http.delete<User>(this.url + '/' + userId);
+  patchUserStatus(userId: number): Observable<UserDto> {
+    return this.http.patch<UserDto>(this.url + '/' + userId, {});
   }
+  // deleteUser(userId: number | undefined): Observable<User> {
+  //   return this.http.delete<User>(this.url + '/' + userId);
+  // }
 }

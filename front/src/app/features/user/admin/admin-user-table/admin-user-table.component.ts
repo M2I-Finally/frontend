@@ -49,10 +49,12 @@ export class AdminUserTableComponent implements OnInit {
   }
 
   protected deleteUser(): void {
-    // This will subscribe to the only result returned from the observable (and thus unsubscribe)
-    this.userList$ = this.userService.deleteUser(this.selectedUserId).pipe(
-      mergeMap(() => this.userService.getUsers())
-    );
+    // Delete user = switch status to false in DB
+    this.userService.patchUserStatus(this.selectedUserId!).subscribe({
+      next: () => {
+        this.getUser()
+      }
+    });
   }
 
   private populateForm(user: User) {
