@@ -1,0 +1,72 @@
+<generic-header></generic-header>
+
+<div id="invoice-exit">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" id="invoice-exit-svg" (click)="close()">
+        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+    </svg>   
+</div>
+<div id="invoice-container">
+    <div id="invoice-global">
+        <div id="invoice-global-logo">
+            <img id="logo" src="../../../../assets/logo/logoYelloBlue.png">           
+        </div>
+        <div id="invoice-global-merchant">
+            <p>Fin.ally()</p>
+            <p>4 avenue de l'horizon</p>
+            <p>59650 Villeneuve-d'Ascq</p>
+            <p>Tél: 0320190719</p>
+            <p id="invoice-global-merchant-date">{{currentDate | date:'dd-MM-yyyy / HH:mm'}}</p>
+        </div>
+        <hr>
+        <div id="invoice-global-details">
+            <p class="name-product">pain aux pains</p>
+            <p class="price-product"><span>{{price | currency:'EUR'}}</span><span>X</span><span>{{quantity}}</span><span>=</span><span>{{price*quantity | currency:'EUR'}}</span></p>
+            <p class="name-product">paris-brest</p>
+            <p class="price-product"><span>{{price1 | currency:'EUR'}}</span><span>X</span><span>{{quantity1}}</span><span>=</span><span>{{price1*quantity1 | currency:'EUR'}}</span></p>
+            <div *ngIf="discount>0; else nodiscount">
+                <hr class="hr-discount">
+                <p class="hr-discount-p">Application de la réduction de </p>
+                <hr class="hr-discount">                  
+            </div>
+            <ng-template #nodiscount>
+                <hr id="hr-total">
+            </ng-template>
+            
+            <p id="invoice-global-details-total"><span>Total =</span><span>{{total | currency:'EUR'}}</span></p>
+            <table id="payments">
+                <tr class="payments-tr">
+                    <td>CB</td>
+                    <td>:</td>
+                    <td>{{total | currency:'EUR'}}</td>
+                </tr>
+            </table>
+            <hr id="hr-payments">
+            <table id="tax">
+                <thead>
+                    <th>Taux TVA</th>
+                    <th>Montant H.T.</th>
+                    <th>T.V.A.</th>
+                </thead>
+                <tbody>
+                    <tr class="tax-tr">
+                        <td>{{tva}} %</td>
+                        <td>{{ total / ( 1 + (tva/100)) | currency:'EUR' }}</td>
+                        <td>{{total - (total / ( 1 + (tva/100))) | currency:'EUR'}}</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+        <hr>
+        <div id="invoice-global-info">
+            <p>Nous vous remercions de votre visite</p>
+            <p>Identifiant de l'hote de caisse : 5</p>
+            <p>2 article(s), Panier n°: 1568</p>
+        </div>
+    
+    </div>
+    <aside id="invoice-action">
+        <generic-button color="green-full" content="Envoyer par email"></generic-button>
+        <generic-button color="green-full" content="Imprimer"></generic-button>
+    </aside>
+</div>
