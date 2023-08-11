@@ -19,11 +19,11 @@
         </div>
         <hr>
         <div id="invoice-global-details">
-            <p class="name-product">pain aux pains</p>
-            <p class="price-product"><span>{{price | currency:'EUR'}}</span><span>X</span><span>{{quantity}}</span><span>=</span><span>{{price*quantity | currency:'EUR'}}</span></p>
-            <p class="name-product">paris-brest</p>
-            <p class="price-product"><span>{{price1 | currency:'EUR'}}</span><span>X</span><span>{{quantity1}}</span><span>=</span><span>{{price1*quantity1 | currency:'EUR'}}</span></p>
-            <div *ngIf="discount>0; else nodiscount">
+            <div *ngFor="let cart of cartLines">
+                <p class="name-product">{{ cart.getName() }}</p>
+                <p class="price-product"><span>{{cart.getPrice() | currency:'EUR'}}</span><span>X</span><span>{{cart.getQuantity()}}</span><span>=</span><span>{{cart.getPrice()*cart.getQuantity() | currency:'EUR'}}</span></p>  
+            </div>
+            <div *ngIf="paidBasket.getDiscount()>0; else nodiscount">
                 <hr class="hr-discount">
                 <p class="hr-discount-p">Application de la réduction de </p>
                 <hr class="hr-discount">                  
@@ -32,12 +32,19 @@
                 <hr id="hr-total">
             </ng-template>
             
-            <p id="invoice-global-details-total"><span>Total =</span><span>{{total | currency:'EUR'}}</span></p>
+            <p id="invoice-global-details-total"><span>Total =</span><span>{{ paidBasket.getTotal() | currency:'EUR'}}</span></p>
             <table id="payments">
-                <tr class="payments-tr">
-                    <td>CB</td>
+                <tr *ngFor="let paymentDto of paymentsDtoList" class="payments-tr">
+                    <td>
+                        <span [ngSwitch]="paymentDto.getType()">
+                            <span *ngSwitchCase="0">CASH</span>
+                            <span *ngSwitchCase="1">CB</span>
+                            <span *ngSwitchCase="2">AUTRE</span>
+                            <span *ngSwitchDefault></span>
+                        </span>
+                    </td>
                     <td>:</td>
-                    <td>{{total | currency:'EUR'}}</td>
+                    <td>{{ paymentDto.getAmount() | currency:'EUR'}}</td>
                 </tr>
             </table>
             <hr id="hr-payments">
@@ -50,8 +57,8 @@
                 <tbody>
                     <tr class="tax-tr">
                         <td>{{tva}} %</td>
-                        <td>{{ total / ( 1 + (tva/100)) | currency:'EUR' }}</td>
-                        <td>{{total - (total / ( 1 + (tva/100))) | currency:'EUR'}}</td>
+                        <td>{{ paidBasket.getTotal() / ( 1 + (tva/100)) | currency:'EUR' }}</td>
+                        <td>{{paidBasket.getTotal() - ( paidBasket.getTotal() / ( 1 + (tva/100))) | currency:'EUR'}}</td>
                     </tr>
                 </tbody>
                 
@@ -60,8 +67,8 @@
         <hr>
         <div id="invoice-global-info">
             <p>Nous vous remercions de votre visite</p>
-            <p>Identifiant de l'hote de caisse : 5</p>
-            <p>2 article(s), Panier n°: 1568</p>
+            <p>Identifiant de l'hote de caisse : {{sellerId}}</p>
+            <p>{{items}} article(s), Panier n°: {{idBasket}}</p>
         </div>
     
     </div>

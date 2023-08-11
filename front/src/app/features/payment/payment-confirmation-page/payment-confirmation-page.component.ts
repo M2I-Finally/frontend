@@ -11,6 +11,7 @@ import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 import { ToastrService } from 'ngx-toastr';
 import { Jwt } from 'src/app/shared/entities/jwt';
 import jwt_decode from "jwt-decode";
+import { _isNumberValue } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-payment-confirmation-page',
@@ -33,6 +34,9 @@ export class PaymentConfirmationPageComponent implements OnInit {
   sellerId:number = 999;
   discount:number = 1;
   paymentDtoList: PaymentDto[] = [];
+  idPaidBAsket : number | Payment | undefined;
+  test: number =0;
+
 
   constructor(private basketService: BasketService, private paymentService:PaymentService,private toastr: ToastrService, private router: Router) { };
   
@@ -187,6 +191,10 @@ export class PaymentConfirmationPageComponent implements OnInit {
           next: (data) =>{
             this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de généreration.`);
             // une fois payé, vider le panier et avancer sur la page facture
+            let paidBasket = new Cart(this.basket$.getCartLines(),this.basket$.getTotal(),this.basket$.getDiscount())
+            this.idPaidBAsket = data;
+            console.log("longueur de this.paymentDtoList.length :"+this.paymentDtoList.length)           
+            this.basketService.SavePaidBasket(paidBasket,data,this.paymentDtoList);  
             this.cancelBasket('facture');
           }, 
           error: error => this.toastr.error(error.message)
@@ -203,7 +211,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
    * clear noted payment amount and id in paymentList
    */
   private clearPaymentList(){
-    if (this.paymentDtoList.length > 0){
+    if (this.paymentDtoList.length > 0){     
       for (let i=0; i<this.paymentDtoList.length; i++){
         this.paymentDtoList.pop();
       }
