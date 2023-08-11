@@ -17,6 +17,17 @@ export class InterceptorService implements HttpInterceptor{
     const token = sessionStorage.getItem('token');
     
     let jwtDecoded : Jwt = jwt_decode(token!);
+    const currentRole = jwtDecoded.role;
+    const currentUrl = this.router.url;
+
+    // if(currentUrl == "/users" && currentRole != "ADMIN") {
+    //   this.router.navigate(['/']);
+    // } 
+    
+    // if((currentUrl == "/categories" || currentUrl == "/products") && currentRole == "EMPLOYEE") {
+    //   this.router.navigate(['/']);
+    // }
+    
     const currentTimestamp = Math.floor(Date.now() / 1000);
   
     if(token && jwtDecoded.exp >= currentTimestamp){
