@@ -26,6 +26,10 @@ export class UserService {
       )
   }
 
+  getUserByUsername(userName: string): Observable<User> {
+    return this.http.get<User>(this.url + '/username/' + userName);
+  }
+
   postUser(user: UserDto): Observable<UserDto> {
     return this.http.post<UserDto>(this.url, user);
   }
@@ -37,7 +41,4 @@ export class UserService {
   patchUserStatus(userId: number): Observable<UserDto> {
     return this.http.patch<UserDto>(this.url + '/' + userId, {});
   }
-  // deleteUser(userId: number | undefined): Observable<User> {
-  //   return this.http.delete<User>(this.url + '/' + userId);
-  // }
 }

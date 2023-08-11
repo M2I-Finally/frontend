@@ -25,7 +25,7 @@
 
         <div class="formContainer">
             <label class="formContainer-label" for="username">Nom de l'utilisateur<span>*</span></label>
-            <input class="formContainer-input" type="text" formControlName="userName" id="username" required>
+            <input class="formContainer-input" type="text" formControlName="userName" id="username" required (focusout)="checkingUser()">
             <div class="error-msg" *ngIf="!formUser.controls['userName'].valid && (formUser.controls['userName'].dirty || formUser.controls['userName'].touched)">
                 Veuillez saisir un nom d'utilisateur
             </div>

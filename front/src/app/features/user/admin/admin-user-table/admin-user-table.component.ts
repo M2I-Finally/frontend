@@ -24,6 +24,7 @@ export class AdminUserTableComponent implements OnInit {
   selectedUserPassword: string | undefined;
   selectedUserRole: string | undefined;
   loggedUserId: number | undefined;
+  checkedUser: User | undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private toastr: ToastrService) {};
 
@@ -101,7 +102,9 @@ export class AdminUserTableComponent implements OnInit {
   protected submit(): void {
     let regex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}");
     if(this.modeText == "Ajouter") {
-      if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
+      if( this.checkedUser != null ) {
+        this.toastr.error("L'utilisateur existe déjà. Veuillez saisir un autre nom");
+      } else if(this.formUser.controls["userPassword"].value == this.formUser.controls["confirmationPassword"].value) {
         this.userService.postUser({
           username: this.formUser.controls["userName"].value,
           password: this.formUser.controls["userPassword"].value,
@@ -145,6 +148,15 @@ export class AdminUserTableComponent implements OnInit {
     this.formUser.reset();
     this.modeText = "Ajouter";
     this.formUser.controls["userRole"].setValue('EMPLOYEE');
+  }
+
+  protected checkingUser(): void {
+    let wantedUsername: string = this.formUser.controls["userName"].value;
+    if( wantedUsername != '' ) {
+      this.userService.getUserByUsername(wantedUsername).subscribe({
+        next: res => this.checkedUser = res
+      });
+    }
   }
 }
 
