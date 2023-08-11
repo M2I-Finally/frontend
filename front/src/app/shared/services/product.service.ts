@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Environment } from 'src/environment/environment';
 import { Product } from '../entities/product';
-import { TemporaryGetByIdProductResult } from '../../mockupData/temporary-get-by-id-product-result';
-import { Category } from '../entities/category';
 
 @Injectable({
   providedIn: 'root'
