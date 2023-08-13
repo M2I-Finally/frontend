@@ -43,10 +43,6 @@ export class AdminUserTableComponent implements OnInit {
     this.loggedUserId = decoded.id;
   }
 
-  protected goToPage(pageName:string): void {
-    this.router.navigate([`${pageName}`])
-  }
-
   protected getUser(): void {
     this.userList$ = this.userService.getUsers();
     this.userService.getUsers()

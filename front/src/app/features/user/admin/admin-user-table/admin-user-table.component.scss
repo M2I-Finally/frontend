@@ -4,41 +4,6 @@
         color: var(--brand-red);
     }
 
-    #generic-header{
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-around;
-    }
-
-    #groupleft {
-        display: flex;
-        min-width: 300px;
-        justify-content: space-between;
-        align-items: center;
-        margin-right: 2rem;
-    }
-
-    #logout {
-        color: var(--primary-yellow);
-        cursor: pointer;
-
-        &-dialog {
-            padding: 4rem;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            border-radius: 10px;
-            text-align: center;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            border-color: #524c7d;
-        }
-
-        &-input {
-            margin-top: 1rem;
-            width: 100%;
-        }
-    }
-
     #user-container {
         margin: 0 auto;
         display: flex;
@@ -189,7 +154,20 @@
 
             td {
                 margin-left: 0.5rem;
+                display: flex;
+                align-items: center;
+
+                .displayed-role {
+                    color: #fefefe;
+                    background-color: var(--bg-color-80);
+                    width: 75px;
+                    border-radius: 5px;
+                    padding: 0.2rem;
+                    font-size: 0.6rem;
+                    margin-right: 1rem;
+                }
             }
+
 
             tr:nth-child(odd) {
                 background-color: #DDFEF2;
@@ -258,15 +236,6 @@
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
     
-    #gestion-button {
-        top: 1%;
-        right: 8%;
-    }
-
-     #logout {
-        top: 0.8%;
-    }
-
     .formContainer {
         &-input {
             width: 80%;

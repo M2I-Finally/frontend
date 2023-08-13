@@ -1,25 +1,5 @@
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
-    #generic-header{
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-around;
-    }
-
-    #groupleft {
-        display: flex;
-        min-width: 300px;
-        justify-content: space-between;
-        align-items: center;
-        margin-right: 2rem;
-    }
-
-    #logout {
-        color: var(--primary-yellow);
-        cursor: pointer;
-    }
-
     #container {
 
         display: flex;
@@ -194,13 +174,6 @@
 
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
-    #gestion-button {
-        top: 1%;
-        right: 8%;
-    }
 
-    #logout {
-        top: 0.8%;
-    }
 }
 

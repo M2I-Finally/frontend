@@ -20,6 +20,7 @@ export class InterceptorService implements HttpInterceptor{
     const currentRole = jwtDecoded.role;
     const currentUrl = this.router.url;
 
+    // Guard won't check for url, so we need to put it in the interceptor
     // if(currentUrl == "/users" && currentRole != "ADMIN") {
     //   this.router.navigate(['/']);
     // } 

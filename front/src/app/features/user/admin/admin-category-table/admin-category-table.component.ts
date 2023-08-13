@@ -177,7 +177,4 @@ export class AdminCategoryTableComponent implements OnInit{
     });
   }
 
-  protected goToPage(pageName:string): void {
-    this.router.navigate([`${pageName}`])
-  }
 }
