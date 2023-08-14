@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cart } from 'src/app/shared/entities/cart';
 import { CartLine } from 'src/app/shared/entities/cart-line';
 import { Jwt } from 'src/app/shared/entities/jwt';
@@ -6,6 +6,9 @@ import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'facture',
@@ -26,8 +29,13 @@ export class InvoiceComponent implements OnInit {
   basket$!: Cart;
   discount:number = 1;
   oldTotal:number =0;
+  customerEmail:string = "";
 
-  constructor(private basketService: BasketService,private router: Router){}
+  constructor(private basketService: BasketService,private router: Router,private toastr: ToastrService){}
+
+  formSendEmail = new UntypedFormGroup({
+    inputEmail:new UntypedFormControl('', [])    
+  });
 
   ngOnInit(): void {
     this.basketService.basket$.subscribe((basket: Cart) => {
@@ -38,6 +46,19 @@ export class InvoiceComponent implements OnInit {
 
   close(){
     this.router.navigateByUrl('/shop');
+  }
+  notify(action:string, param:string = ""){
+    if(action.localeCompare('email')==0){
+      this.toastr.success('email envoyé à ' + this.customerEmail)
+    }
+    if(action.localeCompare('print')==0){
+      this.toastr.success('impression en cours sur imprimante 001')
+    }
+  }
+
+  updateEmail(formGroupName:UntypedFormGroup, name:string,){
+    this.customerEmail = formGroupName.controls[name].value;
+    this.notify('email',this.customerEmail);
   }
   
   injectValues(){   
