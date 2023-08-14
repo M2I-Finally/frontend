@@ -33,8 +33,7 @@ export class InvoiceComponent implements OnInit,OnDestroy {
 
   constructor(private basketService: BasketService,private router: Router,private toastr: ToastrService){}
   ngOnDestroy(): void {
-    this.basketService.clearPaidBasket();
-    console.log("dans le destroy");
+    this.basketService.clearPaidBasket();    
   }
 
   formSendEmail = new UntypedFormGroup({
