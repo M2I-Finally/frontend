@@ -40,8 +40,8 @@ const routes: Routes = [
   },
   {
     path:"facture",
-    component:InvoiceComponent
-    //canActivate: [GuardService]
+    component:InvoiceComponent,
+    canActivate: [GuardService]
   },
   {
     path:"logout",
