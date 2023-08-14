@@ -34,6 +34,7 @@ export class BasketService {
 
   clearPaidBasket(){
     this.paidBasket = new Cart([],0,1);
+    this.paymentsDtoList=[];
     this.idPaidBasket = 0;
   }
 }

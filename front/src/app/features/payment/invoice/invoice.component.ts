@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Cart } from 'src/app/shared/entities/cart';
 import { CartLine } from 'src/app/shared/entities/cart-line';
 import { Jwt } from 'src/app/shared/entities/jwt';
@@ -15,7 +15,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
   templateUrl: './invoice.component.html',
   styleUrls: ['./invoice.component.scss']
 })
-export class InvoiceComponent implements OnInit {
+export class InvoiceComponent implements OnInit,OnDestroy {
 
   
   paidBasket: Cart = new Cart([],0,1); 
@@ -32,6 +32,10 @@ export class InvoiceComponent implements OnInit {
   customerEmail:string = "";
 
   constructor(private basketService: BasketService,private router: Router,private toastr: ToastrService){}
+  ngOnDestroy(): void {
+    this.basketService.clearPaidBasket();
+    console.log("dans le destroy");
+  }
 
   formSendEmail = new UntypedFormGroup({
     inputEmail:new UntypedFormControl('', [])    
