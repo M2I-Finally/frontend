@@ -24,11 +24,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     const token = sessionStorage.getItem('token');
     
-    let jwtDecoced : Jwt = jwt_decode(token!);
-    const currentTimestamp = Math.floor(Date.now() / 1000);
-  
-    if(token && jwtDecoced.exp >= currentTimestamp){
-      this.router.navigateByUrl('/shop')
+    if(token != undefined) {
+      let jwtDecoced : Jwt = jwt_decode(token!);
+      const currentTimestamp = Math.floor(Date.now() / 1000);
+    
+      if(token && jwtDecoced.exp >= currentTimestamp){
+        this.router.navigateByUrl('/shop')
+      }
     }
   }
   
