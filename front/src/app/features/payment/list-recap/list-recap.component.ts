@@ -116,23 +116,27 @@ export class ListRecapComponent implements OnInit {
     if ( this.discountUnit == 'percentage') {
       if (this.discount < 100){
         this.totalAfterDiscount = this.total - (this.total * this.discount/100);
+        this.basket$.setDiscount(this.discount/100);
       } else {
         this.illegalDiscount("Le discount saisi n'est pas valide.", "Error");
       };
     } else if ( this.discountUnit == 'euro' ) {
       if (this.total > this.discount || this.discount < 0){
         this.totalAfterDiscount = this.total - this.discount;
+        this.basket$.setDiscount(this.discount/this.total);
       } else {
         this.illegalDiscount("Le discount saisi n'est pas valide.", "Error");    }
     }
     this.discountApplied.emit(this.totalAfterDiscount);
     this.toggleClassDiscount();
+    //this.basketService.updateBasket(this.basket$);
   }
 
   protected cancelDiscount(): void {
     this.toggleClassDiscount();
     this.totalAfterDiscount = undefined;
     this.formDiscount.reset();
+    this.basket$.setDiscount(1);
   }
 
   private toggleClassDiscount(): void {

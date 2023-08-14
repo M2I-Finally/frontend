@@ -18,22 +18,15 @@ export class BasketService {
   constructor() {
     this.basketSubject = new BehaviorSubject<Cart>(new Cart([], 0, 1));
     this.basket$ = this.basketSubject.asObservable();
-   
-    //console.log(this.basket$);
-
    }
    
    updateBasket(newBasket: Cart) {
     this.basketSubject.next(newBasket);
   } 
 
-  SavePaidBasket(basket : Cart, idBasket : number, paymentsDto : PaymentDto[]){
-    console.log("dans save basket : " + paymentsDto.length)
-    console.log("voici le paymentDto reçu dans le nasket.service : "+paymentsDto)
+  SavePaidBasket(basket : Cart, idBasket : number, paymentsDto : PaymentDto[]){   
     this.paidBasket = basket;
-    this.idPaidBasket = idBasket;
-    
-    //console.log("dans save basket apres insertion : " + this.paymentsDtoList.length)
+    this.idPaidBasket = idBasket;    
     for(let pay of paymentsDto){      
       this.paymentsDtoList.push(pay)
     }

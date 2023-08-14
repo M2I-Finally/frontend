@@ -34,8 +34,8 @@ export class PaymentConfirmationPageComponent implements OnInit {
   sellerId:number = 999;
   discount:number = 1;
   paymentDtoList: PaymentDto[] = [];
-  idPaidBAsket : number | Payment | undefined;
-  test: number =0;
+  idPaidBAsket : number = 0;
+ 
 
 
   constructor(private basketService: BasketService, private paymentService:PaymentService,private toastr: ToastrService, private router: Router) { };
@@ -86,10 +86,10 @@ export class PaymentConfirmationPageComponent implements OnInit {
   totalWithDiscount(event:number){
     this.totalAfterDiscount = event;
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
-    if (this.totalAfterDiscount < this.total){
+    if (this.totalAfterDiscount < this.total){     
       this.discount = 1 - this.totalAfterDiscount/this.total;
       this.total = this.totalAfterDiscount;
-      this.basket$.setTotal(this.total);
+      this.basket$.setTotal(this.total);     
       this.isCartLineModified(true);
     }
   };
@@ -190,11 +190,11 @@ export class PaymentConfirmationPageComponent implements OnInit {
          ).subscribe({
           next: (data) =>{
             this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de généreration.`);
-            // une fois payé, vider le panier et avancer sur la page facture
-            let paidBasket = new Cart(this.basket$.getCartLines(),this.basket$.getTotal(),this.basket$.getDiscount())
-            this.idPaidBAsket = data;
-            console.log("longueur de this.paymentDtoList.length :"+this.paymentDtoList.length)           
-            this.basketService.SavePaidBasket(paidBasket,data,this.paymentDtoList);  
+            //sauvegarde du panier payer dans le basket service pour edition de la facture
+            let paidBasket = new Cart(this.basket$.getCartLines(),this.basket$.getTotal(),this.discount)
+            this.idPaidBAsket = data;                       
+            this.basketService.SavePaidBasket(paidBasket,data,this.paymentDtoList); 
+            // une fois payé, vider le panier et avancer sur la page facture 
             this.cancelBasket('facture');
           }, 
           error: error => this.toastr.error(error.message)
