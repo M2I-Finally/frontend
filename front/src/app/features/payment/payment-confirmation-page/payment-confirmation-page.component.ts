@@ -11,6 +11,7 @@ import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 import { ToastrService } from 'ngx-toastr';
 import { Jwt } from 'src/app/shared/entities/jwt';
 import jwt_decode from "jwt-decode";
+import { _isNumberValue } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-payment-confirmation-page',
@@ -33,6 +34,9 @@ export class PaymentConfirmationPageComponent implements OnInit {
   sellerId:number = 999;
   discount:number = 1;
   paymentDtoList: PaymentDto[] = [];
+  idPaidBAsket : number = 0;
+ 
+
 
   constructor(private basketService: BasketService, private paymentService:PaymentService,private toastr: ToastrService, private router: Router) { };
   
@@ -82,10 +86,10 @@ export class PaymentConfirmationPageComponent implements OnInit {
   totalWithDiscount(event:number){
     this.totalAfterDiscount = event;
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
-    if (this.totalAfterDiscount < this.total){
+    if (this.totalAfterDiscount < this.total){     
       this.discount = 1 - this.totalAfterDiscount/this.total;
       this.total = this.totalAfterDiscount;
-      this.basket$.setTotal(this.total);
+      this.basket$.setTotal(this.total);     
       this.isCartLineModified(true);
     }
   };
@@ -186,7 +190,11 @@ export class PaymentConfirmationPageComponent implements OnInit {
          ).subscribe({
           next: (data) =>{
             this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de généreration.`);
-            // une fois payé, vider le panier et avancer sur la page facture
+            //sauvegarde du panier payer dans le basket service pour edition de la facture
+            let paidBasket = new Cart(this.basket$.getCartLines(),this.basket$.getTotal(),this.discount)
+            this.idPaidBAsket = data;                       
+            this.basketService.SavePaidBasket(paidBasket,data,this.paymentDtoList); 
+            // une fois payé, vider le panier et avancer sur la page facture 
             this.cancelBasket('facture');
           }, 
           error: error => this.toastr.error(error.message)
@@ -203,7 +211,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
    * clear noted payment amount and id in paymentList
    */
   private clearPaymentList(){
-    if (this.paymentDtoList.length > 0){
+    if (this.paymentDtoList.length > 0){     
       for (let i=0; i<this.paymentDtoList.length; i++){
         this.paymentDtoList.pop();
       }

@@ -15,6 +15,7 @@ import { GuardService } from './shared/services/guard.service';
 
 import { AdminCategoryTableComponent } from './features/user/admin/admin-category-table/admin-category-table.component';
 import { PagenotfoundComponent } from './features/pagenotfound/pagenotfound.component';
+import { InvoiceComponent} from './features/payment/invoice/invoice.component';
 
 
 const routes: Routes = [
@@ -39,8 +40,8 @@ const routes: Routes = [
   },
   {
     path:"facture",
-    component:GenericPaymentButtonComponent,
-    canActivate: [GuardService]
+    component:InvoiceComponent
+    //canActivate: [GuardService]
   },
   {
     path:"logout",

@@ -12,8 +12,8 @@ export class PaymentService {
  
   constructor(private http: HttpClient) { }
   
-  postPayment(payment: Payment): Observable<Payment> {
-    return this.http.post<Payment>(this.url, payment);
+  postPayment(payment: Payment): Observable<number> {
+    return this.http.post<number>(this.url, payment);
   }
   
 }
