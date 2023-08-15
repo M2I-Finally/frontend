@@ -4,7 +4,9 @@
 }
 
 #mobile-header {
+    z-index: 1;
     position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,6 +23,26 @@
     &-mobile {
         padding-left: 1rem;
         cursor: pointer;
+    }
+}
+
+#logout {
+    color: var(--primary-yellow);
+    cursor: pointer;
+
+    &-dialog {
+        padding: 4rem;
+        box-shadow: 10px 5px 5px var(--bg-color-80);
+        border-radius: 10px;
+        text-align: center;
+        font-family: 'Quicksand';
+        font-weight: 600;
+        border-color: #524c7d;
+    }
+
+    &-input {
+        margin-top: 1rem;
+        width: 100%;
     }
 }
 
@@ -50,26 +72,6 @@
             gap: 2rem;
             align-items: center;
             margin-right: 2rem;
-        }
-    
-        #logout {
-            color: var(--primary-yellow);
-            cursor: pointer;
-    
-            &-dialog {
-                padding: 4rem;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                border-radius: 10px;
-                text-align: center;
-                font-family: 'Quicksand';
-                font-weight: 600;
-                border-color: #524c7d;
-            }
-    
-            &-input {
-                margin-top: 1rem;
-                width: 100%;
-            }
         }
     }
     
