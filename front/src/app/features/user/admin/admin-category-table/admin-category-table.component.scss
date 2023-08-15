@@ -1,203 +1,218 @@
-/* ------------------ TABLET ------------------ */
-@media screen and (min-width: 768px) {
+/* ------------------ MOBILE ------------------ */
+#container {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    justify-content: center;
+    margin: 0 auto;
 
-    #container {
-
+    div.title {
         display: flex;
-        flex-direction: column;
-        width: 80%;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        h1.main-title {
+            height: 100%;
+            font-size: 2rem;
+            vertical-align: middle;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+    }
+
+    table {
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
         margin: 0 auto;
+        width: 100%;
 
-        div.title {
-
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-
-            h1.main-title {
-                height: 100%;
-                font-size: 2rem;
-                vertical-align: middle;
-                margin-bottom: 1rem;
-                margin-top: 1rem;
-            }
+        th {
+            background-color: #524C7D;
+            font-weight: bold;
+            color: #FEFEFE;
+            width: 20%;
+            height: 60px;
+            vertical-align:middle !important;
         }
 
-        table {
-            font-family: 'Quicksand', sans-serif;
+        td {
+            vertical-align:middle !important;
+            height: 3.5rem;
+        }
+
+        td svg {
+            width: 24px;
+            height: 24px;
+            margin: 0.3rem;
+            color: #000000;
+        }
+
+        td svg:hover {
+            cursor: pointer;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #DDFEF2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+
+        .update-name {
+            display: none;
             text-align: center;
-            margin: 0 auto;
-            width: 100%;
-
-            th {
-                background-color: #524C7D;
-                font-weight: bold;
-                color: #FEFEFE;
-                width: 20%;
-                height: 40px;
-                vertical-align:middle !important;
+            input {
+                padding: 0.5rem;
+                appearance: textfield;
+                width: 80%;
             }
 
-            td {
-                vertical-align:middle !important;
-                height: 3.5rem;
-            }
-
-            td svg {
-                width: 24px;
-                height: 24px;
-                margin-left: 16px;
-                color: #000000;
-            }
-
-            td svg:hover {
-                cursor: pointer;
-            }
-
-            tr:nth-child(odd) {
-                background-color: #DDFEF2;
-            }
-
-            tr:nth-child(even) {
-                background-color: #FFFFFF;
-            }
-
-            .update-name {
-
-                display: none;
+            button {                    
+                all: unset;
+                margin: 0.2rem 0.5rem;
+                border-radius: 2px;
                 
+                &:hover {
+                    filter: brightness(80%);
+                }
+
+                svg {
+                    vertical-align: middle;
+                }
+            }
+
+            .confirm-update {
+                background-color: var(--validation-green);
+            }
+
+            .cancel-update {
+                background-color: var(--brand-red);
+            }
+
+        }
+
+        .update-cell {                
+            .switch {
+                --secondary-container: #4CAD8A;
+                --primary: #fefefe;
+                font-size: 17px;
+                position: relative;
+                display: inline-block;
+                width: 3.3em;
+                height: 1.8em;
+
                 input {
-                    padding: 0.5rem;
-                    appearance: textfield;
-                    width: 50%;
+                    display: none;
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
                 }
-
-                button {
-                    
-                    all: unset;
-                    margin-left: 1rem;
-                    border-radius: 2px;
-                    
-                    &:hover {
-                        filter: brightness(80%);
-                    }
-
-                    svg {
-                        margin-left: 0px;
-                        vertical-align: middle;
-                    }
-                }
-
-                .confirm-update {
-                    background-color: var(--validation-green);
-                }
-
-                .cancel-update {
-                    background-color: var(--text-color);
-                    svg {
-                        fill: var(--text-on-dk-bg);
-                    }
-                }
-
             }
+            
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .2s;
+                border-radius: 30px;
 
-            .update-cell {
-                
-                .switch {
-                    --secondary-container: #4CAD8A;
-                    --primary: #fefefe;
-                    font-size: 17px;
-                    position: relative;
-                    display: inline-block;
-                    width: 3.3em;
-                    height: 1.8em;
-
-                    input {
-                        display: none;
-                        opacity: 0;
-                        width: 0;
-                        height: 0;
-                    }
+                &:before {
+                    position: absolute;
+                    content: "";
+                    height: 1.4em;
+                    width: 1.4em;
+                    border-radius: 20px;
+                    left: 0.2em;
+                    bottom: 0.2em;
+                    background-color: #fefefe;
+                    transition: .2s;
                 }
-                
-                .slider {
-                        position: absolute;
-                        cursor: pointer;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        background-color: #ccc;
-                        transition: .2s;
-                        border-radius: 30px;
+            }
+            
+            input {
+                &:checked{
+                    & + .slider{
+                        background-color: var(--secondary-container);
+
+                        &::before{
+                            background-color: var(--primary);
+                        }
 
                         &:before {
-                            position: absolute;
-                            content: "";
-                            height: 1.4em;
-                            width: 1.4em;
-                            border-radius: 20px;
-                            left: 0.2em;
-                            bottom: 0.2em;
-                            background-color: #fefefe;
-                            transition: .2s;
+                            transform: translateX(1.5em);
+                        }
                     }
                 }
-                
-                input {
-                        &:checked{
-                            & + .slider{
-                                background-color: var(--secondary-container);
 
-                                &::before{
-                                    background-color: var(--primary);
-                                }
+                &:focus + .slider{
+                    box-shadow: 0 0 1px var(--secondary-container);
+                }
+            }   
+        }
+    }
+    
+    #category-footer {
+        width: 100%;
+        background-color: #524C7D;
+        padding: 1rem;
 
-                                &:before {
-                                    transform: translateX(1.5em);
-                                }
-                            }
-                        }
+        input {
+            width: 38%;
+            padding: 0.2rem;
+            appearance: textfield;
+        }
 
-                        &:focus + .slider{
-                            box-shadow: 0 0 1px var(--secondary-container);
-                        }
-                }   
+        button {
+            all: unset;
+            cursor:pointer;
+            margin-left: 1rem;
+            background-color: var(--primary-yellow);
+            padding: 0.5rem 0.5rem;
+            border-radius: 2px;
+        }
+
+        button:hover {
+            filter: brightness(90%);
+        }
+
+        .validation-error {
+            color: #fefefe;
+            margin-left: 2rem;
+        }
+    }
+}
+
+
+
+
+
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    #container {
+        width: 80%;
+
+        table {
+            th {
+                height: 40px;
             }
-
-        
         }
         
         #category-footer {
-            width: 100%;
-            background-color: #524C7D;
-            padding: 1rem;
-
             input {
                 margin-left: 2rem;
                 width: 35%;
                 padding: 0.5rem;
-                appearance: textfield;
             }
 
             button {
-                all: unset;
-                cursor:pointer;
                 margin-left: 2rem;
-                background-color: var(--primary-yellow);
                 padding: 0.5rem 1rem;
-                border-radius: 2px;
-            }
-
-            button:hover {
-                filter: brightness(90%);
-            }
-
-            .validation-error {
-                color: #fefefe;
-                margin-left: 2rem;
             }
         }
     }
@@ -207,6 +222,3 @@
 
 
 /* ------------------ DESKTOP ------------------ */
-@media screen and (min-width: 1024px) {
-
-}
