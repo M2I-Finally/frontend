@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { Jwt } from 'src/app/shared/entities/jwt';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'generic-header',

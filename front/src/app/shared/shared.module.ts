@@ -11,6 +11,9 @@ import { BasketProductComponent } from './components/basket-product/basket-produ
 import { GenericPaymentButtonComponent } from './components/generic-payment-button/generic-payment-button.component';
 import { ReturnToProductsPageButtonComponent } from './components/return-to-products-page-button/return-to-products-page-button.component';
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,16 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
     BasketProductComponent,
     GenericPaymentButtonComponent,
     ReturnToProductsPageButtonComponent,
-    AdminNavComponent
+    AdminNavComponent,
   ],
  // providers: [BasketService],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [
     GenericButtonComponent,
@@ -42,7 +48,10 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
     BasketProductComponent,
     GenericPaymentButtonComponent,
     ReturnToProductsPageButtonComponent,
-    AdminNavComponent
+    AdminNavComponent,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: []
 })

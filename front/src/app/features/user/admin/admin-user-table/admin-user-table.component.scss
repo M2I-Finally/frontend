@@ -1,23 +1,123 @@
-/* ------------------ TABLET ------------------ */
-@media screen and (min-width: 768px) {
-    span {
-        color: var(--brand-red);
+/* ------------------ MOBILE ------------------ */
+span {
+    color: var(--brand-red);
+}
+
+#user-container {
+    margin: auto;
+    width: 95%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    #form {
+        &-header {
+            width: 100%;            
+        }
+
+        &-title {
+            font-family: 'Quicksand';
+            font-weight: bold;
+            font-size: x-large;
+        }
+
+        &-info {
+            font-size: small;
+            color: var(--brand-red);
+        }
+
+        &-user {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem;
+            gap: 1rem;
+            width: 90%;
+        }
+
+        &-button {
+            all:unset;
+            cursor: pointer;
+            padding:0.4rem 1rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 10px 5px 5px var(--bg-color-80);
+            margin: 0 1rem;
+            font-family: 'Quicksand';
+            font-weight: 600;
+            background-color: var(--primary-yellow);
+            border: 3px solid var(--primary-yellow);
+            color: var(--primary-bg-color);
+        }
     }
 
-    #user-container {
-        margin: 0 auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        padding-top: 2rem;
-        gap: 2rem;
-   
+    #cancel-button {
+        all:unset;
+        cursor: pointer;
+        padding:0.4rem 1rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 10px 5px 5px var(--bg-color-80);
+        margin: 0 1rem;
+        font-family: 'Quicksand';
+        font-weight: 600;
+        background-color: var(--brand-red);
+        border: 3px solid var(--brand-red);
+        color: var(--primary-bg-color);
+    }
 
-        #form {
-            
+    #button-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .formContainer {    
+        height: auto;
+        display: flex;
+        flex-wrap:wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .hidden {
+            display: none;
+        }
+
+        &-label {
+            width: 30%;
+            min-width: 200px;
+        }
+
+        &-input {
+            border: 1px solid var(--text-color);
+            background-color: var(--text-on-dk-bg);
+            width: 100%;
+            height: 2rem;
+            resize: none; 
+            appearance: textfield;
+        }
+
+        .error-msg {
+            width: 100%;
+            color: var(--brand-red);
+            font-size: 0.8rem;
+            padding-top: 0.2rem;
+        }
+    }
+
+    aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 95%;
+        border-bottom: 1px solid black;
+
+        #users {        
             &-header {
-                width: 100%;            
+                width: 100%;  
+                padding: 1rem;
+                text-align: center;        
             }
 
             &-title {
@@ -25,217 +125,161 @@
                 font-weight: bold;
                 font-size: x-large;
             }
-
-            &-info {
-                font-size: small;
-                color: var(--brand-red);
-            }
-
-            &-user {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding: 1rem;
-                gap: 1rem;
-                width: 40%;
-            }
-
-            &-button {
-                all:unset;
-                cursor: pointer;
-                padding:0.8rem 2rem;
-                border-radius: 10px;
-                text-align: center;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                margin: 0 1rem;
-                font-family: 'Quicksand';
-                font-weight: 600;
-                width: 100px;
-                background-color: var(--primary-yellow);
-                border: 3px solid var(--primary-yellow);
-                color: var(--primary-bg-color);
-                height: 30px;
-            }
         }
+    }
 
-        #cancel-button {
-            all:unset;
-            cursor: pointer;
-            padding:0.8rem 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 10px 5px 5px var(--bg-color-80);
-            margin: 0 1rem;
-            font-family: 'Quicksand';
-            font-weight: 600;
-            width: 100px;
-            background-color: var(--brand-red);
-            border: 3px solid var(--brand-red);
-            color: var(--primary-bg-color);
-            height: 30px;
-        }
+    input[type='radio'] {
+        accent-color: #524c7d;
+    }
 
-        #button-container {
+    table {
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+        width: 90%;
+        margin-bottom: 1rem;
+
+        tr {
             display: flex;
-            justify-content: center;
-        }
-
-        .formContainer {    
-            height: auto;
-            display: flex;
-            flex-wrap:wrap;
-            flex-direction: row;
             justify-content: space-between;
             align-items: center;
+            height: 30px;
+            font-weight: 700;
+        }
 
-            .hidden {
-                display: none;
-            }
+        td {
+            margin-left: 0.5rem;
+            display: flex;
+            align-items: center;
 
-            &-label {
-                width: 30%;
-                min-width: 200px;
-            }
-
-            &-input {
-                border: 1px solid var(--text-color);
-                background-color: var(--text-on-dk-bg);
-                width: 100%;
-                height: 2rem;
-                resize: none; 
-                appearance: textfield;
-            }
-
-            .error-msg {
-                width: 100%;
-                color: var(--brand-red);
-                font-size: 0.8rem;
-                padding-top: 0.2rem;
+            .displayed-role {
+                color: #fefefe;
+                background-color: var(--bg-color-80);
+                width: 75px;
+                border-radius: 5px;
+                padding: 0.2rem;
+                font-size: 0.6rem;
+                margin-right: 1rem;
             }
         }
 
-        aside {
-            width: 40%;
-            border-left: 1px solid black;
 
-            #users {
-            
-                &-header {
-                    width: 100%;  
-                    padding: 1rem;
-                    margin-left: 1rem;         
-                }
-    
-                &-title {
-                    font-family: 'Quicksand';
-                    font-weight: bold;
-                    font-size: x-large;
-                }
-            }
+        tr:nth-child(odd) {
+            background-color: #DDFEF2;
         }
 
-        input[type='radio'] {
-            accent-color: #524c7d;
+        tr:nth-child(even) {
+            background-color: #524C7D;
+            color: #FFF;
         }
 
-        table {
-            font-family: 'Quicksand', sans-serif;
+        .svg-icon:nth-child(odd) {
+            background-color: #DDFEF2;
+        }
+
+        .svg-icon:nth-child(even) {
+            background-color: #524C7D;
+            color: #FFF;
+        }
+    }    
+
+    .bi {
+        cursor: pointer;
+        margin-right: 1rem;
+    }
+
+    #delete {
+        &-dialog {
+            padding: 4rem;
+            box-shadow: 10px 5px 5px var(--bg-color-80);
+            border-radius: 10px;
             text-align: center;
-            width: 90%;
-            margin-left: 2rem;
-
-            tr {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: 30px;
-                font-weight: 700;
-            }
-
-            td {
-                margin-left: 0.5rem;
-                display: flex;
-                align-items: center;
-
-                .displayed-role {
-                    color: #fefefe;
-                    background-color: var(--bg-color-80);
-                    width: 75px;
-                    border-radius: 5px;
-                    padding: 0.2rem;
-                    font-size: 0.6rem;
-                    margin-right: 1rem;
-                }
-            }
-
-
-            tr:nth-child(odd) {
-                background-color: #DDFEF2;
-            }
-
-            tr:nth-child(even) {
-                background-color: #524C7D;
-                color: #FFF;
-            }
-
-            .svg-icon:nth-child(odd) {
-                background-color: #DDFEF2;
-            }
-
-            .svg-icon:nth-child(even) {
-                background-color: #524C7D;
-                color: #FFF;
-            }
-        }    
-
-        .bi {
-            cursor: pointer;
-            margin-right: 1rem;
+            font-family: 'Quicksand';
+            font-weight: 600;
+            border-color: #524c7d;
         }
+    }
 
-        #delete {
-            &-dialog {
-                padding: 4rem;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                border-radius: 10px;
-                text-align: center;
-                font-family: 'Quicksand';
-                font-weight: 600;
-                border-color: #524c7d;
-            }
+    #edit {
+        &-dialog {
+            padding: 4rem;
+            box-shadow: 10px 5px 5px var(--bg-color-80);
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Quicksand';
+            font-weight: 600;
+            border-color: #524c7d;
         }
+    }
 
-        #edit {
-            &-dialog {
-                padding: 4rem;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                border-radius: 10px;
-                text-align: center;
-                font-family: 'Quicksand';
-                font-weight: 600;
-                border-color: #524c7d;
-            }
-        }
-
-        #success {
-            &-dialog {
-                padding: 4rem;
-                box-shadow: 10px 5px 5px var(--bg-color-80);
-                border-radius: 10px;
-                text-align: center;
-                font-family: 'Quicksand';
-                font-weight: 600;
-                border-color: #524c7d;
-            }
+    #success {
+        &-dialog {
+            padding: 4rem;
+            box-shadow: 10px 5px 5px var(--bg-color-80);
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Quicksand';
+            font-weight: 600;
+            border-color: #524c7d;
         }
     }
 }
 
 
 
+
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    #user-container {
+        margin: 0 auto;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding-top: 2rem;
+        gap: 2rem;   
+
+        #form {
+            &-user {
+                width: 40%;
+            }
+
+            &-button {
+                padding:0.8rem 2rem;
+                width: 100px;
+                height: 30px;
+            }
+        }
+
+        #cancel-button {
+            padding:0.8rem 2rem;
+            width: 100px;
+            height: 30px;
+        }
+
+        aside {
+            width: 40%;
+            border-left: 1px solid black;
+            border-bottom: none;
+
+            #users {            
+                &-header {
+                    margin-left: 1rem;         
+                }
+            }
+        }
+
+        table {
+            margin-left: 2rem;
+        }
+    }
+}
+
+
+
+
 /* ------------------ DESKTOP ------------------ */
-@media screen and (min-width: 1024px) {
-    
+@media screen and (min-width: 1024px) {    
     .formContainer {
         &-input {
             width: 80%;

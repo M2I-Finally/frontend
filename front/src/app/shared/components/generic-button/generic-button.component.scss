@@ -1,18 +1,15 @@
-/* ------------------ TABLET ------------------ */
-@media screen and (min-width: 768px) {
+/* ------------------ MOBILE ------------------ */
     .generic-button {
         all:unset;
         cursor: pointer;
-        padding:0.8rem 2rem;
-        border-radius: 10px;
+        padding:0.2rem 1rem;
+        border-radius: 5px;
         text-align: center;
-        box-shadow: 10px 5px 5px var(--bg-color-80);
-        margin: 1rem;
+        box-shadow: 7px 5px 5px var(--bg-color-80);
+        margin: 0.5rem;
         color: black;
         border: 3px solid black;
         font-family: 'Quicksand';
-        font-weight: 600;
-        width: 100px;
     }
 
     .blue {
@@ -72,11 +69,15 @@
         border: 3px solid var(--primary-yellow);
         color: var(--primary-bg-color);
     }
-}
 
-
-
-/* ------------------ DESKTOP ------------------ */
-@media screen and (min-width: 1024px) {
-    
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    .generic-button {
+        padding:0.8rem 2rem;
+        border-radius: 10px;
+        box-shadow: 10px 5px 5px var(--bg-color-80);
+        margin: 1rem;
+        font-weight: 600;
+        width: 100px;
+    }
 }
