@@ -1,3 +1,149 @@
+/* ------------------ MOBILE ------------------ */        
+h1{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+#form-info {
+    font-size: small;
+    color: var(--brand-red);
+}
+
+#container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+
+    section {
+        width: 90%;
+        
+        form{            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem;
+            gap: 1rem;
+            width: 100%;
+        
+            .formContainer {                
+                height: auto;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+
+                &:first-child {
+                    display: none;
+                }
+                
+                label {
+                    width: 30%;
+                    min-width: 200px;
+                }
+
+                label p small {
+                    font-size: 12px
+                }
+        
+                .error-msg {
+                    height: 1.2rem;
+                    width: 100%;
+                    text-align: left;
+                    font-size: 0.8rem;
+                    color: var(--brand-red);
+                    padding-top: 0.2rem;
+                }
+        
+                input,
+                textarea,
+                select{
+                    border: 1px solid var(--text-color);
+                    background-color: var(--text-on-dk-bg);
+                    width: 100%;
+                    height: 2rem;
+                    resize: none; 
+                    appearance: textfield;
+                }
+            
+                #file-container {                    
+                    display: flex;
+                    flex-direction : row;
+                    gap: 10px;
+                    width: 100%;
+                    
+                    #file-input {
+                        width: 100%;
+                    }
+
+                    #file-input[type=file]::file-selector-button {
+                        background-color: #fff;
+                        color: #000;
+                        border: 1px solid #e5e5e5;
+                        padding: 0.4rem;
+                        margin-right: 20px;
+                        transition: .5s;
+                      }
+                      
+                      #file-input[type=file]::file-selector-button:hover {
+                        background-color: #eee;
+                      }
+
+                      #file-delete {
+                        all: unset;
+                        width: 10%;
+                        display: none;
+                        color: var(--primary-color);
+                        text-align: center;
+                        vertical-align: center;
+
+                        svg {
+                            display: inline-block;
+                            width: 29px;
+                            height: 29px;
+                            padding: 0.1rem;
+                        }
+                      }
+                }
+            }
+
+            .buttonContainer {
+                margin-top: 2vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: flex-end;
+            }
+        }
+    }
+
+    aside {        
+        width: 100%;
+
+        h2{
+            font-weight: bold;
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .preview-container {    
+            padding-top: 1rem;   
+            width: 150px;
+            margin: 0 auto;
+        }
+    }
+
+    .required::after {
+        content: "*";
+        color: red;
+    }
+}
+
+
+
+
+/* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
     #container {
 
@@ -150,13 +296,15 @@
     }
 }
 
+
+
+/* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
     #container {
         section {
             width: 50%;
      
-            form {
-    
+            form {    
                 width: 80%;
             
                 .formContainer {

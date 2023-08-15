@@ -1,18 +1,14 @@
 <generic-header></generic-header>
-
+<h1 class="title">{{ modeText }} un produit</h1>
+<p id="form-info">Les champs suivis d'une * sont obligatoires</p>
 <div id="container">
     <section>
-        <h1 class="title">{{ modeText }} un produit</h1>
-        <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
-
         <div>
             <form [formGroup]="formProduct" (ngSubmit)="submit()">
-
                 <div class="formContainer">
                     <label class="required">ID (Need for json-server)</label>
                     <input type="number" formControlName="productId">
-                </div>
-                
+                </div>                
                 <div class="formContainer">
                     <label class="required">Nom du produit</label>
                     <input type="text" formControlName="productName">
@@ -20,37 +16,30 @@
                         Le champ ne peut contenir que des lettres, des chiffres et des espaces
                     </div>
                 </div>
-
                 <div class="formContainer">
                     <label>Descriptif produit</label>
                     <textarea type="text" formControlName="productDescription"></textarea>
                 </div>
-
                 <div class="formContainer">
                     <label>Catégorie</label>
                     <select formControlName="productCategory">
                         <option *ngFor="let category of categoryList$ | async;" value="{{category.id}}"> {{ category.name }} </option>
                     </select>
                 </div>
-
                 <div class="formContainer">
                     <label class="required">Prix à l'unité</label>
                     <input type="number" formControlName="productPrice" min="0">
-
                     <div class="error-msg" *ngIf="!formProduct.controls['productPrice'].valid && formProduct.controls['productPrice'].dirty">
                         Le prix doit être supérieur à 0€
                     </div>
                 </div>
-
                 <div class="formContainer">
                     <label class="required">Taux de TVA</label>
                     <input type="number" formControlName="productTax" min="0">
-
                     <div class="error-msg" *ngIf="!formProduct.controls['productTax'].valid && formProduct.controls['productTax'].dirty">
                         Le champ ne peut pas être vide
                     </div>
                 </div>
-
                 <div class="formContainer">
                     <label>Image<p><small>Accepte .png et .jpg</small></p></label>
                     <div id="file-container">
@@ -61,13 +50,11 @@
                               </svg>
                         </button>
                     </div>
-                </div>
-                
+                </div>                
                 <div class="buttonContainer">
                     <generic-button [isDisabled]="!formProduct.valid" type="submit" color="yellow-full" content="{{ modeText }}"></generic-button>
                     <generic-button routerLink="/products" color="red-full" content="Annuler"></generic-button>
-                </div>
-                
+                </div>                
             </form>
         </div>
     </section>
@@ -85,9 +72,7 @@
                         <button class="btn-qty-controller card-btn-add">+</button>
                     </div>
                 </div>
-            </div>
-            
+            </div>            
         </div>
     </aside>
-
 </div>
