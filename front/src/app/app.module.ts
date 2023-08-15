@@ -25,6 +25,7 @@ import { PaymentModule } from './features/payment/payment.module';
 import { ToastrModule } from 'ngx-toastr';
 import { InterceptorService } from './shared/services/interceptor.service';
 import { PagenotfoundComponent } from './features/pagenotfound/pagenotfound.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -49,8 +50,8 @@ import { PagenotfoundComponent } from './features/pagenotfound/pagenotfound.comp
     PaymentModule,
     NgOptimizedImage,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
-
+    ToastrModule.forRoot(),
+    MatMenuModule
   ],
   providers: [
     {

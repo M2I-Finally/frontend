@@ -1,14 +1,10 @@
 <div id="generic-header">
     <div id="generic-header-logo">
         <img id="logo-screen" src="../../../../assets/logo/logoYelloBlue.png" (click)="goHome()">
-        <img id="logo-mobile" src="../../../../assets/logo/logoMobileYellow.png">
     </div>
-
     <ng-content></ng-content>
-
     <ng-container *ngIf="escapeEnabled">
-        <div id="groupleft">
-        
+        <div id="groupleft">        
             <ng-container *ngIf="currentUserRole != 'EMPLOYEE'">
                 <ng-container *ngIf="currentRoute == '/shop'; else goToShopButton">
                     <generic-button color="yellow" content="Gestion" id="gestion-button" (click)="goToPage('products')"></generic-button> 
@@ -25,6 +21,24 @@
             </svg>
         </div>
     </ng-container>
+</div>
+<div id="mobile-header">
+    <div id="mobile-header-logo">
+        <img id="logo-mobile" src="../../../../assets/logo/logoMobileYellow.png" (click)="goHome()">
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon id="menu-icon">menu</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="subMenu">Gestion</button>
+        <button mat-menu-item (click)="goHome()">Vente</button>
+        <button mat-menu-item (click)="dialogLogout.showModal()">Déconnexion</button>
+    </mat-menu>
+    <mat-menu #subMenu="matMenu">
+        <button mat-menu-item (click)="goToPage('/products')">Produits</button>
+        <button mat-menu-item (click)="goToPage('/categories')">Catégories</button>
+        <button mat-menu-item (click)="goToPage('/users')">Utilisateurs</button>
+    </mat-menu>
 </div>
 
 <dialog #dialogLogout id="logout-dialog">

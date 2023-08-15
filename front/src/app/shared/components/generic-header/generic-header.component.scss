@@ -1,5 +1,32 @@
+/* ------------------ MOBILE ------------------ */
+#generic-header {
+    display: none;
+}
+
+#mobile-header {
+    background-color: #524c7d;
+}
+
+#menu-icon {
+    color: var(--primary-yellow);
+}
+
+#logo {
+    &-mobile {
+        width: 70%;
+        padding: 30px 0px;
+        cursor: pointer;
+        border: solid 1px #f0f;
+    }
+}
+
+
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
+    #mobile-header {
+        display: none;
+    }
+
     #generic-header {
         background-color: #524c7d;
         display: flex;
@@ -47,10 +74,6 @@
             width: 40%;
             padding: 30px 0px;
             cursor: pointer;
-        }
-    
-        &-mobile {
-            display: none;
         }
     }
 }
