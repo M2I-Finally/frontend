@@ -4,6 +4,12 @@
 }
 
 #mobile-header {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 7rem;
+    margin-bottom: 1rem;
     background-color: #524c7d;
 }
 
@@ -13,10 +19,8 @@
 
 #logo {
     &-mobile {
-        width: 70%;
-        padding: 30px 0px;
+        padding-left: 1rem;
         cursor: pointer;
-        border: solid 1px #f0f;
     }
 }
 

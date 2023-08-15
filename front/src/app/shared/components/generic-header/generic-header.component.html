@@ -24,13 +24,15 @@
 </div>
 <div id="mobile-header">
     <div id="mobile-header-logo">
-        <img id="logo-mobile" src="../../../../assets/logo/logoMobileYellow.png" (click)="goHome()">
+        <img id="logo-mobile" src="../../../../assets/logo/logoYelloBlue.png" (click)="goHome()">
     </div>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
         <mat-icon id="menu-icon">menu</mat-icon>
     </button>
     <mat-menu #appMenu="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="subMenu">Gestion</button>
+        <ng-container *ngIf="currentUserRole != 'EMPLOYEE'">
+            <button mat-menu-item [matMenuTriggerFor]="subMenu">Gestion</button>
+        </ng-container>
         <button mat-menu-item (click)="goHome()">Vente</button>
         <button mat-menu-item (click)="dialogLogout.showModal()">Déconnexion</button>
     </mat-menu>
