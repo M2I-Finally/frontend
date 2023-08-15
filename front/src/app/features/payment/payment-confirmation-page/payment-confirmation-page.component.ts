@@ -94,6 +94,10 @@ export class PaymentConfirmationPageComponent implements OnInit {
     }
   };
 
+  discountCancelled(event:number){
+    this.amountDue = event;
+  }
+
   /**
    * Partial payment
    * @param formGroupName get payment amount from input
@@ -144,7 +148,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
    isCartLineModified(event:boolean){
     this.cartModified = event;
     
-    if (this.cartModified ){
+    if (this.cartModified){
       
       this.amountDue = this.total-this.amountPaid;
       if(this.amountDue>=0){
