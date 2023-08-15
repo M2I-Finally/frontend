@@ -12,7 +12,7 @@
                     Total des ventes :
                 </p>
                 <p>
-                    {{ total }} €
+                    {{ total | currency }} 
                 </p>
             </div>
             <div class="logout-details-type">
@@ -20,7 +20,7 @@
                     dont espèce :
                 </p>
                 <p>
-                     {{ paymentCash }} €
+                     {{ paymentCash | currency }} 
                 </p>
             </div>
             <div class="logout-details-type">
@@ -28,7 +28,7 @@
                     dont carte bancaire :
                 </p>
                 <p>
-                    {{ paymentBankCard }} €
+                    {{ paymentBankCard | currency }} 
                 </p>
             </div>
             <div class="logout-details-type">
@@ -36,7 +36,7 @@
                     dont autres :
                 </p>
                 <p>
-                    {{ paymentOther }} €
+                    {{ paymentOther | currency }} 
                 </p>
             </div>
         </div>
