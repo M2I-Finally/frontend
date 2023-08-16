@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cart } from '../entities/cart';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Payment } from '../entities/payment';
 import { PaymentDto } from '../entities/payment-dto';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { PaymentDto } from '../entities/payment-dto';
 export class BasketService {
   
   paidBasket : Cart = new Cart([],0,1);
-  idPaidBasket: any = 0;
+  idPaidBasket: number = 0;
   private basketSubject: BehaviorSubject<Cart>;
   basket$: Observable<Cart>;
   paymentsDtoList : PaymentDto[] =[];

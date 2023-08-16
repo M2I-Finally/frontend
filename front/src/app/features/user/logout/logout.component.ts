@@ -1,9 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Cart } from 'src/app/shared/entities/cart';
 import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 import { TodaySaleDto } from 'src/app/shared/entities/today-sale-dto';
 import { Auth } from 'src/app/shared/services/auth.service';
+import { BasketService } from 'src/app/shared/services/basket.service';
 import { TodaySaleService } from 'src/app/shared/services/today-sale.service';
 
 @Component({
@@ -22,7 +24,7 @@ export class LogoutComponent implements OnInit{
   seller : string = "anonyme";
   total: number = 0;
 
-  constructor(private router: Router, private authService : Auth, private todaySaleService : TodaySaleService) {}
+  constructor(private router: Router,private basketService: BasketService, private authService : Auth, private todaySaleService : TodaySaleService) {}
 
   ngOnInit(): void {
     this.todaySaleService.getTodaySale().subscribe((dto : TodaySaleDto) => {
@@ -35,21 +37,10 @@ export class LogoutComponent implements OnInit{
   )}
  
   logout():void{
+    this.basketService.updateBasket(new Cart([], 0, 1))
     this.authService.logout();
     this.router.navigateByUrl('/')
-  }
-
-  /*show():void{
-    console.log("dans le show")
-    if(this.todaySaleDto$.payments[0]){
-      console.log("dans ton if")
-      for (let index = 0; index < this.dtos.length; index++) {
-        console.log(this.dtos[index].getType())
-        
-      }
-    }     
-  }*/
-
+  }  
   
 
   goToPage(pageName:string): void {
