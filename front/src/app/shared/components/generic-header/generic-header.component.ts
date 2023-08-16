@@ -28,12 +28,16 @@ export class GenericHeaderComponent implements OnInit {
 
   // By default we assume that it is an employee, so we don't show admin button by error
   protected currentUserRole: String = 'EMPLOYEE';
+  protected isAdmin: boolean = false;
 
   ngOnInit(): void {
     let sessionToken = sessionStorage.getItem('token');
     if(sessionToken != undefined) {
       let decoded: Jwt = jwt_decode(sessionToken);
       this.currentUserRole = decoded.role;
+      if( decoded.role == 'ADMIN' ) {
+        this.isAdmin = true;
+      }
     }
   }
 

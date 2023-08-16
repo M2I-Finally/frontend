@@ -39,7 +39,9 @@
     <mat-menu #subMenu="matMenu">
         <button mat-menu-item (click)="goToPage('/products')">Produits</button>
         <button mat-menu-item (click)="goToPage('/categories')">Catégories</button>
-        <button mat-menu-item (click)="goToPage('/users')">Utilisateurs</button>
+        <ng-container *ngIf="isAdmin">
+            <button mat-menu-item (click)="goToPage('/users')">Utilisateurs</button>
+        </ng-container>
     </mat-menu>
 </div>
 
