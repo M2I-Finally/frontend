@@ -21,13 +21,13 @@ export class InterceptorService implements HttpInterceptor{
     const currentUrl = this.router.url;
 
     // Guard won't check for url, so we need to put it in the interceptor
-    // if(currentUrl == "/users" && currentRole != "ADMIN") {
-    //   this.router.navigate(['/']);
-    // } 
+    if(currentUrl == "/users" && currentRole != "ADMIN") {
+      this.router.navigate(['/']);
+    } 
     
-    // if((currentUrl == "/categories" || currentUrl == "/products") && currentRole == "EMPLOYEE") {
-    //   this.router.navigate(['/']);
-    // }
+    if((currentUrl == "/categories" || currentUrl == "/products") && currentRole == "EMPLOYEE") {
+      this.router.navigate(['/']);
+    }
     
     const currentTimestamp = Math.floor(Date.now() / 1000);
   
