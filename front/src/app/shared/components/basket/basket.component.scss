@@ -1,5 +1,5 @@
 /* ------------------ MOBILE ------------------ */
-#cart {
+#basket {
     display: none;
 }
 
@@ -7,7 +7,7 @@
 
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
-    #cart {
+    #basket {
         height: 76%;
         overflow: hidden;
         display: flex;
@@ -20,13 +20,13 @@
         background-color: var(--secondary-bg-color);
     }
     
-    #cart-products {
+    #basket-products {
         width: 100%;
         height: 65%;   
         overflow-y: scroll;
     }
     
-    #cart-sum {
+    #basket-sum {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -36,13 +36,13 @@
         font-size: 1.5em;
     }
     
-    .cart-total {
+    .basket-total {
         width: 90%;
         padding: 0;
         text-align: center;
     }
     
-    .cart-total:first-child {
+    .basket-total:first-child {
         padding-top: 20px;
     }
     
@@ -55,11 +55,11 @@
 
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
-    #cart {
+    #basket {
         height: 83.1%;
     }
     
-    // #cart-sum {
+    // #basket-sum {
     //     font-size: 2em;
     // }
 }

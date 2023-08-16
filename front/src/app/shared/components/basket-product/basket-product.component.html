@@ -1,6 +1,6 @@
-<div class="cart-product">
+<div class="basket-product">
     <div class="product-name">
-        {{ cartLine?.getName()}}
+        {{ basketLine?.getName()}}
     </div>
     <div class="product-container">    
         <svg id="minus-icon" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16" (click)="minus()">
@@ -8,7 +8,7 @@
             <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
           </svg>
         <div class="product-quantity">
-            {{ cartLine?.getQuantity() | number:"2.0"}}
+            {{ basketLine?.getQuantity() | number:"2.0"}}
         </div>
         <svg id="plus-icon" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16" (click)="add()">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>

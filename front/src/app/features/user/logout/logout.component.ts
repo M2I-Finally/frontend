@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cart } from 'src/app/shared/entities/cart';
+import { Basket } from 'src/app/shared/entities/basket';
 import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 import { TodaySaleDto } from 'src/app/shared/entities/today-sale-dto';
 import { Auth } from 'src/app/shared/services/auth.service';
@@ -37,7 +37,7 @@ export class LogoutComponent implements OnInit{
   )}
  
   logout():void{
-    this.basketService.updateBasket(new Cart([], 0, 1))
+    this.basketService.updateBasket(new Basket([], 0, 1))
     this.authService.logout();
     this.router.navigateByUrl('/')
   }  

@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Product } from '../../entities/product';
 import { BasketService } from '../../services/basket.service';
-import { CartLine } from 'src/app/shared/entities/cart-line';
-import { Cart } from '../../entities/cart';
+import { BasketLine } from 'src/app/shared/entities/basket-line';
+import { Basket } from '../../entities/basket';
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { Environment } from 'src/environment/environment';
 
@@ -17,10 +17,10 @@ export class ProductCardComponent implements OnInit{
 
   @Input() product?: Product;
   @Input() quantity!: number;  
-  basket$!: Cart;  
+  basket$!: Basket;  
 
   ngOnInit(): void {
-    this.basketService.basket$.subscribe((basket: Cart) => {
+    this.basketService.basket$.subscribe((basket: Basket) => {
     this.basket$= basket;
     this.initQuantity();    
     });
@@ -31,7 +31,7 @@ export class ProductCardComponent implements OnInit{
     
     if ( this.product ){
       
-      this.basket$.getCartLines().forEach((line) => {
+      this.basket$.getBasketLines().forEach((line) => {
 
         if( this.product?.productId == line.getProductId() && line.getQuantity() > 0){           
             line.setQuantity(-1);
@@ -51,7 +51,7 @@ export class ProductCardComponent implements OnInit{
     let lineExist : boolean = false;
 
     if (this.product){
-      this.basket$.getCartLines().forEach((line) => {
+      this.basket$.getBasketLines().forEach((line) => {
 
         if( this.product?.productId == line.getProductId()){ 
           //if ( line.getQuantity() < this.product.stock ){
@@ -63,9 +63,9 @@ export class ProductCardComponent implements OnInit{
 
       })
       if (!lineExist){              
-        let cartLine = new CartLine(this.product?.productId | 0,this.product?.name,this.product?.price,1,1);
-        this.basket$.addLines(cartLine);
-        this.quantity = cartLine.getQuantity();       
+        let basketLine = new BasketLine(this.product?.productId | 0,this.product?.name,this.product?.price,1,1);
+        this.basket$.addLines(basketLine);
+        this.quantity = basketLine.getQuantity();       
       }
       
       this.basketService.updateBasket(this.basket$);
@@ -76,11 +76,11 @@ export class ProductCardComponent implements OnInit{
     
     if ( this.product ){
 
-      if( (this.basket$.getCartLines().find(cart => cart.getProductId() == this.product?.productId )?.getQuantity()) == undefined){
+      if( (this.basket$.getBasketLines().find(basket => basket.getProductId() == this.product?.productId )?.getQuantity()) == undefined){
         this.quantity=0 ;
       }
 
-      this.basket$.getCartLines().forEach((line) => {
+      this.basket$.getBasketLines().forEach((line) => {
         
         if( this.product?.productId == line.getProductId()){      
             
