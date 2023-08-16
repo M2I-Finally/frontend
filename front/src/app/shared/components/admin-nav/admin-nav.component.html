@@ -2,7 +2,9 @@
     <div id="admin-nav-container">
         <generic-button color="blue" content="Catégories" (click)="goToPage('categories')"></generic-button>
         <generic-button color="blue" content="Produits" (click)="goToPage('products')"></generic-button>
-        <generic-button color="blue" content="Utilisateurs" (click)="goToPage('users')"></generic-button>
+        <ng-container *ngIf="isAdmin">
+            <generic-button color="blue" content="Utilisateurs" (click)="goToPage('users')"></generic-button>
+        </ng-container>
     </div>
 </nav>  
 
