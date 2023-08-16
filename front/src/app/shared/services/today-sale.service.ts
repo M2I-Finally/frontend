@@ -22,7 +22,6 @@ export class TodaySaleService {
     const sessionToken = sessionStorage.getItem('token');
     let decoded: Jwt = jwt_decode(sessionToken!);
     this.sellerId = decoded.id;
-    console.log(this.url+this.sellerId);
     return this.http.get<TodaySaleDto>(this.url+this.sellerId);
   }
 }
