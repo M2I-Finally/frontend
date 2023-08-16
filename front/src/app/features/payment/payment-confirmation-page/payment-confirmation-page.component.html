@@ -9,7 +9,7 @@
         <list-recap (discountApplied)="totalWithDiscount($event)" (isQuantityModified)="isCartLineModified($event)"></list-recap>
         <div>
             <span> Montant payé: {{ amountPaid | currency }} </span>    
-            <span> | Reste à payé: {{amountDue | currency }} </span>
+            <span> | Reste à payer: {{amountDue | currency }} </span>
             <span> | Monnaie à rendre: {{change | currency }} </span>
         </div>
     </div>
@@ -117,7 +117,7 @@
         </div>
     </form>
 
-    <p >OU</p>
+    <p>OU</p>
 
     <generic-button color="green-full" content="Payer {{ amountDue | currency }}" (click)="Submit(1);dialogCard.close()"></generic-button>
 

@@ -23,6 +23,7 @@ export class ListRecapComponent implements OnInit {
   @Input() cartLine?: CartLine;
   @Output() discountApplied = new EventEmitter<number>();
   @Output() isQuantityModified = new EventEmitter<boolean>();
+  @Output() discountCancelled = new EventEmitter<number>();
 
   total!: number;
   totalAfterDiscount: number | undefined;
@@ -107,6 +108,7 @@ export class ListRecapComponent implements OnInit {
       if (this.totalAfterDiscount){
         this.cancelDiscount();    
       }
+      this.isQuantityModified.emit(true);
   }
 
   protected submitDiscount(event: Event): void {
@@ -137,6 +139,7 @@ export class ListRecapComponent implements OnInit {
     this.totalAfterDiscount = undefined;
     this.formDiscount.reset();
     this.basket$.setDiscount(1);
+    this.discountApplied.emit(this.total);
   }
 
   private toggleClassDiscount(): void {
