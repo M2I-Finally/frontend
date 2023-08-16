@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { Cart } from 'src/app/shared/entities/cart';
+import { Basket } from 'src/app/shared/entities/basket';
 import { Product } from 'src/app/shared/entities/product';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import { Router } from '@angular/router';
@@ -21,10 +21,10 @@ export class ShopComponent implements OnInit{
   filteredProductList$: Observable<Product[]> | undefined;
 
   quantity: number = 0;
-  basket$!: Cart;  
+  basket$!: Basket;  
 
   ngOnInit(): void {
-    this.basketService.basket$.subscribe((basket: Cart) => {
+    this.basketService.basket$.subscribe((basket: Basket) => {
       this.basket$= basket;      
     });
     this.productList$ = this.productService.getProducts();

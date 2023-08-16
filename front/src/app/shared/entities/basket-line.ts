@@ -1,5 +1,5 @@
 
-export class CartLine {
+export class BasketLine {
     private productId: number;
     private name: string;
     private price: number;

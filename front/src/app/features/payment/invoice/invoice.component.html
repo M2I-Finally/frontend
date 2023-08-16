@@ -21,10 +21,10 @@
         </div>
         <hr>
         <div id="invoice-global-details">
-            <div *ngFor="let cart of cartLines">
-                <p class="name-product">{{ cart.getName() }}</p>
-                <p class="price-product"><span>{{cart.getPrice() |
-                        currency }}</span><span>X</span><span>{{cart.getQuantity()}}</span><span>=</span><span>{{cart.getPrice()*cart.getQuantity()
+            <div *ngFor="let basket of basketLines">
+                <p class="name-product">{{ basket.getName() }}</p>
+                <p class="price-product"><span>{{basket.getPrice() |
+                        currency }}</span><span>X</span><span>{{basket.getQuantity()}}</span><span>=</span><span>{{basket.getPrice()*basket.getQuantity()
                         | currency }}</span></p>
             </div>
             <div *ngIf="discount!=1; else nodiscount">
