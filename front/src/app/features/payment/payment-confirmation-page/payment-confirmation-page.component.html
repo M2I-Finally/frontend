@@ -9,7 +9,7 @@
         <list-recap (discountApplied)="totalWithDiscount($event)" (isQuantityModified)="isCartLineModified($event)" (discountCancelled)="discountCancelled($event)"></list-recap>
         <div>
             <span> Montant payé: {{ amountPaid | currency }} </span>    
-            <span> | Reste à payé: {{amountDue | currency }} </span>
+            <span> | Reste à payer: {{amountDue | currency }} </span>
             <span> | Monnaie à rendre: {{change | currency }} </span>
         </div>
     </div>
