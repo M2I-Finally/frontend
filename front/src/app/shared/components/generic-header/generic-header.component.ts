@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { Jwt } from 'src/app/shared/entities/jwt';
 import { MatMenuModule } from '@angular/material/menu';
+import { ToastrService } from 'ngx-toastr';
+import { Auth } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'generic-header',
@@ -11,7 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 })
 export class GenericHeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService : Auth, private toastr: ToastrService, private userService: UserService) { }
 
   /**
    * This output specifies if an action has to be made if we click on the logo to go back home
@@ -28,12 +32,20 @@ export class GenericHeaderComponent implements OnInit {
 
   // By default we assume that it is an employee, so we don't show admin button by error
   protected currentUserRole: String = 'EMPLOYEE';
+  protected isAdmin: boolean = false;
+
+  formPassword = new UntypedFormGroup({
+    password: new UntypedFormControl()
+  })
 
   ngOnInit(): void {
     let sessionToken = sessionStorage.getItem('token');
     if(sessionToken != undefined) {
       let decoded: Jwt = jwt_decode(sessionToken);
       this.currentUserRole = decoded.role;
+      if( decoded.role == 'ADMIN' ) {
+        this.isAdmin = true;
+      }
     }
   }
 
@@ -46,5 +58,19 @@ export class GenericHeaderComponent implements OnInit {
 
   protected goToPage(pageName:string): void {
     this.router.navigate([`${pageName}`]);
+  }
+
+  protected confirmPassword(): void {
+    console.log('logout');
+    let sessionToken = sessionStorage.getItem('token');
+    if(sessionToken != undefined) {
+      let decoded: Jwt = jwt_decode(sessionToken);
+      let connectedUserId = decoded.id;
+      this.userService.getUserById(connectedUserId).subscribe({
+        next: (res) => console.log(res.username)
+        // console.log(this.formPassword.controls["password"].value)
+      })
+    }
+    // this.goToPage('logout');
   }
 }
