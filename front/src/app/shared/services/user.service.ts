@@ -41,4 +41,8 @@ export class UserService {
   patchUserStatus(userId: number): Observable<UserDto> {
     return this.http.patch<UserDto>(this.url + '/' + userId, {});
   }
+
+  checkPassword(userId: number, password: string): Observable<boolean> {
+    return this.http.post<boolean>(this.url + '/check', {userId, password})
+  }
 }
