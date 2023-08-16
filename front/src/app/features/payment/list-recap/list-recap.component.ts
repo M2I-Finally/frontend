@@ -108,6 +108,7 @@ export class ListRecapComponent implements OnInit {
       if (this.totalAfterDiscount){
         this.cancelDiscount();    
       }
+      this.isQuantityModified.emit(true);
   }
 
   protected submitDiscount(event: Event): void {

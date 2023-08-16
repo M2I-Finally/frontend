@@ -100,6 +100,8 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
   /**
    * Partial payment
+   * In case of payment in cash and there is change, the change will be discounted before post to back
+   * In case of payment by others(chèque de restaurent ou des vacances), there would be no change applied.
    * @param formGroupName get payment amount from input
    * @param name FormControlName for input
    * @param paymentType 0 = cash, 1 = bank card, 2 = other
@@ -108,6 +110,9 @@ export class PaymentConfirmationPageComponent implements OnInit {
     // get the payment input
     this.amount = formGroupName.controls[name].value;
 
+    // get payment id
+    this.paymentTypeId = parseInt(formGroupName.controls[paymentType].value);
+
     // update total
     if (this.total>0){
       this.amountPaid += this.amount;
@@ -115,18 +120,24 @@ export class PaymentConfirmationPageComponent implements OnInit {
         this.amountDue = this.total - this.amountPaid;  
       } else {
         this.amountDue = 0;
-        this.change = this.amountPaid - this.total;
+
+        if(this.paymentTypeId===2){
+          this.change=0;
+        } else{
+          this.change = this.amountPaid - this.total;
+        }
       }
       
     } else {
       this.toastr.error("Il n'y a rien à payer.")
     }
-    
-    // get payment id
-    this.paymentTypeId = parseInt(formGroupName.controls[paymentType].value);
 
-    // note partial payment amount and id
-    this.paymentDtoList.push(new PaymentDto(this.amount, this.paymentTypeId));
+    // note partial payment amount and id, if there is change, we need to note (cash received - change) to bdd
+    if (this.paymentTypeId === 0 && this.change){
+      this.paymentDtoList.push(new PaymentDto((this.amount-this.change), this.paymentTypeId));
+    } else {
+      this.paymentDtoList.push(new PaymentDto(this.amount, this.paymentTypeId));
+    }
     
   }
 
@@ -138,7 +149,6 @@ export class PaymentConfirmationPageComponent implements OnInit {
     this.paymentDtoList.push(new PaymentDto(this.amountDue,paymentTypeId));
     this.amountDue = 0;
     this.createBasket();    
-    
   }
   
    /**
