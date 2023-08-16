@@ -139,7 +139,7 @@ export class ListRecapComponent implements OnInit {
     this.totalAfterDiscount = undefined;
     this.formDiscount.reset();
     this.basket$.setDiscount(1);
-    this.discountCancelled.emit(this.total);
+    this.discountApplied.emit(this.total);
   }
 
   private toggleClassDiscount(): void {

@@ -6,7 +6,7 @@
     <div class="recapWrapper">
         <return-to-products-page-button back="RETOUR AUX PRODUITS"></return-to-products-page-button>
         <h1 class="title">Récapitulatif de la commande</h1>
-        <list-recap (discountApplied)="totalWithDiscount($event)" (isQuantityModified)="isCartLineModified($event)" (discountCancelled)="discountCancelled($event)"></list-recap>
+        <list-recap (discountApplied)="totalWithDiscount($event)" (isQuantityModified)="isCartLineModified($event)"></list-recap>
         <div>
             <span> Montant payé: {{ amountPaid | currency }} </span>    
             <span> | Reste à payer: {{amountDue | currency }} </span>

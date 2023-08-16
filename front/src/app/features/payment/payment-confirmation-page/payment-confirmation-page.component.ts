@@ -68,8 +68,8 @@ export class PaymentConfirmationPageComponent implements OnInit {
     /**
      * initialize amountDue
      */
-
     this.amountDue = this.total;
+
     /**
      * get seller id
      */
@@ -80,23 +80,20 @@ export class PaymentConfirmationPageComponent implements OnInit {
   };
 
   /**
-   * update total if there is any discount applied
+   * update total if there is any discount change
    * @param event totalAfterDiscount from recap-list
    */
   totalWithDiscount(event:number){
     this.totalAfterDiscount = event;
+    this.amountDue = this.totalAfterDiscount;
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
     if (this.totalAfterDiscount < this.total){     
       this.discount = 1 - this.totalAfterDiscount/this.total;
       this.total = this.totalAfterDiscount;
       this.basket$.setTotal(this.total);     
       this.isCartLineModified(true);
-    }
+    } 
   };
-
-  discountCancelled(event:number){
-    this.amountDue = event;
-  }
 
   /**
    * Partial payment
