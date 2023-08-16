@@ -96,7 +96,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
   /**
    * Partial payment
    * In case of payment in cash and there is change, the change will be discounted before post to back
-   * In case of payment by others(chèque de restaurent ou des vacances), there would be no change applied.
+   * In case of payment by others(chèque de restaurent or des vacances), there would be no change applied.
    * @param formGroupName get payment amount from input
    * @param name FormControlName for input
    * @param paymentType 0 = cash, 1 = bank card, 2 = other
@@ -154,8 +154,8 @@ export class PaymentConfirmationPageComponent implements OnInit {
     this.cartModified = event;
 
     if (this.cartModified) {
-
       this.amountDue = this.total - this.amountPaid;
+
       if (this.amountDue >= 0) {
         this.change = 0;
       }
