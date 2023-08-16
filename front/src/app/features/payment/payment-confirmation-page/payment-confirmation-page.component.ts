@@ -34,7 +34,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
   sellerId: number = 999;
   discount: number = 1;
   paymentDtoList: PaymentDto[] = [];
-  idPaidBAsket: number = 0;
+  idPaidBasket: number = 0;
 
   constructor(private basketService: BasketService, private paymentService: PaymentService, private toastr: ToastrService, private router: Router) { };
 
@@ -201,7 +201,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
             this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de généreration.`);
             //sauvegarde du panier payer dans le basket service pour edition de la facture
             let paidBasket = new Cart(this.basket$.getCartLines(), this.basket$.getTotal(), this.discount)
-            this.idPaidBAsket = data;
+            this.idPaidBasket = data;
             this.basketService.SavePaidBasket(paidBasket, data, this.paymentDtoList);
             // une fois payé, vider le panier et avancer sur la page facture 
             this.cancelBasket('facture');

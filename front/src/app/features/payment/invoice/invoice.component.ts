@@ -52,7 +52,12 @@ export class InvoiceComponent implements OnInit,OnDestroy {
   }
   notify(action:string, param:string = ""){
     if(action.localeCompare('email')==0){
-      this.toastr.success('email envoyé à ' + this.customerEmail)
+      if(this.customerEmail.length > 0){
+        this.toastr.success('email envoyé à ' + this.customerEmail);
+      }else{
+        this.toastr.info('le champ email est vide')
+      }
+      
     }
     if(action.localeCompare('print')==0){
       this.toastr.success('impression en cours sur imprimante 001')
