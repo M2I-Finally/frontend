@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class Auth {
+export class AuthService {
   private customHttpClient: HttpClient;
 
   constructor(private backend: HttpBackend) { 

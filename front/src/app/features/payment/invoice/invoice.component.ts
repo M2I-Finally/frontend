@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Cart } from 'src/app/shared/entities/cart';
-import { CartLine } from 'src/app/shared/entities/cart-line';
+import { Basket } from 'src/app/shared/entities/basket';
+import { BasketLine } from 'src/app/shared/entities/basket-line';
 import { Jwt } from 'src/app/shared/entities/jwt';
 import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 import { BasketService } from 'src/app/shared/services/basket.service';
@@ -18,15 +18,15 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 export class InvoiceComponent implements OnInit,OnDestroy {
 
   
-  paidBasket: Cart = new Cart([],0,1); 
+  paidBasket: Basket = new Basket([],0,1); 
   currentDate: Date = new Date(); 
   tva:number = 5.5;
   idBasket: number = 0;
-  cartLines: CartLine[]=[];
+  basketLines: BasketLine[]=[];
   paymentsDtoList: PaymentDto[]=[];
   items: number = 0;
   sellerId: number=0;
-  basket$!: Cart;
+  basket$!: Basket;
   discount:number = 1;
   oldTotal:number =0;
   customerEmail:string = "";
@@ -41,7 +41,7 @@ export class InvoiceComponent implements OnInit,OnDestroy {
   });
 
   ngOnInit(): void {
-    this.basketService.basket$.subscribe((basket: Cart) => {
+    this.basketService.basket$.subscribe((basket: Basket) => {
       this.basket$ = basket      
       ;})    
     this.injectValues();
@@ -52,7 +52,12 @@ export class InvoiceComponent implements OnInit,OnDestroy {
   }
   notify(action:string, param:string = ""){
     if(action.localeCompare('email')==0){
-      this.toastr.success('email envoyé à ' + this.customerEmail)
+      if(this.customerEmail.length > 0){
+        this.toastr.success('email envoyé à ' + this.customerEmail);
+      }else{
+        this.toastr.info('le champ email est vide')
+      }
+      
     }
     if(action.localeCompare('print')==0){
       this.toastr.success('impression en cours sur imprimante 001')
@@ -71,10 +76,10 @@ export class InvoiceComponent implements OnInit,OnDestroy {
     this.sellerId = jwtDecoced.id
     this.paidBasket = this.basketService.paidBasket;
     this.idBasket =   this.basketService.idPaidBasket; 
-    this.cartLines = this.paidBasket.getCartLines();
+    this.basketLines = this.paidBasket.getBasketLines();
     this.paymentsDtoList = this.basketService.paymentsDtoList;
-    for(let cartline of this.cartLines){
-      this.items += cartline.getQuantity();
+    for(let basketline of this.basketLines){
+      this.items += basketline.getQuantity();
     }
     if(this.basket$.getDiscount() != 1){      
       this.discount = this.basket$.getDiscount() * 100 ;

@@ -39,15 +39,17 @@
     <mat-menu #subMenu="matMenu">
         <button mat-menu-item (click)="goToPage('/products')">Produits</button>
         <button mat-menu-item (click)="goToPage('/categories')">Catégories</button>
-        <button mat-menu-item (click)="goToPage('/users')">Utilisateurs</button>
+        <ng-container *ngIf="isAdmin">
+            <button mat-menu-item (click)="goToPage('/users')">Utilisateurs</button>
+        </ng-container>
     </mat-menu>
 </div>
 
 <dialog #dialogLogout id="logout-dialog">
-    <form id="logout-form">
+    <form id="logout-form" [formGroup]="formPassword">
         <p>Saisissez votre mot de passe pour vous déconnecter</p>
-        <input id="logout-input" type="password" required>
+        <input id="logout-input" type="password" formControlName="password"  required>
     </form>
-    <generic-button color="green-full" content="Valider" (click)="goToPage('logout')"></generic-button>
+    <generic-button color="green-full" content="Valider" (click)="confirmPassword()"></generic-button>
     <generic-button color="red-full" content="Annuler" (click)="dialogLogout.close()"></generic-button>
 </dialog>

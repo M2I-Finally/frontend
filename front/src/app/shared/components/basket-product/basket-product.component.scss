@@ -1,6 +1,6 @@
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
-    .cart-product {
+    .basket-product {
         margin: 20px 10px;
         display: flex;
         flex-wrap: wrap;
@@ -53,7 +53,7 @@
 
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {    
-    .cart-product {
+    .basket-product {
         margin: 20px;
     }
 }

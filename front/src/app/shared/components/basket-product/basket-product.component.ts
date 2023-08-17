@@ -1,8 +1,8 @@
 import { Component,Input } from '@angular/core';
-import { CartLine } from '../../entities/cart-line';
+import { BasketLine } from '../../entities/basket-line';
 import { BasketService } from '../../services/basket.service';
-import { Cart } from '../../entities/cart';
 import { Basket } from '../../entities/basket';
+
 
 @Component({
   selector: 'basket-product',
@@ -11,28 +11,28 @@ import { Basket } from '../../entities/basket';
 })
 export class BasketProductComponent {
   constructor(private basketService : BasketService){}
-  basket$!: Cart;
-  @Input() cartLine? :CartLine ;
+  basket$!: Basket;
+  @Input() basketLine? :BasketLine ;
   totalLine : number = 0;
   
   ngOnInit(): void {
-    this.basketService.basket$.subscribe((basket: Cart) => {
+    this.basketService.basket$.subscribe((basket: Basket) => {
       this.basket$ = basket;
-      if(this.cartLine)
-        this.totalLine = this.cartLine?.getQuantity() * this.cartLine.getPrice();
+      if(this.basketLine)
+        this.totalLine = this.basketLine?.getQuantity() * this.basketLine.getPrice();
       });
    }
  
    /**
-    * minus one to cart
+    * minus one to basket
     */
   minus(){    
-    if(this.cartLine && this.cartLine?.getQuantity() > 0){
-      this.basket$.getCartLines().forEach((line) => {
-        if( this.cartLine?.getProductId() == line.getProductId() && line.getQuantity() > 0){           
+    if(this.basketLine && this.basketLine?.getQuantity() > 0){
+      this.basket$.getBasketLines().forEach((line) => {
+        if( this.basketLine?.getProductId() == line.getProductId() && line.getQuantity() > 0){           
           line.setQuantity(-1);
           if (line.getQuantity()<=0){   
-            this.basket$.removeLines(this.cartLine.getProductId());               
+            this.basket$.removeLines(this.basketLine.getProductId());               
           }            
         }
         this.basketService.updateBasket(this.basket$);
@@ -41,13 +41,13 @@ export class BasketProductComponent {
   }
 
   /**
-   * add one to cart
+   * add one to basket
    */
   add(){
    
-    if (this.cartLine){
-      this.basket$.getCartLines().forEach((line) => {
-        if( this.cartLine?.getProductId() == line.getProductId()){
+    if (this.basketLine){
+      this.basket$.getBasketLines().forEach((line) => {
+        if( this.basketLine?.getProductId() == line.getProductId()){
           line.setQuantity(1);
         }
     })    
@@ -59,8 +59,8 @@ export class BasketProductComponent {
    * remove line
    */
   trash(){
-    if(this.cartLine){
-      this.basket$.removeLines(this.cartLine.getProductId());
+    if(this.basketLine){
+      this.basket$.removeLines(this.basketLine.getProductId());
       this.basketService.updateBasket(this.basket$);
     } 
   }
