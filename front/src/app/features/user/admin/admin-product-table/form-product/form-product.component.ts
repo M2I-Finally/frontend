@@ -27,7 +27,7 @@ export class FormProductComponent implements OnInit {
   // Form that handles the addition or edition of a product
   formProduct = new UntypedFormGroup({
     productId: new UntypedFormControl(''),
-    productName: new UntypedFormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9 ']+")]),
+    productName: new UntypedFormControl('', [Validators.required, Validators.pattern("[A-Za-zÀ-ÖØ-öø-ÿ0-9 ']+")]),
     productDescription: new UntypedFormControl(''),
     productPrice: new UntypedFormControl('', [Validators.required, Validators.min(0)]),
     productTax: new UntypedFormControl('', [Validators.required]),

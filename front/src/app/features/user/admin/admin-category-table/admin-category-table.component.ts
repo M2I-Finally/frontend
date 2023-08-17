@@ -20,7 +20,7 @@ export class AdminCategoryTableComponent implements OnInit{
 
   // Form control for category name input
   categoryName = new FormControl('',
-           [Validators.pattern("[a-zA-Z  ']+")]);
+           [Validators.pattern("[A-Za-zÀ-ÖØ-öø-ÿ0-9 ']+")]);
 
   ngOnInit(): void {
       this.modalDelete = document.getElementById("delete-dialog-category") as HTMLDialogElement;
