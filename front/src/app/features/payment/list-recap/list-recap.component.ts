@@ -23,7 +23,7 @@ export class ListRecapComponent implements OnInit {
   @Input() basketLine?: BasketLine;
   @Output() discountApplied = new EventEmitter<number>();
   @Output() isQuantityModified = new EventEmitter<boolean>();
-
+  
   total!: number;
   totalAfterDiscount: number | undefined;
 

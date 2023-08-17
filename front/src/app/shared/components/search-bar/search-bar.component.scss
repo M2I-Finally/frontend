@@ -69,11 +69,13 @@ div {
         form {
             input {
                 border: 1px solid var(--primary-yellow);
+                border-left:none ;
                 color:var(--primary-yellow);
             }
 
             button {
                 border: 1px solid var(--primary-yellow);
+                border-right:none ;
             }
 
             svg {
