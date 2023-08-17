@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import { Product } from 'src/app/shared/entities/product';
-import { Cart } from 'src/app/shared/entities/cart';
-import { CartLine } from 'src/app/shared/entities/cart-line';
+import { Basket } from 'src/app/shared/entities/basket';
+import { BasketLine } from 'src/app/shared/entities/basket-line';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,7 +20,7 @@ export class ListRecapComponent implements OnInit {
 
   @Input() product?: Product;
   @Input() quantity!: number;
-  @Input() cartLine?: CartLine;
+  @Input() basketLine?: BasketLine;
   @Output() discountApplied = new EventEmitter<number>();
   @Output() isQuantityModified = new EventEmitter<boolean>();
   @Output() discountCancelled = new EventEmitter<number>();
@@ -28,8 +28,8 @@ export class ListRecapComponent implements OnInit {
   total!: number;
   totalAfterDiscount: number | undefined;
 
-  basket$!: Cart;
-  cartLine$!: CartLine[];
+  basket$!: Basket;
+  basketLine$!: BasketLine[];
 
   displayedColumns: string[] = ['Nom du produit', 'Quantité', 'PU', 'Réduction', 'Total', ''];
   productList$: Observable<Product[]> | undefined;
@@ -54,15 +54,15 @@ export class ListRecapComponent implements OnInit {
     this.productList$ = this.productService.getProducts();
     this.productList$.subscribe(products => { this.productList = products });
 
-    this.basketService.basket$.subscribe((basket: Cart) => {
+    this.basketService.basket$.subscribe((basket: Basket) => {
       this.basket$ = basket;
-      this.cartLine$ = basket.getCartLines();
+      this.basketLine$ = basket.getBasketLines();
       this.calculateTotal();
     });
   }
 
   minus(id: number) {
-    this.basket$.getCartLines().forEach((line) => {
+    this.basket$.getBasketLines().forEach((line) => {
       if (line.getProductId() === id) {
         line.setQuantity(-1);
         if (line.getQuantity() === 0){
@@ -78,7 +78,7 @@ export class ListRecapComponent implements OnInit {
   }
 
   add(id: number) {
-      this.basket$.getCartLines().forEach((line) => {
+      this.basket$.getBasketLines().forEach((line) => {
         if (line.getProductId() === id) {
           line.setQuantity(1);
         }
@@ -94,8 +94,8 @@ export class ListRecapComponent implements OnInit {
   calculateTotal(): void {
     let total = 0;
   
-    this.cartLine$.forEach((cartLine) => {
-      total += cartLine.getTotal();
+    this.basketLine$.forEach((basketLine) => {
+      total += basketLine.getTotal();
     });
   
     this.total = total;

@@ -21,16 +21,16 @@
         </div>
         <hr>
         <div id="invoice-global-details">
-            <div *ngFor="let cart of cartLines">
-                <p class="name-product">{{ cart.getName() }}</p>
-                <p class="price-product"><span>{{cart.getPrice() |
-                        currency:'EUR'}}</span><span>X</span><span>{{cart.getQuantity()}}</span><span>=</span><span>{{cart.getPrice()*cart.getQuantity()
-                        | currency:'EUR'}}</span></p>
+            <div *ngFor="let basket of basketLines">
+                <p class="name-product">{{ basket.getName() }}</p>
+                <p class="price-product"><span>{{basket.getPrice() |
+                        currency }}</span><span>X</span><span>{{basket.getQuantity()}}</span><span>=</span><span>{{basket.getPrice()*basket.getQuantity()
+                        | currency }}</span></p>
             </div>
             <div *ngIf="discount!=1; else nodiscount">
                 <hr class="hr-discount">
                 <p id="invoice-global-details-oldtotal"><span>Total avant réduction =</span><span>{{ oldTotal |
-                        currency:'EUR'}}</span></p>
+                        currency }}</span></p>
                 <p class="hr-discount-p">Application de la réduction de {{discount}} %</p>
                 <hr class="hr-discount">
             </div>
@@ -39,7 +39,7 @@
             </ng-template>
 
             <p id="invoice-global-details-total"><span>Total =</span><span>{{ paidBasket.getTotal() |
-                    currency:'EUR'}}</span></p>
+                    currency }}</span></p>
             <table id="payments">
                 <tr>
                     <td>type de paiement</td>
@@ -56,7 +56,7 @@
                         </span>
                     </td>
                     <td>:</td>
-                    <td>{{ paymentDto.getAmount() | currency:'EUR'}}</td>
+                    <td>{{ paymentDto.getAmount() | currency }}</td>
                 </tr>
             </table>
             <hr id="hr-payments">
@@ -69,8 +69,8 @@
                 <tbody>
                     <tr class="tax-tr">
                         <td>{{tva}} %</td>
-                        <td>{{ paidBasket.getTotal() / ( 1 + (tva/100)) | currency:'EUR' }}</td>
-                        <td>{{paidBasket.getTotal() - ( paidBasket.getTotal() / ( 1 + (tva/100))) | currency:'EUR'}}
+                        <td>{{ paidBasket.getTotal() / ( 1 + (tva/100)) | currency  }}</td>
+                        <td>{{paidBasket.getTotal() - ( paidBasket.getTotal() / ( 1 + (tva/100))) | currency }}
                         </td>
                     </tr>
                 </tbody>
@@ -90,8 +90,13 @@
         <generic-button color="green-full" content="Envoyer par email"
             (click)="dialogEmail.showModal()"></generic-button>
         <dialog #dialogEmail>
-            <form [formGroup]="formSendEmail" (ngSubmit)="updateEmail(formSendEmail,'inputEmail')" method="POST">
-                <div id="dial-email">
+            <button id="buttonRed" (click)="dialogEmail.close()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" id="logout-exit" >
+                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                </svg>
+            </button>
+            <form [formGroup]="formSendEmail" (ngSubmit)="updateEmail(formSendEmail,'inputEmail')" method="POST">                
+                <div id="dial-email">                   
                     <p>Saisir email client</p>
                     <div id="dial-email-input">
                         <input  formControlName="inputEmail" type="email" id="email">
