@@ -18,7 +18,7 @@ import { Category } from '../../entities/category';
 })
 export class GenericHeaderComponent implements OnInit {
 
-  constructor(private router: Router, private authService : Auth, private toastr: ToastrService, private userService: UserService, private categoryService: CategoryService) { }
+  constructor(private router: Router, private authService: AuthService, private toastr: ToastrService, private userService: UserService, private categoryService: CategoryService) { }
 
   /**
    * This output specifies if an action has to be made if we click on the logo to go back home
