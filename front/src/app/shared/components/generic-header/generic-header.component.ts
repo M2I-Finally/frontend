@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { Jwt } from 'src/app/shared/entities/jwt';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToastrService } from 'ngx-toastr';
-import { Auth } from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
@@ -15,7 +15,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 })
 export class GenericHeaderComponent implements OnInit {
 
-  constructor(private router: Router, private toastr: ToastrService, private userService: UserService, private authService: Auth) { }
+  constructor(private router: Router, private toastr: ToastrService, private userService: UserService, private authService: AuthService) { }
 
   /**
    * This output specifies if an action has to be made if we click on the logo to go back home

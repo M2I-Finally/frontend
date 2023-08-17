@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 import { TodaySaleDto } from 'src/app/shared/entities/today-sale-dto';
-import { Auth } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { TodaySaleService } from 'src/app/shared/services/today-sale.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class LogoutComponent implements OnInit{
   seller : string = "anonyme";
   total: number = 0;
 
-  constructor(private router: Router, private authService : Auth, private todaySaleService : TodaySaleService) {}
+  constructor(private router: Router, private authService : AuthService, private todaySaleService : TodaySaleService) {}
 
   ngOnInit(): void {
     this.todaySaleService.getTodaySale().subscribe((dto : TodaySaleDto) => {

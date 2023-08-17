@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth } from './auth.service';
+import { AuthService } from './auth.service';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class GuardService {
 
-  constructor(private authService: Auth, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
    /**
     * This method allows for checking if the users are logged in. 
     * If the user are logged in, they can access the paths; if not, they are redirected to the login page.

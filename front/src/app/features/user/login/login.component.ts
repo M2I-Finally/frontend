@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Jwt } from 'src/app/shared/entities/jwt';
 import jwt_decode from "jwt-decode";
-import { Auth } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     password: new UntypedFormControl('admin',[Validators.required])
   })
   
-  constructor(private router: Router, private authService : Auth,private toastr: ToastrService) {}
+  constructor(private router: Router, private authService : AuthService,private toastr: ToastrService) {}
   
   // If user is already logged in we redirect him to the shop page
   ngOnInit(): void {
