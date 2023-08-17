@@ -81,7 +81,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
    * update total if there is any discount change
    * @param event totalAfterDiscount from recap-list
    */
-  totalWithDiscount(event: number) {
+  totalWithDiscount(event: number): void {
     this.totalAfterDiscount = event;
 
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
@@ -89,7 +89,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
       this.discount = 1 - this.totalAfterDiscount / this.total;
       this.isBasketLineModified(true);
     }
-    
+
     this.amountDue = this.totalAfterDiscount;
     this.basket$.setTotal(this.totalAfterDiscount);
   };
@@ -102,7 +102,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
    * @param name FormControlName for input
    * @param paymentType 0 = cash, 1 = bank card, 2 = other
    */
-  updatePayment(formGroupName: UntypedFormGroup, name: string, paymentType: string) {
+  updatePayment(formGroupName: UntypedFormGroup, name: string, paymentType: string): void {
     // get the payment input
     this.amount = formGroupName.controls[name].value;
 
@@ -141,7 +141,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
     * total payment
     * @param paymentTypeId 0 = cash, 1 = bank card, 2 = other
     */
-  Submit(paymentTypeId: number) {
+  Submit(paymentTypeId: number): void {
     this.paymentDtoList.push(new PaymentDto(this.amountDue, paymentTypeId));
     this.amountDue = 0;
     this.createBasket();
@@ -151,7 +151,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
   * Any modification for quantity will update payment situation.
   * @param event if quantity is changed. 
   */
-  isBasketLineModified(event: boolean) {
+  isBasketLineModified(event: boolean): void {
     this.basketModified = event;
 
     if (this.basketModified) {
