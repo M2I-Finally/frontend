@@ -83,7 +83,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
    */
   totalWithDiscount(event: number) {
     this.totalAfterDiscount = event;
-    
+
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
     if (this.totalAfterDiscount < this.total) {
       this.discount = 1 - this.totalAfterDiscount / this.total;
@@ -91,7 +91,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
     }
     
     this.amountDue = this.totalAfterDiscount;
-    return this.basket$.setTotal(this.totalAfterDiscount);
+    this.basket$.setTotal(this.totalAfterDiscount);
   };
 
   /**
