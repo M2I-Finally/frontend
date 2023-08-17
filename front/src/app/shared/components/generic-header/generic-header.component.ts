@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { Jwt } from 'src/app/shared/entities/jwt';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToastrService } from 'ngx-toastr';
-import { Auth } from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
@@ -78,11 +78,17 @@ export class GenericHeaderComponent implements OnInit {
     if(sessionToken != undefined) {
       let decoded: Jwt = jwt_decode(sessionToken);
       let connectedUserId = decoded.id;
-      this.userService.getUserById(connectedUserId).subscribe({
-        next: (res) => console.log(res.username)
-        // console.log(this.formPassword.controls["password"].value)
-      })
+      //appeler la méthode qui vérifiera le mdp
+      this.userService.checkPassword(connectedUserId, this.formPassword.controls["password"].value).subscribe({
+        next: (res: boolean) => {
+          if(res) {
+            this.goToPage('logout');
+          } else {
+            this.authService.logout();
+            this.router.navigateByUrl('/')
+          }
+        }
+      })      
     }
-    // this.goToPage('logout');
   }
 }

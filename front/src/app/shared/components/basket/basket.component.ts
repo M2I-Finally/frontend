@@ -1,6 +1,6 @@
 import { Component,Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { CartLine } from '../../entities/cart-line';
-import { Cart } from '../../entities/cart';
+import { BasketLine } from '../../entities/basket-line';
+import { Basket } from '../../entities/basket';
 import { BasketService } from '../../services/basket.service';
 import { Router } from '@angular/router';
 
@@ -15,16 +15,16 @@ export class BasketComponent implements OnInit {
 
   @Input() quantity!: number;
   total!: number; 
-  basket$!: Cart;
-  cartLine$!: CartLine[];
+  basket$!: Basket;
+  basketLine$!: BasketLine[];
   
   ngOnInit(): void {
     /**
      * get basket from service and calculate total
      */
-    this.basketService.basket$.subscribe((basket: Cart) => {
+    this.basketService.basket$.subscribe((basket: Basket) => {
       this.basket$ = basket;
-      this.cartLine$ = basket.getCartLines();
+      this.basketLine$ = basket.getBasketLines();
       this.calculateTotal();
     });
   }
@@ -35,8 +35,8 @@ export class BasketComponent implements OnInit {
   calculateTotal(): void {
     let total = 0;
 
-    this.cartLine$.forEach((cartLine) => {
-      total += cartLine.getPrice() * cartLine.getQuantity() * cartLine.getDiscount();
+    this.basketLine$.forEach((basketLine) => {
+      total += basketLine.getPrice() * basketLine.getQuantity() * basketLine.getDiscount();
     });
 
     this.total = total;
@@ -56,9 +56,9 @@ export class BasketComponent implements OnInit {
    */
   protected cancelBasket(): void {
     // reset basketlines
-    this.basket$.resetCart();
+    this.basket$.resetBasket();
     // update empty basket lines 
-    this.cartLine$ = this.basket$.getCartLines();
+    this.basketLine$ = this.basket$.getBasketLines();
     //update total
     this.total = 0;
     //update the productCard quantity

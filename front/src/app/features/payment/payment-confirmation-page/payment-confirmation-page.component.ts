@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { Cart } from 'src/app/shared/entities/cart';
+import { Basket } from 'src/app/shared/entities/basket';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import { Router } from '@angular/router';
 import { PaymentService } from 'src/app/shared/services/payment.service';
 import { Payment } from 'src/app/shared/entities/payment';
-import { CartLine } from 'src/app/shared/entities/cart-line';
+import { BasketLine } from 'src/app/shared/entities/basket-line';
 import { PaymentDto } from 'src/app/shared/entities/payment-dto';
 import { ToastrService } from 'ngx-toastr';
 import { Jwt } from 'src/app/shared/entities/jwt';
@@ -22,9 +22,9 @@ import { _isNumberValue } from '@angular/cdk/coercion';
 export class PaymentConfirmationPageComponent implements OnInit {
   total!: number
   totalAfterDiscount: number | undefined;
-  cartModified: boolean | undefined;
-  basket$!: Cart;
-  basketLine!: CartLine[];
+  basketModified: boolean | undefined;
+  basket$!: Basket;
+  basketLine!: BasketLine[];
   amount: number = 0;
   amountDue: number = 0;
   amountPaid: number = 0;
@@ -34,7 +34,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
   sellerId: number = 999;
   discount: number = 1;
   paymentDtoList: PaymentDto[] = [];
-  idPaidBAsket: number = 0;
+  idPaidBasket: number = 0;
 
   constructor(private basketService: BasketService, private paymentService: PaymentService, private toastr: ToastrService, private router: Router) { };
 
@@ -57,10 +57,10 @@ export class PaymentConfirmationPageComponent implements OnInit {
     /**
      * get basket from service
      */
-    this.basketService.basket$.subscribe((basket: Cart) => {
+    this.basketService.basket$.subscribe((basket: Basket) => {
       this.basket$ = basket;
       this.total = this.basket$.getTotal();
-      this.basketLine = basket.getCartLines();
+      this.basketLine = basket.getBasketLines();
     })
 
     /**
@@ -83,14 +83,15 @@ export class PaymentConfirmationPageComponent implements OnInit {
    */
   totalWithDiscount(event: number) {
     this.totalAfterDiscount = event;
-    this.amountDue = this.totalAfterDiscount;
+    
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
     if (this.totalAfterDiscount < this.total) {
       this.discount = 1 - this.totalAfterDiscount / this.total;
-      this.total = this.totalAfterDiscount;
-      this.basket$.setTotal(this.total);
-      this.isCartLineModified(true);
+      this.isBasketLineModified(true);
     }
+    
+    this.amountDue = this.totalAfterDiscount;
+    return this.basket$.setTotal(this.totalAfterDiscount);
   };
 
   /**
@@ -150,10 +151,10 @@ export class PaymentConfirmationPageComponent implements OnInit {
   * Any modification for quantity will update payment situation.
   * @param event if quantity is changed. 
   */
-  isCartLineModified(event: boolean) {
-    this.cartModified = event;
+  isBasketLineModified(event: boolean) {
+    this.basketModified = event;
 
-    if (this.cartModified) {
+    if (this.basketModified) {
       this.amountDue = this.total - this.amountPaid;
 
       if (this.amountDue >= 0) {
@@ -169,21 +170,21 @@ export class PaymentConfirmationPageComponent implements OnInit {
 
   /**
    * cancel payment
-   * reset the cart and noted payment list
+   * reset the basket and noted payment list
    * @param page back to shop
    */
   protected cancelBasket(page: string): void {
-    this.basket$.resetCart();
+    this.basket$.resetBasket();
     this.clearPaymentList();
     this.router.navigate([page]);
   }
 
   /**
    * valid payment, get success or fail message
-   * payment will not pass when there is nothing in the cart nor the cart is been paid.
+   * payment will not pass when there is nothing in the basket nor the basket is been paid.
    */
   protected createBasket(): void {
-    // cart cannot be empty
+    // basket cannot be empty
     if (this.total > 0) {
 
       //payment needs to be done
@@ -200,8 +201,8 @@ export class PaymentConfirmationPageComponent implements OnInit {
           next: (data) => {
             this.toastr.success(`Le panier ${data} est bien enregistré, la facture est encours de généreration.`);
             //sauvegarde du panier payer dans le basket service pour edition de la facture
-            let paidBasket = new Cart(this.basket$.getCartLines(), this.basket$.getTotal(), this.discount)
-            this.idPaidBAsket = data;
+            let paidBasket = new Basket(this.basket$.getBasketLines(), this.basket$.getTotal(), this.discount)
+            this.idPaidBasket = data;
             this.basketService.SavePaidBasket(paidBasket, data, this.paymentDtoList);
             // une fois payé, vider le panier et avancer sur la page facture 
             this.cancelBasket('facture');

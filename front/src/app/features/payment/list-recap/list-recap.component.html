@@ -5,8 +5,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor = "let line of cartLine$">
-      <td >{{line.getName()}}</td>      
+    <tr *ngFor = "let line of basketLine$">
+      <td >{{line.getName()}}</td>
       <td >
         <button class="btn btn-qty-controller card-btn-minus" (click)="minus(line.getProductId())">-</button>
         {{line.getQuantity()}}
