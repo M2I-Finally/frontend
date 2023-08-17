@@ -1,31 +1,48 @@
-button{
+/* ------------------ MOBILE ------------------ */
+button {
     background-color: transparent;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding:0.5rem;
+    padding:0.2rem;
     border: 1px solid var(--primary-bg-color);
     border-radius: 10px;
     color: var(--primary-bg-color);
-    min-width: 18rem;
+    margin-left: 0.7rem;
 
-    svg{
+    svg {
         max-width: 40px;
         max-height: 40px;
         fill: var(--primary-bg-color);
     }
 
-    .title{
+    .title {
         font-weight: 700;
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 }
 
-button:hover{
+button:hover {
     background-color: var(--primary-bg-color);
     color: var(--text-on-dk-bg);
     box-shadow: 10px 5px 5px var(--bg-color-80);
     svg{
         fill: var(--text-on-dk-bg);
+    }
+}
+
+
+
+
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    button{
+        gap: 1rem;
+        padding:0.5rem;
+        min-width: 18rem;
+        margin: 0;
+
+        .title {
+            font-size: 1rem;
+        }
     }
 }

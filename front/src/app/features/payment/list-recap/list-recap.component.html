@@ -7,13 +7,11 @@
   <tbody>
     <tr *ngFor = "let line of basketLine$">
       <td >{{line.getName()}}</td>
-      
       <td >
         <button class="btn btn-qty-controller card-btn-minus" (click)="minus(line.getProductId())">-</button>
         {{line.getQuantity()}}
         <button class="btn btn-qty-controller card-btn-add" (click)="add(line.getProductId())" >+</button>
       </td>
-
       <td >{{line.getPrice() |  currency }}</td>
       <td >{{line.getDiscount() }}</td>
       <td >{{line.getTotal() |  currency }}</td>
@@ -27,10 +25,8 @@
     </td>
     </tr>
   </tbody>
-
 </table>
 <div class="table-footer">
-
   <form action="" [formGroup]="formDiscount" (ngSubmit)="submitDiscount($event)">
     <div id="form-container">
       <label for="discountTotal">Réduction</label>
@@ -47,7 +43,6 @@
         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
       </svg>
     </div>
-
   </form>
   <div id="totalAmount">
     <div class="{{ classNameBeforeDiscount }}">{{total | currency }}</div>

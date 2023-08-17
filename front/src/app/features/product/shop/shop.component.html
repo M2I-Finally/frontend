@@ -1,10 +1,11 @@
-<generic-header (actionWhenHomeButtonClicked)="deleteFilter()">
-    <search-bar (searchTextChanged)="onSearchTextEntered($event)"></search-bar>
+<generic-header (actionWhenHomeButtonClicked)="deleteFilter()" (categorySelectedMobile)="categoryFilter($event)"> 
+    <search-bar (searchTextChanged)="onSearchTextEntered($event)" id="search-bar"></search-bar>
 </generic-header>
 
 <navigation (categorySelected)="categoryFilter($event)"></navigation>
 <basket [quantity]="quantity" ></basket>
 <div id="shop-container">
+    <search-bar (searchTextChanged)="onSearchTextEntered($event)" id="mobile-search-bar"></search-bar>
     <ng-container *ngFor="let product of productList$ | async; index as i">
         <ng-template [ngIf]="product.status">
             <product-card [product]="product" [quantity]="quantity" *ngIf="searchText==='' || product.name.toLowerCase().includes(searchText)" ></product-card>
