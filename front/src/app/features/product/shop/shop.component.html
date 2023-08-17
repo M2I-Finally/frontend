@@ -1,4 +1,4 @@
-<generic-header (actionWhenHomeButtonClicked)="deleteFilter()">
+<generic-header (actionWhenHomeButtonClicked)="deleteFilter()" (categorySelectedMobile)="categoryFilter($event)"> 
     <search-bar (searchTextChanged)="onSearchTextEntered($event)"></search-bar>
 </generic-header>
 

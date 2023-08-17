@@ -29,18 +29,34 @@
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
         <mat-icon id="menu-icon">menu</mat-icon>
     </button>
-    <mat-menu #appMenu="matMenu">
-        <ng-container *ngIf="currentUserRole != 'EMPLOYEE'">
-            <button mat-menu-item [matMenuTriggerFor]="subMenu">Gestion</button>
+    <mat-menu #appMenu="matMenu">        
+        <ng-container *ngIf="currentRoute == '/shop'; else gestionNav">            
+            <ng-container *ngIf="currentUserRole != 'EMPLOYEE'">
+                <button mat-menu-item [matMenuTriggerFor]="subMenu">Gestion</button>
+            </ng-container>
+            <button mat-menu-item (click)="goHome()" [matMenuTriggerFor]="subMenuShop" >Vente</button>
+            <button mat-menu-item (click)="dialogLogout.showModal()">Déconnexion</button>
         </ng-container>
-        <button mat-menu-item (click)="goHome()">Vente</button>
-        <button mat-menu-item (click)="dialogLogout.showModal()">Déconnexion</button>
+        <ng-template #gestionNav>
+            <ng-container *ngIf="currentUserRole != 'EMPLOYEE'">
+                <button mat-menu-item [matMenuTriggerFor]="subMenu">Gestion</button>
+            </ng-container>
+            <button mat-menu-item (click)="goHome()">Vente</button>
+            <button mat-menu-item (click)="dialogLogout.showModal()">Déconnexion</button>
+        </ng-template>
     </mat-menu>
     <mat-menu #subMenu="matMenu">
         <button mat-menu-item (click)="goToPage('/products')">Produits</button>
         <button mat-menu-item (click)="goToPage('/categories')">Catégories</button>
         <ng-container *ngIf="isAdmin">
             <button mat-menu-item (click)="goToPage('/users')">Utilisateurs</button>
+        </ng-container>
+    </mat-menu>
+    <mat-menu #subMenuShop="matMenu">
+        <ng-container *ngFor="let category of categoryList$ | async; index as i">
+            <ng-template [ngIf]="category.status">
+                <button mat-menu-item id="{{ category?.id }}"(click)="changeCategoryMobile($event)" >{{ category?.name }}</button>
+            </ng-template>
         </ng-container>
     </mat-menu>
 </div>
