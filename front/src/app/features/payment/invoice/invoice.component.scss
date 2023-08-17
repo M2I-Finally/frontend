@@ -102,7 +102,6 @@ img {
     font-weight: 400;
     font-size: 1rem;
     margin-bottom: 5px;
-
 }
 
 .price-product {
@@ -245,8 +244,7 @@ dialog[open] {
 }
 
 #buttonRed {
-    float: right;
-   
+    float: right;   
     background-color: transparent;
     border: none;       
 
@@ -259,256 +257,38 @@ dialog[open] {
 @media screen and (min-width: 768px) {
     #invoice {
         &-container {
-            display: flex;
-            justify-content: center;
+            flex-direction: row;
         }
 
         &-action {
-            display: flex;
             flex-direction: column;
             margin-left: 50px;
             padding-top: 80px;
         }
 
         &-exit {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 15px;
-
             &-svg {
-                margin-right: 20px;
-                fill: var(--brand-red);
-                cursor: pointer;
+                width: 50px;
+                height: 50px;
             }
         }
 
         &-global {
             width: 40%;
-            min-height: 50vh;
-
-            padding: 15px;
-            font-family: 'Quicksand';
-            border: solid 2px var(--primary-bg-color);
-
-            &-logo {
-                display: flex;
-                justify-content: center;
-            }
-
-            &-merchant {
-                margin-top: 15px;
-
-                &-date {
-                    text-align: right;
-                }
-            }
-
-            &-info {
-                text-align: center;
-            }
-
-            &-details {
-                &-total {
-                    display: flex;
-                    justify-content: space-between;
-                    font-weight: 700;
-                    font-size: 1.2rem;
-
-                    span:nth-child(1) {
-                        width: 70%;
-                        text-align: end;
-                    }
-
-                    span:nth-child(2) {
-                        width: 30%;
-                        text-align: end;
-                    }
-                }
-
-                &-oldtotal {
-                    display: flex;
-                    justify-content: space-between;
-                    font-weight: bolder;
-                    font-size: 0.8rem;
-
-                    span:nth-child(1) {
-                        width: 70%;
-                        text-align: end;
-                    }
-
-                    span:nth-child(2) {
-                        width: 30%;
-                        text-align: end;
-                    }
-                }
-            }
-        }
-    }
-
-    img {
-        width: 25%;
-        background-color: #524c7d;
-        padding: 5px 10px;
-    }
-
-    .logout-details-type {
-        padding-bottom: 1.5rem;
-    }
-
-    .name-product {
-        font-weight: 400;
-        font-size: 1rem;
-        margin-bottom: 5px;
-
-    }
-
-    .price-product {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.7rem;
-    }
-
-    .price-product span:nth-child(1) {
-        width: 50%;
-        text-align: end;
-    }
-
-    .price-product span:nth-child(2) {
-        width: 12.5%;
-        text-align: center;
-    }
-
-    .price-product span:nth-child(3) {
-        width: 12.5%;
-        text-align: center;
-    }
-
-    .price-product span:nth-child(4) {
-        width: 12.5%;
-        text-align: center;
-    }
-
-    .price-product span:nth-child(5) {
-        width: 12.5%;
-        text-align: end;
-    }
-
-    #hr-total {
-        border: none;
-        height: 1px;
-        background-image: repeating-linear-gradient(45deg, #b0b0b0, #b0b0b0 5px, transparent 5px, transparent 10px);
-        width: 70%;
-    }
-
-    .hr-discount {
-        border: none;
-        height: 1px;
-        background-image: repeating-linear-gradient(90deg, #b0b0b0, #b0b0b0 2px, transparent 2px, transparent 4px);
-        width: 70%;
-
-        &-p {
-            font-size: 0.8rem;
-            text-align: center;
-            font-weight: bolder;
-        }
-    }
-
-    #hr-payments {
-        border: none;
-        height: 1px;
-        background-image: repeating-linear-gradient(45deg, #cdcbcb, #b0b0b0 5px, transparent 5px, transparent 10px);
-        width: 70%;
-    }
-
-    #payments {
-        width: 100%;
-        font-size: 0.6rem;
-        margin-top: 10px;
-
-        td:nth-child(1) {
-            width: 70%;
-            text-align: end;
-        }
-
-        td:nth-child(2) {
-            text-align: center;
-            width: 10%;
-        }
-
-        td:nth-child(3) {
-            width: 20%;
-            text-align: end;
-        }
-    }
-   
-    #tax {
-        width: 100%;
-        font-size: 0.6rem;
-        margin-top: 10px;
-
-        th {
-            text-align: center;
-            font-weight: 500;
-        }
-
-        td {
-            width: 33.3%;
-            text-align: center;
+            margin: 0;
         }
     }
 
     dialog[open] {
-        border-style: none;
-        border-radius: 30px;
-        padding-left: 3rem;
-        padding-right: 3rem;
-        font-family: 'Quicksand';
-        font-weight: 600;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     #dial-email {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 40vw;
-        height: 20vh;
-        border-radius: 30px;
-
-        &-input {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
+        width: 20vw;
 
         input {
-            height: 35px;
-            width: 60%;
-            font-size: 1rem;
-        }
-
-        button {
-            border-style: none;
-            background-color: transparent;
-
-            svg {
-                width: 35px;
-                height: 35px;
-                fill: var(--validation-green);
-            }
-        }       
-    }
-
-    #buttonRed{
-        float: right;
-       
-        background-color: transparent;
-        border: none;       
-
-        svg{
-            fill: var(--brand-red);
-        }
+            width: 80%;
+        }      
     }
 }
