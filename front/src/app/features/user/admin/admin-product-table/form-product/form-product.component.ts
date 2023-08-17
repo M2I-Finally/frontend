@@ -23,11 +23,12 @@ export class FormProductComponent implements OnInit {
   protected currentImage?: File;
   protected imagePreview = '';
   protected categoryList$ = this.categoryService.getCategories();
+  protected product: Product | undefined;
  
   // Form that handles the addition or edition of a product
   formProduct = new UntypedFormGroup({
     productId: new UntypedFormControl(''),
-    productName: new UntypedFormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9 ']+")]),
+    productName: new UntypedFormControl('', [Validators.required, Validators.pattern("[A-Za-zÀ-ÖØ-öø-ÿ0-9 ']+")]),
     productDescription: new UntypedFormControl(''),
     productPrice: new UntypedFormControl('', [Validators.required, Validators.min(0)]),
     productTax: new UntypedFormControl('', [Validators.required]),
@@ -43,8 +44,9 @@ export class FormProductComponent implements OnInit {
       this.productService.getProductById(this.getIdParameterFromUrl())
       .subscribe(
         {
-          next: res => { 
+          next: (res: Product) => { 
             this.populateForm(res);
+            this.product = res;
           }
         }
       );
@@ -87,17 +89,13 @@ export class FormProductComponent implements OnInit {
   }
 
   // Called when observable gets a result on getProductById()
-  private populateForm(product: Product): void {
+  protected populateForm(product: Product): void {
     this.formProduct.controls["productId"].setValue(product.productId);
     this.formProduct.controls["productName"].setValue(product.name);
     this.formProduct.controls["productDescription"].setValue(product.description);
     this.formProduct.controls["productPrice"].setValue(product.price);
     this.formProduct.controls["productTax"].setValue(product.tax);
-    this.formProduct.controls["productCategory"].setValue(product.categoryId);
-
-    if(product.picture) {
-      this.formProduct.controls["productImage"].setValue(product.picture);
-    }
+    this.formProduct.controls["productCategory"].setValue(product.categoryId);  
   }
 
   // Called when redirecting to table and refresh the component to get the new datas
