@@ -8,7 +8,7 @@
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
     #cart {
-        height: 76%;
+        height: 72%;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -50,17 +50,5 @@
         font-weight: 700;
         padding-bottom: 20px;
     }
-}
-
-
-/* ------------------ DESKTOP ------------------ */
-@media screen and (min-width: 1024px) {
-    #cart {
-        height: 83.1%;
-    }
-    
-    // #cart-sum {
-    //     font-size: 2em;
-    // }
 }
  
