@@ -15,7 +15,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 })
 export class GenericHeaderComponent implements OnInit {
 
-  constructor(private router: Router, private toastr: ToastrService, private userService: UserService) { }
+  constructor(private router: Router, private toastr: ToastrService, private userService: UserService, private authService: Auth) { }
 
   /**
    * This output specifies if an action has to be made if we click on the logo to go back home
@@ -68,9 +68,15 @@ export class GenericHeaderComponent implements OnInit {
       let connectedUserId = decoded.id;
       //appeler la méthode qui vérifiera le mdp
       this.userService.checkPassword(connectedUserId, this.formPassword.controls["password"].value).subscribe({
-        next: (res) => console.log(res)
+        next: (res: boolean) => {
+          if(res) {
+            this.goToPage('logout');
+          } else {
+            this.authService.logout();
+            this.router.navigateByUrl('/')
+          }
+        }
       })      
     }
-    // this.goToPage('logout');
   }
 }
