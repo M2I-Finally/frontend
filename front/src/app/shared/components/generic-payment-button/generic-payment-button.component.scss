@@ -1,11 +1,17 @@
+/* ------------------ MOBILE ------------------ */
 button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
     background-color: var(--text-on-dk-bg);
     border: 1px solid var(--text-color);
     border-radius: 10px;
-    padding: 1rem;
-    margin: 0.5rem auto;
-    width: 150px;
     box-shadow: 10px 5px 15px var(--bg-color-80);
+
+    P {
+        font-size: 0.7rem;
+    }
 }
 
 button:hover{
@@ -16,6 +22,18 @@ button:hover{
     .payment-icon{
         fill:var(--text-on-dk-bg);
         color: var(--text-on-dk-bg);
+    }
+}
+
+
+
+
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    button{
+        width: 150px;
+        padding: 1rem;
+        margin: 0.5rem auto;
     }
 }
 

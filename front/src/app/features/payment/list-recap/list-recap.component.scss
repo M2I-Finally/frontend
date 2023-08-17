@@ -2,8 +2,7 @@
 table {
     background-color: var(--primary-green);
     text-align: center;
-    vertical-align: middle; 
-    border: solid 1px #f0f;  
+    vertical-align: middle;   
 
     thead {
         th {
@@ -153,154 +152,64 @@ table {
 
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
-    table{
-        background-color: var(--primary-green);
-        text-align: center;
-        vertical-align: middle;
+    table {
         width: 100%;   
 
-        thead{
-            th{
-                font-family: var(--title-font);
-                font-weight: 700;
+        thead {
+            th {
                 padding:2rem 2rem;
-                background-color: var(--primary-bg-color);
-                color:var(--text-on-dk-bg);
-                font-size: 1.3rem;
-            
+                font-size: 1.3rem;            
             }
         }  
     
         .btn-qty-controller {
-            background-color: transparent;
-            border: 1px solid var(--text-color);
-            border-radius: 50%;
-            text-align: center;
-            color: var(--text-color);
             width: 30px;
             height: 30px;
-            margin: 0;
-            padding: 0;
+            font-size: 1.3rem;
         }
 
-        tbody{
-            tr:nth-child(even){
-                background-color: var(--text-on-dk-bg);
-            }
-        
-            td{
-                padding:1rem;
+        tbody {        
+            td {
+                padding: 1rem;
+                font-size: 1rem;
             
-                #removeItem{
-                    background: none;
-                    border: none;
+                #removeItem {
                     padding:0.5rem;
 
-                    svg{
+                    svg {
                         min-width: 25px;
                         min-height: 25px;
-                        fill:var(--text-color);
-                        
                     }
                 }
             }
         }  
     }
 
-    .table-footer{
-        font-family: var(--title-font);
-        font-weight: 700;
-        background-color: var(--primary-bg-color);
-        color:var(--text-on-dk-bg);
+    .table-footer {
         font-size: 1.3rem;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding:1rem 4rem;
 
-        form{
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+        form {
             margin-right: 3rem;
             
-            label{
+            label {
                 margin-right: 3rem;
             }
 
             input, 
-            select{
+            select {
                 padding: 0.5rem;
-                appearance: textfield;
             }
 
-            input{
-                width: 50%;
-            }
-
-            select{
-                background-color: var(--text-on-dk-bg);
-                width: 5.5rem;
-                font-size: 1rem;
-                border: none;
+            select {
                 margin-left: 0.5rem;
-                
-                option{
-                    font-size: 1.2rem;
-                    padding:0.5rem;
-                }
             }
-        }
-    }
-
-    #totalAmount {
-        display: flex;
-        flex-direction: column;
-        gap: 0.2rem;
-    }
-
-    .totalBeforeDiscount {
-        &-crossed {
-            font-size: small;
-            text-decoration: line-through;
-        }
-    }
-
-    .totalAfterDiscount {
-        &-hidden {
-            display: none;
-        }
-
-        &-show {
-            display: block;
         }
     }
 
     #cancel {
-        &-hidden {
-            display: none;
-        }
-
         &-show {
-            display: block;
-            color: var(--brand-red);
-            cursor: pointer;
             padding-left: 1rem;
         }
-    }
-
-    #apply {
-        &-hidden {
-            display: none;
-        }
-    }
-
-    #form-container {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: flex-start;
     }
 }
