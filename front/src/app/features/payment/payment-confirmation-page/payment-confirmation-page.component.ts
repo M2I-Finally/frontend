@@ -87,6 +87,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
     if (this.totalAfterDiscount < this.total) {
       this.discount = 1 - this.totalAfterDiscount / this.total;
+      this.total = this.totalAfterDiscount;
       this.isBasketLineModified(true);
     }
 
