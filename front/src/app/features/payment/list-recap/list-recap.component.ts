@@ -137,6 +137,7 @@ export class ListRecapComponent implements OnInit {
     this.toggleClassDiscount();
     this.totalAfterDiscount = undefined;
     this.formDiscount.reset();
+    this.formDiscount.controls['unit'].setValue("percentage");
     this.basket$.setDiscount(1);
     this.discountApplied.emit(this.total);
   }
