@@ -1,0 +1,196 @@
+<div class="wrapper">
+    <!-- header -->
+    <generic-header [escapeEnabled]="false"></generic-header>
+
+    <!-- content -->
+    <div class="recapWrapper">
+        <return-to-products-page-button back="RETOUR AUX PRODUITS"></return-to-products-page-button>
+        <h1 class="title">Récapitulatif de la commande</h1>
+        <list-recap (discountApplied)="totalWithDiscount($event)"  (isQuantityModified)="isBasketLineModified($event)"></list-recap>
+        <div>
+            <span> Montant payé: {{ amountPaid | currency }} </span>    
+            <span> | Reste à payer: {{amountDue | currency }} </span>
+            <span> | Monnaie à rendre: {{change | currency }} </span>
+        </div>
+    </div>
+
+    <!-- payments -->
+    <aside>
+        <div>
+            <generic-payment-button (click)="dialogCard.showModal()"
+                meansOfPayment="Carte Bancaire">
+                <svg class="payment-icon" fill="#ffffff" width="800px" height="800px" viewBox="0 0 32 32" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <title>alt-mastercard</title>
+                    <path
+                        d="M0 26.016q0 0.832 0.576 1.408t1.44 0.576h28q0.8 0 1.408-0.576t0.576-1.408v-16h-32v16zM0 8h32v-1.984q0-0.832-0.576-1.408t-1.408-0.608h-28q-0.832 0-1.44 0.608t-0.576 1.408v1.984zM10.016 19.008q0-2.080 1.44-3.52t3.552-1.472q1.312 0 2.496 0.704-1.504 1.92-1.504 4.288t1.504 4.288q-1.184 0.704-2.496 0.704-2.080 0-3.552-1.44t-1.44-3.552zM18.016 19.008q0-2.080 1.44-3.52t3.552-1.472 3.52 1.472 1.472 3.52-1.472 3.552-3.52 1.44-3.552-1.44-1.44-3.552z">
+                    </path>
+                </svg>
+            </generic-payment-button>
+        </div>
+        <div>
+            <generic-payment-button  meansOfPayment="Espèces" (click)="dialogCash.showModal()">
+                <svg version="1.1" class="payment-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 width="800px" height="800px" viewBox="0 0 512 512"  xml:space="preserve">
+                    <g>
+                        <path class="st0" d="M0,120v272h512V120H0z M32,313.813V198.156c22.969-3.875,40.844-22.703,43.188-46.156h132.938
+                            c-30.016,20.375-50.313,59.25-50.313,104c0,44.734,20.281,83.625,50.297,104H75.188C72.844,336.547,54.969,317.688,32,313.813z
+                            M287.969,238.156l-3.313,15.969h-54.516c-0.063,0.906-0.109,1.844-0.109,2.75c0,2.281,0.203,4.609,0.594,6.953h52.063
+                            l-3.281,15.969h-42.563c7.75,12.063,20.969,19.359,35.469,19.359c4.906,0,9.859-0.891,14.656-2.672l3.844-1.438v22.469
+                            l-2.109,0.563c-5.391,1.453-10.922,2.188-16.391,2.188c-26.094,0-49.563-16.188-59.016-40.469h-13.5v-15.969h9.578
+                            c-0.297-2.453-0.438-4.719-0.438-6.953c0-0.906,0.031-1.844,0.063-2.75h-9.203v-15.969h12.047
+                            c8.188-26.391,32.734-44.656,60.469-44.656c7.375,0,14.594,1.313,21.531,3.844l2.297,0.828l-4.313,21.141l-3.219-1.344
+                            c-5.266-2.219-10.75-3.344-16.297-3.344c-16.031,0-30.75,9.297-37.844,23.531H287.969z M303.875,152h132.906
+                            c2.344,23.453,20.25,42.281,43.219,46.156v115.656c-22.969,3.891-40.875,22.734-43.219,46.188H303.891
+                            c30.016-20.375,50.297-59.266,50.297-104C354.188,211.25,333.906,172.375,303.875,152z"/>
+                        <circle class="st0" cx="125.125" cy="256" r="13.75"/>
+                        <circle class="st0" cx="386.875" cy="256" r="13.75"/>
+                    </g>
+                </svg>
+            </generic-payment-button>
+        </div>
+        <div>
+            <generic-payment-button meansOfPayment="Autres" (click)="dialogOther.showModal()">
+                <svg class="payment-icon" fill="#ffffff" version="1.1"  xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                    <g>
+                        <g>
+                            <path d="M0,117.161v277.677h415.128L512,297.966V117.161H0z M424.038,342.913v-36.037h36.037L424.038,342.913z M481.583,276.458
+			H393.62v87.963H30.417V147.578h451.166V276.458z" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <rect x="66.35" y="279.798" width="154.6" height="30.417" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <polygon points="345.86,281.83 322.992,293.997 300.125,281.83 277.261,293.997 261.54,285.631 247.251,312.484 277.261,328.452 
+			300.125,316.285 322.992,328.452 345.86,316.285 361.586,324.651 375.873,297.798 		" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <rect x="66.35" y="230.654" width="379.302" height="30.417" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <rect x="66.35" y="181.51" width="379.302" height="30.417" />
+                        </g>
+                    </g>
+                </svg>
+            </generic-payment-button>
+        </div>
+        <generic-button color="red" content="Annuler" (click)="cancelBasket('shop')"></generic-button>
+        <generic-button color="green-full" content="Valider le paiement" (click)="createBasket()"></generic-button>
+    </aside>
+</div>
+
+
+<!-- dialogs -->
+<dialog #dialogCard id="payment-by-card-dialog" >
+    <button (click)="dialogCard.close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" id="logout-exit" >
+            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+        </svg>
+    </button>
+    <form id="payment-by-card-form" [formGroup]="formPayByCard" (ngSubmit)="updatePayment(formPayByCard,'sumCard','BANK_CAR')" method="POST">
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+                <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+            </svg>
+            <label for="sum-card">Carte bancaire</label>
+            <input type="hidden" value="1" formControlName="BANK_CAR">
+        </div>
+
+        <div>
+            <input id="sum-card" formControlName="sumCard" type="number" step="0.01">
+            <button (click)="dialogCard.close()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                </svg>
+            </button>
+        </div>
+    </form>
+
+    <p>OU</p>
+
+    <generic-button color="green-full" content="Payer {{ amountDue | currency }}" (click)="Submit(1);dialogCard.close()"></generic-button>
+
+</dialog>
+
+<dialog #dialogCash id="payment-by-cash-dialog" >
+
+    <button (click)="dialogCash.close()" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" id="logout-exit">
+            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+        </svg>
+    </button>
+
+    <form id="payment-by-cash-form" method="POST" [formGroup]="formPayByCash" (ngSubmit)="updatePayment(formPayByCash,'sumCash','CASH'); dialogCash.close()">
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
+                <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
+            </svg>
+        
+            <label for="sum-cash">Espèces</label>
+            <input type="hidden" value="0" formControlName="CASH">
+        </div>
+
+        <div>
+            <input id="sum-cash" formControlName="sumCash" type="number" step="0.01">
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                 </svg>
+            </button>
+        </div>
+    </form>
+
+    <p >OU</p>
+    
+    <generic-button color="green-full" content="Payer {{amountDue | currency }}" (click)="Submit(0); dialogCash.close()"></generic-button>
+
+</dialog>
+
+<dialog #dialogOther id="payment-by-other-dialog" >
+
+    <button (click)="dialogOther.close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" id="logout-exit" >
+            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+        </svg>
+    </button>
+
+    <form id="payment-by-other-form" [formGroup]="formPayByOther" (ngSubmit)="updatePayment(formPayByOther,'sumOther','OTHER'); dialogOther.close()" method="POST">
+        
+        <div> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+            </svg>
+            <label for="sum-other">
+                Autres
+            </label>
+            <input type="hidden" value="2" formControlName="OTHER">
+        </div>
+
+        <div>
+            <input id="sum-other" formControlName="sumOther" type="number" step="0.01">
+            <button> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                </svg>
+            </button>
+        </div>
+
+    </form>
+
+    <p> OU </p>
+
+    <generic-button color="green-full" content="Payer {{amountDue | currency }}" (click)="Submit(2); dialogOther.close()"></generic-button>
+
+</dialog>

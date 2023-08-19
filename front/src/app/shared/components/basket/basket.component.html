@@ -1,0 +1,17 @@
+<aside id="basket">
+    <section id="basket-products">        
+        <ng-container *ngFor="let basketLine of basketLine$">
+            <basket-product [basketLine]="basketLine"></basket-product>            
+        </ng-container>        
+    </section>
+    <section id="basket-sum">
+        <div class="basket-total">
+            Total
+        </div>
+        <div class="basket-total bold">
+            {{ total | currency: "EUR"}}
+        </div>
+        <generic-button color="green" content="Valider" (click)="goToPage('payment-page')"></generic-button>
+        <generic-button color="red" content="Annuler" (click)="cancelBasket()"></generic-button>
+    </section>
+</aside> 

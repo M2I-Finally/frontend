@@ -1,0 +1,95 @@
+<generic-header></generic-header>
+<admin-nav></admin-nav>
+<div id="user-container">
+    <form id="form-user" [formGroup]="formUser" (ngSubmit)="submit()">
+        <div id="form-header">  
+            <h1 id="form-title">{{ modeText }} un utilisateur</h1>
+            <p id="form-info">Les champs suivis d'une * sont obligatoires</p>
+        </div>        
+        <div class="formContainer hidden">
+            <label class="formContainer-label" for="userid">Id utilisateur</label>
+            <input class="formContainer-input" type="text" formControlName="userId" id="userid">
+        </div>
+        <div class="formContainer">
+            <label class="formContainer-label" for="username">Nom de l'utilisateur<span>*</span></label>
+            <input class="formContainer-input" type="text" formControlName="userName" id="username" required (focusout)="checkingUser()">
+            <div class="error-msg" *ngIf="!formUser.controls['userName'].valid && (formUser.controls['userName'].dirty || formUser.controls['userName'].touched)">
+                Veuillez saisir un nom d'utilisateur
+            </div>
+        </div>
+        <div class="formContainer">
+            <label class="formContainer-label" for="userpassword">Mot de passe<span>*</span></label>
+            <input class="formContainer-input" type="password" formControlName="userPassword" id="userpassword" required>
+            <div class="error-msg" *ngIf="!formUser.controls['userPassword'].valid && (formUser.controls['userPassword'].dirty || formUser.controls['userPassword'].touched)">
+                Au moins 8 caractères, 1 chiffre, 1 minuscule, 1 majuscule et un caractère spécial ($@$!%*?&)
+            </div>
+        </div>
+        <div class="formContainer">
+            <label class="formContainer-label" for="confirmationpassword">Confirmer le mot de passe<span>*</span></label>
+            <input class="formContainer-input" type="password" formControlName="confirmationPassword" id="confirmationpassword" required>
+            <div class="error-msg" *ngIf="!formUser.controls['confirmationPassword'].valid && (formUser.controls['confirmationPassword'].dirty || formUser.controls['confirmationPassword'].touched)">
+                Veuillez confirmer le mot de passe
+            </div>
+        </div>
+        <div class="formContainer">
+            <fieldset>
+                <legend>Rôle<span>*</span></legend>            
+                <div>
+                    <input type="radio" id="admin" name="userRole" formControlName="userRole" value="ADMIN">
+                    <label for="admin">Admin</label>
+                  </div>
+                <div>
+                  <input type="radio" id="employee" name="userRole" formControlName="userRole" value="EMPLOYEE">
+                  <label for="employee">Employé</label>
+                </div>            
+                <div>
+                  <input type="radio" id="manager" name="userRole" formControlName="userRole" value="MANAGER">
+                  <label for="manager">Manager</label>
+                </div>
+            </fieldset>
+        </div>
+        <div id="button-container">
+            <button type="submit" [disabled]="!formUser.valid" id="form-button">{{ modeText }} l'utilisateur</button>
+            <button type="button" id="cancel-button" (click)="cancel()">Annuler</button>
+        </div>
+    </form>    
+    <aside>
+        <div id="users-header">  
+            <h1 id="users-title">Liste des utilisateurs</h1>
+        </div>
+        <table>        
+            <tbody>        
+                <ng-container *ngFor="let user of userList$ | async; index as i">
+                    <tr>
+                        <td><span class="displayed-role">{{ user.role }}</span>{{ user.username }}</td>
+                        <td>
+                            <svg data-id="{{user.id}}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16" (click)="dialogEdit.showModal(); onClick($event)">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                            </svg> 
+                            <svg data-id="{{user.id}}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" (click)="dialogDelete.showModal(); onClick($event)">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                            </svg>
+                        </td>
+                    </tr>        
+                </ng-container>
+            </tbody>
+        </table>
+    </aside>
+</div>
+
+<dialog #dialogDelete id="delete-dialog">
+    <form id="delete-form">
+        <p>Supprimer {{ selectedUserName }} ?</p>
+    </form>
+    <generic-button color="green-full" content="Valider" (click)="deleteUser(); dialogDelete.close()"></generic-button>
+    <generic-button color="red-full" content="Annuler" (click)="dialogDelete.close()"></generic-button>
+</dialog>
+
+<dialog #dialogEdit id="edit-dialog">
+    <form id="edit-form">
+        <p>Modifier {{ selectedUserName }} ?</p>
+    </form>
+    <generic-button color="green-full" content="Valider" (click)="editUser(); dialogEdit.close()"></generic-button>
+    <generic-button color="red-full" content="Annuler" (click)="dialogEdit.close()"></generic-button>
+</dialog>

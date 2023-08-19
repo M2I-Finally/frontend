@@ -1,0 +1,173 @@
+/* ------------------ MOBILE ------------------ */
+#container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    margin: 0 auto;
+
+    div.title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        h1.main-title {
+            font-size: 1.5rem;
+            vertical-align: middle;
+        }
+    }
+
+    table {
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 2rem;
+
+        th {
+            background-color: #524C7D;
+            font-weight: bold;
+            color: #FEFEFE;
+            width: 20%;
+            height: 40px;
+            vertical-align:middle !important;
+        }
+
+        td {
+            vertical-align:middle !important;
+            height: 3.555555rem;
+        }
+
+        td svg {
+            width: 24px;
+            height: 24px;
+            margin: 0.3rem;
+            color: #000000;
+        }
+
+        td svg:hover {
+            cursor: pointer;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #DDFEF2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+
+        .update-cell {            
+            .switch {
+                --secondary-container: #4CAD8A;
+                --primary: #fefefe;
+                font-size: 17px;
+                position: relative;
+                display: inline-block;
+                width: 3.3em;
+                height: 1.8em;
+
+                input {
+                    display: none;
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+            }
+            
+            .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #ccc;
+                    transition: .2s;
+                    border-radius: 30px;
+
+                    &:before {
+                        position: absolute;
+                        content: "";
+                        height: 1.4em;
+                        width: 1.4em;
+                        border-radius: 20px;
+                        left: 0.2em;
+                        bottom: 0.2em;
+                        background-color: #fefefe;
+                        transition: .2s;
+                }
+            }
+            
+            input {
+                    &:checked{
+                        & + .slider{
+                            background-color: var(--secondary-container);
+
+                            &::before{
+                                background-color: var(--primary);
+                            }
+
+                            &:before {
+                                transform: translateX(1.5em);
+                            }
+                        }
+                    }
+
+                    &:focus + .slider{
+                        box-shadow: 0 0 1px var(--secondary-container);
+                    }
+            }
+        }
+    }
+}
+
+#delete {
+    &-dialog {
+        padding: 4rem;
+        box-shadow: 10px 5px 5px var(--bg-color-80);
+        border-radius: 10px;
+        text-align: center;
+        font-family: 'Quicksand';
+        font-weight: 600;
+        border-color: #524c7d;
+    }
+}
+
+#logout {
+    &-dialog {
+        padding: 4rem;
+        box-shadow: 10px 5px 5px var(--bg-color-80);
+        border-radius: 10px;
+        text-align: center;
+        font-family: 'Quicksand';
+        font-weight: 600;
+        border-color: #524c7d;
+    }
+}
+
+
+
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    #container {
+        width: 80%;
+
+        div.title {
+            h1.main-title {
+                height: 100%;
+                font-size: 2rem;
+            }
+        }
+
+        table {
+            margin: 0 auto;
+
+            td svg {
+                margin-left: 16px;
+            }  
+        }
+    }
+}
+

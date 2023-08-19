@@ -1,0 +1,27 @@
+<main>
+    <div>
+        <div id="logo">
+            <img src="../../../../assets/logo/logoBleuVertPageLogin.png" alt="logo de finally">
+        </div>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="submit()" id="flogin" >            
+                <div class="label">
+                    <label for="fname">Nom d'utilisateur</label>
+                </div>
+                <div class="fieldlogin">
+                    <input type="text" id="fname" name="fname" formControlName="username" >
+                </div>
+                <div class="label">
+                    <label for="lname">Mot de passe</label>
+                </div>
+               <div class="fieldlogin">
+                    <input type="password" id="lname" name="lname" formControlName="password">                    
+               </div>                
+               <div class="fieldlogin">
+                    <button class="yellow" [disabled]=!loginForm.valid>Connexion</button>              
+               </div>                    
+        </form>
+
+        <p id="forgot"><a href="">Mot de passe oublié ?</a></p>
+    </div>
+</main>

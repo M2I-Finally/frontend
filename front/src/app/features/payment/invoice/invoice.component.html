@@ -1,0 +1,118 @@
+<generic-header  [escapeEnabled]="false"></generic-header>
+
+<div id="invoice-exit">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x-square-fill"
+        viewBox="0 0 16 16" id="invoice-exit-svg" (click)="close()">
+        <path
+            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
+    </svg>
+</div>
+<div id="invoice-container">
+    <div id="invoice-global">
+        <div id="invoice-global-logo">
+            <img id="logo" src="../../../../assets/logo/logoYelloBlue.png">
+        </div>
+        <div id="invoice-global-merchant">
+            <p>Fin.ally()</p>
+            <p>4 avenue de l'horizon</p>
+            <p>59650 Villeneuve-d'Ascq</p>
+            <p>Tél: 0320190719</p>
+            <p id="invoice-global-merchant-date">{{currentDate | date:'dd-MM-yyyy / HH:mm'}}</p>
+        </div>
+        <hr>
+        <div id="invoice-global-details">
+            <div *ngFor="let basket of basketLines">
+                <p class="name-product">{{ basket.getName() }}</p>
+                <p class="price-product"><span>{{basket.getPrice() |
+                        currency }}</span><span>X</span><span>{{basket.getQuantity()}}</span><span>=</span><span>{{basket.getPrice()*basket.getQuantity()
+                        | currency }}</span></p>
+            </div>
+            <div *ngIf="discount!=1; else nodiscount">
+                <hr class="hr-discount">
+                <p id="invoice-global-details-oldtotal"><span>Total avant réduction =</span><span>{{ oldTotal |
+                        currency }}</span></p>
+                <p class="hr-discount-p">Application de la réduction de {{discount}} %</p>
+                <hr class="hr-discount">
+            </div>
+            <ng-template #nodiscount>
+                <hr id="hr-total">
+            </ng-template>
+
+            <p id="invoice-global-details-total"><span>Total =</span><span>{{ paidBasket.getTotal() |
+                    currency }}</span></p>
+            <table id="payments">
+                <tr>
+                    <td>type de paiement</td>
+                    <td>:</td>
+                    <td>montant</td>
+                </tr>
+                <tr *ngFor="let paymentDto of paymentsDtoList" class="payments-tr">
+                    <td>
+                        <span [ngSwitch]="paymentDto.getType()">
+                            <span *ngSwitchCase="0">CASH</span>
+                            <span *ngSwitchCase="1">CB</span>
+                            <span *ngSwitchCase="2">AUTRE</span>
+                            <span *ngSwitchDefault></span>
+                        </span>
+                    </td>
+                    <td>:</td>
+                    <td>{{ paymentDto.getAmount() | currency }}</td>
+                </tr>
+            </table>
+            <hr id="hr-payments">
+            <table id="tax">
+                <thead>
+                    <th>Taux TVA</th>
+                    <th>Montant H.T.</th>
+                    <th>T.V.A.</th>
+                </thead>
+                <tbody>
+                    <tr class="tax-tr">
+                        <td>{{tva}} %</td>
+                        <td>{{ paidBasket.getTotal() / ( 1 + (tva/100)) | currency  }}</td>
+                        <td>{{paidBasket.getTotal() - ( paidBasket.getTotal() / ( 1 + (tva/100))) | currency }}
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <hr>
+        <div id="invoice-global-info">
+            <p>Nous vous remercions de votre visite</p>
+            <p>Identifiant de l'hote de caisse : {{sellerId}}</p>
+            <p>{{items}} article(s), Panier n°: {{idBasket}}</p>
+        </div>
+    </div>
+    <aside id="invoice-action">
+        <generic-button color="green-full" content="Envoyer par email"
+            (click)="dialogEmail.showModal()"></generic-button>
+        <dialog #dialogEmail>
+            <button id="buttonRed" (click)="dialogEmail.close()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" id="logout-exit" >
+                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                </svg>
+            </button>
+            <form [formGroup]="formSendEmail" (ngSubmit)="updateEmail(formSendEmail,'inputEmail')" method="POST">                
+                <div id="dial-email">                   
+                    <p>Saisir email client</p>
+                    <div id="dial-email-input">
+                        <input  formControlName="inputEmail" type="email" id="email">
+                        <div>
+                            <button (click)="dialogEmail.close()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                                    class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </dialog>
+
+        <generic-button color="green-full" content="Imprimer"
+            (click)="notify('print')"></generic-button>
+    </aside>
+</div>

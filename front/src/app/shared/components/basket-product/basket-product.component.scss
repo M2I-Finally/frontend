@@ -1,0 +1,60 @@
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    .basket-product {
+        margin: 20px 10px;
+        display: flex;
+        flex-wrap: wrap;
+        color: var(--text-on-dk-bg);
+        border-bottom: solid 1px var(--text-on-dk-bg);
+    }
+
+    .product {
+
+        &-name {
+            width: 80%;
+            padding-bottom: 15px;            
+        }
+        
+        &-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;    
+        }
+
+        &-quantity {
+            font-size: large;
+        }
+
+        &-price {
+            width: 40%;
+            text-align: right;
+            font-weight: 700;
+            padding-right: 5%;
+        }
+    }
+    
+    .bi-trash {
+        width: 20%;
+    }
+    
+    .bi-dash-circle, .bi-plus-circle {
+        padding-bottom: 15px;
+        text-align: center;
+    }
+}
+
+
+#trash-icon, #plus-icon, #minus-icon {
+    cursor: pointer;
+}
+
+
+
+/* ------------------ DESKTOP ------------------ */
+@media screen and (min-width: 1024px) {    
+    .basket-product {
+        margin: 20px;
+    }
+}
+ 

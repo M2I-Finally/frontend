@@ -1,0 +1,86 @@
+/* ------------------ MOBILE ------------------ */
+div {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    
+    form {
+        max-height: 50px;
+        display: flex;
+        flex-direction: row-reverse;
+        height: 70px;
+
+        input {
+            min-width: 0;
+            border-radius: 0 10px 10px 0;
+            background-color: transparent;
+            padding: 0.5rem;
+            border: 1px solid black;
+            color: black;
+            border-left: none;
+            left: 49px; 
+
+            &:focus {
+                background-color: var(--text-on-dk-bg);
+                color: var(--text-color);
+                border: transparent;
+                transition-duration: 0.4s;
+                // below lines are for larger search bar
+                width: 360px; 
+                padding: 1.2rem;
+            }
+        }
+
+        button {
+            background-color: transparent;
+            border-radius: 10px 0 0 10px;
+            padding: 0.3rem;
+            border: 1px solid black;
+            border-right:none ;
+        }
+
+        svg {
+            width: 20px;
+            fill: black;
+        }
+
+        input:focus + button {
+            background-color: var(--text-on-dk-bg);
+            color: var(--text-color);
+            border: transparent;
+            transition-duration: 0.4s;
+
+            svg {
+                width: 20px;
+                fill: var(--text-color);
+            }
+        }
+    }
+}
+
+
+
+
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    div {
+        margin: 4px 2px;
+        
+        form {
+            input {
+                border: 1px solid var(--primary-yellow);
+                border-left:none ;
+                color:var(--primary-yellow);
+            }
+
+            button {
+                border: 1px solid var(--primary-yellow);
+                border-right:none ;
+            }
+
+            svg {
+                fill: var(--primary-yellow);
+            }
+        }
+    }
+}

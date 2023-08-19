@@ -1,0 +1,39 @@
+div{
+    background-color: var(--primary-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    
+    img{
+        max-width: 60vw;
+        text-align: center;
+        margin: 0 auto;
+        
+    }
+    #desktop404{
+        display: inline-block;
+    }
+
+    #mobile404{
+        display:none;
+    }
+    .container-btn{
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 500px){
+   
+    #mobile404{
+        display:inline-block;
+    }
+    #desktop404{
+        display: none;
+    }
+}

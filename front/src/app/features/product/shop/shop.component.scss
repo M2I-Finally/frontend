@@ -1,0 +1,55 @@
+/* ------------------ MOBILE ------------------ */
+#search-bar {
+    display: none;
+}
+
+#mobile-search-bar {
+    width: 100%;
+    text-align: center;
+}
+
+#shop {
+    &-container {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-content: flex-start;
+        width: 100%;
+        height: 80vh;
+        gap: 0.3rem;
+        overflow-y: auto;
+    }
+}
+
+
+/* ------------------ TABLET ------------------ */
+@media screen and (min-width: 768px) {
+    #search-bar {
+        display: block;
+    }
+
+    #mobile-search-bar {
+        display: none;
+    }
+
+    #shop {
+        &-container {
+            width: 75%;
+            height: 71%;
+            gap: 1rem;
+        }
+    }
+}
+
+
+
+/* ------------------ DESKTOP ------------------ */
+@media screen and (min-width: 1024px) {
+    #shop {
+        &-container {
+            height: 70%;
+        }
+    }
+}
