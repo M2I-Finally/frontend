@@ -73,7 +73,6 @@ export class GenericHeaderComponent implements OnInit {
   }
 
   protected confirmPassword(): void {
-    console.log('logout');
     let sessionToken = sessionStorage.getItem('token');
     if(sessionToken != undefined) {
       let decoded: Jwt = jwt_decode(sessionToken);
