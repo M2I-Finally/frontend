@@ -73,7 +73,7 @@
 
 <dialog #dialogLogout id="logout-dialog">
     <form id="logout-form" [formGroup]="formPassword">
-        <p>Saisissez votre mot de passe pour vous déconnecter</p>
+        <p>Pour accéder au récapitulatif des ventes, saissisez votre mot de passe, sinon cliquez sur valider pour vous déconnecter</p>
         <input id="logout-input" type="password" formControlName="password"  required>
     </form>
     <generic-button color="green-full" content="Valider" (click)="confirmPassword()"></generic-button>
