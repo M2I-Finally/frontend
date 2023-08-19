@@ -96,7 +96,7 @@ export class AdminUserTableComponent implements OnInit {
   }
 
   protected submit(): void {
-    let regex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}");
+    let regex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}");
     if(this.modeText == "Ajouter") {
       if( this.checkedUser != null ) {
         this.toastr.error("L'utilisateur existe déjà. Veuillez saisir un autre nom");
@@ -131,10 +131,11 @@ export class AdminUserTableComponent implements OnInit {
           role: this.formUser.controls["userRole"].value
         }).subscribe({
           next: () => {
-            this.getUser()
-          }
+            this.getUser();
+            this.toastr.success("Utilisateur modifié");
+          },
+          error: err => this.toastr.error(err.error.message)  
         });
-        this.toastr.success("Utilisateur modifié");
         this.cancel();
       }
     }
