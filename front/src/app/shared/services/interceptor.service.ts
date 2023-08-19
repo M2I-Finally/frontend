@@ -44,13 +44,6 @@ export class InterceptorService implements HttpInterceptor{
       this.router.navigate(['/']);
     }
 
-    return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 0) {
-          this.router.navigate(['/']);       
-        }
-        return throwError(() => new Error("Unexpected error : "+error.message));
-      })
-    );
+    return next.handle(req);
   }
 }
