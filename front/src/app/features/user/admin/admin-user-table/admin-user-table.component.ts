@@ -31,7 +31,7 @@ export class AdminUserTableComponent implements OnInit {
   formUser = new UntypedFormGroup({
     userId: new UntypedFormControl(''),
     userName: new UntypedFormControl('', [Validators.required]),
-    userPassword: new UntypedFormControl('', [Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@!%*?&])[A-Za-z0-9\d$@!%*?&].{7,}')]),
+    userPassword: new UntypedFormControl('', [Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@!%*?&])[A-Za-z0-9$@!%*?&].{7,}')]),
     confirmationPassword: new UntypedFormControl('', [Validators.required]),
     userRole: new UntypedFormControl('EMPLOYEE', [Validators.required]),
   })
