@@ -21,7 +21,7 @@
             <label class="formContainer-label" for="userpassword">Mot de passe<span>*</span></label>
             <input class="formContainer-input" type="password" formControlName="userPassword" id="userpassword" required>
             <div class="error-msg" *ngIf="!formUser.controls['userPassword'].valid && (formUser.controls['userPassword'].dirty || formUser.controls['userPassword'].touched)">
-                Au moins 8 caractères, 1 chiffre, 1 minuscule, 1 majuscule et un caractère spécial ($@$!%*?&)
+                Au moins 8 caractères, 1 chiffre, 1 minuscule, 1 majuscule et un caractère spécial ($@!%*?&)
             </div>
         </div>
         <div class="formContainer">
