@@ -57,10 +57,4 @@ export class ProductService {
     return this.http.delete<Product>(Environment.apiUrl + '/products/' + productId);
   }
 
-  //This is for search bar
-  // searchProducts(searchValue:string):Observable<Product[]>{
-  //   return this.http.get<Product[]>(
-  //     `${this.url}/products?name_like=${searchValue}`
-  //   );
-  // }
 }

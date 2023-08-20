@@ -8,6 +8,8 @@ import { TodaySaleDto } from 'src/app/shared/entities/today-sale-dto';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import { TodaySaleService } from 'src/app/shared/services/today-sale.service';
+import jwt_decode from "jwt-decode";
+import { Jwt } from 'src/app/shared/entities/jwt';
 
 @Component({
   selector: 'app-logout',
@@ -37,6 +39,11 @@ export class LogoutComponent implements OnInit{
         this.paymentOther = dto.payments[2].amount;
       },
       error: err => {
+        const token = sessionStorage.getItem('token');
+    
+        let jwtDecoded : Jwt = jwt_decode(token!);
+        const currentId = jwtDecoded.id;
+        this.seller = "vendeur n°"+ currentId;
         this.toastr.info(err.error.message);
       }
     })}
