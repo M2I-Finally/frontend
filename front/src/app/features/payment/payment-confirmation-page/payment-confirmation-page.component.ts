@@ -85,6 +85,7 @@ export class PaymentConfirmationPageComponent implements OnInit {
     this.totalAfterDiscount = event;
     this.total = this.totalAfterDiscount;
     this.amountDue = this.total;
+    this.basket$.setTotal(this.total);
     
     // if totalAfterDiscount is smaller than total, means we have applied a discount and the total should be updated. 
     if (this.totalAfterDiscount < this.total) {
