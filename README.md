@@ -26,3 +26,9 @@ Vous avez à disposition 3 identifiants / mots de passe pour vous connecter à l
 - `admin:admin`
 - `manager:manager`
 - `employee:employee`
+
+## Equipe de développement
+- **Huan Xie** (https://github.com/thehuanxie)
+- **Mélanie Hautekeur** (https://github.com/MelanieHautekeur)
+- **Sébastien Duhamel** (https://github.com/sebdDev)
+- **Etienne Verraest** (https://github.com/etienne-verraest)
