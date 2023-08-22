@@ -9,7 +9,7 @@
 @media screen and (min-width: 768px) {
 
     #basket {
-        height: 72%;
+        height: 70%;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -23,7 +23,7 @@
     
     #basket-products {
         width: 100%;
-        height: 65%;   
+        height: 53%;   
         overflow-y: scroll;
     }
     
@@ -31,7 +31,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        height: 35%;
+        height: 47%;
         color: var(--primary-green);
         background-color: var(--primary-bg-color);
         font-size: 1.5em;
@@ -49,7 +49,7 @@
     
     .bold {
         font-weight: 700;
-        padding-bottom: 20px;
+        padding-bottom: 7px;
     }
 }
 
@@ -58,12 +58,20 @@
 /* ------------------ DESKTOP ------------------ */
 @media screen and (min-width: 1024px) {
     #basket {
-        height: 83.1%;
+        height: 72%;
     }
-    
-    // #basket-sum {
-    //     font-size: 2em;
-    // }
+
+    #basket-products {
+        height: 65%;
+    }
+
+    #basket-sum {
+        height: 35%;
+    }
+
+    .bold {
+        padding-bottom: 20px;
+    }
 }
 
  

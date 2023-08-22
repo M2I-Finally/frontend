@@ -24,16 +24,17 @@
     .navigation-button {
         all:unset;
         cursor: pointer;
-        padding:0.8rem 2rem;
+        padding:0.6rem 1.4rem;
         border-radius: 10px;
         text-align: center;
         box-shadow: 10px 5px 5px var(--bg-color-80);
-        margin: 1rem;
+        margin: 0.5rem;
         color: black;
         border: 3px solid black;
         font-family: 'Quicksand';
         font-weight: 600;
-        width: 100px;
+        font-size: small;
+        width: 80px;
         color: var(--primary-green);
         border: 3px solid var(--primary-green);
 
@@ -51,5 +52,12 @@
     #main-container {
         justify-content: flex-start;
         gap: 5%;
+    }
+
+    .navigation-button {
+        padding:0.8rem 2rem;
+        width: 100px;
+        font-size: medium;
+        margin: 1rem;
     }
 }

@@ -73,10 +73,10 @@
 /* ------------------ TABLET ------------------ */
 @media screen and (min-width: 768px) {
     .generic-button {
-        padding:0.8rem 2rem;
+        padding:0.5rem 1rem;
         border-radius: 10px;
         box-shadow: 10px 5px 5px var(--bg-color-80);
-        margin: 1rem;
+        margin: 0.5rem;
         font-weight: 600;
         width: 100px;
     }
