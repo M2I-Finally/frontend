@@ -78,16 +78,22 @@ export class GenericHeaderComponent implements OnInit {
       let decoded: Jwt = jwt_decode(sessionToken);
       let connectedUserId = decoded.id;
       //appeler la méthode qui vérifiera le mdp
-      this.userService.checkPassword(connectedUserId, this.formPassword.controls["password"].value).subscribe({
-        next: (res: boolean) => {
-          if(res) {
-            this.goToPage('logout');
-          } else {
-            this.authService.logout();
-            this.router.navigateByUrl('/')
+      if( this.formPassword.controls["password"].value != undefined) {
+        this.userService.checkPassword(connectedUserId, this.formPassword.controls["password"].value).subscribe({
+          next: (res: boolean) => {
+            if(res) {
+              this.goToPage('logout');
+            } else {
+              this.toastr.error('identifiant invalide');
+              this.formPassword.controls["password"].setValue('');             
+            }
           }
-        }
-      })      
+        })      
+      }else {
+        this.authService.logout();
+        this.router.navigateByUrl('/');
+      }
+      
     }
   }
 }

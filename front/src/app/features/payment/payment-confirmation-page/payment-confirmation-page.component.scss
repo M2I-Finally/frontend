@@ -116,6 +116,7 @@ dialog {
     }
 }
 
+/* ------------------ TABLET ------------------ */
 @media (max-width: 60rem) {
     .wrapper {
         grid-template-columns: 3fr;
@@ -148,27 +149,3 @@ dialog {
     }
 
 }
-
-
-
-
-/* ------------------ TABLET ------------------ */
-// @media screen and (min-width: 768px) {
-//     generic-header {
-//         margin-bottom: 2rem;
-//     }
-
-//     h1 {
-//         font-size: 2.5rem;
-//         margin: 1rem auto;
-//     }
-
-//     .recapWrapper {
-//         div {
-//             font-size: 1rem;
-//         }
-//     }
-
-// }
-
-
